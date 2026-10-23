@@ -32,6 +32,8 @@ unity/Assets/StreamingAssets/LocalVehicleAppearances/
 
 完整资源包还需包含目录.meta、预览、导出文件、指纹与对应ROS生成配置。仅随便放一份FBX进去不能通过资源一致性校验。获得有权提供的资源包后在根目录解压到对应相对路径，执行 `tools/doctor.py --unity`，再构建；仍缺项时停止，不将缺模型当作成功。
 
+仓库另补齐16个不含网格的 `vehicle_config.json` 契约供AI目录和配置逻辑读取，来源哈希见 `manifests/additional_configuration_metadata.json`。存在JSON不等于该车型的仿真模型资源已齐备，也不解除完整Unity资源检查。
+
 资产准备脚本在 `agribot_farm_sim/scripts/`，需要原始CAD和对应FreeCAD/网格工具环境。它们不是绕过许可或从Git自动恢复购买文件的工具。基础Car0 ROS仿真不要求完整十车型车库资源。
 
 ## 第三方来源

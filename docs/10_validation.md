@@ -12,6 +12,7 @@
 | 关键源码契约回归 | `scripts/test_source.sh`，116项通过 |
 | 控制台Python回归 | `agribot_mobile_app/test`，66项通过 |
 | 网页构建 | npm ci + Vite production build通过 |
+| 控制台HTTP启动 | 独立loopback端口18888启动，状态JSON与HTML页面均通过；未启动任何车辆任务 |
 | Android构建 | Gradle test、lint、assembleDebug通过；使用本机已装JDK/SDK及缓存，不等于全新SDK安装验收 |
 | 基础仿真启动 | Car0 orchard，无Gazebo/RViz窗口、无目标；/clock有消息，列出雷达、相机、IMU、融合、地图和Nav2话题 |
 | 基础仿真自动行驶全程 | 本次未执行；启动检查不能替代路径/精度验收 |

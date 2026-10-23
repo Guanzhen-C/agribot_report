@@ -9,10 +9,10 @@ Unity 在统一接口中选择感知、额外视觉AI、定位、规划、控制
 | 障碍感知 | STVL、Voxel 等成本地图输入 | 真实障碍标记/清除；高度带、坐标系和自反射过滤影响结果 |
 | 额外视觉AI | 检测、实例分割等任务 | 相机叠加显示；不是运动闭环必选输入，权重需另备 |
 | 定位 | FAST-LIVO2+RTK、FAST-LIO2、NavSat ESKF、KISS-ICP 等 | 根据环境和传感器可用性选择；不支持全部场景通吃 |
-| 全局规划 | Smac Hybrid-A*、Smac2D/State Lattice、NavFn、Theta*、直线等 | 转向约束与可达性不同，直线不能保证避障 |
+| 全局规划 | Smac Hybrid-A*、Smac2D、NavFn、Theta*、直线 | 转向约束与可达性不同，直线不能保证避障 |
 | 局部控制 | MPPI、RPP、DWB | 按阿克曼或差速运动学适配，不能忽略转向/速度极限 |
 
-具体当前选项以 `RosSimulationLauncher.cs` 和 ROS `algorithm_matrix.py` 为准；此表是算法族说明，不替代机器可读目录。
+具体当前选项以 `RosSimulationLauncher.cs`、`unity_sync_and_simulate.sh` 和 `compatibility.json` 为准；此表是算法族说明，不替代机器可读目录。其他真机包中的State Lattice等配置不表示已加入当前Unity菜单。
 
 ## 主要真机定位
 
