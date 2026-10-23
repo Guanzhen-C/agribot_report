@@ -20,6 +20,8 @@ git lfs pull
 
 不要使用 `GIT_LFS_SKIP_SMUDGE=1` 后直接运行模型。若 LFS 下载报配额/网络错误，修复下载后再运行。完整 Unity 请额外执行 `python3 tools/doctor.py --unity`；授权资源缺失会返回非零。
 
+若普通Git包下载正常，但LFS大文件在当前网络长期缓慢，可在本公开仓库的新克隆中先用 `GIT_LFS_SKIP_SMUDGE=1 git clone ...` 完成源码检出，再执行 `python3 tools/fetch_lfs_media.py`。该恢复工具从GitHub官方media地址按当前HEAD下载本仓库已公开对象，逐个核对LFS SHA256后再checkout；它不提供未获授权的模型，也不跳过内容校验。网络/配额仍需可用，不保证任意网络都能下载。
+
 ## ROS 依赖和首次构建
 
 先按 [ROS Humble Ubuntu 安装说明](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) 配置 ROS 软件源并安装 Desktop。仓库脚本不静默替换系统软件源或升级 Ubuntu。
