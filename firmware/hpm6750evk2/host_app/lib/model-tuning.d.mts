@@ -1,0 +1,12 @@
+import type {Group} from 'three';
+export type ModelPartGeometry={id:string;name:string;center:[number,number,number];size:[number,number,number]};
+export type ModelAsset={scene:Group;parts:ModelPartGeometry[];name:string;format:string};
+export type WheelSlot='frontLeft'|'frontRight'|'rearLeft'|'rearRight';
+export type ModelTuning={wheels:Record<WheelSlot,string[]>;trackMm:number|null;wheelbaseMm:number|null;widthMm:number|null;radiusMm:number|null};
+export const wheelSlots:WheelSlot[];
+export function emptyTuning():ModelTuning;
+export function validateTuning(parts:ModelPartGeometry[],tuning:ModelTuning):void;
+export function tuningTransforms(parts:ModelPartGeometry[],tuning:ModelTuning):Record<string,{position:number[];scale:number[]}>;
+export function tunedScene(asset:ModelAsset,tuning:ModelTuning):Group;
+export function disposeModel(scene:Group):void;
+export function prepareModel(source:Group,options?:{up?:string;forward?:string;unit?:number}):{scene:Group;parts:ModelPartGeometry[]};

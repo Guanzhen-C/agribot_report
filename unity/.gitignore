@@ -1,0 +1,53 @@
+# Unity generated
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+MemoryCaptures/
+Recordings/
+
+.vs/
+.vscode/
+.idea/
+
+*.csproj
+*.sln
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+sysinfo.txt
+
+# Generated ROS vehicle configuration bundle
+/ConfigExports/
+/ConfigExports/**/vehicle_config.json
+/ConfigExports/**/vehicle_visual.obj
+/ConfigExports/**/vehicle_visual.mtl
+/ConfigExports/**/ackermann_physical_runtime.json
+
+# Unity test runner output
+/TestResults-*.xml
+/Assets/Resources/PerformanceTestRunInfo.json*
+/Assets/Resources/PerformanceTestRunSettings.json*
+
+# Local purchased CAD derivatives; redistribution permission is not verified.
+/Assets/AgribotConfig/Resources/LocalFarmAssets/
+/Assets/AgribotConfig/Resources/LocalFarmAssets.meta
+/Assets/StreamingAssets/LocalFarmExports/
+/Assets/StreamingAssets/LocalFarmExports.meta
+/Assets/AgribotConfig/Resources/LocalVehicleAppearances/
+/Assets/AgribotConfig/Resources/LocalVehicleAppearances.meta
+/Assets/StreamingAssets/LocalVehicleAppearances/
+/Assets/StreamingAssets/LocalVehicleAppearances.meta
+/Assets/AgribotConfig/Resources/LocalGarageThumbnails/
+/Assets/AgribotConfig/Resources/LocalGarageThumbnails.meta
+/Assets/AgribotConfig/Resources/LocalGarageVehicles/
+/Assets/AgribotConfig/Resources/LocalGarageVehicles.meta

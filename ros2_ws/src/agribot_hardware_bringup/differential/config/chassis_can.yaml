@@ -1,0 +1,51 @@
+/**:
+  ros__parameters:
+    # Both transports use the shared, validated CAN backend. ZQWL is the
+    # physical default; set socketcan explicitly for a native CAN interface.
+    can_transport: zqwl_cdc
+    can_interface: can0
+    zqwl_port: /dev/serial/by-id/usb-ZQWL-CANFD_ZQWL-CANFD_966960660237-if00
+    zqwl_channel: 0
+    # 实车已验证的三合一底盘 CAN 波特率；新版 Excel 未单独声明波特率。
+    zqwl_bitrate: 250000
+    command_topic: /hardware/cmd_vel
+    odom_topic: /wheel/odometry
+    odom_frame: wheel_odom
+    base_frame: base_link
+
+    # “三合一底盘”控制报文的规定周期为 200 ms。
+    send_rate_hz: 5.0
+    # The chassis command itself is sent every 200 ms. Keep three periods of
+    # margin so one delayed Nav2 update does not alternate motion and braking.
+    command_timeout_sec: 0.60
+    feedback_timeout_sec: 0.6
+    recover_zqwl_startup: true
+    startup_feedback_timeout_sec: 1.0
+    require_feedback_before_motion: true
+    require_autonomous_mode: true
+    # 实车控制器在相邻反馈帧之间仍会推进计数器，只检查重复帧，不要求逐帧 +1。
+    require_sequential_feedback_counter: false
+    require_localization_ready: false
+    localization_ready_topic: /localization/ready
+    localization_ready_timeout_sec: 1.0
+    headlight: false
+
+    invert_left_motor: false
+    invert_right_motor: false
+
+    # 0x514 command calibration measured on the vehicle. Intermediate values
+    # are linearly interpolated; values above 1600 are extrapolated from the
+    # last measured segment until a full-scale measurement is available.
+    # Initial geometric value; refine from an in-place-turn test for track slip.
+    track_width_m: 0.60
+    command_full_scale_level: 3000.0
+    # 与桌面GUI默认档位一致；直行时对应约0.42 m/s。转弯时同样限制
+    # 任一履带的最终命令不超过该档位。
+    max_command_level: 800.0
+    command_calibration_levels: [0.0, 800.0, 1600.0]
+    command_calibration_wheel_speeds_mps: [0.0, 0.42, 0.78]
+    # 实车0x533/0x534反馈的Byte1-2是电机RPM；该临时比例只用于可选
+    # 轮速里程计，不参与导航定位或控制指令换算，需结合减速比实测标定。
+    feedback_wheel_speed_mps_per_speed_unit: 0.000436332313
+    max_linear_velocity: 0.42
+    max_angular_velocity: 0.80

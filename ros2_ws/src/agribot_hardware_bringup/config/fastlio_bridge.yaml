@@ -1,0 +1,14 @@
+fastlio_odom_bridge:
+  ros__parameters:
+    input_odom_topic: /Odometry
+    output_odom_topic: /fastlio/odometry
+    input_odom_frame: camera_init
+    input_body_frame: body
+    output_odom_frame: odom
+    output_base_frame: base_link
+    publish_tf: true
+    stamp_with_current_time: false
+    is_simulation: false
+    # FAST-LIO body is the IMU frame; base_link is the rear-axle center.
+    base_to_body_xyz: [0.1425, 0.0, 0.143]
+    base_to_body_rpy: [0.000572424, -0.009139547, -0.000002616]

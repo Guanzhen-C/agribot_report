@@ -1,0 +1,421 @@
+{
+  "schemaVersion": "1.0",
+  "vehicleId": "ackermann_current",
+  "displayName": "当前阿克曼农机",
+  "vehicleType": "ackermann",
+  "coordinateConvention": "ROS_FLU",
+  "baseFrame": {
+    "frameId": "base_link",
+    "reference": "rear_axle_midpoint"
+  },
+  "geometry": {
+    "bodyExtents": {
+      "frontM": 0.6548179984092712,
+      "rearM": 0.1274999976158142,
+      "leftM": 0.3359740078449249,
+      "rightM": 0.3359740078449249
+    },
+    "wheelbaseM": 0.5265874862670898,
+    "frontTrackM": 0.5899999737739563,
+    "rearTrackM": 0.5899999737739563,
+    "wheelRadiusM": 0.1274999976158142,
+    "wheelWidthM": 0.08143100142478943,
+    "maxSteeringAngleRad": 0.3840000033378601,
+    "minTurningRadiusM": 1.303246323188244,
+    "wheelCenters": [
+      {
+        "id": "front_left",
+        "position": [
+          0.5258469581604004,
+          0.2949990928173065,
+          0.001399993896484375
+        ],
+        "steering": true,
+        "driven": false,
+        "radiusM": 0.0,
+        "widthM": 0.0
+      },
+      {
+        "id": "front_right",
+        "position": [
+          0.5273243188858032,
+          -0.29499900341033936,
+          0.001399993896484375
+        ],
+        "steering": true,
+        "driven": false,
+        "radiusM": 0.0,
+        "widthM": 0.0
+      },
+      {
+        "id": "rear_left",
+        "position": [
+          -3.084638322548017e-08,
+          0.29499998688697815,
+          0.0
+        ],
+        "steering": false,
+        "driven": true,
+        "radiusM": 0.0,
+        "widthM": 0.0
+      },
+      {
+        "id": "rear_right",
+        "position": [
+          -2.3668473403404278e-08,
+          -0.29499995708465576,
+          -1.9073486328125e-06
+        ],
+        "steering": false,
+        "driven": true,
+        "radiusM": 0.0,
+        "widthM": 0.0
+      }
+    ]
+  },
+  "navigation": {
+    "clearance": {
+      "frontM": 0.10000000149011612,
+      "rearM": 0.10000000149011612,
+      "leftM": 0.15000000596046448,
+      "rightM": 0.15000000596046448
+    },
+    "maxLinearSpeedMps": 0.30000001192092896,
+    "maxAngularSpeedRadps": 0.23019500076770782,
+    "allowReverse": false,
+    "inflationRadiusM": 2.0,
+    "costScalingFactor": 1.0
+  },
+  "chassis": {
+    "commandMaxLinearSpeedMps": 0.800000011920929,
+    "commandMaxAngularSpeedRadps": 0.6138539910316467,
+    "minimumMotionSpeedMps": 0.019999999552965164
+  },
+  "dynamics": {
+    "massKg": 50.0,
+    "centerOfMass": [
+      0.26239150762557983,
+      0.0,
+      0.061550501734018326
+    ],
+    "inertia": {
+      "ixx": 1.9140000343322754,
+      "ixy": 0.0,
+      "ixz": 0.0,
+      "iyy": 2.671999931335449,
+      "iyz": 0.0,
+      "izz": 4.084000110626221
+    },
+    "maxAccelerationMps2": 0.800000011920929,
+    "maxSteeringRateRadps": 1.2000000476837158
+  },
+  "collision": {
+    "center": [
+      0.26239150762557983,
+      0.0,
+      0.061550501734018326
+    ],
+    "size": [
+      0.7616109848022461,
+      0.6317830085754395,
+      0.24580000340938568
+    ]
+  },
+  "visuals": [
+    {
+      "name": "vehicle_body",
+      "meshUri": "package://agribot_vehicle_description/generated/ackermann_current/models/vehicle_visual.obj",
+      "pose": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "sensors": [
+    {
+      "id": "imu",
+      "sensorType": "imu",
+      "model": "Hipnuc N300Pro",
+      "role": "inertial",
+      "parentFrameId": "base_link",
+      "frameId": "imu_link",
+      "pose": {
+        "xyz": [
+          0.14249998331069946,
+          5.685561532686734e-08,
+          0.14299964904785156
+        ],
+        "quaternion": [
+          0.00028620302327908576,
+          -0.004569758661091328,
+          -6.707593508403775e-11,
+          0.9999895095825195
+        ],
+        "rpy": [
+          0.0005724239745177329,
+          -0.009139548987150192,
+          -2.6160007564612897e-06
+        ]
+      },
+      "measurementFrameId": "",
+      "measurementFramePose": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "topic": "/imu/data",
+      "updateRateHz": 100.0
+    },
+    {
+      "id": "lidar",
+      "sensorType": "lidar",
+      "model": "LSLiDAR C16 V4",
+      "role": "mapping",
+      "parentFrameId": "base_link",
+      "frameId": "lidar_link",
+      "pose": {
+        "xyz": [
+          0.47999995946884155,
+          3.545285665040865e-08,
+          0.2329998016357422
+        ],
+        "quaternion": [
+          -0.003824230283498764,
+          -0.00091783725656569,
+          -2.5693426553008436e-11,
+          0.999992311000824
+        ],
+        "rpy": [
+          -0.0076484885066747665,
+          -0.0018356612417846918,
+          7.020000794000225e-06
+        ]
+      },
+      "measurementFrameId": "",
+      "measurementFramePose": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "topic": "/lidar/points",
+      "updateRateHz": 10.0
+    },
+    {
+      "id": "right_camera",
+      "sensorType": "camera",
+      "model": "Hikrobot MV-CU013-A0UC",
+      "role": "visual_odometry",
+      "parentFrameId": "base_link",
+      "frameId": "right_camera_link",
+      "pose": {
+        "xyz": [
+          0.5755000114440918,
+          4.626258132134353e-08,
+          0.15399932861328125
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "measurementFrameId": "right_camera_optical_frame",
+      "measurementFramePose": {
+        "xyz": [
+          2.544900290502028e-09,
+          4.626258132134353e-08,
+          0.0
+        ],
+        "quaternion": [
+          0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "rpy": [
+          -1.5707963705062866,
+          0.0,
+          -1.5707963705062866
+        ]
+      },
+      "topic": "/camera/rgb/image_raw",
+      "updateRateHz": 10.0
+    },
+    {
+      "id": "rtk_master",
+      "sensorType": "gnss_antenna",
+      "model": "Dual-antenna RTK",
+      "role": "master_left",
+      "parentFrameId": "base_link",
+      "frameId": "rtk_link",
+      "pose": {
+        "xyz": [
+          0.14249995350837708,
+          0.2952585220336914,
+          0.784759521484375
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "measurementFrameId": "",
+      "measurementFramePose": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "topic": "/rtk/fix",
+      "updateRateHz": 10.0
+    },
+    {
+      "id": "rtk_secondary",
+      "sensorType": "gnss_antenna",
+      "model": "Dual-antenna RTK",
+      "role": "secondary_right",
+      "parentFrameId": "base_link",
+      "frameId": "rtk_secondary_link",
+      "pose": {
+        "xyz": [
+          0.14249995350837708,
+          -0.29525846242904663,
+          0.784759521484375
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "measurementFrameId": "",
+      "measurementFramePose": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "topic": "/rtk/heading",
+      "updateRateHz": 10.0
+    }
+  ],
+  "manipulators": [
+    {
+      "model": "lite6",
+      "parentFrameId": "base_link",
+      "pose": {
+        "xyz": [
+          0.25232720375061035,
+          0.0009719826048240066,
+          0.1402149200439453
+        ],
+        "quaternion": [
+          6.746694504878702e-15,
+          0.0,
+          5.6595396813463594e-08,
+          1.0
+        ],
+        "rpy": [
+          0.0,
+          2.384185791015625e-07,
+          1.1319077941607247e-07
+        ]
+      },
+      "demoEnabled": true
+    }
+  ],
+  "metadata": {
+    "authoringTool": "AgriculturalCar_Interior",
+    "profileVersion": "1.0.0",
+    "calibrationState": "validated_ackermann_baseline",
+    "notes": "Unity nominal geometry with the currently validated physical calibration."
+  }
+}

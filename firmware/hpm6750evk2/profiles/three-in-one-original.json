@@ -1,0 +1,24 @@
+{
+  "format": "FGMP/1",
+  "identity": {
+    "id": "307e943c-3712-4b90-a4cc-000000000001", "revision": 1,
+    "name": "履带差速农机（三合一）", "author": "刘泽禹", "manufacturer": "",
+    "description": "原版三合一协议双向转发。commissioned=false：未完成本版本实机验证。",
+    "commissioned": false, "legacyMachineId": 1, "legacyProtocolId": 257
+  },
+  "machine": { "type": "tracked_differential", "inputModel": "native_percent" },
+  "upstream": { "protocol": "three_in_one_can_v1", "bus": "CAN1", "bitrate": 250000 },
+  "downstream": { "bus": "CAN0", "bitrate": 250000 },
+  "safety": { "commandTimeoutMs": 500, "feedbackTimeoutMs": 1500, "neutralBeforeEnable": true, "requiredFeedbackIds": [1330] },
+  "routing": { "mode": "passthrough", "feedbackPassthroughIds": [1280,1281,1330,1331,1332,1456,1458,1459,1460,1616,1618], "messages": [] },
+  "devices": [
+    { "id": "left_drive", "name": "左驱动", "category": "drive", "control": "drive.leftPercent", "feedback": "native_three_in_one", "feedbackFrameId": 1331 },
+    { "id": "right_drive", "name": "右驱动", "category": "drive", "control": "drive.rightPercent", "feedback": "native_three_in_one", "feedbackFrameId": 1332 },
+    { "id": "headlight", "name": "作业照明", "category": "light", "control": "lighting.headlight", "feedback": "native_three_in_one", "feedbackFrameId": 1330 },
+    { "id": "fan", "name": "植保风机", "category": "fan", "control": "work.fanGear", "feedback": "native_three_in_one", "feedbackFrameId": 1458 },
+    { "id": "pump", "name": "供液水泵", "category": "pump", "control": "work.pumpGear", "feedback": "native_three_in_one", "feedbackFrameId": 1459 },
+    { "id": "shredder", "name": "碎枝机", "category": "shredder", "control": "work.shredderX100", "feedback": "native_three_in_one", "feedbackFrameId": 1460 },
+    { "id": "battery", "name": "电池组", "category": "battery", "control": "none", "feedback": "native_three_in_one", "feedbackFrameId": 1616 }
+  ],
+  "extensions": { "source:protocol": { "name": "三合一协议.dbc", "author": "MatrixCreat @WangHu", "version": "WangHu V1.0", "date": "2026-05-13", "note": "位速率沿用既有工程；DBC 未声明位速率。" } }
+}

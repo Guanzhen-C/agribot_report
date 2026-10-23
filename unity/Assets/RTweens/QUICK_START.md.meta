@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cd219936c32d2c843adddfcfd3fe0e66
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/QUICK_START.md
+  uploadId: 958666

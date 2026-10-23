@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9ad72b4169ed7e74cb0cc89d58d78c17
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Demo/Materials/Material.mat
+  uploadId: 958666

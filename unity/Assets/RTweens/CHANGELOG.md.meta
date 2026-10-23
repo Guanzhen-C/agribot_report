@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2ef8dca58bbcd0e40bf35f8348f97bf6
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/CHANGELOG.md
+  uploadId: 958666

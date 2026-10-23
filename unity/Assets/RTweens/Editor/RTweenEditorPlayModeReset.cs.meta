@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 60950357a5b55f649b780e3588281a9b
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Editor/RTweenEditorPlayModeReset.cs
+  uploadId: 958666

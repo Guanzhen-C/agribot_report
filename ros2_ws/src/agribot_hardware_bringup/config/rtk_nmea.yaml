@@ -1,0 +1,42 @@
+rtk_nmea:
+  ros__parameters:
+    serial_port: /dev/serial/by-id/usb-AirM2M_AirM2M_Compo_000000000001-if06
+    baud_rate: 115200
+    frame_id: rtk_link
+    fix_topic: /rtk/fix
+    quality_topic: /rtk/fix_quality
+    heading_topic: /rtk/heading
+    heading_deg_topic: /rtk/heading_deg
+    heading_valid_topic: /rtk/heading_valid
+    heading_solution_topic: /rtk/heading_solution
+    heading_covariance_topic: /rtk/heading_with_covariance
+    raw_sentence_topic: /rtk/raw_sentence
+    gga_utc_topic: /rtk/gga_utc
+    satellite_count_topic: /rtk/satellite_count
+    hdop_topic: /rtk/hdop
+    differential_age_topic: /rtk/differential_age
+    reference_station_topic: /rtk/reference_station_id
+    heading_reference_frame: map
+    # Master antenna is left and secondary is right on a 0.590517 m lateral
+    # baseline: receiver master-to-secondary heading minus 90 deg is vehicle yaw.
+    heading_offset_deg: -90.0
+    # Use the receiver-reported uncertainty with a conservative floor per fix type.
+    fixed_heading_std_floor_deg: 1.0
+    float_heading_std_floor_deg: 5.0
+    reconnect_interval_sec: 1.0
+    fixed_horizontal_std_m: 0.03
+    float_horizontal_std_m: 0.30
+    autonomous_horizontal_std_m: 2.0
+    vertical_std_scale: 1.5
+    # 优先使用GGA/RMC/ZDA和UNIHEADINGA中的GNSS测量时刻。
+    use_gnss_measurement_time: true
+    gnss_time_offset_sec: 0.0
+    gnss_time_max_error_sec: 5.0
+    heading_pair_tolerance_sec: 0.25
+    enable_ntrip: false
+    ntrip_host: ""
+    ntrip_port: 8002
+    ntrip_mountpoint: ""
+    ntrip_username: ""
+    ntrip_password: ""
+    ntrip_gga_period_sec: 5.0

@@ -1,0 +1,111 @@
+from pathlib import Path
+
+
+PACKAGE_ROOT = Path(__file__).parents[1]
+
+
+def test_shared_can_code_uses_can_directory():
+    expected = (
+        "include/agribot_hardware_bringup/chassis_adapter.hpp",
+        "include/agribot_hardware_bringup/chassis_can_common.hpp",
+        "include/agribot_hardware_bringup/chassis_can_node.hpp",
+        "include/agribot_hardware_bringup/chassis_can_transport.hpp",
+        "src/chassis_can_common.cpp",
+        "src/chassis_can_node.cpp",
+        "src/chassis_can_transport.cpp",
+        "test/test_chassis_can_transport.cpp",
+    )
+    can_root = PACKAGE_ROOT / "can"
+    assert can_root.is_dir()
+    for relative_path in expected:
+        assert (can_root / relative_path).is_file()
+    assert not (PACKAGE_ROOT / "common").exists()
+
+
+def test_vehicle_specific_code_is_separated():
+    expected = {
+        "differential": (
+            "README.md",
+            "config/chassis_can.yaml",
+            "config/fast_lio_c16.yaml",
+            "config/fastlio_bridge.yaml",
+            "config/fastlivo_bridge.yaml",
+            "config/fastlivo_c16_camera.yaml",
+            "config/fastlivo_rtk_fusion.yaml",
+            "config/motion_primitives/diff_5cm.json",
+            "config/nav2_params_differential_fastlivo_mapped.yaml",
+            "config/nav2_params_differential_planner_only.yaml",
+            "config/obstacle_height_filter.yaml",
+            "config/pcd_initial_localization.yaml",
+            "config/pcd_mapping.yaml",
+            "config/rtk_map_initializer.yaml",
+            "config/rtk_nmea.yaml",
+            "config/sensor_mounts.yaml",
+            "config/vehicle_calibration.yaml",
+            "include/agribot_hardware_bringup/differential_can_protocol.hpp",
+            "launch/differential_3d_mapping.launch.py",
+            "launch/differential_fastlivo_rtk_localization.launch.py",
+            "launch/differential_mppi_fastlivo_rtk_mapped.launch.py",
+            "launch/differential_outdoor_experiment.launch.py",
+            "launch/differential_sensor_validation.launch.py",
+            "launch/differential_state_lattice_validation.launch.py",
+            "src/differential_can_protocol.cpp",
+            "src/differential_chassis_adapter.cpp",
+            "src/differential_chassis_main.cpp",
+            "src/differential_obstacle_height_filter.cpp",
+            "test/test_differential_can_protocol.cpp",
+        ),
+        "ackermann": (
+            "README.md",
+            "config/chassis_can.yaml",
+            "config/chassis_serial.yaml",
+            "config/nav2_params_ackermann_fastlio_local.yaml",
+            "config/nav2_params_ackermann_fastlio_mapped.yaml",
+            "include/agribot_hardware_bringup/ackermann_can_protocol.hpp",
+            "include/agribot_hardware_bringup/ackermann_serial_protocol.hpp",
+            "launch/ackermann_mppi_fastlio_mapped.launch.py",
+            "launch/ackermann_mppi_fastlio_local.launch.py",
+            "launch/ackermann_mppi_fastlio_3d_mapping.launch.py",
+            "launch/ackermann_sensor_data_collection.launch.py",
+            "launch/ackermann_mppi_navsat.launch.py",
+            "src/ackermann_can_protocol.cpp",
+            "src/ackermann_chassis_adapter.cpp",
+            "src/ackermann_chassis_main.cpp",
+            "src/ackermann_serial_node.cpp",
+            "src/ackermann_serial_protocol.cpp",
+            "test/test_ackermann_can_protocol.cpp",
+            "test/test_ackermann_serial_protocol.cpp",
+        ),
+    }
+    for vehicle, relative_paths in expected.items():
+        vehicle_root = PACKAGE_ROOT / vehicle
+        assert vehicle_root.is_dir()
+        for relative_path in relative_paths:
+            assert (vehicle_root / relative_path).is_file()
+
+
+def test_obsolete_mixed_chassis_files_are_removed():
+    obsolete = (
+        "config/chassis_can.yaml",
+        "include/agribot_hardware_bringup/chassis_can_protocol.hpp",
+        "src/chassis_can_protocol.cpp",
+        "src/chassis_can_node.cpp",
+        "test/test_chassis_can_protocol.cpp",
+        "differential/config/nav2_dwb_fastlio.yaml",
+        "differential/config/nav2_dwb_navsat.yaml",
+        "differential/launch/differential_dwb_fastlio.launch.py",
+        "differential/launch/differential_dwb_navsat.launch.py",
+    )
+    for relative_path in obsolete:
+        assert not (PACKAGE_ROOT / relative_path).exists()
+
+
+def test_unified_launch_selects_dedicated_executables_and_configs():
+    launch_source = (PACKAGE_ROOT / "launch" / "vehicle_autonomy.launch.py").read_text()
+    assert 'executable="differential_chassis_can_node"' in launch_source
+    assert 'executable="ackermann_chassis_can_node"' in launch_source
+    assert 'executable="ackermann_chassis_serial_node"' in launch_source
+    assert '"differential", "config", "chassis_can.yaml"' in launch_source
+    assert '"ackermann", "config", "chassis_can.yaml"' in launch_source
+    assert '"ackermann", "config", "chassis_serial.yaml"' in launch_source
+    assert 'executable="chassis_can_node"' not in launch_source

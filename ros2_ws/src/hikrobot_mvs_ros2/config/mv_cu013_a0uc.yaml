@@ -1,0 +1,48 @@
+/**:
+  ros__parameters:
+    serial_number: "DB0447659"
+    frame_id: "right_camera_optical_frame"
+    image_topic: "/camera/rgb/image_raw"
+    camera_info_topic: "/camera/rgb/camera_info"
+    frame_stamp_topic: "/camera/rgb/frame_stamp"
+    physical_trigger_edge_stamp_topic: "/camera/trigger/physical_edge_stamp"
+    camera_name: "agribot_hikrobot_right_camera"
+    camera_info_url: "package://hikrobot_mvs_ros2/config/agribot_hikrobot_right_camera.yaml"
+
+    # 镜头安装和硬同步接线前使用自由运行；正式运行时再改为硬触发。
+    trigger_enable: false
+    trigger_selector: "FrameBurstStart"
+    trigger_source: "Line0"
+    trigger_activation: "RisingEdge"
+    acquisition_frame_rate: 10.0
+    exposure_auto: "Continuous"
+    exposure_time_us: 5000.0
+    gain_auto: "Continuous"
+    gain: 0.0
+    gamma_enable: true
+    gamma: 0.7
+    pixel_format: "BayerGB12Packed"
+
+    # 保持1280x1024原始尺寸发布；录包链路使用有界可靠队列避免丢帧。
+    publisher_reliability: reliable
+    publisher_depth: 16
+    # 驱动只保留SDK最新帧，避免算法处理慢时无界积压图像。
+    sdk_buffer_count: 2
+    grab_timeout_ms: 1000
+    # MV-CU013-A0UC实测设备时间戳频率为100MHz，映射到SDK主机接收时间。
+    timestamp_source: device
+    device_timestamp_frequency_hz: 100000000.0
+    # In hardware-trigger mode the frame stamp is the actual Pin33 rising-edge
+    # kernel timestamp. Do not apply the former fixed device-clock correction.
+    timestamp_offset_sec: 0.0
+    use_physical_trigger_timestamp: true
+    trigger_edge_buffer_path: "/run/agribot-camera-trigger/physical_edges.bin"
+    trigger_edge_max_receipt_delay_ms: 90.0
+    trigger_edge_max_future_ms: 2.0
+    time_sync_window_size: 600
+    time_sync_min_samples: 30
+    time_sync_fit_interval_samples: 5
+    time_sync_min_span_sec: 3.0
+    time_sync_max_scale_error_ppm: 1000.0
+    time_sync_reset_threshold_sec: 0.5
+    time_sync_max_device_gap_sec: 2.0

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2b29344e072a6754ba11f2fa3a160d39
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Demo/Scenes/RTweenAnimator.unity
+  uploadId: 958666

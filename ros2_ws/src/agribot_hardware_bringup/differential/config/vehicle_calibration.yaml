@@ -1,0 +1,47 @@
+schema_version: 1
+vehicle_type: differential
+calibration_complete: true
+calibration_source: provisional_manual_measurements_accepted_2026_08_27
+base_link_reference: tracked_contact_patch_center
+
+# Physical body extents measured from base_link on 2026-08-26. Safety margins
+# remain explicit and are added only when building the navigation footprint.
+geometry:
+  body_front_m: 0.60
+  body_rear_m: 0.60
+  body_left_m: 0.38
+  body_right_m: 0.38
+  safety_front_m: 0.10
+  safety_rear_m: 0.10
+  safety_left_m: 0.15
+  safety_right_m: 0.15
+  # Geometric track-center spacing. Replace the control value only if the
+  # in-place-turn test identifies a different effective skid-steer width.
+  track_width_m: 0.60
+
+drivetrain:
+  invert_left_motor: false
+  invert_right_motor: false
+  # Ground-speed measurements made with the desktop GUI. Level 3000 remains
+  # only the protocol's 100 percent point; its ground speed has not been measured.
+  command_full_scale_level: 3000.0
+  max_command_level: 800.0
+  command_calibration_levels: [0.0, 800.0, 1600.0]
+  command_calibration_wheel_speeds_mps: [0.0, 0.42, 0.78]
+  # This feedback scale is still provisional and does not affect commands.
+  feedback_wheel_speed_mps_per_speed_unit: 0.000436332313
+
+motion:
+  reverse_enabled: true
+  commissioning_linear_velocity_mps: 0.42
+  commissioning_reverse_velocity_mps: 0.15
+  commissioning_angular_velocity_radps: 0.80
+
+recommended_refinements:
+  - motor_direction_signs
+  - command_curve_left_right_reverse_validation
+  - feedback_speed_unit_to_wheel_speed_scale_for_optional_wheel_odometry
+  - maximum_linear_and_angular_velocity
+  - effective_track_width_from_turn_test
+  - lidar_imu_rotation_refinement
+  - lidar_camera_extrinsics_validation

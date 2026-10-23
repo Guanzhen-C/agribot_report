@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c44c2bcc79d56dc48a573224a3a8a72b
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Runtime/RG.Tweening.Runtime.asmdef
+  uploadId: 958666

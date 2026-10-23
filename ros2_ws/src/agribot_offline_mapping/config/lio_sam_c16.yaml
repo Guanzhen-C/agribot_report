@@ -1,0 +1,97 @@
+/**:
+  ros__parameters:
+    pointCloudTopic: /lio_sam/points
+    imuTopic: /imu/data
+    odomTopic: /lio_sam/odometry/imu
+    gpsTopic: /lio_sam/odometry/gps
+
+    lidarFrame: lidar_link
+    baselinkFrame: base_link
+    odometryFrame: map
+    mapFrame: map
+
+    # 使用官方 LIO-SAM 后端。RTK 航向不进入图优化。
+    useImuHeadingInitialization: false
+    # 实测 RTK 高度闭环误差约 3 m，因此只采用水平 x/y；官方实现会以当前
+    # LIO 高度构造中性的 z 测量，而不会使用 RTK 高程。
+    useGpsElevation: false
+    gpsCovThreshold: 0.25
+    # 设为 0，避免官方的位姿协方差门控跳过可用的 RTK 水平位置。
+    poseCovThreshold: 0.0
+    # 初始化仍等待轨迹离开起点 5 m；初始化后每移动约 1 m 加一个 RTK 因子。
+    gpsFactorMinDistance: 1.0
+    # 固定解水平位置采用10厘米标准差下限；z仍保持官方1.0 m^2方差下限。
+    gpsHorizontalCovarianceFloor: 0.01
+    # 对偶发多路径固定解降权，防止单个RTK观测扭曲整条轨迹。
+    gpsRobustKernelDelta: 1.345
+
+    # 以N300Pro重力方向约束每个关键帧的roll/pitch，yaw保持自由。
+    useGravityAttitudeFactor: true
+    gravityAttitudeSigma: 0.017453292519943295
+    gravityAttitudeRobustKernelDelta: 1.345
+    # 首帧水平姿态标准差0.5度，高度原点标准差0.1米。
+    initialRollPitchSigma: 0.008726646259971648
+    initialZSigma: 0.10
+
+    savePCD: false
+    savePCDDirectory: /agribot_maps/lio_sam/
+
+    # The C16 adapter emits the Velodyne-compatible x/y/z/intensity/ring/time layout.
+    sensor: velodyne
+    N_SCAN: 16
+    Horizon_SCAN: 1800
+    downsampleRate: 1
+    lidarMinRange: 0.30
+    lidarMaxRange: 60.0
+
+    # Conservative N300Pro values; replace these after a valid Allan run.
+    imuAccNoise: 0.08
+    imuGyrNoise: 0.001745329252
+    imuAccBiasN: 0.00010
+    imuGyrBiasN: 0.00010
+    imuGravity: 9.80665
+    imuRPYWeight: 0.01
+
+    # N300Pro IMU origin expressed in the C16 optical frame after applying the
+    # calibrated sensor rotations. LIO-SAM composes lidarPose * lidar2Imu.
+    extrinsicTrans: [-0.337664640, 0.000685990, -0.089377680]
+    # 2026-08-05 calibration after replacing the IMU mount. extrinsicRot maps
+    # IMU vectors into lidar; extrinsicRPY is its inverse for orientation.
+    extrinsicRot: [0.999973327, 0.000005455, -0.007303826,
+                   -0.000065498, 0.999966209, -0.008220527,
+                   0.007303534, 0.008220786, 0.999939537]
+    extrinsicRPY: [0.999973327, -0.000065498, 0.007303534,
+                   0.000005455, 0.999966209, 0.008220786,
+                   -0.007303826, -0.008220527, 0.999939537]
+
+    edgeThreshold: 1.0
+    surfThreshold: 0.1
+    edgeFeatureMinValidNum: 10
+    surfFeatureMinValidNum: 100
+
+    odometrySurfLeafSize: 0.20
+    mappingCornerLeafSize: 0.10
+    mappingSurfLeafSize: 0.20
+
+    z_tollerance: 2.0
+    rotation_tollerance: 1.0
+
+    numberOfCores: 8
+    mappingProcessInterval: 0.15
+
+    surroundingkeyframeAddingDistThreshold: 0.50
+    surroundingkeyframeAddingAngleThreshold: 0.10
+    surroundingKeyframeDensity: 1.0
+    surroundingKeyframeSearchRadius: 50.0
+
+    loopClosureEnableFlag: true
+    loopClosureFrequency: 1.0
+    surroundingKeyframeSize: 50
+    historyKeyframeSearchRadius: 15.0
+    historyKeyframeSearchTimeDiff: 30.0
+    historyKeyframeSearchNum: 25
+    historyKeyframeFitnessScore: 0.30
+
+    globalMapVisualizationSearchRadius: 1000.0
+    globalMapVisualizationPoseDensity: 5.0
+    globalMapVisualizationLeafSize: 0.50

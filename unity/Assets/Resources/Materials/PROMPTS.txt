@@ -1,0 +1,10 @@
+Engine: built-in image_gen (no CLI/API fallback)
+
+Black powder coat albedo:
+Use case: photorealistic-natural. Asset type: seamless tileable PBR albedo texture, square 2048 x 2048. Primary request: make a real, very subtle charcoal black powder-coated industrial steel surface texture for a tracked agricultural inspection robot, matching a clean working machine rather than a rusty abandoned vehicle. Orthographic perfectly flat scan of just the surface material filling the whole canvas, NO object, NO edge, NO lighting highlights, NO gradient, NO perspective, NO words. Very fine orange-peel powder-coat grain, faint uneven rubbing, sparse extremely fine hairline abrasions, a tiny amount of embedded pale dust. Uniform dark charcoal overall (approximately sRGB 38, 40, 42), low contrast, no silver flaking, no big scratches, no panels, no seams, no stains. All four edges must tile seamlessly. This is a texture map, not an illustration or a photograph of the robot.
+
+Rubber albedo:
+Use case: photorealistic-natural. Asset type: seamless tileable PBR albedo material texture, square image. Generate only a perfectly flat orthographic surface scan of black vulcanized rubber for the track belt of a small tracked agricultural robot. Flat diffuse lighting with zero cast shadows, zero highlights, no photographic perspective, no tread geometry, no stripes, no seams, no words, no objects. A dense soft fine rubber pore structure, very low contrast charcoal black base, subtle irregular extremely thin grey dry dust worked into some pores and light subtle grey abrasion. This material is kept mostly clean, mildly used indoors, NOT muddy, not brown, not cracked and not heavily weathered. The texture fills the canvas and all edges tile seamlessly. Microtexture only: actual track grooves exist in the 3D geometry already and must not be depicted in the albedo.
+
+Additional maps: Blender native material baking (roughness and tangent-space normals). Tread relief is a normal map only, not new mechanical geometry. Albedo output resolution is recorded from the actual files in verification.
+

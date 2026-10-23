@@ -1,0 +1,82 @@
+[
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_crusher/vehicle_config.json",
+    "sha256": "98b17e534f56348e3d4b4705f23589cbc8318b7de8aadd7e7ef13237f0a40f9c",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_cultivator/vehicle_config.json",
+    "sha256": "6e8d7c9706f0c10869813be4891c458d00dd9210be798b4fc303ffde565c6f7f",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_groove/vehicle_config.json",
+    "sha256": "bc875855f062b280305833b32800451cd461521e267ea5d6e30ed4b8f378b303",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_interrow/vehicle_config.json",
+    "sha256": "b66ea6bf1994e97e412df3880ac7f49f16ad4c2358c73b717691b526752c7972",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_tractor/vehicle_config.json",
+    "sha256": "39c002ae52509925e669f75c67f37748457592afa197381b203e8e16e4ab6f66",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/cab_trailer/vehicle_config.json",
+    "sha256": "271a6ec041df4f79db3e1287cec1385dd7621a23d76d0264695438143f9dd906",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/compact_tractor/vehicle_config.json",
+    "sha256": "b3e5a1c4544812c39c9776113947d3d4e576dbc8c5a96f168f29bdb5a78c541e",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/harvester_header/vehicle_config.json",
+    "sha256": "b3b18507fb5082af15c109c8c94fb7148a22285ef29d722b149d257dced7c8d1",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/mower_front_cutter/vehicle_config.json",
+    "sha256": "0ad31e2ab2fc632e863ca35ac8c3b80532838d5690924717125dec1c980564ac",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/ride_on_mower/vehicle_config.json",
+    "sha256": "fa4b02f5028f4e30a2e171225d1ea704a8e367261a77a0269561dd31c3cb7671",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tracked_harvester/vehicle_config.json",
+    "sha256": "631dee094052eed06c1162ffb397f8e008c4aa4b3126148aa76201ac862de2bc",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tractor_chisel/vehicle_config.json",
+    "sha256": "26252fec5693b3910e00670f2c777f53f927e9dabdb3ca2e6bfe4db6dcbcd07d",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tractor_cultivator/vehicle_config.json",
+    "sha256": "ebad897a2d3b8a3c0263015bdcb3a5188ea5f7a895b4c153acb6989165a3de2a",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tractor_garlic/vehicle_config.json",
+    "sha256": "9c539d8f8885cab128b8dcd552700bb9b20ddcc25f0b36a2518cdef387484ec4",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tractor_harrow/vehicle_config.json",
+    "sha256": "8a87a7258a100654dd3aec8b5e29038ce78c6d3170a4c9a7c9186f95a3a30fa1",
+    "note": "Configuration only; referenced meshes are not bundled."
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/generated/tractor_mulch/vehicle_config.json",
+    "sha256": "f8e962a8e0a6d07b31bb184af86b8a80f4f869a7f6d98a960b26038601b96341",
+    "note": "Configuration only; referenced meshes are not bundled."
+  }
+]

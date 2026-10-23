@@ -1,0 +1,118 @@
+cmake_minimum_required(VERSION 3.8)
+project(agribot_ackermann_mppi)
+
+set(_system_protobuf_lib_dir "/usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+if(EXISTS "${_system_protobuf_lib_dir}/libprotobuf.so")
+  # Gazebo 11 on Ubuntu focal is built against the system protobuf ABI.
+  set(Protobuf_INCLUDE_DIR "/usr/include" CACHE PATH "" FORCE)
+  set(Protobuf_LIBRARY "${_system_protobuf_lib_dir}/libprotobuf.so" CACHE FILEPATH "" FORCE)
+  set(Protobuf_LIBRARY_RELEASE "${_system_protobuf_lib_dir}/libprotobuf.so" CACHE FILEPATH "" FORCE)
+  set(Protobuf_LITE_LIBRARY "${_system_protobuf_lib_dir}/libprotobuf-lite.so" CACHE FILEPATH "" FORCE)
+  set(Protobuf_LITE_LIBRARY_RELEASE "${_system_protobuf_lib_dir}/libprotobuf-lite.so" CACHE FILEPATH "" FORCE)
+  set(Protobuf_PROTOC_EXECUTABLE "/usr/bin/protoc" CACHE FILEPATH "" FORCE)
+  set(Protobuf_PROTOC_LIBRARY "${_system_protobuf_lib_dir}/libprotoc.so" CACHE FILEPATH "" FORCE)
+  set(Protobuf_PROTOC_LIBRARY_RELEASE "${_system_protobuf_lib_dir}/libprotoc.so" CACHE FILEPATH "" FORCE)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(gazebo_dev REQUIRED)
+find_package(gazebo_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+set(_system_protobuf_include_shim "${CMAKE_CURRENT_BINARY_DIR}/system_protobuf_include")
+file(MAKE_DIRECTORY "${_system_protobuf_include_shim}")
+file(REMOVE "${_system_protobuf_include_shim}/google")
+execute_process(
+  COMMAND ${CMAKE_COMMAND} -E create_symlink /usr/include/google
+          "${_system_protobuf_include_shim}/google"
+)
+
+add_library(agribot_ackermann_mppi_drive SHARED
+  src/ackermann_drive_plugin.cpp
+)
+
+add_library(agribot_ackermann_gazebo_render_workaround SHARED
+  src/gazebo_render_path_workaround.c
+)
+target_link_libraries(agribot_ackermann_gazebo_render_workaround
+  ${CMAKE_DL_LIBS}
+)
+
+add_library(agribot_gazebo_local_model_catalog SHARED
+  src/gazebo_local_model_catalog.cpp)
+target_include_directories(agribot_gazebo_local_model_catalog PRIVATE
+  ${gazebo_dev_INCLUDE_DIRS})
+target_link_libraries(agribot_gazebo_local_model_catalog ${gazebo_dev_LIBRARIES})
+
+if(BUILD_TESTING)
+  add_executable(fuel_catalog_probe test/fuel_catalog_probe.cpp)
+  target_include_directories(fuel_catalog_probe PRIVATE ${gazebo_dev_INCLUDE_DIRS})
+  target_link_libraries(fuel_catalog_probe ${gazebo_dev_LIBRARIES})
+  add_test(NAME test_local_fuel_catalog
+    COMMAND ${CMAKE_COMMAND} -E env
+      "LD_PRELOAD=$<TARGET_FILE:agribot_gazebo_local_model_catalog>"
+      $<TARGET_FILE:fuel_catalog_probe>)
+  set_tests_properties(test_local_fuel_catalog PROPERTIES
+    PASS_REGULAR_EXPRESSION "^0" TIMEOUT 20)
+  add_test(NAME test_original_fuel_catalog COMMAND fuel_catalog_probe)
+  set_tests_properties(test_original_fuel_catalog PROPERTIES
+    PASS_REGULAR_EXPRESSION "^[1-9]" TIMEOUT 20)
+endif()
+
+add_library(agribot_ackermann_gazebo_scene_sync SHARED
+  src/gazebo_scene_sync_plugin.cpp
+)
+target_include_directories(agribot_ackermann_gazebo_scene_sync PRIVATE
+  "${_system_protobuf_include_shim}"
+  ${gazebo_dev_INCLUDE_DIRS}
+)
+target_link_libraries(agribot_ackermann_gazebo_scene_sync
+  ${gazebo_dev_LIBRARIES}
+)
+
+target_include_directories(agribot_ackermann_mppi_drive PRIVATE
+  "${_system_protobuf_include_shim}"
+  ${gazebo_dev_INCLUDE_DIRS}
+)
+
+ament_target_dependencies(agribot_ackermann_mppi_drive
+  geometry_msgs
+  nav_msgs
+  rclcpp
+  sensor_msgs
+  tf2_ros
+  gazebo_ros
+)
+
+target_link_libraries(agribot_ackermann_mppi_drive
+  ${gazebo_dev_LIBRARIES}
+)
+
+install(TARGETS
+  agribot_ackermann_mppi_drive
+  agribot_ackermann_gazebo_render_workaround
+  agribot_gazebo_local_model_catalog
+  agribot_ackermann_gazebo_scene_sync
+  LIBRARY DESTINATION lib
+)
+
+install(PROGRAMS
+  scripts/ackermann_gazebo_sim.py
+  scripts/sim_navsat_bridge.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  behavior_trees
+  config
+  launch
+  models
+  urdf
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_package()

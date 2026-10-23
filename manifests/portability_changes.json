@@ -1,0 +1,17 @@
+[
+  {
+    "path": "ros2_ws/build_ros2_humble.sh",
+    "original_sha256": "fac7046c67ace4b169f400a83055e47d5735a453934deef8e3aed3a5e39a868b",
+    "delivery_sha256": "031928c8d33d211cd53fbdf82de94aed10f0ff2589d068da3e707c1e5f6cca7f"
+  },
+  {
+    "path": "ros2_ws/src/FAST-LIVO2/CMakeLists.txt",
+    "original_sha256": "91598ffdd9b2d0aa4dea44ddbfd466c42dd6172221832d067ffd73999526dbaa",
+    "delivery_sha256": "33cd849767902313753eddb9051563eb58af7727901375c5b39458dd2f7aa928"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Runtime/RosSimulationLauncher.cs",
+    "original_sha256": "07ec5ba50e53936dee33d7af47a1ee55a9c0a5fce4bca3380937e904001985a2",
+    "delivery_sha256": "7b442ace9f4d96a221c2583dbef210af0ffe47fc16d7b2b6aa0f5c34f295e2e7"
+  }
+]

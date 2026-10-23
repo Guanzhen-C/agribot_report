@@ -1,0 +1,17 @@
+name: Source Checks
+on: [push, pull_request]
+jobs:
+  source:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install pytest PyYAML numpy scipy pillow
+      - name: Pure source contracts (not a full simulation)
+        run: |
+          export PYTHONPATH="$PWD/ros2_ws/src/agribot_farm_sim:$PWD/ros2_ws/src/agribot_vehicle_config_tools:$PWD/ros2_ws/src/agribot_k2_sim:$PWD/ros2_ws/src/agribot_mobile_app"
+          python -m pytest -q ros2_ws/src/agribot_mobile_app/test/test_catalog.py ros2_ws/src/agribot_k2_sim/test/test_import_scene.py

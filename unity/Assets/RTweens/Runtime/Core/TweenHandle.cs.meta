@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: d8b949a19c23e9849a0522278661aa62
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Runtime/Core/TweenHandle.cs
+  uploadId: 958666

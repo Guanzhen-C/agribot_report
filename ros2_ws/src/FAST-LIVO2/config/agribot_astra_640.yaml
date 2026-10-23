@@ -1,0 +1,16 @@
+/**:
+  ros__parameters:
+    camera:
+      model: Pinhole
+      width: 640
+      height: 480
+      scale: 1.0
+      # Right-eye calibration, 11x8 inner corners, 10 mm squares.
+      fx: 655.92454
+      fy: 655.51413
+      cx: 326.10127
+      cy: 257.23953
+      d0: -0.498691
+      d1: 0.284738
+      d2: -0.009829
+      d3: -0.002347

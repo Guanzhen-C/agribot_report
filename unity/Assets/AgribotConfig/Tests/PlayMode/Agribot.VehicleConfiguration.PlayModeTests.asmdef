@@ -1,0 +1,8 @@
+{
+    "name": "Agribot.VehicleConfiguration.PlayModeTests",
+    "rootNamespace": "Agribot.VehicleConfiguration.Tests",
+    "references": ["Agribot.VehicleConfiguration", "Unity.TextMeshPro", "Unity.InputSystem"],
+    "autoReferenced": false,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}

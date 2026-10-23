@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<robot name="agribot_ackermann_sim" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Values below are the measured physical Ackermann vehicle geometry. -->
+  <xacro:property name="wheel_radius" value="0.1275"/>
+  <xacro:property name="wheel_width" value="0.081431"/>
+  <xacro:property name="max_steering_angle" value="0.384"/>
+
+  <material name="sensor_black"><color rgba="0.035 0.035 0.035 1"/></material>
+  <material name="antenna_white"><color rgba="0.88 0.88 0.84 1"/></material>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.2623915 0 0.0615505" rpy="0 0 0"/>
+      <mass value="50.0"/>
+      <inertia ixx="1.914" ixy="0" ixz="0" iyy="2.672" iyz="0" izz="4.084"/>
+    </inertial>
+    <visual name="step_vehicle_body">
+      <origin xyz="0.2794632 0.1918975 -0.7587717" rpy="0 0 1.5707963267948966"/>
+      <geometry>
+        <mesh filename="package://agribot_hardware_bringup/meshes/ackermann_vehicle_body.glb"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.2623915 0 0.0615505" rpy="0 0 0"/>
+      <geometry><box size="0.761611 0.631783 0.245800"/></geometry>
+    </collision>
+  </link>
+
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_hardware_bringup/meshes/hipnuc_n300pro.glb"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0.1425 0 0.143" rpy="0.000572424 -0.009139547 -0.000002616"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <link name="lidar_link">
+    <visual>
+      <!-- C16 STEP origin is 48.55 mm below its optical center. -->
+      <origin xyz="0 0 -0.04855" rpy="0 0 3.141592653589793"/>
+      <geometry>
+        <mesh filename="package://agribot_hardware_bringup/meshes/lslidar_c16_v4.glb"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.48 0 0.233" rpy="-0.007648487 -0.001835661 0.000007020"/>
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+  </joint>
+
+  <link name="right_camera_link">
+    <visual name="camera_body">
+      <origin xyz="-0.022 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.044 0.040 0.040"/></geometry>
+      <material name="sensor_black"/>
+    </visual>
+    <visual name="camera_lens">
+      <origin xyz="0.006 0 0" rpy="0 1.5707963267948966 0"/>
+      <geometry><cylinder radius="0.014" length="0.012"/></geometry>
+      <material name="sensor_black"/>
+    </visual>
+  </link>
+  <joint name="right_camera_mount_joint" type="fixed">
+    <origin xyz="0.5755 0 0.154" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="right_camera_link"/>
+  </joint>
+  <link name="right_camera_optical_frame"/>
+  <joint name="right_camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+    <parent link="right_camera_link"/>
+    <child link="right_camera_optical_frame"/>
+  </joint>
+
+  <xacro:macro name="rtk_antenna" params="name y">
+    <link name="${name}">
+      <visual name="antenna_radome">
+        <origin xyz="0 0 -0.018" rpy="0 0 0"/>
+        <geometry><cylinder radius="0.0225" length="0.036"/></geometry>
+        <material name="antenna_white"/>
+      </visual>
+      <visual name="antenna_stem">
+        <origin xyz="0 0 -0.090" rpy="0 0 0"/>
+        <geometry><cylinder radius="0.008" length="0.108"/></geometry>
+        <material name="sensor_black"/>
+      </visual>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <origin xyz="0.1425 ${y} 0.78476" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="${name}"/>
+    </joint>
+  </xacro:macro>
+  <xacro:rtk_antenna name="rtk_link" y="0.2952585"/>
+  <xacro:rtk_antenna name="rtk_secondary_link" y="-0.2952585"/>
+
+  <xacro:macro name="wheel_link" params="name mesh">
+    <link name="${name}_wheel_link">
+      <inertial>
+        <mass value="3.0"/>
+        <inertia ixx="0.01223" ixy="0" ixz="0" iyy="0.02438" iyz="0" izz="0.01223"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 1.5707963267948966"/>
+        <geometry><mesh filename="package://agribot_hardware_bringup/meshes/${mesh}"/></geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <link name="front_left_steering_link">
+    <inertial><mass value="0.2"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+  </link>
+  <joint name="front_left_steering_joint" type="revolute">
+    <origin xyz="0.5258472 0.2949655 0.0015843" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="front_left_steering_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-${max_steering_angle}" upper="${max_steering_angle}" effort="200" velocity="1.5"/>
+  </joint>
+
+  <link name="front_right_steering_link">
+    <inertial><mass value="0.2"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+  </link>
+  <joint name="front_right_steering_joint" type="revolute">
+    <origin xyz="0.5273242 -0.2949655 0.0015843" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="front_right_steering_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-${max_steering_angle}" upper="${max_steering_angle}" effort="200" velocity="1.5"/>
+  </joint>
+
+  <xacro:wheel_link name="front_left" mesh="ackermann_front_left_wheel.glb"/>
+  <xacro:wheel_link name="front_right" mesh="ackermann_front_right_wheel.glb"/>
+  <xacro:wheel_link name="rear_left" mesh="ackermann_rear_left_wheel.glb"/>
+  <xacro:wheel_link name="rear_right" mesh="ackermann_rear_right_wheel.glb"/>
+
+  <joint name="front_left_wheel_joint" type="continuous">
+    <parent link="front_left_steering_link"/><child link="front_left_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <joint name="front_right_wheel_joint" type="continuous">
+    <parent link="front_right_steering_link"/><child link="front_right_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <origin xyz="0.0000002 0.2952585 0.0000003" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="rear_left_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <origin xyz="0.0000002 -0.2952585 0.0000003" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="rear_right_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+</robot>

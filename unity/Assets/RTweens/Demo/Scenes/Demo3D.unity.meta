@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e4969e458d795624faccaf9bde70aa38
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346366
+  packageName: RTween - High Performance Tweening System
+  packageVersion: 2.0
+  assetPath: Assets/RTweens/Demo/Scenes/Demo3D.unity
+  uploadId: 958666

@@ -1,0 +1,392 @@
+[
+  {
+    "name": "fast_livo",
+    "version": "0.0.0",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/FAST-LIVO2/package.xml"
+  },
+  {
+    "name": "fast_lio",
+    "version": "0.0.0",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/FAST_LIO_ROS2/package.xml"
+  },
+  {
+    "name": "lio_sam",
+    "version": "1.0.0",
+    "license": [
+      "TODO"
+    ],
+    "path": "ros2_ws/src/LIO-SAM/package.xml"
+  },
+  {
+    "name": "agribot_ackermann_fastlio_mppi",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_ackermann_fastlio_mppi/package.xml"
+  },
+  {
+    "name": "agribot_ackermann_mppi",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_ackermann_mppi/package.xml"
+  },
+  {
+    "name": "agribot_ackermann_navsat_mppi",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_ackermann_navsat_mppi/package.xml"
+  },
+  {
+    "name": "agribot_ackermann_rpp",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_ackermann_rpp/package.xml"
+  },
+  {
+    "name": "agribot_autonomy",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_autonomy/package.xml"
+  },
+  {
+    "name": "agribot_differential_fastlivo_mppi",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/package.xml"
+  },
+  {
+    "name": "agribot_farm_sim",
+    "version": "0.1.0",
+    "license": [
+      "Apache-2.0",
+      "BSD-3-Clause",
+      "MIT",
+      "CC-BY-SA-4.0",
+      "CC0-1.0"
+    ],
+    "path": "ros2_ws/src/agribot_farm_sim/package.xml"
+  },
+  {
+    "name": "agribot_hardware_bringup",
+    "version": "0.1.0",
+    "license": [
+      "GPL-3.0-only"
+    ],
+    "path": "ros2_ws/src/agribot_hardware_bringup/package.xml"
+  },
+  {
+    "name": "agribot_k2_sim",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_k2_sim/package.xml"
+  },
+  {
+    "name": "agribot_manipulator_sim",
+    "version": "0.1.0",
+    "license": [
+      "MIT",
+      "BSD-3-Clause"
+    ],
+    "path": "ros2_ws/src/agribot_manipulator_sim/package.xml"
+  },
+  {
+    "name": "agribot_mobile_app",
+    "version": "0.1.0",
+    "license": [
+      "GPL-3.0-only"
+    ],
+    "path": "ros2_ws/src/agribot_mobile_app/package.xml"
+  },
+  {
+    "name": "agribot_offline_mapping",
+    "version": "0.1.0",
+    "license": [
+      "GPL-3.0-only"
+    ],
+    "path": "ros2_ws/src/agribot_offline_mapping/package.xml"
+  },
+  {
+    "name": "agribot_rl_nav",
+    "version": "0.0.1",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_rl_nav/package.xml"
+  },
+  {
+    "name": "agribot_time_sync",
+    "version": "0.1.0",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/agribot_time_sync/package.xml"
+  },
+  {
+    "name": "agribot_vehicle_config_tools",
+    "version": "0.1.0",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/agribot_vehicle_config_tools/package.xml"
+  },
+  {
+    "name": "agribot_vehicle_description",
+    "version": "0.1.0",
+    "license": [
+      "MIT",
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/agribot_vehicle_description/package.xml"
+  },
+  {
+    "name": "agribot_visual_perception",
+    "version": "0.1.0",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/agribot_visual_perception/package.xml"
+  },
+  {
+    "name": "gazebo_dev",
+    "version": "3.9.0",
+    "license": [
+      "Apache 2.0"
+    ],
+    "path": "ros2_ws/src/gazebo_ros_pkgs/gazebo_dev/package.xml"
+  },
+  {
+    "name": "gazebo_msgs",
+    "version": "3.9.0",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/gazebo_ros_pkgs/gazebo_msgs/package.xml"
+  },
+  {
+    "name": "gazebo_plugins",
+    "version": "3.9.0",
+    "license": [
+      "BSD, Apache 2.0"
+    ],
+    "path": "ros2_ws/src/gazebo_ros_pkgs/gazebo_plugins/package.xml"
+  },
+  {
+    "name": "gazebo_ros",
+    "version": "3.9.0",
+    "license": [
+      "Apache 2.0"
+    ],
+    "path": "ros2_ws/src/gazebo_ros_pkgs/gazebo_ros/package.xml"
+  },
+  {
+    "name": "gazebo_ros_pkgs",
+    "version": "3.9.0",
+    "license": [
+      "BSD,LGPL,Apache 2.0"
+    ],
+    "path": "ros2_ws/src/gazebo_ros_pkgs/gazebo_ros_pkgs/package.xml"
+  },
+  {
+    "name": "hikrobot_mvs_ros2",
+    "version": "0.1.0",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/hikrobot_mvs_ros2/package.xml"
+  },
+  {
+    "name": "hipnuc_imu",
+    "version": "0.1.0",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/hipnuc_imu/package.xml"
+  },
+  {
+    "name": "kiss_icp",
+    "version": "1.2.3",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/kiss-icp/ros/package.xml"
+  },
+  {
+    "name": "livox_ros_driver2",
+    "version": "1.2.6",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/livox_ros_driver2/package.xml"
+  },
+  {
+    "name": "lslidar_driver",
+    "version": "5.1.1",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/lslidar_driver/package.xml"
+  },
+  {
+    "name": "lslidar_msgs",
+    "version": "5.1.1",
+    "license": [
+      "Apache-2.0"
+    ],
+    "path": "ros2_ws/src/lslidar_msgs/package.xml"
+  },
+  {
+    "name": "noah_msgs",
+    "version": "0.0.0",
+    "license": [
+      "TODO: License declaration"
+    ],
+    "path": "ros2_ws/src/noah_msgs/package.xml"
+  },
+  {
+    "name": "vikit_common",
+    "version": "0.0.0",
+    "license": [
+      "GPLv3"
+    ],
+    "path": "ros2_ws/src/rpg_vikit/vikit_common/package.xml"
+  },
+  {
+    "name": "vikit_ros",
+    "version": "0.0.0",
+    "license": [
+      "GPLv3"
+    ],
+    "path": "ros2_ws/src/rpg_vikit/vikit_ros/package.xml"
+  },
+  {
+    "name": "scout_base",
+    "version": "0.3.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_base/package.xml"
+  },
+  {
+    "name": "scout_bringup",
+    "version": "0.0.1",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_bringup/package.xml"
+  },
+  {
+    "name": "scout_control",
+    "version": "0.0.1",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_control/package.xml"
+  },
+  {
+    "name": "scout_description",
+    "version": "0.3.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_description/package.xml"
+  },
+  {
+    "name": "scout_gazebo",
+    "version": "0.0.1",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_gazebo/package.xml"
+  },
+  {
+    "name": "scout_msgs",
+    "version": "0.3.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_msgs/package.xml"
+  },
+  {
+    "name": "scout_navigation",
+    "version": "0.1.0",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_navigation/package.xml"
+  },
+  {
+    "name": "scout_viz",
+    "version": "0.0.1",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/scout_viz/package.xml"
+  },
+  {
+    "name": "ugv_sdk",
+    "version": "0.8.0",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/ugv_sdk/package.xml"
+  },
+  {
+    "name": "usb_cam",
+    "version": "0.8.1",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/usb_cam/package.xml"
+  },
+  {
+    "name": "velodyne_description",
+    "version": "2.0.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/velodyne_simulator/velodyne_description/package.xml"
+  },
+  {
+    "name": "velodyne_gazebo_plugins",
+    "version": "2.0.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/velodyne_simulator/velodyne_gazebo_plugins/package.xml"
+  },
+  {
+    "name": "velodyne_simulator",
+    "version": "2.0.3",
+    "license": [
+      "BSD"
+    ],
+    "path": "ros2_ws/src/velodyne_simulator/velodyne_simulator/package.xml"
+  },
+  {
+    "name": "ydlidar_ros2_driver",
+    "version": "1.0.2",
+    "license": [
+      "MIT"
+    ],
+    "path": "ros2_ws/src/ydlidar_ros2_driver/package.xml"
+  }
+]

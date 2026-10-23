@@ -1,0 +1,24 @@
+{
+    "name": "Agribot.VehicleConfiguration.EditorTests",
+    "rootNamespace": "Agribot.VehicleConfiguration.Tests",
+    "references": [
+        "Agribot.VehicleConfiguration",
+        "Agribot.VehicleConfiguration.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["Newtonsoft.Json.dll"],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false,
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

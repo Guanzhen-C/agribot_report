@@ -1,0 +1,25 @@
+{
+  "name": "农机控制台",
+  "short_name": "农机",
+  "description": "农机ROS 2移动操作终端",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#4cc5f1",
+  "theme_color": "#1271e4",
+  "icons": [
+    {
+      "src": "./icons/agribot.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/agribot.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
