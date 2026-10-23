@@ -27,9 +27,16 @@ def inspect(unity=False):
         for folder in ('Assets/StreamingAssets/LocalFarmExports',
                        'Assets/AgribotConfig/Resources/LocalFarmAssets',
                        'Assets/AgribotConfig/Resources/LocalGarageThumbnails',
-                       'Assets/AgribotConfig/Resources/LocalVehicleAppearances'):
+                       'Assets/AgribotConfig/Resources/LocalGarageVehicles',
+                       'Assets/AgribotConfig/Resources/LocalVehicleAppearances',
+                       'Assets/StreamingAssets/LocalVehicleAppearances'):
             if not (ROOT / 'unity' / folder).is_dir():
                 problems.append('Unity 完整车库缺少资源：' + folder)
+        if catalog.exists():
+            missing_models = [p['id'] for p in data['presets']
+                              if not (source / p['id'] / 'models' / (p['id'] + '.sdf')).is_file()]
+            if missing_models:
+                problems.append('仅有参数、没有完整仿真模型的预设：' + ', '.join(missing_models))
     for path in ROOT.rglob('*.fbx'):
         if {'.git', 'Library'} & set(path.parts): continue
         with path.open('rb') as stream:
