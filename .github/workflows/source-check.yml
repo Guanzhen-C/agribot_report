@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: pip install pytest PyYAML numpy scipy pillow
+      - run: pip install pytest PyYAML 'numpy<2' scipy pillow 'vtk>=9.1,<10' 'opencv-python-headless<4.12'
       - name: Pure source contracts (not a full simulation)
         run: |
           export PYTHONPATH="$PWD/ros2_ws/src/agribot_farm_sim:$PWD/ros2_ws/src/agribot_vehicle_config_tools:$PWD/ros2_ws/src/agribot_k2_sim:$PWD/ros2_ws/src/agribot_mobile_app"
