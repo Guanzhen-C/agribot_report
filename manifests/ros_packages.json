@@ -16,22 +16,6 @@
     "path": "ros2_ws/src/FAST_LIO_ROS2/package.xml"
   },
   {
-    "name": "lio_sam",
-    "version": "1.0.0",
-    "license": [
-      "TODO"
-    ],
-    "path": "ros2_ws/src/LIO-SAM/package.xml"
-  },
-  {
-    "name": "agribot_ackermann_fastlio_mppi",
-    "version": "0.1.0",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/agribot_ackermann_fastlio_mppi/package.xml"
-  },
-  {
     "name": "agribot_ackermann_mppi",
     "version": "0.1.0",
     "license": [
@@ -40,36 +24,12 @@
     "path": "ros2_ws/src/agribot_ackermann_mppi/package.xml"
   },
   {
-    "name": "agribot_ackermann_navsat_mppi",
-    "version": "0.1.0",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/agribot_ackermann_navsat_mppi/package.xml"
-  },
-  {
-    "name": "agribot_ackermann_rpp",
-    "version": "0.1.0",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/agribot_ackermann_rpp/package.xml"
-  },
-  {
     "name": "agribot_autonomy",
     "version": "0.1.0",
     "license": [
       "MIT"
     ],
     "path": "ros2_ws/src/agribot_autonomy/package.xml"
-  },
-  {
-    "name": "agribot_differential_fastlivo_mppi",
-    "version": "0.1.0",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/package.xml"
   },
   {
     "name": "agribot_farm_sim",
@@ -107,30 +67,6 @@
       "BSD-3-Clause"
     ],
     "path": "ros2_ws/src/agribot_manipulator_sim/package.xml"
-  },
-  {
-    "name": "agribot_mobile_app",
-    "version": "0.1.0",
-    "license": [
-      "GPL-3.0-only"
-    ],
-    "path": "ros2_ws/src/agribot_mobile_app/package.xml"
-  },
-  {
-    "name": "agribot_offline_mapping",
-    "version": "0.1.0",
-    "license": [
-      "GPL-3.0-only"
-    ],
-    "path": "ros2_ws/src/agribot_offline_mapping/package.xml"
-  },
-  {
-    "name": "agribot_rl_nav",
-    "version": "0.0.1",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/agribot_rl_nav/package.xml"
   },
   {
     "name": "agribot_time_sync",
@@ -254,14 +190,6 @@
     "path": "ros2_ws/src/lslidar_msgs/package.xml"
   },
   {
-    "name": "noah_msgs",
-    "version": "0.0.0",
-    "license": [
-      "TODO: License declaration"
-    ],
-    "path": "ros2_ws/src/noah_msgs/package.xml"
-  },
-  {
     "name": "vikit_common",
     "version": "0.0.0",
     "license": [
@@ -380,13 +308,5 @@
       "BSD"
     ],
     "path": "ros2_ws/src/velodyne_simulator/velodyne_simulator/package.xml"
-  },
-  {
-    "name": "ydlidar_ros2_driver",
-    "version": "1.0.2",
-    "license": [
-      "MIT"
-    ],
-    "path": "ros2_ws/src/ydlidar_ros2_driver/package.xml"
   }
 ]

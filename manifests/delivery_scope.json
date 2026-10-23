@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "product": "Unity车辆配置软件及配套ROS/Gazebo仿真",
+  "ros_source_roots": [
+    "FAST-LIVO2", "FAST_LIO_ROS2", "agribot_ackermann_mppi", "agribot_autonomy",
+    "agribot_farm_sim", "agribot_hardware_bringup", "agribot_k2_sim",
+    "agribot_manipulator_sim", "agribot_time_sync", "agribot_vehicle_config_tools",
+    "agribot_vehicle_description", "agribot_visual_perception", "gazebo_ros_pkgs",
+    "hikrobot_mvs_ros2", "hipnuc_imu", "kiss-icp", "livox_ros_driver2",
+    "lslidar_driver", "lslidar_msgs", "rpg_vikit", "scout_base", "scout_bringup",
+    "scout_control", "scout_description", "scout_gazebo", "scout_msgs",
+    "scout_navigation", "scout_viz", "ugv_sdk", "usb_cam", "velodyne_simulator"
+  ],
+  "ros_root_files": ["ros2_ws/build_ros2_humble.sh"],
+  "excluded_components": [
+    "农机控制台网页和Android应用", "控制台HTTP网关", "HPM6750固件及独立上位机",
+    "独立离线建图和轨迹报告工具", "真机语义导航服务器和Neo4j部署",
+    "不被本仿真使用的独立算法示例"
+  ],
+  "shared_code_policy": "保留统一仿真所依赖的融合定位、NavSat、配置导出及共享驱动包，不把它们当成额外软件产品。"
+}

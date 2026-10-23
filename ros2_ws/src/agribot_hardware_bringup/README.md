@@ -1,5 +1,10 @@
 # Agribot hardware bringup
 
+> Scope note for this delivery: this is a shared dependency used by the Unity
+> simulation for fusion localization, NavSat and common libraries. The upstream
+> physical-system descriptions below are reference material, not features of the
+> delivered Unity application. No mobile console or firmware is included.
+
 This package is the physical-vehicle entry point for sensors, localization,
 Nav2, command safety, and CAN/serial chassis control. It provides these
 navigation entry points; the differential stack is software-validated but

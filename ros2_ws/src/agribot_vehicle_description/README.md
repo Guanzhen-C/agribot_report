@@ -1,5 +1,9 @@
 # Agribot vehicle configuration pipeline
 
+> Delivery scope: this repository contains the Unity application and its ROS/Gazebo
+> simulation only. Physical-export interfaces remain for compatibility; external
+> runtime applications and firmware are not part of this software delivery.
+
 This package is the ROS side of the Unity-to-simulation-to-physical-vehicle
 workflow. `config/vehicles` stores the reviewed canonical vehicle contract.
 `generated` stores deterministic ROS files and must only be updated by
@@ -523,4 +527,4 @@ Unity 提供“停止仿真”和“导出真机配置”按钮。停止操作�
 本次导出只包含当前已验证的真机参数模板和 STVL / FAST-LIVO2+RTK /
 NDT-GICP / Smac Hybrid-A* / MPPI 标识，不携带任意仿真组合、模拟时间、地图路径或运动授权。
 它不会证明某次仿真已完成完整路线，也不会把 Unity 中新改的未验证几何直接用于真车。
-将 JSON 交给农机控制台“地图 → 运行配置 → 导入真机配置”；未导入时仍使用原程序默认配置。
+导出文件由用户保存并交给外部接收系统。本仓库不包含接收端界面、真实控车流程或固件工程。

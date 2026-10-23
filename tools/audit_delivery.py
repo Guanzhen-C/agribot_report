@@ -19,10 +19,15 @@ def main():
     issues, packages, changes = [], [], []
     provenance = ROOT / 'manifests/source_snapshot.json'
     original = {f['path']: f for f in json.loads(provenance.read_text())['files']}
+    scope = json.loads((ROOT / 'manifests/delivery_scope.json').read_text())
     for name in paths:
         path = ROOT / name
         if not path.is_file():
             continue
+        parts = Path(name).parts
+        if parts[0] == 'firmware' or (parts[:2] == ('ros2_ws', 'src')
+                                    and len(parts) > 2 and parts[2] not in scope['ros_source_roots']):
+            issues.append({'path': name, 'problem': 'outside the Unity/simulation delivery scope'})
         if path.stat().st_size > 100 * 1024**2:
             attr = subprocess.check_output(['git', 'check-attr', 'filter', '--', name], cwd=ROOT).decode()
             if not attr.strip().endswith(': lfs'):

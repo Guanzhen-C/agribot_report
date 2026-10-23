@@ -10,6 +10,21 @@
     "delivery_sha256": "33cd849767902313753eddb9051563eb58af7727901375c5b39458dd2f7aa928"
   },
   {
+    "path": "ros2_ws/src/agribot_hardware_bringup/README.md",
+    "original_sha256": "f22432aea17289595c52c27a2979cdd42f2fc5729d3c601c48adeb405a350987",
+    "delivery_sha256": "1bb92ffb3979f408d9bdf59e0db6ffdc2969609305d538a748f3935521613981"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_config_tools/DEPLOYMENT.md",
+    "original_sha256": "104ce887e15e618513f3b7736b63018228bb53485091eabb61506f3d28e326b4",
+    "delivery_sha256": "55849f32819d03bbbe9da427b1739fd8747fe41b4954be3a15507451dcf9aa0f"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/README.md",
+    "original_sha256": "5dcc804ea8a5861b2d807acba4935c7735adcbc65d7508a9f3a5c16226c3e0a8",
+    "delivery_sha256": "97a52553b79ab0f2b1b1c559f7f7cda8f57282d1cfe339e1694310457f045fa0"
+  },
+  {
     "path": "unity/Assets/AgribotConfig/Runtime/RosSimulationLauncher.cs",
     "original_sha256": "07ec5ba50e53936dee33d7af47a1ee55a9c0a5fce4bca3380937e904001985a2",
     "delivery_sha256": "7b442ace9f4d96a221c2583dbef210af0ffe47fc16d7b2b6aa0f5c34f295e2e7"

@@ -21,7 +21,6 @@ def main():
     data = {'os': platform.freedesktop_os_release().get('PRETTY_NAME'),
             'architecture': platform.machine(), 'system_python': platform.python_version(),
             'cmake': command(['/usr/bin/cmake', '--version']),
-            'node': command(['node', '--version']), 'npm': command(['npm', '--version']),
             'packages': command(['dpkg-query', '-W', '-f=${Package}\t${Version}\n', *packages]),
             'unity_project_version': (ROOT / 'unity/ProjectSettings/ProjectVersion.txt').read_text().strip(),
             'scope': 'Versions on the test host, not a clean-OS installation certification.'}

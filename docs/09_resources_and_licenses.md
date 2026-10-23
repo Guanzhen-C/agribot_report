@@ -1,25 +1,18 @@
-# 资源、依赖与许可证
+# 资源与许可证
 
-## 代码与资产的区别
+本仓库只含Unity软件和配套仿真依赖。第三方代码、场景、模型保持各自LICENSE/NOTICE和版权头，不用一个宽松许可证覆盖整个混合仓库。
 
-本仓库汇总当前软件源代码，不自动拥有全部第三方资源版权。保留源目录中的LICENSE、NOTICE、版权头和资源来源文件；没有一个覆盖全仓库所有内容的统一MIT授权。使用者应逐组件检查授权，特别是模型和商用SDK。
+## 外部资源
 
-## 未自动公开的资源
+- 部分购买CAD衍生模型：原工程即忽略，未确认重分发授权，未擅自上传。
+- Unity6000.0.26f1与有效许可证：使用者自行安装/激活。
+- 额外视觉AI权重与专用Python环境：按模块要求和权重许可准备。
+- 用户LCC2/K2扫描原始文件：由用户提供，不作为本仓库实验数据。
+- AI凭据：本机环境变量或私人配置，不编入应用和Git。
 
-| 内容 | 原因/准备方式 |
-| --- | --- |
-| 部分购买的农机CAD及衍生网格 | 原项目明确忽略且重分发授权未确认，需权利人提供授权资源包 |
-| Unity Editor/许可证 | 安装6000.0.26f1并自行激活，不能打包他人许可证 |
-| 海康MVS SDK | 按厂商许可和CPU架构安装，仿真可跳过此驱动 |
-| 视觉AI模型权重 | 根据模块准备并遵守权重许可证；不默认下载未知来源文件 |
-| 现场地图/原始bag/扫描高斯文件 | 实验数据与代码分离；使用者提供自己的数据 |
-| AI Key、签名密钥、账号 | 私人配置/环境变量提供，不进Git |
-| 语义服务器知识库/Neo4j数据 | 按部署脚本建立并导入自有地图，不依赖开发机在线服务 |
-| HPM SDK/工具链 | 固件README所指定版本及构建脚本准备，不是烧录器或板卡本身 |
+海康真实SDK驱动属于共享源码依赖，但仿真构建跳过它，不要求连接真实相机。没有Android/控制台/固件环境准备步骤。
 
-## 完整 Unity 车库资源布局
-
-以下路径在原Unity工程中本来就被忽略，本交付未擅自解除：
+## 完整车库缺项
 
 ```text
 unity/Assets/AgribotConfig/Resources/LocalFarmAssets/
@@ -30,21 +23,14 @@ unity/Assets/StreamingAssets/LocalFarmExports/
 unity/Assets/StreamingAssets/LocalVehicleAppearances/
 ```
 
-完整资源包还需包含目录.meta、预览、导出文件、指纹与对应ROS生成配置。仅随便放一份FBX进去不能通过资源一致性校验。获得有权提供的资源包后在根目录解压到对应相对路径，执行 `tools/doctor.py --unity`，再构建；仍缺项时停止，不将缺模型当作成功。
+完整资源包需包含.meta、预览、导出、指纹和相应ROS模型。仅放入任意FBX不能通过一致性检查。取得有权提供的资源后放到对应路径，执行doctor --unity再构建。
 
-仓库另补齐16个不含网格的 `vehicle_config.json` 契约供AI目录和配置逻辑读取，来源哈希见 `manifests/additional_configuration_metadata.json`。存在JSON不等于该车型的仿真模型资源已齐备，也不解除完整Unity资源检查。
+另补齐的16个vehicle_config.json只供配置和AI目录读取，不表示相应网格已公开。模型准备脚本需合法原始CAD和工具环境，不是自动恢复购买资产的方法。
 
-资产准备脚本在 `agribot_farm_sim/scripts/`，需要原始CAD和对应FreeCAD/网格工具环境。它们不是绕过许可或从Git自动恢复购买文件的工具。基础Car0 ROS仿真不要求完整十车型车库资源。
+## 来源
 
-## 第三方来源
+Unity来自boyana12cow-team/AgriculturalCar_Interior的stage工作树；ROS仿真及依赖来自Guanzhen-C/agribot_humble当前工作树。版本、当前修改和文件哈希记录在manifests，范围由delivery_scope.json限定。
 
-- Unity原工程：`boyana12cow-team/AgriculturalCar_Interior`，本快照来自stage工作树。
-- ROS原工程：`Guanzhen-C/agribot_humble` 当前工作树；包含FAST-LIVO2、FAST-LIO2、LIO-SAM、KF-GINS、KISS-ICP、ROS/Gazebo相关包及适配。
-- HPM6750：`LiuZeyu1119/hpm6750evk2`，保留FieldGate VCU及原作者标注。
-- Gazebo农场场景：各资产目录的source.json、LICENSE和上游说明；不能把所有场景宣称为自行建模。
+场景来源见各资产目录的source.json和许可证。不要把所有场景、模型和底层算法称为自行原创。
 
-准确版本和文件内容哈希见 `manifests/source_snapshot.json`。源码历史未整体导入，本仓库不能替代上游完整贡献记录。
-
-## 交付与隐私
-
-不发布专利/软件著作权申请材料和聊天历史，不公开私人连接密码。示例中保留的历史设备IP或用户名是待覆盖配置，不是当前服务器可用性承诺。私人密钥应使用本机文件权限或环境变量保存，不能为方便网页大模型阅读而上传。
+未收录密钥、私人密码、专利/软著申请材料和原始实验bag。Git当前主分支删除范围外内容不等于重写既有历史。

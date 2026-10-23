@@ -14,7 +14,7 @@ def inspect(unity=False):
     for path in ('ros2_ws/src/agribot_vehicle_description/launch/configured_ackermann_sim.launch.py',
                  'ros2_ws/src/agribot_hardware_bringup/package.xml',
                  'ros2_ws/src/FAST-LIVO2/src/LIVMapper.cpp',
-                 'ros2_ws/src/agribot_mobile_app/web/package-lock.json',
+                 'ros2_ws/src/agribot_farm_sim/config/compatibility.json',
                  'unity/ProjectSettings/ProjectVersion.txt'):
         if not (ROOT / path).is_file(): problems.append('缺少源码：' + path)
     source = ROOT / 'ros2_ws/src/agribot_vehicle_description/generated'

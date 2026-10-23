@@ -22,4 +22,4 @@ sudo apt-get install -y \
   ros-humble-pcl-conversions ros-humble-cv-bridge ros-humble-image-transport \
   ros-humble-camera-info-manager ros-humble-robot-localization \
   ros-humble-xacro ros-humble-joint-state-publisher ros-humble-rmw-cyclonedds-cpp
-echo '基础依赖完成。海康 MVS SDK、Unity 许可证、Android SDK 和可选模型另行准备。'
+echo '仿真基础依赖完成。Unity 许可证、授权模型及可选视觉AI权重另行准备。'

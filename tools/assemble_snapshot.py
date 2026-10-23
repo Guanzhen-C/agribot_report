@@ -39,6 +39,11 @@ def permitted(path):
 def selected_files(root, role, include_local_assets):
     names = set(git(root, 'ls-files', '-z', '--cached', '--others', '--exclude-standard').decode().split('\0'))
     names.discard('')
+    if role == 'ros':
+        scope = json.loads((Path(__file__).resolve().parents[1] / 'manifests/delivery_scope.json').read_text())
+        names = {name for name in names if name in scope['ros_root_files'] or
+                 (len(Path(name).parts) >= 3 and Path(name).parts[:2] == ('ros2_ws', 'src')
+                  and Path(name).parts[2] in scope['ros_source_roots'])}
     if include_local_assets:
         prefixes = UNITY_ASSETS if role == 'unity' else ROS_ASSETS if role == 'ros' else ()
         for prefix in prefixes:
@@ -53,8 +58,6 @@ def selected_files(root, role, include_local_assets):
 def destination(role, relative):
     if role == 'unity':
         return Path('unity') / relative
-    if role == 'firmware':
-        return Path('firmware/hpm6750evk2') / relative
     if relative == Path('README.md'):
         return Path('docs/legacy/ROS_README.md')
     if relative == Path('.gitignore'):
@@ -103,11 +106,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--ros', type=Path, required=True)
     parser.add_argument('--unity', type=Path, required=True)
-    parser.add_argument('--firmware', type=Path, required=True)
     parser.add_argument('--include-authorized-local-assets', action='store_true')
     args = parser.parse_args()
     assemble(Path(__file__).resolve().parents[1],
-             {'ros': args.ros, 'unity': args.unity, 'firmware': args.firmware},
+             {'ros': args.ros, 'unity': args.unity},
              args.include_authorized_local_assets)
 
 

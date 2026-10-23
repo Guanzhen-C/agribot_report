@@ -1,5 +1,0 @@
-geometry_msgs/PoseStamped goldpose 
-int8 changemode 
-
----
-bool success

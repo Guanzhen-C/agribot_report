@@ -1,5 +1,0 @@
-.hpm/
-build/
-!host_app/build/
-!host_app/build/sites-vite-plugin.ts
-__pycache__/

@@ -1,40 +1,35 @@
-# 农机配置、仿真与控制软件源码交付
+# Unity 农机配置与算法仿真软件
 
-本仓库整理当前使用的 Unity 农机配置软件、ROS 2 算法与仿真、农机控制台网页/Android 源码，以及可选的 HPM6750 CAN 桥接固件。整理日期：2026-10-23。它是当前工作树的交付快照，不是三个原仓库 Git 历史的拼接，也不是只包含界面截图的报告仓库。
+本仓库仅交付 **Unity 农机配置软件及其配套 ROS 2/Gazebo 仿真**，用于阅读源码、编写设计说明、用户手册以及复现仿真。
 
-## 先读这个限制
+不包含农机控制台、网页/Android 控车应用、控制台 HTTP 网关、6750 固件或独立上位机，也不包含独立离线建图/真机语义导航服务器。不要把这些系统写成本软件的页面或功能。
 
-**代码齐备不等于所有外部资源已经获准公开。** 部分购买的农机 CAD 衍生资源在原项目中即被忽略，重分发授权未确认，本仓库不擅自上传。因此：
+## 软件流程
 
-- 可以从源码构建 ROS 模块、网页控制台，并使用已包含资源的 Car0 基础仿真。
-- **完整十车型 Unity 车库目前需要补齐授权模型资源，不能宣称仅 clone 后即可完整构建。** `python3 tools/doctor.py --unity` 会明确报告缺项，不用空模型假装成功。
-- 海康 MVS SDK、Unity Editor/许可证、Android SDK、AI 凭据、真实传感器、现场地图和实验 bag 不随源码自动获得。
-- 真机启动前必须完成本机设备、外参、地图和急停检查。不要把本仓库中记录的历史实验尺寸直接套到任意车辆。
+车库选车 -> 安装传感器和农机具 -> 选择场景与算法 -> 启动 Gazebo/RViz 仿真 -> 人工指定目标或经停点 -> 停止仿真 -> 导出配置。
 
-详见 [资源与许可证](docs/09_resources_and_licenses.md) 和 [验证记录](docs/10_validation.md)。
+AI 助手贯穿本次应用会话，可问答并生成可点击装配/算法方案；应用方案之后仍需用户单独启动仿真。
 
 ## 文档入口
 
 | 文档 | 用途 |
 | --- | --- |
-| [大模型阅读指南](docs/00_reading_guide.md) | 撰写设计说明和用户手册的阅读顺序、证据和禁写事项 |
-| [系统概览](docs/01_overview.md) | 两种应用、部署位置、功能与边界 |
-| [架构与数据流](docs/02_architecture.md) | Unity、ROS、控制台、固件及服务器之间的关系 |
-| [安装与构建](docs/03_installation.md) | 从新电脑克隆、依赖、编译和环境变量 |
-| [Unity 操作手册](docs/04_unity_manual.md) | 选车、装配、算法、场景、仿真、配置导出、AI 助手 |
-| [控制台操作手册](docs/05_console_manual.md) | 手机/网页、定位、导航、采集、配置导入 |
-| [算法与参数](docs/06_algorithms.md) | 感知、定位、规划、控制及配置的真实来源 |
-| [接口与配置契约](docs/07_interfaces.md) | 文件、坐标系、HTTP、ROS 和 CAN 边界 |
-| [部署与排障](docs/08_operations.md) | 安全步骤、日志、故障定位和数据管理 |
-| [资源与许可证](docs/09_resources_and_licenses.md) | 未随仓库提供的内容、第三方来源和准备方式 |
-| [验证记录](docs/10_validation.md) | 本次交付实际执行了什么，尚未覆盖什么 |
-| [代码导航](docs/11_code_map.md) | 主要类、脚本和功能的对应位置 |
+| [大模型阅读指南](docs/00_reading_guide.md) | 设计说明、用户手册的阅读顺序和范围 |
+| [软件概览](docs/01_overview.md) | 产品功能、部署环境、边界 |
+| [架构与数据流](docs/02_architecture.md) | Unity、配置生成、ROS 仿真、AI 助手 |
+| [安装与构建](docs/03_installation.md) | 克隆、依赖、编译和启动 |
+| [Unity 操作手册](docs/04_unity_manual.md) | 选车、装配、场景、算法、AI、导出 |
+| [仿真操作](docs/05_simulation.md) | RViz 目标/经停点、运行状态和停止 |
+| [算法与参数](docs/06_algorithms.md) | 五组组件和车辆/场景适配 |
+| [接口与配置](docs/07_interfaces.md) | JSON、坐标系、文件、ROS 和进程接口 |
+| [运行与排障](docs/08_operations.md) | 日志、模型、传感器、导航和 AI |
+| [资源与许可证](docs/09_resources_and_licenses.md) | 授权模型和外部依赖 |
+| [验证记录](docs/10_validation.md) | 本次验证结果与未覆盖范围 |
+| [代码导航](docs/11_code_map.md) | 功能与源码路径对应 |
 
-`docs/legacy/` 和各包原有 README 保留历史上下文；与本交付文档冲突时，以当前代码、配置和明确日期的验证记录为准。
+## 克隆和基础仿真
 
-## 最小启动路线
-
-目标平台是 Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11。先安装 ROS Humble Desktop，然后：
+目标环境：Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11。先安装 ROS Humble Desktop，再运行：
 
 ```bash
 sudo apt-get install git-lfs
@@ -46,31 +41,32 @@ python3 tools/doctor.py
 bash scripts/install_dependencies.sh
 bash scripts/build_ros.sh simulation
 source scripts/env.sh
-export ROS_DOMAIN_ID=37
-export ROS_LOCALHOST_ONLY=1
+export ROS_DOMAIN_ID=37 ROS_LOCALHOST_ONLY=1
 ros2 launch agribot_vehicle_description configured_ackermann_sim.launch.py \
   vehicle_id:=ackermann_current scenario:=orchard \
-  rviz:=true gui:=false run_waypoints:=false
+  gui:=false rviz:=true run_waypoints:=false
 ```
 
-此入口只启动仿真，不连接真车 CAN；车辆等待 RViz 目标。若机器无图形桌面，不能把 RViz 不显示误认为 ROS 没有数据。Unity 完整构建另见安装文档，不在缺资源时跳过校验。
+这是仿真，不连接真实底盘。车辆默认等待 RViz 目标。Unity 构建、网络下载恢复和详细前提见安装文档。
 
-## 目录
+## 目录与范围
 
 ```text
-unity/                         Unity 6000.0.26f1 工程源码
-ros2_ws/src/                   ROS 包、第三方算法及其本地适配
-firmware/hpm6750evk2/          HPM6750 固件和原配套上位机源码
-calibration/                   纳入源码管理的标定记录/配置
-scripts/                       本交付仓库的可移植构建与启动入口
-tools/                         快照、完整性、审计工具
-manifests/                     原始版本、文件哈希、依赖清单
-docs/                          中文设计与使用说明
-docker/                        ROS 依赖环境构建文件
+unity/                  Unity 工程、界面、车库、装备、AI 和导出
+ros2_ws/src/            配套仿真与所需算法、共享库/驱动依赖
+scripts/                构建、启动和仿真检查
+tools/                  快照、范围、完整性与模型下载工具
+manifests/              交付范围、来源版本、文件哈希
+docs/                   本软件的设计与使用说明
+docker/                 ROS 依赖环境
 ```
 
-模型采用 Git LFS。不要只下载 GitHub 单个文本文件就认定模型缺失，也不要把 LFS 指针当成可加载的网格。
+部分定位、融合、NavSat、配置导出代码复用原工程的共享包，因此保留了 `agribot_hardware_bringup` 等依赖。**包名中有 hardware 不表示本仓库包含农机控制台，也不表示仿真会连接真车。** 构建入口只选择统一仿真需要的依赖。机器可读范围见 `manifests/delivery_scope.json`。
 
-## 发布约束
+## 尚未随仓库公开的内容
 
-本仓库未包含私人密钥、真实 AI API Key、登录凭据、现场原始 bag、专利申请材料和软件著作权申请材料。第三方代码和模型保留各自授权，不对整个混合仓库套用一个宽松许可证。源码公开不自动授予第三方 CAD/商用 SDK 的重分发权。
+部分购买的农机 CAD 衍生资源在原工程中即被忽略，重分发授权未确认，未擅自上传。完整十车型 Unity 车库仍需补齐这些资源；`python3 tools/doctor.py --unity` 会明确报告缺项。不能宣称仅克隆即可完整构建全部车库。已含资源的 Car0 基础 ROS 仿真可用。
+
+Unity Editor/许可证、额外视觉 AI 权重、用户扫描场景和 AI Key 需自行准备。不包含专利/软著申请材料、私人凭据、原始实验 bag。第三方代码和模型保持各自许可证。
+
+本次范围调整采用普通 Git 删除提交，未重写已有仓库历史。

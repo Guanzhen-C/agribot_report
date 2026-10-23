@@ -1,4 +1,0 @@
-string query_sql    #sql语句
----
-bool success
-string json_data

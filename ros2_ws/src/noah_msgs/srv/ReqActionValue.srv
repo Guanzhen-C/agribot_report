@@ -1,6 +1,0 @@
-# 请求的动作， 可以同时请求多个动作
-
-int16[] action_indexs
----
-
-noah_msgs/ActionValue action_value
