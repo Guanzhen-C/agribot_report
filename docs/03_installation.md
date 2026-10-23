@@ -41,6 +41,8 @@ AGRIBOT_BUILD_PACKAGE_WORKERS=2 AGRIBOT_BUILD_JOBS_PER_PACKAGE=2 \
 
 首次完整构建可能较久。`--packages-up-to ...` 可用于开发子集，但不代表完整闭环依赖都已准备。Dockerfile 只描述 ROS 依赖环境，不含 Unity Editor、模型许可、GPU/桌面转发和硬件设备权限。
 
+GTSAM使用ROS源提供的 `ros-humble-gtsam`，其中包括GTSAM_UNSTABLE；本次CMake缓存实际选择 `/opt/ros/humble/lib/cmake/GTSAM` 的4.2版本。不要求安装开发机遗留、当前软件源已无候选下载的Ubuntu GTSAM4.0包。实测工具和库版本见 `manifests/tested_environment.json`。
+
 ## 基础仿真
 
 ```bash

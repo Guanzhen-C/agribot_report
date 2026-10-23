@@ -1,0 +1,23 @@
+{
+  "os": "Ubuntu 22.04.5 LTS",
+  "architecture": "x86_64",
+  "system_python": "3.10.12",
+  "cmake": {
+    "returncode": 0,
+    "output": "cmake version 3.22.1\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+  },
+  "node": {
+    "returncode": 0,
+    "output": "v24.11.1"
+  },
+  "npm": {
+    "returncode": 0,
+    "output": "11.6.2"
+  },
+  "packages": {
+    "returncode": 0,
+    "output": "gazebo\t11.10.2+dfsg-1\nlibgtsam-dev\t4.0.3-1ubuntu1\nlibgtsam-unstable-dev\t4.0.3-1ubuntu1\nlibopencv-dev\t4.5.4+dfsg-9ubuntu4\nlibpcl-dev\t1.12.1+dfsg-3build1\nros-humble-gtsam\t4.2.0-3jammy.20260226.005743\nros-humble-nav2-mppi-controller\t1.1.20-1jammy.20260804.210952\nros-humble-nav2-smac-planner\t1.1.20-1jammy.20260804.211106\nros-humble-sophus\t1.22.9102-2jammy.20260226.005142\nros-humble-spatio-temporal-voxel-layer\t2.3.4-1jammy.20260804.210600"
+  },
+  "unity_project_version": "m_EditorVersion: 6000.0.26f1\nm_EditorVersionWithRevision: 6000.0.26f1 (ccb7c73d2c02)",
+  "scope": "Versions on the test host, not a clean-OS installation certification."
+}
