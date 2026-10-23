@@ -11,6 +11,7 @@
 | ROS完整仿真profile构建 | 47包完成，跳过需要厂商SDK的海康真实相机驱动；系统ROS/开发库已预装 |
 | 关键源码契约回归 | `scripts/test_source.sh`，116项通过 |
 | 控制台Python回归 | `agribot_mobile_app/test`，66项通过 |
+| GitHub云端源码检查 | [Source Checks](https://github.com/Guanzhen-C/agribot_report/actions/runs/39901911358)通过；只含选定源码测试，不是Gazebo/真机验收 |
 | 网页构建 | npm ci + Vite production build通过 |
 | 控制台HTTP启动 | 独立loopback端口18888启动，状态JSON与HTML页面均通过；未启动任何车辆任务 |
 | Android构建 | Gradle test、lint、assembleDebug通过；使用本机已装JDK/SDK及缓存，不等于全新SDK安装验收 |
