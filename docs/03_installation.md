@@ -70,6 +70,8 @@ bash scripts/run_unity.sh
 
 输出默认 `dist/unity/`；不会覆盖旧软件桌面快捷方式。AI 凭据只在本机通过 `DEEPSEEK_API_KEY` 或权限600的 `~/.config/agribot/llm.json` 设置，字段为 `api_key`、`base_url`、`model`。无 Key 时仍可手动配置和运行，不伪造在线 AI 结果。
 
+使用Editor开发时，也要先在终端 `source scripts/env.sh`，再从同一终端启动Editor并传入 `-projectPath "$AGRIBOT_REPORT_ROOT/unity"`。直接从未加载环境的桌面Hub进入项目，不保证找到这个交付副本的ROS目录；不要因此去改回开发者绝对路径。
+
 ## 网页与 Android
 
 ```bash
