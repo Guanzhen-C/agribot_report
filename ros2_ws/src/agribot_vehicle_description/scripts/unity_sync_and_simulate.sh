@@ -637,6 +637,7 @@ set +e
 colcon build \
   --symlink-install \
   --parallel-workers "${AGRIBOT_BUILD_WORKERS:-4}" \
+  --packages-ignore hikrobot_mvs_ros2 \
   --packages-select agribot_vehicle_config_tools agribot_farm_sim agribot_manipulator_sim agribot_visual_perception agribot_vehicle_description agribot_k2_sim
 BUILD_RESULT=$?
 set -e

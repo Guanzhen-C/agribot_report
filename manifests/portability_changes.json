@@ -27,7 +27,7 @@
   {
     "path": "ros2_ws/src/agribot_vehicle_description/scripts/unity_sync_and_simulate.sh",
     "original_sha256": "d8c4795841bc13c010e1590b51623fe4d72cffdb160d65006311d328ed3c13c2",
-    "delivery_sha256": "05c14394012af5f77e6756a47106e5db23c573c35836f0862434399b2954a63f"
+    "delivery_sha256": "8ad8e23fd4d23dcaf2c9517f7734b76da78b435bbb6e63c2de822fa8a4cd5b34"
   },
   {
     "path": "ros2_ws/src/agribot_visual_perception/scripts/setup_ai_runtime.sh",
