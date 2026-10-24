@@ -1,0 +1,14 @@
+{
+  "format": "agribot.prebuilt-app",
+  "version": 1,
+  "platform": "ubuntu-22.04-x86_64",
+  "archive": "agribot-configurator-linux-x86_64.tar.zst",
+  "sha256": "31a9ba2bc10a49f1d75de194625fcc64526585080a6ece03cadee0fd079f9c17",
+  "bytes": 1887520577,
+  "runtime_inputs": {
+    "method": "git-runtime-input-blobs-v1",
+    "sha256": "c204d734702626ad1cf412f752892096f32a42d3fb0446f0b1a0abd1c0b66ceb",
+    "files": 10221,
+    "source_commit": "6543350583df72205d83e238b1ce880068d8c354"
+  }
+}

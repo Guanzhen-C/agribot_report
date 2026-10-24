@@ -42,6 +42,21 @@ AI 助手贯穿本次应用会话，可问答并生成可点击装配/算法方�
 
 目标环境：Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11。先安装 ROS Humble Desktop，再运行：
 
+完整软件推荐使用下面的安装入口，会构建ROS并安装与源码匹配的Linux程序，无需在运行电脑安装Unity Editor：
+
+```bash
+sudo apt-get install git git-lfs
+git clone https://github.com/Guanzhen-C/agribot_report.git
+cd agribot_report
+git lfs install --local
+git lfs pull
+bash scripts/bootstrap.sh
+python3 tools/configure_llm.py
+bash scripts/run_unity.sh
+```
+
+AI配置使用个人Key，可暂时不配置；手动装配和仿真不受影响。下面是只启动基础仿真的分步骤方式，不替代完整软件安装：
+
 ```bash
 sudo apt-get install git-lfs
 git clone https://github.com/Guanzhen-C/agribot_report.git
