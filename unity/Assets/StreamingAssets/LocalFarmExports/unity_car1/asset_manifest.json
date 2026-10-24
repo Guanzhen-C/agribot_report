@@ -1,0 +1,65 @@
+{
+  "meshGroups": 58,
+  "triangles": 648736,
+  "minimumRos": [
+    -1.1476131677627563,
+    -1.2784419059753418,
+    -0.959208607673645
+  ],
+  "maximumRos": [
+    3.652387857437134,
+    1.2784423828125,
+    2.8408308029174805
+  ],
+  "previewSha256": "3a42b7731f8aedd98451e7b68f834f162df587faf8bf8e2addd9d6fe7713b3ad",
+  "vehicleId": "unity_car1",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "name": "sensor_imu_visual.mtl",
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "name": "sensor_imu_visual.obj",
+      "sha256": "3b323ee6967c89a0fafb324714b3ac2d1ed895f186b771a950388aebb1306985"
+    },
+    {
+      "name": "sensor_lidar_visual.mtl",
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "name": "sensor_lidar_visual.obj",
+      "sha256": "cb88aa62bed7cd4924152ff314305a6e09f8a51290f560172a10f4930489a7d3"
+    },
+    {
+      "name": "sensor_right_camera_visual.mtl",
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "name": "sensor_right_camera_visual.obj",
+      "sha256": "d93932b581b83119ee6d4342f3de5bb64adde69c6cbdb4dc597aab65c8d4a38e"
+    },
+    {
+      "name": "sensor_rtk_master_visual.mtl",
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "name": "sensor_rtk_master_visual.obj",
+      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+    },
+    {
+      "name": "vehicle_config.json",
+      "sha256": "ae0b222b5d066c7da0d0cb2aa124e17ec4ac0b4829b34dc798017e746e4452b4"
+    },
+    {
+      "name": "vehicle_visual.mtl",
+      "sha256": "5779787a0ad9cd5544873a01072ee5db15a5d532e6c6b674bf9843063d356be3"
+    },
+    {
+      "name": "vehicle_visual.obj",
+      "sha256": "b2e2b0c763b2cc1489b0854c529b7667f8eb3b81dc0eb7fffb2935178b8a5962"
+    }
+  ],
+  "redistributionLicense": "unverified_user_supplied",
+  "sourceConfigSha256": "ae0b222b5d066c7da0d0cb2aa124e17ec4ac0b4829b34dc798017e746e4452b4"
+}

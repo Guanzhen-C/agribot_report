@@ -25,8 +25,58 @@
     "delivery_sha256": "97a52553b79ab0f2b1b1c559f7f7cda8f57282d1cfe339e1694310457f045fa0"
   },
   {
+    "path": "ros2_ws/src/agribot_vehicle_description/scripts/unity_sync_and_simulate.sh",
+    "original_sha256": "d8c4795841bc13c010e1590b51623fe4d72cffdb160d65006311d328ed3c13c2",
+    "delivery_sha256": "05c14394012af5f77e6756a47106e5db23c573c35836f0862434399b2954a63f"
+  },
+  {
+    "path": "ros2_ws/src/agribot_visual_perception/scripts/setup_ai_runtime.sh",
+    "original_sha256": "0ec4fb7c6447e725b111e646da7055750bdd059c2558dcf3cd5c07d7e7850d5a",
+    "delivery_sha256": "d421b4ca47521eff30b433f712e3efafc7286fba41554395bab0b091d88cf3a0"
+  },
+  {
+    "path": "unity/.gitignore",
+    "original_sha256": "6753e44f65546118a1203595b6ad8d910bb62e5bf08e480b37113515fe8f1803",
+    "delivery_sha256": "6d12ff296907d8066c67c82e9b814789e8e972291f7b9687ede2a9220c2768ea"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Editor/AgribotStandaloneBuilder.cs",
+    "original_sha256": "1c886c3b2a09ff01a43d77d010308949b31193f2f349ff0d8fccf4ecb327aa15",
+    "delivery_sha256": "6f93f32f11788d37ab3a70cce23b045294ac3433342bbf154e0745189157b4bf"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Editor/Car0GarageIntegration.cs",
+    "original_sha256": "61177f5b645f3261718ee704a47aa1986ec2c62f55cb2ff9bf88dd599412dee5",
+    "delivery_sha256": "a467c684320ebbbda88ad9860180ce0b0be2338e138ffd4a268d32408513edb2"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Runtime/FarmScenarioCatalog.cs",
+    "original_sha256": "0cc30d9ff32458308b3b4afdce62ee8760108af062ca5c05bfdba96e0543c3c6",
+    "delivery_sha256": "1e7739463d11d3cf5c86de0053441478c8464bbb1c827d5eacc4970e4117bc8d"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Runtime/NaturalRecommendationClient.cs",
+    "original_sha256": "f3273fbec404bb82aa9ebb26f5e982ac11358dacad980b77e837d7385f2a6622",
+    "delivery_sha256": "ae97014086f0267f78a5f9f62f5a94c8ba2ba25b6a35adc475ff3a0d47ce4348"
+  },
+  {
     "path": "unity/Assets/AgribotConfig/Runtime/RosSimulationLauncher.cs",
     "original_sha256": "07ec5ba50e53936dee33d7af47a1ee55a9c0a5fce4bca3380937e904001985a2",
-    "delivery_sha256": "7b442ace9f4d96a221c2583dbef210af0ffe47fc16d7b2b6aa0f5c34f295e2e7"
+    "delivery_sha256": "f51ae4a25c7186d5508bb4f84570f86c258168e6fcfb330b3c598817ad56a806"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Tests/PlayMode/AuthoredManipulatorClickTests.cs",
+    "original_sha256": "07cf32df1a8b3251b1941485d0fa52de44fda28436aee8679c407152c27eb37a",
+    "delivery_sha256": "1a59e3000c7d492d51c2b85d94ad02ec6b5e4ba54b0f3f8d70fa2ec31c0e5f26"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs",
+    "original_sha256": "fd638262ffa310273fb0c7d813720d616d84daf9682065dd43b4acbc72598dcd",
+    "delivery_sha256": "e4b856d261a668505893cac1be17546268f5a89b31e5037c75d80f32feed7586"
+  },
+  {
+    "path": "unity/Assets/AgribotConfig/Tests/PlayMode/SensorInstallationClickTests.cs",
+    "original_sha256": "6625e2a4985aeb88168e7c0fb5e55a633a6f1f225b0bd0497e0583b72ebbfbdb",
+    "delivery_sha256": "73a3f98544d59dc6124537c9ef544bf741f5667ec8fba104913abac129a8d738"
   }
 ]

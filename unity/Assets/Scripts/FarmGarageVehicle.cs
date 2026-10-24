@@ -26,7 +26,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
     private float DefaultPreviewRadius => Preset.id == "tracked_harvester" ? (SelectedPreset == "harvester_header" ? 18f : 12f) : SelectedPreset == "cab_trailer" ? 12f :
         Preset.id == "unity_car1" || Preset.id == "unity_car2" ? 9f :
         Preset.id == "unity_car4" || Preset.id == "unity_car5" ? 7f :
-        Preset.id == "ride_on_mower" ? 3.8f : Preset.id == "compact_tractor" ? 4.2f : 6.5f;
+        Preset.id == "ride_on_mower" ? 3.8f : Preset.id == "compact_tractor" ? 5.2f : 6.5f;
     public float PreviewRadius => Mathf.Max(DefaultPreviewRadius, mountedPreviewRadius);
     public string SelectedPreset => implements.FirstOrDefault(item => item.Value.gameObject.activeSelf).Key ?? Preset.id;
     public static GameObject Visible => FindObjectsByType<FarmGarageVehicle>(FindObjectsSortMode.None)
@@ -189,7 +189,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
         target.localPosition = preset.id == "tracked_harvester" ? new Vector3(0, 1.8f,
             (float)(config.geometry.bodyExtents.frontM - config.geometry.bodyExtents.rearM) / 2) :
             preset.id == "ride_on_mower" ? new Vector3(0, .35f, .5f) :
-            preset.id == "compact_tractor" ? new Vector3(0, .45f, .55f) :
+            preset.id == "compact_tractor" ? car.transform.InverseTransformPoint(BoundsOf(preview.transform).center) :
             new Vector3(0, .65f, (float)(config.geometry.bodyExtents.frontM - config.geometry.bodyExtents.rearM) / 2);
         instance.ViewTarget = target;
         var bagTarget = new GameObject("target" + suffix + suffix).transform;
@@ -202,7 +202,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
         if (preset.id == "tracked_harvester") camera.ConfigurePreviewRange(6f, 24f, instance.PreviewRadius);
         else if (preset.id.StartsWith("unity_car", StringComparison.Ordinal)) camera.ConfigurePreviewRange(3f, 14f, instance.PreviewRadius);
         else if (preset.id == "ride_on_mower") camera.ConfigurePreviewRange(2f, 4.2f, instance.PreviewRadius);
-        else if (preset.id == "compact_tractor") camera.ConfigurePreviewRange(2.5f, 4.5f, 4.2f);
+        else if (preset.id == "compact_tractor") camera.ConfigurePreviewRange(2.5f, 6f, instance.PreviewRadius);
         else camera.ConfigurePreviewRange(3.5f, 7.5f, instance.PreviewRadius);
         var lens = camera.GetComponent<CinemachineCamera>().Lens;
         lens.FieldOfView = preset.id == "tracked_harvester" ? 60f : preset.id == "cab_tractor" ? 65f : 45f;

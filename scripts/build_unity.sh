@@ -12,6 +12,10 @@ python3 "$ROOT/tools/doctor.py" --unity
 export AGRIBOT_STANDALONE_OUTPUT="${AGRIBOT_STANDALONE_OUTPUT:-$ROOT/dist/unity}"
 export AGRIBOT_SKIP_DESKTOP_INSTALL=1
 mkdir -p "$ROOT/.validation"
-exec "$UNITY_EDITOR" -batchmode -force-glcore -quit -projectPath "$ROOT/unity" \
+python3 "$ROOT/tools/runtime_fingerprint.py" > "$ROOT/.validation/build_inputs_before.json"
+"$UNITY_EDITOR" -batchmode -force-glcore -job-worker-count 4 -quit -projectPath "$ROOT/unity" \
   -executeMethod Agribot.VehicleConfiguration.Editor.AgribotStandaloneBuilder.BuildFromCommandLine \
   -logFile "$ROOT/.validation/unity_build.log"
+python3 "$ROOT/tools/runtime_fingerprint.py" > "$ROOT/.validation/build_inputs_after.json"
+cmp "$ROOT/.validation/build_inputs_before.json" "$ROOT/.validation/build_inputs_after.json"
+cp "$ROOT/.validation/build_inputs_after.json" "$AGRIBOT_STANDALONE_OUTPUT/build-info.json"

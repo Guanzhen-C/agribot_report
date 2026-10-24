@@ -1,0 +1,73 @@
+{
+  "meshGroups": 61,
+  "triangles": 716933,
+  "minimumRos": [
+    -3.717961311340332,
+    -1.3410019874572754,
+    -0.959208607673645
+  ],
+  "maximumRos": [
+    3.652387857437134,
+    1.3410019874572754,
+    2.8408308029174805
+  ],
+  "previewSha256": "38b5490e324198a0089b9426c60da5dd6beeb2471be28e95569caa2db01d2c6a",
+  "vehicleId": "car1_cultivator",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "name": "implement_mounted_cultivator_visual.mtl",
+      "sha256": "8b7acb9b813e7c72a6e63316d59979c085f88406d0495458c84c07e7a9bd9fe5"
+    },
+    {
+      "name": "implement_mounted_cultivator_visual.obj",
+      "sha256": "6d153770b2628385baad547118add4fa3a7801e76d58eaa54ebfbba5dd7786fa"
+    },
+    {
+      "name": "sensor_imu_visual.mtl",
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "name": "sensor_imu_visual.obj",
+      "sha256": "3b323ee6967c89a0fafb324714b3ac2d1ed895f186b771a950388aebb1306985"
+    },
+    {
+      "name": "sensor_lidar_visual.mtl",
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "name": "sensor_lidar_visual.obj",
+      "sha256": "cb88aa62bed7cd4924152ff314305a6e09f8a51290f560172a10f4930489a7d3"
+    },
+    {
+      "name": "sensor_right_camera_visual.mtl",
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "name": "sensor_right_camera_visual.obj",
+      "sha256": "d93932b581b83119ee6d4342f3de5bb64adde69c6cbdb4dc597aab65c8d4a38e"
+    },
+    {
+      "name": "sensor_rtk_master_visual.mtl",
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "name": "sensor_rtk_master_visual.obj",
+      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+    },
+    {
+      "name": "vehicle_config.json",
+      "sha256": "f3a91bfbc2aa2fab73c03f84a4554bdd17e19d35a98669d8d9252936973810c3"
+    },
+    {
+      "name": "vehicle_visual.mtl",
+      "sha256": "5779787a0ad9cd5544873a01072ee5db15a5d532e6c6b674bf9843063d356be3"
+    },
+    {
+      "name": "vehicle_visual.obj",
+      "sha256": "b2e2b0c763b2cc1489b0854c529b7667f8eb3b81dc0eb7fffb2935178b8a5962"
+    }
+  ],
+  "redistributionLicense": "unverified_user_supplied",
+  "sourceConfigSha256": "f3a91bfbc2aa2fab73c03f84a4554bdd17e19d35a98669d8d9252936973810c3"
+}

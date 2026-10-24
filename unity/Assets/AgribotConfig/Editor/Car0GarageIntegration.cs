@@ -15,6 +15,15 @@ namespace Agribot.VehicleConfiguration.Editor
 
         public static void Prepare()
         {
+            // The supplied prefab is the reviewed runtime asset. Regeneration
+            // changes serialized IDs and must not happen on every user build.
+            if (File.Exists(PrefabPath))
+            {
+                if (AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath) == null)
+                    throw new IOException("Car0 共用车库组件无法载入，请检查 Git LFS 资源。");
+                Debug.Log("CAR0_SHARED_GARAGE_PREFAB_REUSED");
+                return;
+            }
             var scene = EditorSceneManager.OpenPreviewScene("Assets/Scenes/scene2.unity");
             try
             {

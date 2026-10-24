@@ -1,0 +1,84 @@
+{
+  "meshGroups": 42,
+  "triangles": 2205653,
+  "minimumRos": [
+    -2.1842823028564453,
+    -0.9484676718711853,
+    -0.5899080634117126
+  ],
+  "maximumRos": [
+    2.1168079376220703,
+    0.9484009146690369,
+    1.4226230382919312
+  ],
+  "previewSha256": "8d3f4598d1acb4ce3d0efb9a88f72deea4734d50a42cdd7af620b611a73c5910",
+  "vehicleId": "tractor_garlic",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "name": "implement_garlic_planter_visual.mtl",
+      "sha256": "8b7acb9b813e7c72a6e63316d59979c085f88406d0495458c84c07e7a9bd9fe5"
+    },
+    {
+      "name": "implement_garlic_planter_visual.obj",
+      "sha256": "8ab2e6e827727105ad9458d6df3a05c7ee7e723a02b4bc2b3b19cc1ec05e5b8b"
+    },
+    {
+      "name": "sensor_imu_visual.mtl",
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "name": "sensor_imu_visual.obj",
+      "sha256": "3b323ee6967c89a0fafb324714b3ac2d1ed895f186b771a950388aebb1306985"
+    },
+    {
+      "name": "sensor_lidar_visual.mtl",
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "name": "sensor_lidar_visual.obj",
+      "sha256": "cb88aa62bed7cd4924152ff314305a6e09f8a51290f560172a10f4930489a7d3"
+    },
+    {
+      "name": "sensor_right_camera_visual.mtl",
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "name": "sensor_right_camera_visual.obj",
+      "sha256": "d93932b581b83119ee6d4342f3de5bb64adde69c6cbdb4dc597aab65c8d4a38e"
+    },
+    {
+      "name": "sensor_rtk_master_visual.mtl",
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "name": "sensor_rtk_master_visual.obj",
+      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+    },
+    {
+      "name": "vehicle_config.json",
+      "sha256": "9c539d8f8885cab128b8dcd552700bb9b20ddcc25f0b36a2518cdef387484ec4"
+    },
+    {
+      "name": "vehicle_visual.mtl",
+      "sha256": "217d154ba715821ec28084f9fc933b96c2dd5404f784794241feb2cbcac38149"
+    },
+    {
+      "name": "vehicle_visual.obj",
+      "sha256": "3d0b04be79ccc8ef593a2831bb78d08d1ed0ed95e2dd992d382c752f4c6f3420"
+    }
+  ],
+  "redistributionLicense": "unverified_user_supplied",
+  "sourceConfigSha256": "9c539d8f8885cab128b8dcd552700bb9b20ddcc25f0b36a2518cdef387484ec4",
+  "previewGeometry": {
+    "method": "original_cad_no_decimation",
+    "sourceStepSha256": "cad518651d7b2ae4d1f9fbb0cc6fdf6714321fc3feb0d8925b63adb2d5900495",
+    "linearDeflectionMm": 0.25,
+    "angularDeflectionRad": 0.12,
+    "sourceFaces": 1867718,
+    "displaySourceFaces": 1867718,
+    "decimationApplied": false,
+    "simulationAssetsUnchanged": true,
+    "canonicalConfigSha256": "9c539d8f8885cab128b8dcd552700bb9b20ddcc25f0b36a2518cdef387484ec4"
+  }
+}

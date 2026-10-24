@@ -1,0 +1,54 @@
+{
+  "format": "agribot.hpm6750-firmware",
+  "version": 1,
+  "firmware_version": "1.0.0",
+  "board": "hpm6750evk2",
+  "profile": "ackermann",
+  "machine_id": 18,
+  "protocol_id": 514,
+  "transport": "classic_can",
+  "bitrate": 1000000,
+  "build_type": "flash_xip",
+  "source_revision": "18877067ffbe0ed8271ca84f7ae26441a2dfbf82",
+  "source_dirty": false,
+  "source_sha256": {
+    "firmware/vcu_configurator/CMakeLists.txt": "aaa331628d1364b460eb90848c748b4f11a3581f33a1ae3ed27004be90ffdac6",
+    "firmware/vcu_configurator/src/fgcp_protocol.c": "492a700d9d219cc9d472fdad0362c54de24412dac31d5ea022b34d70320f1b6e",
+    "firmware/vcu_configurator/src/fgcp_protocol.h": "dc1cb9ddd7c5c749062c134e894dcd0ee7dd97e6a8ac7f97bc335053d474da87",
+    "firmware/vcu_configurator/src/fgmp_profile.c": "cedb074d9919372a4ece6fccbe5aa850a971a88ccaef261019d4ace5540ac4bd",
+    "firmware/vcu_configurator/src/fgmp_profile.h": "82ded72fa0c3f7e777acdeb5448bcecb01e557829508825cc00499739c9a6662",
+    "firmware/vcu_configurator/src/hechuan_motion.c": "82cd137cb97ae9800722379b345ea7d84eabe475ba41a54025638eaf619b9799",
+    "firmware/vcu_configurator/src/hechuan_motion.h": "89ab91d60ecf0e0281ea0a6a2cb11fb3c709ca8552a57e54c6ac9d0a9d31581b",
+    "firmware/vcu_configurator/src/main.c": "43c9fc5db9478f23dd5af1524f5bbcd2e3be455d41a8b4c98a3cbe3aef5f82e7",
+    "firmware/vcu_configurator/src/vcfg_protocol.c": "4249cab4aca38508f041034dfe56c78873932ef2698ed193ebda146dc81b4b2a",
+    "firmware/vcu_configurator/src/vcfg_protocol.h": "75f2f9d92483bcabe3f054a605d71712ad4ab5182e10858a55b46c0ecd1ecdaf",
+    "firmware/vcu_configurator/src/vcu_board_io.c": "e1ea87454b735add0c646daba0d9c56b5916998cd2c57edf8808cc32137e3949",
+    "firmware/vcu_configurator/src/vcu_board_io.h": "12fe84da787265d32e1183913b31a5f5dd43737dea41e3edcaebe6e9d074b1ef",
+    "firmware/vcu_configurator/src/vcu_flash_backend.c": "6741b1fa4e25370ad5b0dfada9ad51c72546ff6446e30f99d0a882673a976077",
+    "firmware/vcu_configurator/src/vcu_flash_backend.h": "9b63d92ec26a9b784fd36902015c1ecf625d120a48e898beb0b9eca1330c23e9",
+    "firmware/vcu_configurator/src/vcu_machine_profile.c": "cf85b567e22d20d96c6420a2012936a239034901044d4e4bee9e9a883eda89fc",
+    "firmware/vcu_configurator/src/vcu_machine_profile.h": "fccc19619317936b43e383ebe42ee208d001f66e069fa9ce51cd9194016bca29",
+    "firmware/vcu_configurator/src/vcu_native_bridge.c": "2fd0c97ccf65fd3a8c1229efc0725e92c215f5ee23d3dc752352f21db00bf671",
+    "firmware/vcu_configurator/src/vcu_native_bridge.h": "f8aa9d400ab2aa7ddc9a6ef40cf8c404824003e4d19d7cd4da1f74d213f28b2f",
+    "firmware/vcu_configurator/src/vcu_runtime.c": "38098f4b2b9477e508c1101d2f7b3f3f0d54700c73416e2bc2ae43f55e9bb9aa",
+    "firmware/vcu_configurator/src/vcu_runtime.h": "384d0f8676ff848d36eb1dc87c6a11e02c0b8c59d0815e65a1e5835073478e53",
+    "firmware/vcu_configurator/src/vcu_runtime_io.c": "fc98932f0407054f75023a5fa7338a22f8eb83b9bc40495678e3178745103644",
+    "firmware/vcu_configurator/src/vcu_runtime_io.h": "7bdc857170b26669f0ca90c5bfcbc2d38405c133b7e651a98cb9dda6faaf46c6",
+    "firmware/vcu_configurator/src/vcu_selection_store.c": "78bf1e108d73ea3166aeac08207cc114049a10c86f0d86cfd7810bdfa3003169",
+    "firmware/vcu_configurator/src/vcu_selection_store.h": "ba12e308e027c737da292a31d95b765b321ce752ce5e9c43f9c5e03a4a79392e",
+    "firmware/vcu_configurator/src/vcu_telemetry.c": "9d236aef5ecde13bf7720f89694a772662cd54a4b5aa5394bf92b48a9dbec416",
+    "firmware/vcu_configurator/src/vcu_telemetry.h": "6eb1e494a82619a730d0b8ceebdb54a47f8b1b9efaa958c7b22b881ec208fb97"
+  },
+  "files": {
+    "hpm6750_ackermann.bin": {
+      "sha256": "170d8ad61faac82a5ffbe816d2fc5ab71e4b1ded8da04861934fd8aabb2f1d38",
+      "size": 66848
+    },
+    "hpm6750_ackermann.elf": {
+      "sha256": "f663fda52facc001a85f19cb872d141e29567ad690cc93b6b67ab282838afe4c",
+      "size": 181352
+    }
+  },
+  "flashing": "manual",
+  "board_verified": false
+}

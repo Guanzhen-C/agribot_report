@@ -57,8 +57,13 @@ namespace Agribot.VehicleConfiguration
                 string script = Environment.GetEnvironmentVariable("AGRIBOT_ROS_SYNC_SCRIPT");
                 if (!string.IsNullOrWhiteSpace(script))
                     return Directory.GetParent(Path.GetFullPath(script))?.Parent?.Parent?.FullName;
-                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                    "agribot_ws", "ros2_ws", "src");
+                for (var directory = new DirectoryInfo(Application.dataPath); directory != null; directory = directory.Parent)
+                {
+                    string candidate = Path.Combine(directory.FullName, "ros2_ws", "src");
+                    if (File.Exists(Path.Combine(directory.FullName, "scripts", "env.sh")) && Directory.Exists(candidate))
+                        return candidate;
+                }
+                throw new InvalidOperationException("未找到本软件的ROS工作区，请从完整仓库启动或设置AGRIBOT_WORKSPACE_SRC。");
             }
         }
 

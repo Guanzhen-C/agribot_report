@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 RUNTIME_ROOT="${AGRIBOT_VISION_RUNTIME_ROOT:-$HOME/.local/share/agribot}"
 VENV_DIR="$RUNTIME_ROOT/vision_venv"
-MODEL_DIR="$RUNTIME_ROOT/vision_models"
+MODEL_DIR="${AGRIBOT_VISION_MODEL_DIR:-$RUNTIME_ROOT/vision_models}"
 PACKAGE_VERSION="${AGRIBOT_VISION_PACKAGE_VERSION:-8.4.156}"
 
 mkdir -p "$RUNTIME_ROOT" "$MODEL_DIR"
@@ -13,13 +13,17 @@ if [[ ! -x "$VENV_DIR/bin/python3" ]]; then
 fi
 
 "$VENV_DIR/bin/python3" -m pip install --upgrade pip
+TORCH_BACKEND="${AGRIBOT_VISION_TORCH_BACKEND:-cpu}"
+if [[ "$TORCH_BACKEND" != cpu && "$TORCH_BACKEND" != cu121 ]]; then
+  echo 'AGRIBOT_VISION_TORCH_BACKEND must be cpu or cu121' >&2; exit 2
+fi
 "$VENV_DIR/bin/python3" -m pip install \
   "numpy==1.26.4" \
   "opencv-python==4.10.0.84"
 "$VENV_DIR/bin/python3" -m pip install \
   "torch==2.5.1" \
   "torchvision==0.20.1" \
-  --index-url https://download.pytorch.org/whl/cu121
+  --index-url "https://download.pytorch.org/whl/$TORCH_BACKEND"
 "$VENV_DIR/bin/python3" -m pip install \
   "cloudpickle>=3.1.1" \
   "nvidia-ml-py>=12.0.0" \

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+from delivery_assets import check as check_assets
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,9 +49,14 @@ def inspect(unity=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--unity', action='store_true')
+    parser.add_argument('--hashes', action='store_true', help='Verify full garage/export file SHA-256 values')
     args = parser.parse_args()
     issues = inspect(args.unity)
-    print(json.dumps({'ok': not issues, 'issues': issues}, ensure_ascii=False, indent=2))
+    counts = {}
+    if args.unity:
+        counts, assets_issues = check_assets(ROOT, args.hashes)
+        issues += assets_issues
+    print(json.dumps({'ok': not issues, 'inventory': counts, 'issues': issues}, ensure_ascii=False, indent=2))
     return 1 if issues else 0
 
 

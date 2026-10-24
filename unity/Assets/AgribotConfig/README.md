@@ -87,3 +87,13 @@ Agribot.VehicleConfiguration.Editor.AckermannConfigurationBootstrap.ConfigureAnd
 组件由 ROS 工作区 `agribot_farm_sim/scripts/prepare_front_cutter.py` 生成；本地 CAD 整车资源仍不进入 Git。新版构建目录为 `~/Builds/AgriculturalCar_Interior_Linux_20261019_front_cutter/`，旧割草机版本保留。
 
 安装、卸载、导出和不兼容车型禁用等 7 项交互回归通过，资源/导出检查 21 项通过；带刀杆的 Car8 已用 FAST-LIVO2+RTK、Smac Hybrid、MPPI DiffDrive 跑完番茄温室 3 点及蔬菜试验田 16 点约 92 m 路线。运行记录见 ROS 资源包 README，不代表刀片作业或其他算法组合验证。
+
+## Car6 原始 CAD 展示精度
+
+Car6 的原始文件为本地模型包 `03.拖拉机SW stp格式 （24套）/tractor-assembly-2 SW STP STL.zip` 内的 `STEP File/Trator.STEP`，提取副本在 `~/.local/share/agribot/farm_assets/compact_tractor/source.step`。SHA-256 为 `cad518651d7b2ae4d1f9fbb0cc6fdf6714321fc3feb0d8925b63adb2d5900495`，包含63个实体。
+
+车库展示不再使用约10万面的减面模型或仿真聚类 LOD。2026-10-24 的显示资源由原始 STEP 以0.25毫米弦差、0.12弧度角度误差重新离散，保留全部1,867,718个主机三角面；没有再次减面。Car6的7种当前装配预设使用同一完整主机显示几何，各自机具保留原模型。
+
+显示与仿真资源分离：`preview.bytes` 及清单的显示统计/哈希更新，`vehicle_config.json`、仿真 OBJ、轮心、传感器、机具安装位姿和算法参数未改。`asset_manifest.json.previewGeometry` 记录来源、离散精度和未减面的证明。显示网格分块，每块最多300,000个三角面，不通过合并顶点或删除三角面来控制分配大小。
+
+离线重建使用 ROS 工作区的 `convert_step.py`、`prepare_tractor.py`（关闭减面）和 `prepare_full_detail_preview.py`，然后调用 Unity 菜单“农机配置/刷新Car6双面预览”。普通 `prepare_unity_farm.py` 默认拒绝把原始CAD显示资源降级为仿真LOD；只有明确指定 `--allow-preview-downgrade` 才允许降级。本地模型资源继续沿用原有 Git 忽略规则。

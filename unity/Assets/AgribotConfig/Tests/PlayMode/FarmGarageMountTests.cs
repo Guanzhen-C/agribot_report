@@ -72,7 +72,7 @@ namespace Agribot.VehicleConfiguration.Tests
                     var export = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
                     Assert.That(File.ReadAllBytes(export.JsonPath), Is.EqualTo(File.ReadAllBytes(
                         Path.Combine(FarmVehicleLibrary.AssetDirectory(preset.id), "vehicle_config.json"))), preset.id);
-                    Click(Find("CloseButton"));
+                    Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
                     yield return new WaitForSeconds(1f);
                     var room = RendererBounds(Find("Garage1").GetComponentsInChildren<Transform>(true).Single(t => t.name == "Walls").gameObject);
                     var assembly = RendererBounds(car);
@@ -152,7 +152,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 var export = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
                 Assert.That(File.ReadAllBytes(export.JsonPath), Is.EqualTo(File.ReadAllBytes(
                     Path.Combine(FarmVehicleLibrary.AssetDirectory(entry.Item3), "vehicle_config.json"))));
-                Click(Find("CloseButton"));
+                Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
                 yield return new WaitForSeconds(.8f);
                 CaptureCamera("/tmp/metric_"+entry.Item1+"_installed.png");
                 var room = RendererBounds(Find("Garage1").GetComponentsInChildren<Transform>(true).Single(t => t.name == "Walls").gameObject);
@@ -229,7 +229,7 @@ namespace Agribot.VehicleConfiguration.Tests
             export = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
             Assert.That(File.ReadAllBytes(export.JsonPath), Is.EqualTo(File.ReadAllBytes(
                 Path.Combine(FarmVehicleLibrary.AssetDirectory("harvester_header"), "vehicle_config.json"))));
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(1.5f);
             var room = RendererBounds(garage.GetComponentsInChildren<Transform>(true).Single(t => t.name == "Walls").gameObject);
             var assembly = RendererBounds(car);
@@ -255,7 +255,7 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(header.gameObject.activeSelf, Is.False);
             Assert.That(farm.GetType().GetProperty("PreviewRadius").GetValue(farm), Is.EqualTo(12f));
             Assert.That(car.transform.localScale, Is.EqualTo(Vector3.one));
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(.6f);
             Click(Find("Back_btn"));
             yield return new WaitForSeconds(.6f);
@@ -331,7 +331,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 var export = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
                 Assert.That(File.ReadAllBytes(export.JsonPath), Is.EqualTo(File.ReadAllBytes(
                     Path.Combine(FarmVehicleLibrary.AssetDirectory(entry.Item3), "vehicle_config.json"))));
-                Click(Find("CloseButton"));
+                Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
                 yield return new WaitForSeconds(.6f);
                 CaptureCamera("/tmp/" + entry.Item3 + "_installed.png");
                 if (entry.Item2 == "FarmTrailer")
@@ -352,7 +352,7 @@ namespace Agribot.VehicleConfiguration.Tests
                     Click((Button)details.GetType().GetProperty("UninstallButton").GetValue(details));
                     yield return null;
                     Assert.That(car.transform.position, Is.EqualTo(initialPosition));
-                    Click(Find("CloseButton"));
+                    Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
                     yield return new WaitForSeconds(.6f);
                 }
                 Click(Find("Back_btn"));
@@ -414,7 +414,7 @@ namespace Agribot.VehicleConfiguration.Tests
             export = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
             Assert.That(File.ReadAllBytes(export.JsonPath), Is.EqualTo(File.ReadAllBytes(
                 Path.Combine(FarmVehicleLibrary.AssetDirectory("mower_front_cutter"), "vehicle_config.json"))));
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(1f);
             var screen = Camera.main.WorldToViewportPoint(RendererBounds(car.transform.Find("car8").gameObject).center);
             Assert.That(screen.z, Is.GreaterThan(0));
@@ -574,7 +574,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 yield return null;
                 AssertUnavailableWithoutDescription(details);
             }
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(1f);
             Debug.Log($"CAB_CAMERA pose={Camera.main.transform.position} fov={Camera.main.fieldOfView} bounds={bodyBounds}");
             CaptureCamera("/tmp/cab_tractor_garage.png");
@@ -667,7 +667,7 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(Vector3.Distance(Camera.main.transform.position, target.position), Is.InRange(2.3f, 2.8f));
             Click(Find("OpenBag_btn"));
             yield return RemainInside(inside, 1.8f, "equipment view");
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return RemainInside(inside, 1f, "close equipment view");
             Assert.That(control.GetType().GetProperty("IsInputLocked").GetValue(control), Is.False);
             Click(Find("Back_btn"));
@@ -814,28 +814,29 @@ namespace Agribot.VehicleConfiguration.Tests
             string title = reference.transform.Find("Header/Text (Legacy)").GetComponent<Text>().text;
             var referenceDetails = Component(reference, "EquipmentDetailsUI");
             var referenceInstall = (Button)referenceDetails.GetType().GetProperty("InstallButton").GetValue(referenceDetails);
-            string installSprite = referenceInstall.GetComponent<Image>().sprite.name;
+            var installSprite = referenceInstall.GetComponent<Image>().sprite;
+            var installColour = referenceInstall.GetComponent<Image>().color;
 
-            yield return SceneManager.LoadSceneAsync("scene2");
-            yield return null;
-            var lastPanel = Component(Find("LastPanel"), "LastPanel");
-            lastPanel.GetType().GetMethod("OpenLastPanel").Invoke(lastPanel, null);
+            Click(Find("Car0_Img"));
             yield return new WaitForSeconds(.8f);
             var panel = Find("BagPanel");
             for (int opening = 0; opening < 2; opening++)
             {
-                Click(Find("OpeBag_btn"));
+                Click(Find("OpenBag_btn"));
                 yield return new WaitForSeconds(1f);
                 Assert.That(panel.activeInHierarchy, Is.True);
-                Assert.That(lastPanel.gameObject.activeInHierarchy, Is.True);
+                Assert.That(Find("Car0").activeInHierarchy, Is.True);
+                Assert.That(SceneManager.GetSceneByName("scene2").isLoaded, Is.False);
                 Assert.That(panel.GetComponent<RectTransform>().anchoredPosition, Is.EqualTo(position));
                 Assert.That(panel.GetComponent<RectTransform>().sizeDelta, Is.EqualTo(size));
                 Assert.That(panel.transform.Find("Header/Text (Legacy)").GetComponent<Text>().text, Is.EqualTo(title));
                 Assert.That(panel.GetComponent<CanvasGroup>().interactable, Is.True);
-                var details = Component(panel, "EquipmentDetailsUI_copy");
+                var details = Component(panel, "EquipmentDetailsUI");
                 var install = (Button)details.GetType().GetProperty("InstallButton").GetValue(details);
                 Assert.That(install.name, Is.EqualTo("Button (Legacy)"));
-                Assert.That(install.GetComponent<Image>().sprite.name, Is.EqualTo(installSprite));
+                Assert.That(install.GetComponent<Image>().sprite, Is.EqualTo(installSprite));
+                Assert.That(install.GetComponent<Image>().color, Is.EqualTo(installColour));
+                Assert.That(install, Is.SameAs(referenceInstall), "Car0 must use the same shared equipment controls");
                 Assert.That(details.transform.Find("ActionButtons"), Is.Null,
                     "Use the authored skinned controls, not fallback buttons");
                 Click(Find("ChiselPlow_slot"));
@@ -850,7 +851,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 Click(panel.transform.Find("Header/CloseButton").gameObject);
                 yield return new WaitForSeconds(.6f);
                 Assert.That(panel.activeSelf, Is.False);
-                Assert.That(lastPanel.gameObject.activeInHierarchy, Is.True);
+                Assert.That(Find("Car0").activeInHierarchy, Is.True);
             }
         }
 

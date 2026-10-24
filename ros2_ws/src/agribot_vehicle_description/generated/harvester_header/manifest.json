@@ -1,0 +1,937 @@
+{
+  "schemaVersion": "1.0",
+  "vehicleId": "harvester_header",
+  "sourceFile": "vehicle_config.json",
+  "generator": "agribot_vehicle_config_tools 0.1.0",
+  "coordinateConvention": "ROS_FLU",
+  "runtimeTemplatesApplied": true,
+  "visualLod": {
+    "method": "material_aware_vertex_clustering",
+    "bodyGridM": 0.02,
+    "wheelGridM": 0.01,
+    "body": {
+      "inputVertices": 27453,
+      "outputVertices": 79803,
+      "inputFaces": 37839,
+      "outputFaces": 34558
+    },
+    "wheels": {}
+  },
+  "files": [
+    {
+      "path": "config/ackermann_kinematics.yaml",
+      "sizeBytes": 551,
+      "sha256": "c0cca4a2e12f39f9cf936df9f5bcd6b85500020c9ab3356125f5a1d8334f2224"
+    },
+    {
+      "path": "config/fastlivo_extrinsics.yaml",
+      "sizeBytes": 621,
+      "sha256": "b161b669d88f0adf21391d03b7cc41eac795ef05cfb512b83b6b6b59f9f5f418"
+    },
+    {
+      "path": "config/nav2_geometry.yaml",
+      "sizeBytes": 753,
+      "sha256": "91cf8a582a76f437b392730917ef936aa7e664c36cf326d0109709aee01128eb"
+    },
+    {
+      "path": "config/physical/agribot_c16_astra.yaml",
+      "sizeBytes": 2783,
+      "sha256": "3034612111c9f710c5d583ce3dc8d91cb5abde1130cb1589043b53c4078aa397"
+    },
+    {
+      "path": "config/physical/chassis_can.yaml",
+      "sizeBytes": 1026,
+      "sha256": "d4c6050ce2f54317d745486759c29fadec71942ae4a8abfd8d023be40844e078"
+    },
+    {
+      "path": "config/physical/chassis_serial.yaml",
+      "sizeBytes": 906,
+      "sha256": "5c8b8a130503f2e312551daad2068df117a3c8eef70ad00397afd4dcd7597152"
+    },
+    {
+      "path": "config/physical/fast_lio_c16.yaml",
+      "sizeBytes": 1128,
+      "sha256": "395128fa6d183333be5297d05bcba302fbaa96ff4e45562a25b6f2f5574121d9"
+    },
+    {
+      "path": "config/physical/fastlio_bridge.yaml",
+      "sizeBytes": 501,
+      "sha256": "803d7a0169128d3d94390f64d873d8b18804975be39a080f696e4e5666934ab5"
+    },
+    {
+      "path": "config/physical/fastlivo_bridge.yaml",
+      "sizeBytes": 518,
+      "sha256": "f404299591a0ca0757c11f0e98c122cf8dc3685b1842d7627ff4297ca16c37c3"
+    },
+    {
+      "path": "config/physical/fastlivo_rtk_fusion.yaml",
+      "sizeBytes": 2203,
+      "sha256": "3eadfa3e41d1d3d1188079f31af32a3d341ff1759f0ce7579a79668009ea9d19"
+    },
+    {
+      "path": "config/physical/joint_state_publisher.yaml",
+      "sizeBytes": 373,
+      "sha256": "b74272ada0a5f243f415099dd442e2887b7c102584230b58545d3647f3042dd7"
+    },
+    {
+      "path": "config/physical/kf_gins_n300pro.yaml",
+      "sizeBytes": 2446,
+      "sha256": "ed8012f85c543ef6cca8bd39cc877d904f1817918069c3f217a04b90684a1f00"
+    },
+    {
+      "path": "config/physical/nav2_params_ackermann_fastlio_local.yaml",
+      "sizeBytes": 11081,
+      "sha256": "519180b431409bd53b08085c44387a0ed0c59e5187d5fe57f57eea02f121e649"
+    },
+    {
+      "path": "config/physical/nav2_params_ackermann_fastlio_mapped.yaml",
+      "sizeBytes": 11921,
+      "sha256": "25cca08a4d8f118c60b196728bf7b9bb8b2464534d9721447da457b3b404c584"
+    },
+    {
+      "path": "config/physical/nav2_params_ackermann_navsat_static.yaml",
+      "sizeBytes": 11937,
+      "sha256": "f7ba7206ed982e95a7afc5badd0da1b07792583104ea69536901aeabb26ac36f"
+    },
+    {
+      "path": "config/physical/nav2_params_ackermann_planner_only.yaml",
+      "sizeBytes": 2135,
+      "sha256": "f4f96abc6a8139187727cd8e3df9945008853b17ab7036b12b66fe359034e560"
+    },
+    {
+      "path": "config/physical/pcd_initial_localization.yaml",
+      "sizeBytes": 1652,
+      "sha256": "56f242cfea274ecaf579768aa2d4dc85ff3a662974038daa09e583d03489e072"
+    },
+    {
+      "path": "config/physical/rtk_map_initializer.yaml",
+      "sizeBytes": 1293,
+      "sha256": "88e64e899076850805263275d616ee41ad3c69b41a29d74922ff8f4b08fd667f"
+    },
+    {
+      "path": "config/physical/sensor_mounts.yaml",
+      "sizeBytes": 1164,
+      "sha256": "e7bcf0db1e985fcb4e5a460cb7138940d51a3486ca2511d2b7c0953a1f433eb2"
+    },
+    {
+      "path": "config/sensor_mounts.yaml",
+      "sizeBytes": 1164,
+      "sha256": "e7bcf0db1e985fcb4e5a460cb7138940d51a3486ca2511d2b7c0953a1f433eb2"
+    },
+    {
+      "path": "config/simulation/nav2_params_ackermann.yaml",
+      "sizeBytes": 12227,
+      "sha256": "b1e18ec6ede04de82504b8ab7b25faeaca9c792bde4fe008a319e9310d0435a4"
+    },
+    {
+      "path": "config/simulation/nav2_params_ackermann_fastlio_static.yaml",
+      "sizeBytes": 11339,
+      "sha256": "0f34af1c42f91f550b8f51c4b3c5e643ec93e81377cb2a0e9754c4330e192ab6"
+    },
+    {
+      "path": "config/simulation/nav2_params_ackermann_navsat_static.yaml",
+      "sizeBytes": 11355,
+      "sha256": "56606247f1b5dc5e4f66a6370ce1eb7940886ca466ba7856c974b3f40dd39d81"
+    },
+    {
+      "path": "models/belt_left_0.obj",
+      "sizeBytes": 58070,
+      "sha256": "98018ee703fcecaf1c6f85fda23c6534f337ebdea65b5866b7ed46973ea3cc84"
+    },
+    {
+      "path": "models/belt_left_1.obj",
+      "sizeBytes": 59769,
+      "sha256": "57ea34e9554da42360e9c6bafeec3096df6351e0b9c6f85b8502e79ffb913f26"
+    },
+    {
+      "path": "models/belt_left_10.obj",
+      "sizeBytes": 48251,
+      "sha256": "73f54b26c63247a7508052e1af57ac1ce99f316c5c1a566db11e14bf72a2c333"
+    },
+    {
+      "path": "models/belt_left_11.obj",
+      "sizeBytes": 46073,
+      "sha256": "39f9e41d73fdd577980cd08494c8b76dadb26c705157b67b66367f4d51e55dfc"
+    },
+    {
+      "path": "models/belt_left_12.obj",
+      "sizeBytes": 51356,
+      "sha256": "0790577e779e7d5bd5274f4f5087e5357ffab75748b5bf1de7a5a6da88c541bb"
+    },
+    {
+      "path": "models/belt_left_13.obj",
+      "sizeBytes": 46400,
+      "sha256": "3d16a3f05bcdf95f632e28e7666242e654d178bd0139d851d6a0b6b502b63f2b"
+    },
+    {
+      "path": "models/belt_left_14.obj",
+      "sizeBytes": 57737,
+      "sha256": "ade3d2d5b3141918c47736bf7ad781b8227a2eab61a6c1f3cc00cfb769d51ea6"
+    },
+    {
+      "path": "models/belt_left_15.obj",
+      "sizeBytes": 41337,
+      "sha256": "e5b6bb6cd2077b4a5a3c4f5b88ec6a1eee1f01aec628be584fa6924789b6b88f"
+    },
+    {
+      "path": "models/belt_left_16.obj",
+      "sizeBytes": 55618,
+      "sha256": "078ef7fd880107bb1459803df0f876535ae9ed08436dc0d9e7ff3840ed0355f1"
+    },
+    {
+      "path": "models/belt_left_17.obj",
+      "sizeBytes": 46834,
+      "sha256": "5f525f8c7042eba7bb3662615599b3a7a0905f00bd81bd23175a99f51aa7baa4"
+    },
+    {
+      "path": "models/belt_left_18.obj",
+      "sizeBytes": 48902,
+      "sha256": "7c40519d70b8019b1fc3de261113c9783f376de5e3f40591cd5425a2364f70ef"
+    },
+    {
+      "path": "models/belt_left_19.obj",
+      "sizeBytes": 47197,
+      "sha256": "11a2ef0bd973908a079b268ce79ae096523cd6c3838b3e4b66fdd71df71ae1e2"
+    },
+    {
+      "path": "models/belt_left_2.obj",
+      "sizeBytes": 59724,
+      "sha256": "b6fc072038b85dc12361d3bdafa6dd7acda035f4e9151119052707b1bd6b1a61"
+    },
+    {
+      "path": "models/belt_left_20.obj",
+      "sizeBytes": 54002,
+      "sha256": "95ba830288fa27549fb79843286437f7202672d258453122d02668fb01b350b5"
+    },
+    {
+      "path": "models/belt_left_21.obj",
+      "sizeBytes": 50089,
+      "sha256": "25515c73a4e756db05c13086c69caac5b84d3fa990491ae29a473e0a324f124b"
+    },
+    {
+      "path": "models/belt_left_22.obj",
+      "sizeBytes": 50985,
+      "sha256": "9e559f7572cd738a69e5d7130dc4327a3f32f51148b3f4044b29074fe90e57c7"
+    },
+    {
+      "path": "models/belt_left_23.obj",
+      "sizeBytes": 52984,
+      "sha256": "71019c0cf391c917b3d70c88322726df3187e339b7e7cf3a8658868d3a2dd87f"
+    },
+    {
+      "path": "models/belt_left_24.obj",
+      "sizeBytes": 49137,
+      "sha256": "82d8eec8797c5d926b3fafe219d07a0e189f70ceb0400ac63e8ce5ca18f253ac"
+    },
+    {
+      "path": "models/belt_left_25.obj",
+      "sizeBytes": 56743,
+      "sha256": "2357f569a2d193a4b9f79e92cd0bd93a1cc393fec5b75480564d55f5c90ae9a8"
+    },
+    {
+      "path": "models/belt_left_26.obj",
+      "sizeBytes": 44546,
+      "sha256": "03bc4c331288eafbe0839407590bce663c450e8ccbe833b95193f20173386a59"
+    },
+    {
+      "path": "models/belt_left_27.obj",
+      "sizeBytes": 55754,
+      "sha256": "9fc95a78808baa3c68dddb9b8d141292f976741f363c11e24e31d303eac4b304"
+    },
+    {
+      "path": "models/belt_left_28.obj",
+      "sizeBytes": 50318,
+      "sha256": "aa29ea6dc9fea2a46746d24483f1ba520ecc8d38ae56804a82517125707af33e"
+    },
+    {
+      "path": "models/belt_left_29.obj",
+      "sizeBytes": 57121,
+      "sha256": "ce6d100f0ec48bfbf7aedafb1e6358e73eb873235ae27afeabf1bb4930bbc38b"
+    },
+    {
+      "path": "models/belt_left_3.obj",
+      "sizeBytes": 55841,
+      "sha256": "001ad74c59ae17dc7d90ffe630fc855088e857ce40cf32993f0c802cc7ddcb3f"
+    },
+    {
+      "path": "models/belt_left_30.obj",
+      "sizeBytes": 50305,
+      "sha256": "d7a1fa498aa103c14a79fe7653bcddcf076be508842b1a30c78d81cc020a148b"
+    },
+    {
+      "path": "models/belt_left_31.obj",
+      "sizeBytes": 53169,
+      "sha256": "930cb951a50832ddab525942e708a7712d24109dc4bdb248266c60f2b0b10a81"
+    },
+    {
+      "path": "models/belt_left_32.obj",
+      "sizeBytes": 50293,
+      "sha256": "ce7aed766e84ff37336547d1979d1c73a4945613d31608cbbb057853e65ff96c"
+    },
+    {
+      "path": "models/belt_left_33.obj",
+      "sizeBytes": 52241,
+      "sha256": "51359149aca2b88e31c871e3c6aea303022c492fcc1b426994f1ce68325859f2"
+    },
+    {
+      "path": "models/belt_left_34.obj",
+      "sizeBytes": 50689,
+      "sha256": "28a79cbc8070acef671109773d40d2924e854277889b567ecdd10b03a38575ae"
+    },
+    {
+      "path": "models/belt_left_35.obj",
+      "sizeBytes": 50673,
+      "sha256": "0eef1e7b6cbe37b6f5fe6bfa08d7af11bbd14912f59fc754709db4db8b279a2f"
+    },
+    {
+      "path": "models/belt_left_36.obj",
+      "sizeBytes": 53224,
+      "sha256": "f794abdb849f8dd308ccfb04a048b1989043788559d133d1c47b1dc7c1cde958"
+    },
+    {
+      "path": "models/belt_left_37.obj",
+      "sizeBytes": 64354,
+      "sha256": "85707ac22f5e5b1458ac4b644ba41a17c918c100daeef24e7eabf2fe058ef91d"
+    },
+    {
+      "path": "models/belt_left_38.obj",
+      "sizeBytes": 54409,
+      "sha256": "5a7a8f8bf3b6ac9afa1ebadb4e0cf5853c6e6ebe508d48b0cc66c6c8e00a03e4"
+    },
+    {
+      "path": "models/belt_left_39.obj",
+      "sizeBytes": 61375,
+      "sha256": "af4b3b79433cb10c7479c462e776a32451c0fff76970765e9d0faa3c50b56937"
+    },
+    {
+      "path": "models/belt_left_4.obj",
+      "sizeBytes": 62102,
+      "sha256": "25ed4bedc14e6d9439c3c65247c56f37ad47a9afbda446d15829e53eec7c5e55"
+    },
+    {
+      "path": "models/belt_left_40.obj",
+      "sizeBytes": 61074,
+      "sha256": "0f32a91bdaf64717a521ecb580be6bb9a4269ac9c2e557a55e65c75685857cdb"
+    },
+    {
+      "path": "models/belt_left_41.obj",
+      "sizeBytes": 61989,
+      "sha256": "034e25a87d7e5096399649c7d632b7e3efec8d3c8d493d2cfc803d6267ae98bf"
+    },
+    {
+      "path": "models/belt_left_42.obj",
+      "sizeBytes": 58019,
+      "sha256": "1d632a0fabd2a8197243dc72e4c25f62e4878200fb79d9321e22fd0e9da9dcf5"
+    },
+    {
+      "path": "models/belt_left_43.obj",
+      "sizeBytes": 61510,
+      "sha256": "e27d738079a2b95c8baa614991a5b6d3a7377c1721c4e9b997c80c843aeafde6"
+    },
+    {
+      "path": "models/belt_left_44.obj",
+      "sizeBytes": 62199,
+      "sha256": "c04867495d5e9313b888c83cb9e41c20d4e92269f72f09b764d00cbe1ab8a357"
+    },
+    {
+      "path": "models/belt_left_45.obj",
+      "sizeBytes": 52004,
+      "sha256": "e3257ada2f1ff0247100e072d28daa29a31f8b5de1e28baebc9fa6c595d34262"
+    },
+    {
+      "path": "models/belt_left_46.obj",
+      "sizeBytes": 52727,
+      "sha256": "92bff43260ef391dc3c9aaad00c5c8badbe88ed50cb12aa7f2ba69a7da9b6c22"
+    },
+    {
+      "path": "models/belt_left_47.obj",
+      "sizeBytes": 58006,
+      "sha256": "2a6465a071bf7988437bc75d1efe53dd91fe134f48bc06116043e8582bbc37d3"
+    },
+    {
+      "path": "models/belt_left_48.obj",
+      "sizeBytes": 51307,
+      "sha256": "edb30c50bd1286bf3582d9c0b1cb2bcfb8e60e60d39966ad42949af79098c06d"
+    },
+    {
+      "path": "models/belt_left_49.obj",
+      "sizeBytes": 60183,
+      "sha256": "1641664d4b8a6382c423a9a072d24aa7416931f0da7374b68fa1c5dba011ed2a"
+    },
+    {
+      "path": "models/belt_left_5.obj",
+      "sizeBytes": 61504,
+      "sha256": "6ebeeca547d3a246b58edcadeee248e6dd9eb8d31486941b828b80b7cbc85f90"
+    },
+    {
+      "path": "models/belt_left_50.obj",
+      "sizeBytes": 58290,
+      "sha256": "db394845253bfce3ba3deff0f92ab859cdc90e8d20a34f64ff3d1b417bc02f09"
+    },
+    {
+      "path": "models/belt_left_51.obj",
+      "sizeBytes": 56957,
+      "sha256": "acac2e482815cb7aac185f335ccdd471a00d8fca6990afe6d2de66aba1efd1f9"
+    },
+    {
+      "path": "models/belt_left_52.obj",
+      "sizeBytes": 53940,
+      "sha256": "968d4a07dd51c390081e26ab0b0f2550e0f3a1cbd5cb3c7c264852316f2950a8"
+    },
+    {
+      "path": "models/belt_left_53.obj",
+      "sizeBytes": 58992,
+      "sha256": "201e72e35ba2b930f98449ee4e53c73ea9652f6a8c954f1541378a8211be4d55"
+    },
+    {
+      "path": "models/belt_left_54.obj",
+      "sizeBytes": 55272,
+      "sha256": "44a8fbe5b59da8dcbcde0f7c1adb8857ff1e52bfd9853c130d965a2b2a3a4a4c"
+    },
+    {
+      "path": "models/belt_left_55.obj",
+      "sizeBytes": 55295,
+      "sha256": "5af4bbf91d5b4891bdd59400e5dd7b70785468b5ee46aa9f99949b59c647ce15"
+    },
+    {
+      "path": "models/belt_left_56.obj",
+      "sizeBytes": 56671,
+      "sha256": "8710c8b091ffa6af1ddded4e6bcc9501f8de9055da521f09f103f63f14f3b07f"
+    },
+    {
+      "path": "models/belt_left_57.obj",
+      "sizeBytes": 50557,
+      "sha256": "a461edacc4fc33daadcb1fbcfa345564e48d50f07080b4318ff11525f80339f0"
+    },
+    {
+      "path": "models/belt_left_58.obj",
+      "sizeBytes": 53247,
+      "sha256": "e75ae7f27421499076bf8560f7b896dadb9921e3d17dcaeea845d63b62ca265a"
+    },
+    {
+      "path": "models/belt_left_59.obj",
+      "sizeBytes": 48079,
+      "sha256": "d8448cf1f5f628452521f6fabe760a40b793ab06dd3e3d32a2e4e19bc0be80d1"
+    },
+    {
+      "path": "models/belt_left_6.obj",
+      "sizeBytes": 61561,
+      "sha256": "7270191a6e023a5cc36f5e48b0ff0836426dd9f72da614279f33126ef88914d7"
+    },
+    {
+      "path": "models/belt_left_60.obj",
+      "sizeBytes": 52670,
+      "sha256": "c58283acc75efb9f6a9f1041c1e341a2ebd5ede9f658eb3abac400349c58f45f"
+    },
+    {
+      "path": "models/belt_left_61.obj",
+      "sizeBytes": 47568,
+      "sha256": "24f76414e00841928b9389903cc4794f249c29ee7cb93c3cc7e1a0229893a200"
+    },
+    {
+      "path": "models/belt_left_62.obj",
+      "sizeBytes": 49120,
+      "sha256": "e43eb3de94d9e71bde1cd42b3e98b9d1019762e0ae228d6fcd5f54a3c12655fa"
+    },
+    {
+      "path": "models/belt_left_63.obj",
+      "sizeBytes": 46496,
+      "sha256": "2d5db63b6dab9e768a12fdd4186856cbf7be3343eafaf98d09363c958fd45c70"
+    },
+    {
+      "path": "models/belt_left_7.obj",
+      "sizeBytes": 56867,
+      "sha256": "ad2ea7a1ebbbe352fdc2559557f63d9f2a293960cb32b8a69aa80a3cf7bb86c3"
+    },
+    {
+      "path": "models/belt_left_8.obj",
+      "sizeBytes": 62445,
+      "sha256": "4060cae013f2f2153413a6dc41841fdf02d4f6f04afde84f9d62c8b329bacb46"
+    },
+    {
+      "path": "models/belt_left_9.obj",
+      "sizeBytes": 49685,
+      "sha256": "4548a319a938bf8b21f3a7c36f112ce7e47efe3f55f660e83553edc120625a13"
+    },
+    {
+      "path": "models/belt_right_0.obj",
+      "sizeBytes": 56647,
+      "sha256": "a8c3a3ef93b1c02f420e60aec89a7930b1551e66a308a11afc8b84b3cb5824e5"
+    },
+    {
+      "path": "models/belt_right_1.obj",
+      "sizeBytes": 60095,
+      "sha256": "eed97171e1bb2b7309f713b607b0153a7c1b7330aae0ae567a756cab97179d6a"
+    },
+    {
+      "path": "models/belt_right_10.obj",
+      "sizeBytes": 47974,
+      "sha256": "9de543a0a79658d8869ebdd7c7ac545328aac3fa6e8adcc235e129bc21265047"
+    },
+    {
+      "path": "models/belt_right_11.obj",
+      "sizeBytes": 46412,
+      "sha256": "e16ff5ce8b1b90b63429b18b6a6f77d25b95b8de8c698ef2d949d20f8b291bb1"
+    },
+    {
+      "path": "models/belt_right_12.obj",
+      "sizeBytes": 51776,
+      "sha256": "09bedf328cd10c95fede7d3bd11a5c0e77b394b871e3f8fb19ee8872936bd444"
+    },
+    {
+      "path": "models/belt_right_13.obj",
+      "sizeBytes": 46706,
+      "sha256": "17f16935f17f0cf591db540b3562aea25144f0f46435045d12121a81f58248b2"
+    },
+    {
+      "path": "models/belt_right_14.obj",
+      "sizeBytes": 57353,
+      "sha256": "f10fef2f81c2e9631a6518bab7d84b5002015ae37b791d6af682dd484943824d"
+    },
+    {
+      "path": "models/belt_right_15.obj",
+      "sizeBytes": 43942,
+      "sha256": "1f869d080e8fe7faedbf9135865331be4c2ac16471521072fd639fb776bc4482"
+    },
+    {
+      "path": "models/belt_right_16.obj",
+      "sizeBytes": 59096,
+      "sha256": "c07e74fd13fa663e5d264c052e96bb956a62439c3317379a6cc9742101567183"
+    },
+    {
+      "path": "models/belt_right_17.obj",
+      "sizeBytes": 48004,
+      "sha256": "cea4d064d4fa619d83c824a60ce758021079c3657939ad7425db7af738550147"
+    },
+    {
+      "path": "models/belt_right_18.obj",
+      "sizeBytes": 50470,
+      "sha256": "491a2a513353b0f3da395784207cbc7cf69e6a0426dc74abcabf23e281170974"
+    },
+    {
+      "path": "models/belt_right_19.obj",
+      "sizeBytes": 49443,
+      "sha256": "bca7ae4ef3301d6d2c23443453f9227728f7f78fd28ff3465c531054bbd7cf88"
+    },
+    {
+      "path": "models/belt_right_2.obj",
+      "sizeBytes": 60090,
+      "sha256": "776c1cd915f4eeeb2beeff5a2129f2ee3de81318a32c6563402ffaf228c01039"
+    },
+    {
+      "path": "models/belt_right_20.obj",
+      "sizeBytes": 55361,
+      "sha256": "0f69a7bcbd8284d9229af34fffacb116584941f97f3aef03c16367498ec2750d"
+    },
+    {
+      "path": "models/belt_right_21.obj",
+      "sizeBytes": 51951,
+      "sha256": "43fdab5febd5d5f195b5e9c26cc1cc0899a0450f8ed6bb39be7886a3d83a02c6"
+    },
+    {
+      "path": "models/belt_right_22.obj",
+      "sizeBytes": 52394,
+      "sha256": "386b52c8397e041966212309a1fb7b9d21a8b964ef338e1d87a6f5348228649c"
+    },
+    {
+      "path": "models/belt_right_23.obj",
+      "sizeBytes": 52241,
+      "sha256": "8748d5c7c3ca83a0956d721aeee60447f4aac5ccc82b1f4fc868ed6bb52af81a"
+    },
+    {
+      "path": "models/belt_right_24.obj",
+      "sizeBytes": 47904,
+      "sha256": "040cf63d98bd735a60f210e167af5b1b4712d52e1c2553d41b0b52718863bceb"
+    },
+    {
+      "path": "models/belt_right_25.obj",
+      "sizeBytes": 55139,
+      "sha256": "7a00ec642c010699090079ec4bf015494d7720092e0a80672d0249114ded6181"
+    },
+    {
+      "path": "models/belt_right_26.obj",
+      "sizeBytes": 42856,
+      "sha256": "7a89355e568c0fd51a53637ca58009302ae12f2d527703497b2c7585c57ac4d5"
+    },
+    {
+      "path": "models/belt_right_27.obj",
+      "sizeBytes": 53772,
+      "sha256": "f0d755779089b7fbcfcc3a42d2f51c6cc0a33963074f994f72549622409347b3"
+    },
+    {
+      "path": "models/belt_right_28.obj",
+      "sizeBytes": 49058,
+      "sha256": "1dab19811c02a095778a79e544b30ad20b17e5c27cb037b7d23878fb8c6fec79"
+    },
+    {
+      "path": "models/belt_right_29.obj",
+      "sizeBytes": 55672,
+      "sha256": "99fd3c9226f3e019932aa501bdaa0e25d48c3b65a961f7d73197c0d1a9043e69"
+    },
+    {
+      "path": "models/belt_right_3.obj",
+      "sizeBytes": 58512,
+      "sha256": "c1630f2a15cd86aff2bd4778d2e0c59551efa9288f8456bb8f3b48555fb754ba"
+    },
+    {
+      "path": "models/belt_right_30.obj",
+      "sizeBytes": 49078,
+      "sha256": "3614520110bb70593a79f152ea905f0215c2a0e23cbc9225dd025cae22134830"
+    },
+    {
+      "path": "models/belt_right_31.obj",
+      "sizeBytes": 53449,
+      "sha256": "56750cdbda92874ff8e9a0c37cf5ea942f13bfaa4747a8fa38d9cfc58711870b"
+    },
+    {
+      "path": "models/belt_right_32.obj",
+      "sizeBytes": 51045,
+      "sha256": "8dae99b0ba82b18c5e92d9ad551512657e97d568b6279bc8353566d9b324caf7"
+    },
+    {
+      "path": "models/belt_right_33.obj",
+      "sizeBytes": 53093,
+      "sha256": "62df52ef8a56b435610072680715ddc0b15d01e9ad23b292ffcde5b732884f23"
+    },
+    {
+      "path": "models/belt_right_34.obj",
+      "sizeBytes": 49487,
+      "sha256": "38d4e30b77bfeb8fc5fcb99c87788dc495bc44945fdaa64e82e533cd986134bd"
+    },
+    {
+      "path": "models/belt_right_35.obj",
+      "sizeBytes": 50298,
+      "sha256": "2a212a22135c3f6939220252e552736abff38fdd0d02695707b079afabb472cd"
+    },
+    {
+      "path": "models/belt_right_36.obj",
+      "sizeBytes": 54250,
+      "sha256": "82614285f87e6938e42c1183c0c6e901ee8fa9a156982cdac6c5f6d863691f82"
+    },
+    {
+      "path": "models/belt_right_37.obj",
+      "sizeBytes": 65217,
+      "sha256": "670adb23ffc2a4fe05867e76010d813003623b2326507efe28b0899685d640aa"
+    },
+    {
+      "path": "models/belt_right_38.obj",
+      "sizeBytes": 55324,
+      "sha256": "d836536eb30ffef39958e6083acbb9882f1db8e1611ea639cba268ff33698330"
+    },
+    {
+      "path": "models/belt_right_39.obj",
+      "sizeBytes": 60068,
+      "sha256": "45ce9c7c6201ab2576471dde482ec811e78df30ad2661105d9c3aa0587bc027d"
+    },
+    {
+      "path": "models/belt_right_4.obj",
+      "sizeBytes": 60094,
+      "sha256": "0fc234ba813f9550af15bf94ab742e8aaa45c72a8829ab40db7dfe98d3c155a8"
+    },
+    {
+      "path": "models/belt_right_40.obj",
+      "sizeBytes": 61451,
+      "sha256": "f8aa25f61d828019e65cceb7252b9eb5cebd9083274892ff615e2abe6fa1f5ea"
+    },
+    {
+      "path": "models/belt_right_41.obj",
+      "sizeBytes": 64101,
+      "sha256": "d114ad4ed02c344446fe5cd1cd45eaefedd2ab9dd74e21d2d7d854afddea797c"
+    },
+    {
+      "path": "models/belt_right_42.obj",
+      "sizeBytes": 56582,
+      "sha256": "d642925c1b300ce0d54a4a3b313b113879014074c026b74dd713c9a0efcc5622"
+    },
+    {
+      "path": "models/belt_right_43.obj",
+      "sizeBytes": 61769,
+      "sha256": "354570ad5ef67aca6e39582cfba1eb0184934dd14e8d17b822f5b96636db5de9"
+    },
+    {
+      "path": "models/belt_right_44.obj",
+      "sizeBytes": 62957,
+      "sha256": "1445309c77b32c710b07804e6c3fc4bbab39f8725cc93636d2f2a70fb4dfc182"
+    },
+    {
+      "path": "models/belt_right_45.obj",
+      "sizeBytes": 53689,
+      "sha256": "bdac78968f61705d87de4563b3503418aefdfec39a234c2cc86a11299bf38462"
+    },
+    {
+      "path": "models/belt_right_46.obj",
+      "sizeBytes": 51228,
+      "sha256": "385530c19435c71ef6a494f7df8d7fde3053fa07e07ab9a0b2bc2b85a24235bc"
+    },
+    {
+      "path": "models/belt_right_47.obj",
+      "sizeBytes": 58442,
+      "sha256": "71ac4b95afd6a96a47efd07ae6430427248b60a65bc5816e1671be807d85acce"
+    },
+    {
+      "path": "models/belt_right_48.obj",
+      "sizeBytes": 52524,
+      "sha256": "f81607802b995672377f09e0ddc95a2352ba29ab269b2a7d8d13b741ccebdda8"
+    },
+    {
+      "path": "models/belt_right_49.obj",
+      "sizeBytes": 61168,
+      "sha256": "a275a25adaa0be0a87cc18eaddc942f39853889893f12bf4109d15c49304cdd7"
+    },
+    {
+      "path": "models/belt_right_5.obj",
+      "sizeBytes": 61959,
+      "sha256": "3debe7334915ffe396cfd4cc2fb2465c8c5ff448b4447c0e853e804289f5c952"
+    },
+    {
+      "path": "models/belt_right_50.obj",
+      "sizeBytes": 56833,
+      "sha256": "65980180b2dd19ae48a9afef8e722b7d93d19942aeb3e7656fb28030b83c9868"
+    },
+    {
+      "path": "models/belt_right_51.obj",
+      "sizeBytes": 57696,
+      "sha256": "c277b90b51b82cbd3a3522a795d86c56ed066233a38da4d2d879affb49a5e4cd"
+    },
+    {
+      "path": "models/belt_right_52.obj",
+      "sizeBytes": 53598,
+      "sha256": "c1c983f15e8a1420288d5fc651bcb67272f8ca37a4227af67ea9373e676233b5"
+    },
+    {
+      "path": "models/belt_right_53.obj",
+      "sizeBytes": 60048,
+      "sha256": "258c4d71b962fed33973eb40475864092ebf3e0275a3476bb1199d8c8ad44e50"
+    },
+    {
+      "path": "models/belt_right_54.obj",
+      "sizeBytes": 54707,
+      "sha256": "ed2cdf65445cb5a15926e81f01a0a0e12f18dc68a1d918d9195bb4acf395de14"
+    },
+    {
+      "path": "models/belt_right_55.obj",
+      "sizeBytes": 55701,
+      "sha256": "6a896e22b5028bab6a81bf82321424cf98e725b6da10d9cce397bb036e0f279b"
+    },
+    {
+      "path": "models/belt_right_56.obj",
+      "sizeBytes": 56872,
+      "sha256": "4573ccb21dcef51391b62105c462d52551263368a466c55577c8e014030ceee0"
+    },
+    {
+      "path": "models/belt_right_57.obj",
+      "sizeBytes": 49227,
+      "sha256": "6e5d58c11f0cfcda424c27fd56cd19946ebdb67e02e495aaf9a096962bfd2d1c"
+    },
+    {
+      "path": "models/belt_right_58.obj",
+      "sizeBytes": 53905,
+      "sha256": "753050fd01563a07977846971f23328eff13a34bea872673694b318c0c85da4a"
+    },
+    {
+      "path": "models/belt_right_59.obj",
+      "sizeBytes": 48206,
+      "sha256": "206539ded07c93145cd4883cbbf7b1b7bf4566f98de0fe74eb8cb27e0c0024eb"
+    },
+    {
+      "path": "models/belt_right_6.obj",
+      "sizeBytes": 62020,
+      "sha256": "3010d65d533da727a742be15d402a751ce6000ee51a7c787d203ac362f8d0b56"
+    },
+    {
+      "path": "models/belt_right_60.obj",
+      "sizeBytes": 52694,
+      "sha256": "817a118b5600da38695d8bf00cbc8426e7c5d08d7026eaf0fe7e42464484e627"
+    },
+    {
+      "path": "models/belt_right_61.obj",
+      "sizeBytes": 46945,
+      "sha256": "17e1f70eb3b0dc4daf9f0a6a3a337ac18c2c4ca376e57b3c2c3c10e53da3ab1e"
+    },
+    {
+      "path": "models/belt_right_62.obj",
+      "sizeBytes": 48914,
+      "sha256": "de41ac66c9f12d51913659a4edd8d7fdbea0654e7bbb6c912a4f3a229ddf16b7"
+    },
+    {
+      "path": "models/belt_right_63.obj",
+      "sizeBytes": 48247,
+      "sha256": "e082e6a57b21a31f8ec05f0d702ce73866f4697d1d82cbf9e801c7696580ed58"
+    },
+    {
+      "path": "models/belt_right_7.obj",
+      "sizeBytes": 58607,
+      "sha256": "6132538dab95a5027bda4f56e3adc95b015196e5c5e5e1dca22ce9464e9b5301"
+    },
+    {
+      "path": "models/belt_right_8.obj",
+      "sizeBytes": 60397,
+      "sha256": "b14e0bb94a3ff715dbcc4cfa78bf86bda2cec8782e7692a44983afdfd7fa1f60"
+    },
+    {
+      "path": "models/belt_right_9.obj",
+      "sizeBytes": 50315,
+      "sha256": "b441f0fbd45936e21a14fa230535bd16ba9509479331a750c0ca394535e29742"
+    },
+    {
+      "path": "models/harvester_header.sdf",
+      "sizeBytes": 1459809,
+      "sha256": "e7d89aa5b334685aa9cd5dd7bd0bed64aa978cf5d818720900a882c859fb0116"
+    },
+    {
+      "path": "models/harvester_yellow_albedo.png",
+      "sizeBytes": 2346866,
+      "sha256": "92d93d0eed60c348c90ea6451725a93c2a6c61ebd0098ad7c24cbfdfde3515c6"
+    },
+    {
+      "path": "models/implement_combine_header_visual.mtl",
+      "sizeBytes": 236,
+      "sha256": "bd5b5b6d2021c7d659f3505cbf4218e5c026251c4fa3a698fb86e6855c9ddc66"
+    },
+    {
+      "path": "models/implement_combine_header_visual.obj",
+      "sizeBytes": 2623632,
+      "sha256": "60c766a4d3df12a1f007322c8bcbc2cbd144d96190c1b09ba69c8dac01aead0c"
+    },
+    {
+      "path": "models/rotor_left_idler_back.obj",
+      "sizeBytes": 144445,
+      "sha256": "ddbd51193dafd07306ac5eebfa3af6a79abbaa62d99a29a21f2a2e6ca2f89df2"
+    },
+    {
+      "path": "models/rotor_left_idler_front.obj",
+      "sizeBytes": 144259,
+      "sha256": "826608753c99beb408dc03ee40699c0368e2ba281974d9d680327664c0a5062c"
+    },
+    {
+      "path": "models/rotor_left_roller_0.obj",
+      "sizeBytes": 28573,
+      "sha256": "b5bd808aa6eded9f9239f098174b6b7a350fd430c8d50027cc3f147a8159869e"
+    },
+    {
+      "path": "models/rotor_left_roller_1.obj",
+      "sizeBytes": 28486,
+      "sha256": "a83c249b3b8bddf1bfbbdf079741cb834c98ec950d49b1aec5c88f0b82004e6d"
+    },
+    {
+      "path": "models/rotor_left_roller_2.obj",
+      "sizeBytes": 28619,
+      "sha256": "a4600430da24b2ca8f6dbacfc56f7490cfc6ce92e58431f81569406061a21812"
+    },
+    {
+      "path": "models/rotor_left_roller_3.obj",
+      "sizeBytes": 28697,
+      "sha256": "3987d7774474cbc1a195eb5b7aa5f5619d9964c6ce0bf44c47039a21cbc568cf"
+    },
+    {
+      "path": "models/rotor_left_sprocket.obj",
+      "sizeBytes": 93464,
+      "sha256": "04181ed75a05b39fc6e9ab9a338a71ce8cc9137007d9b3ade808fa6d85c33291"
+    },
+    {
+      "path": "models/rotor_rear_left.obj",
+      "sizeBytes": 735915,
+      "sha256": "cb5ce005aa6f58653a1dea115897e30bb9c59117d4ac5d4996475baf7f78a4d9"
+    },
+    {
+      "path": "models/rotor_rear_right.obj",
+      "sizeBytes": 736326,
+      "sha256": "b94d722eb11fbd21ad3d47e91e51bcd7a6353884da1bc41d4db8a9d5faeb25a2"
+    },
+    {
+      "path": "models/rotor_right_idler_back.obj",
+      "sizeBytes": 144214,
+      "sha256": "82ac97b312ff10d88ce57a5ee462fe7e26123c65323334dedb1495e3ae99ab0e"
+    },
+    {
+      "path": "models/rotor_right_idler_front.obj",
+      "sizeBytes": 144507,
+      "sha256": "ac4bf8f72c494af54e8e2b8da3e2605318ed647db7d498692e5164499b99d830"
+    },
+    {
+      "path": "models/rotor_right_roller_0.obj",
+      "sizeBytes": 28458,
+      "sha256": "80314a8c3a80586aca5de74d28700455b93d21869c35622108fb0c7766091261"
+    },
+    {
+      "path": "models/rotor_right_roller_1.obj",
+      "sizeBytes": 28389,
+      "sha256": "2cd1c91693afc89c198bbd419b76b965a8c52481749fcb68cda1f613d9fa82e5"
+    },
+    {
+      "path": "models/rotor_right_roller_2.obj",
+      "sizeBytes": 28312,
+      "sha256": "397c93958abc2f66390ec7455226b2788268ab9a850af49fe14c7c0b02739c3d"
+    },
+    {
+      "path": "models/rotor_right_roller_3.obj",
+      "sizeBytes": 28440,
+      "sha256": "8e6c52f899ac366cd2f71c4a91c82c7edfe3552515d3a7904849a62a8b40a8c9"
+    },
+    {
+      "path": "models/rotor_right_sprocket.obj",
+      "sizeBytes": 95632,
+      "sha256": "f8644fce5d6402ae81a632393e0b93e7226c6eec257031cb8d1bdd395147d9aa"
+    },
+    {
+      "path": "models/sensor_imu_visual.mtl",
+      "sizeBytes": 60,
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "path": "models/sensor_imu_visual.obj",
+      "sizeBytes": 2331,
+      "sha256": "4be5c1916f01d6311df04dd22cc88fd7a4dcce63a541279ebf65319b867547e5"
+    },
+    {
+      "path": "models/sensor_lidar_visual.mtl",
+      "sizeBytes": 239,
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "path": "models/sensor_lidar_visual.obj",
+      "sizeBytes": 6314516,
+      "sha256": "d789ba0f609d05b985287c8938938634ea0cbf489e7f58cec4798225e856be76"
+    },
+    {
+      "path": "models/sensor_right_camera_visual.mtl",
+      "sizeBytes": 864,
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "path": "models/sensor_right_camera_visual.obj",
+      "sizeBytes": 17560108,
+      "sha256": "695ad8b61d38ee24ebc17ccee7f72249c71fa9855861f6c03ede3e7d3962c86c"
+    },
+    {
+      "path": "models/sensor_rtk_master_visual.mtl",
+      "sizeBytes": 300,
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "path": "models/sensor_rtk_master_visual.obj",
+      "sizeBytes": 649294,
+      "sha256": "a3b9d196140fd8dbaaba4b3ca9dfa9b964fce1405f3ebde47ccdc37ecb4eb568"
+    },
+    {
+      "path": "models/vehicle_visual.mtl",
+      "sizeBytes": 1137,
+      "sha256": "2204a945519e764c9d716ec211cb7e17abeff00573d0c9fff057201fc03703ab"
+    },
+    {
+      "path": "models/vehicle_visual.obj",
+      "sizeBytes": 8347416,
+      "sha256": "c772ac4365e5e1222c9a80ccba6d7722e8ddaa6b25e47e2394a0104b75cb6e2e"
+    },
+    {
+      "path": "urdf/harvester_header.urdf.xacro",
+      "sizeBytes": 15401,
+      "sha256": "1413a8816b77863eae651e5395e9b9f2765727984429f6e9c6833fc2e39c93f5"
+    },
+    {
+      "path": "vehicle_config.json",
+      "sizeBytes": 81858,
+      "sha256": "b3b18507fb5082af15c109c8c94fb7148a22285ef29d722b149d257dced7c8d1"
+    }
+  ]
+}

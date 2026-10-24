@@ -5,6 +5,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Agribot.VehicleConfiguration.Tests
 {
@@ -15,22 +17,25 @@ namespace Agribot.VehicleConfiguration.Tests
         {
             foreach (string name in new[] { "Car0", "Car3" })
             {
-                yield return SceneManager.LoadSceneAsync(name == "Car0" ? "scene2" : "scene1");
+                yield return SceneManager.LoadSceneAsync("scene1");
                 yield return null;
-                Transform[] transforms = Resources.FindObjectsOfTypeAll<Transform>().Where(t => t.gameObject.scene.IsValid()).ToArray();
-                var car = transforms.First(t => t.name == name).gameObject;
-                car.SetActive(true);
-                var bag = transforms.First(t => t.name == "BagPanel").gameObject;
-                bag.SetActive(true);
-                yield return new WaitForSeconds(0.2f);
-                var controller = bag.GetComponents<MonoBehaviour>().First(c => c.GetType().Name ==
-                    (name == "Car0" ? "EquipmentBagController_copy" : "EquipmentBagController"));
+                Click(Find(name + "_Img"));
+                yield return new WaitForSeconds(.8f);
+                var car = Find(name);
+                Click(Find("OpenBag_btn"));
+                yield return new WaitForSeconds(.8f);
+                var bag = Find("BagPanel");
+                var controller = bag.GetComponents<MonoBehaviour>().First(c => c.GetType().Name == "EquipmentBagController");
                 var getter = controller.GetType().GetMethod("GetEquipment");
                 object equipment = getter.Invoke(controller, new[] { Enum.Parse(getter.GetParameters()[0].ParameterType, "Hand") });
                 Assert.That(equipment, Is.Not.Null);
-                Assert.That(controller.GetType().GetMethod("InstallEquipment").Invoke(controller, new[] { equipment }), Is.True);
+                Click(Find("Hand_slot"));
+                yield return null;
+                var details = bag.GetComponentsInChildren<MonoBehaviour>(true).First(c => c.GetType().Name == "EquipmentDetailsUI");
+                Click(((Button)details.GetType().GetProperty("InstallButton").GetValue(details)).gameObject);
+                Assert.That(controller.GetType().GetMethod("IsInstalled").Invoke(controller, new[] { equipment }), Is.True);
                 yield return new WaitForSeconds(1f);
-                var hand = transforms.First(t => t.name == "Hand");
+                var hand = car.GetComponentsInChildren<Transform>(true).First(t => t.name == "Hand");
                 var preview = hand.Find("ROS_manipulator_preview");
                 Assert.That(hand.gameObject.activeInHierarchy, Is.True);
                 Assert.That(preview, Is.Not.Null);
@@ -41,10 +46,22 @@ namespace Agribot.VehicleConfiguration.Tests
                 yield return new WaitForSeconds(3f);
                 Assert.That(Quaternion.Angle(rotation, wrist.localRotation), Is.GreaterThan(5f), name);
                 Assert.That(Vector3.Distance(position, finger.localPosition), Is.GreaterThan(0.001f), name);
-                Assert.That(controller.GetType().GetMethod("UninstallEquipment").Invoke(controller, new[] { equipment }), Is.True);
+                Click(((Button)details.GetType().GetProperty("UninstallButton").GetValue(details)).gameObject);
+                Assert.That(controller.GetType().GetMethod("IsInstalled").Invoke(controller, new[] { equipment }), Is.False);
                 yield return new WaitForSeconds(0.6f);
                 Assert.That(hand.gameObject.activeInHierarchy, Is.False);
             }
+        }
+        private static GameObject Find(string name) => Resources.FindObjectsOfTypeAll<Transform>()
+            .First(t => t.gameObject.scene == SceneManager.GetActiveScene() && t.name == name).gameObject;
+
+        private static void Click(GameObject target)
+        {
+            Assert.That(target.activeInHierarchy, Is.True, target.name);
+            var button = target.GetComponent<Button>();
+            if (button != null) Assert.That(button.IsInteractable(), Is.True, target.name);
+            ExecuteEvents.Execute(target, new PointerEventData(EventSystem.current)
+                { button = PointerEventData.InputButton.Left }, ExecuteEvents.pointerClickHandler);
         }
     }
 }

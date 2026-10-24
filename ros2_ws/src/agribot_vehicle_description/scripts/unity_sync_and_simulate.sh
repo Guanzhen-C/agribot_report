@@ -2,7 +2,8 @@
 
 set -Eeuo pipefail
 
-WORKSPACE="${AGRIBOT_ROS_WORKSPACE:-$HOME/agribot_ws/ros2_ws}"
+SCRIPT_WORKSPACE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+WORKSPACE="${AGRIBOT_ROS_WORKSPACE:-$SCRIPT_WORKSPACE}"
 EXPORT_DIR=""
 SCENARIO="${AGRIBOT_SIM_SCENARIO:-orchard}"
 SCENE_MANIFEST=""
@@ -13,7 +14,7 @@ ALGORITHM="${AGRIBOT_SIM_ALGORITHM:-fastlivo_rtk_mppi}"
 PERCEPTION="${AGRIBOT_SIM_PERCEPTION:-stvl}"
 VISION="${AGRIBOT_SIM_VISION:-off}"
 VISION_PYTHON="${AGRIBOT_VISION_PYTHON:-}"
-VISION_MODEL_DIR="${AGRIBOT_VISION_MODEL_DIR:-$HOME/.local/share/agribot/vision_models}"
+VISION_MODEL_DIR="${AGRIBOT_VISION_MODEL_DIR:-$WORKSPACE/../resources/vision_models}"
 VISION_DEVICE="${AGRIBOT_VISION_DEVICE:-}"
 LOCALIZATION="${AGRIBOT_SIM_LOCALIZATION:-fastlivo_rtk}"
 PLANNER="${AGRIBOT_SIM_PLANNER:-smac_hybrid}"
@@ -426,7 +427,7 @@ if [[ "$RESOLVE_ONLY" == "true" ]]; then
   exit 0
 fi
 
-STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/agribot-unity-sim"
+STATE_DIR="${XDG_STATE_HOME:-$WORKSPACE/../.local/state}/agribot-unity-sim"
 PID_FILE="$STATE_DIR/simulation.pid"
 SID_FILE="$STATE_DIR/simulation.sid"
 BOOT_ID_FILE="$STATE_DIR/simulation.boot_id"
@@ -556,7 +557,7 @@ if [[ -n "$PHYSICAL_OUTPUT" ]]; then
   PYTHONPATH="$WORKSPACE/src/agribot_vehicle_config_tools${PYTHONPATH:+:$PYTHONPATH}" \
     /usr/bin/python3 -m agribot_vehicle_config_tools.cli export-physical \
       --workspace-src "$WORKSPACE/src" --output "$PHYSICAL_OUTPUT" \
-      --firmware-root "${AGRIBOT_HPM_FIRMWARE_ROOT:-$WORKSPACE/hpm6750evk2/build/releases/ackermann}"
+      --firmware-root "${AGRIBOT_HPM_FIRMWARE_ROOT:-$WORKSPACE/../resources/deployment/ackermann}"
   exit $?
 fi
 
@@ -648,8 +649,8 @@ fi
 set +u
 source "$WORKSPACE/install/setup.bash"
 set -u
-if [[ -z "$VISION_PYTHON" && -x "$HOME/.local/share/agribot/vision_venv/bin/python3" ]]; then
-  VISION_PYTHON="$HOME/.local/share/agribot/vision_venv/bin/python3"
+if [[ -z "$VISION_PYTHON" && -x "$WORKSPACE/../.local/vision/vision_venv/bin/python3" ]]; then
+  VISION_PYTHON="$WORKSPACE/../.local/vision/vision_venv/bin/python3"
 fi
 ros2 pkg prefix agribot_vehicle_description >/dev/null
 ros2 launch agribot_vehicle_description configured_ackermann_sim.launch.py \

@@ -1,0 +1,105 @@
+{
+  "meshGroups": 42,
+  "triangles": 382020,
+  "minimumRos": [
+    -7.274092197418213,
+    -1.5870628356933594,
+    -1.0368562936782837
+  ],
+  "maximumRos": [
+    4.4977707862854,
+    1.6004236936569214,
+    2.9706320762634277
+  ],
+  "previewSha256": "47c8c1976484d4d841dae8a3561829d2bc305a2983f308e40be855e6c45d9d09",
+  "vehicleId": "cab_trailer",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "name": "implement_farm_trailer_visual.mtl",
+      "sha256": "460d52ecfa9fc9a2067728b0e38f718a40bdfc6277d15832a98a01addd43ec25"
+    },
+    {
+      "name": "implement_farm_trailer_visual.obj",
+      "sha256": "582bc59bff515c38662c2ef32c54be07ebc5fd3db77963eca373e1dd571b12f7"
+    },
+    {
+      "name": "sensor_imu_visual.mtl",
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "name": "sensor_imu_visual.obj",
+      "sha256": "3b323ee6967c89a0fafb324714b3ac2d1ed895f186b771a950388aebb1306985"
+    },
+    {
+      "name": "sensor_lidar_visual.mtl",
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "name": "sensor_lidar_visual.obj",
+      "sha256": "cb88aa62bed7cd4924152ff314305a6e09f8a51290f560172a10f4930489a7d3"
+    },
+    {
+      "name": "sensor_right_camera_visual.mtl",
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "name": "sensor_right_camera_visual.obj",
+      "sha256": "d93932b581b83119ee6d4342f3de5bb64adde69c6cbdb4dc597aab65c8d4a38e"
+    },
+    {
+      "name": "sensor_rtk_master_visual.mtl",
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "name": "sensor_rtk_master_visual.obj",
+      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+    },
+    {
+      "name": "trailer_front_left.mtl",
+      "sha256": "8d912300b7dfe645d5d9fe457396156471bdd5fc1e918fbc72e50a42d1cc1115"
+    },
+    {
+      "name": "trailer_front_left.obj",
+      "sha256": "ac1894c54a68bbb0f7f7a6a0dec6becc71321cd95c6498a0fba81c60a47e7a9b"
+    },
+    {
+      "name": "trailer_front_right.mtl",
+      "sha256": "8d912300b7dfe645d5d9fe457396156471bdd5fc1e918fbc72e50a42d1cc1115"
+    },
+    {
+      "name": "trailer_front_right.obj",
+      "sha256": "acb518ad4fd331dcc5348d22e56a468e3332497ef06653456f802c182b0dd27f"
+    },
+    {
+      "name": "trailer_rear_left.mtl",
+      "sha256": "8d912300b7dfe645d5d9fe457396156471bdd5fc1e918fbc72e50a42d1cc1115"
+    },
+    {
+      "name": "trailer_rear_left.obj",
+      "sha256": "e9bff9e2e27f94c78af9e2fc6ae0271dbb061a0738db7bdcf15b9922904a4ea2"
+    },
+    {
+      "name": "trailer_rear_right.mtl",
+      "sha256": "8d912300b7dfe645d5d9fe457396156471bdd5fc1e918fbc72e50a42d1cc1115"
+    },
+    {
+      "name": "trailer_rear_right.obj",
+      "sha256": "adb1c2bbfd9cc362f24d766a21d7c31434431b985950bde432f1cf282da6d31f"
+    },
+    {
+      "name": "vehicle_config.json",
+      "sha256": "271a6ec041df4f79db3e1287cec1385dd7621a23d76d0264695438143f9dd906"
+    },
+    {
+      "name": "vehicle_visual.mtl",
+      "sha256": "82eeebe035c9ede2a273fa80135d9580b70704f759d77fb58331b2ae51958b2f"
+    },
+    {
+      "name": "vehicle_visual.obj",
+      "sha256": "521bee2e20209fceac2bb67e23006414f4d4f4a346acb0ac3045a973fc50a367"
+    }
+  ],
+  "redistributionLicense": "unverified_user_supplied",
+  "sourceConfigSha256": "271a6ec041df4f79db3e1287cec1385dd7621a23d76d0264695438143f9dd906"
+}

@@ -1,0 +1,85 @@
+{
+  "meshGroups": 40,
+  "triangles": 279084,
+  "minimumRos": [
+    -0.39215001463890076,
+    -0.6884639859199524,
+    -0.25309374928474426
+  ],
+  "maximumRos": [
+    1.4042479991912842,
+    0.9137570261955261,
+    0.9304159879684448
+  ],
+  "previewSha256": "cb8aa7ff288445263c9c4d6564e5306bba5eb719a1d1406a9f6e9828f8885d15",
+  "vehicleId": "ride_on_mower",
+  "schemaVersion": 1,
+  "files": [
+    {
+      "name": "front_left_caster.mtl",
+      "sha256": "0e44d9a9f604116af8209438b0c54ed42d50390dd435839ac5734292b4cb82d6"
+    },
+    {
+      "name": "front_left_caster.obj",
+      "sha256": "f26cef45409ea07b1b92f5dab67d6b041595bf49949bf07fb2a3d1c1d452f3ad"
+    },
+    {
+      "name": "front_right_caster.mtl",
+      "sha256": "0e44d9a9f604116af8209438b0c54ed42d50390dd435839ac5734292b4cb82d6"
+    },
+    {
+      "name": "front_right_caster.obj",
+      "sha256": "d76a8267e808238bc442247c4990410c548d6a9c9a63633b2ef69937fadda087"
+    },
+    {
+      "name": "preview.png",
+      "sha256": "e70fdab2405736e6991057ed9764cde8e1509d488dd9eaba5633b0d712a04ae6"
+    },
+    {
+      "name": "sensor_imu_visual.mtl",
+      "sha256": "505b9d181483da4b3bff26a2a29ffafa76f66a8b68b980aa3e670cba1b0905dc"
+    },
+    {
+      "name": "sensor_imu_visual.obj",
+      "sha256": "049fae0ba147a3fca048100ee8c73abe41c0c92b2baa0eab182e3525ff43934f"
+    },
+    {
+      "name": "sensor_lidar_visual.mtl",
+      "sha256": "50441f62cb7deb6c8087008170e47067a0bbd82ad8ff3a11d3ecff13e1dcb468"
+    },
+    {
+      "name": "sensor_lidar_visual.obj",
+      "sha256": "79ba0a349e0088c8f3fcb97e27af14f3bdf55d79796647c6943b65da4b08abd8"
+    },
+    {
+      "name": "sensor_right_camera_visual.mtl",
+      "sha256": "19b5526e3842d1b76973981cf14894c675c468334e99e3e078ca82e8d5eeb8c9"
+    },
+    {
+      "name": "sensor_right_camera_visual.obj",
+      "sha256": "58603fae42bc507798fba4d5cffbe3b6b684e7ec21060501582844f8aaf37fee"
+    },
+    {
+      "name": "sensor_rtk_master_visual.mtl",
+      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+    },
+    {
+      "name": "sensor_rtk_master_visual.obj",
+      "sha256": "035349eacd6bb12300904a11d4917f4b3ff8950f607f1956cb028ded579efb7f"
+    },
+    {
+      "name": "vehicle_config.json",
+      "sha256": "fa4b02f5028f4e30a2e171225d1ea704a8e367261a77a0269561dd31c3cb7671"
+    },
+    {
+      "name": "vehicle_visual.mtl",
+      "sha256": "c55acef68ae4a129ccff6c309beeeeed2b1f295a244dbd2fe6da51f489346d76"
+    },
+    {
+      "name": "vehicle_visual.obj",
+      "sha256": "ffa78b7b7b0caf9e9f6002c1c00e68dad3d9eb345223f625bc41ffb599f487f8"
+    }
+  ],
+  "redistributionLicense": "unverified_user_supplied",
+  "sourceConfigSha256": "fa4b02f5028f4e30a2e171225d1ea704a8e367261a77a0269561dd31c3cb7671"
+}

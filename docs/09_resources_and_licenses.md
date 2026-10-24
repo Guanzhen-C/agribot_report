@@ -4,15 +4,15 @@
 
 ## 外部资源
 
-- 部分购买CAD衍生模型：原工程即忽略；提供方已确认有分发权限，但当前暂缓补传，资源尚未齐备。
+- CAD衍生模型：提供方已确认分发权限；本交付版本已包含完整运行资源，使用Git LFS，不再依赖开发者私有模型目录。
 - Unity6000.0.26f1与有效许可证：使用者自行安装/激活。
-- 额外视觉AI权重与专用Python环境：按模块要求和权重许可准备。
+- 额外视觉AI权重已提供，许可证见resources/vision_models；Python运行环境由scripts/setup_vision.sh在本仓库内创建。
 - 用户LCC2/K2扫描原始文件：由用户提供，不作为本仓库实验数据。
 - AI凭据：本机环境变量或私人配置，不编入应用和Git。
 
 海康真实SDK驱动属于共享源码依赖，但仿真构建跳过它，不要求连接真实相机。没有Android/控制台/固件环境准备步骤。
 
-## 完整车库缺项
+## 完整车库目录（已包含）
 
 ```text
 unity/Assets/AgribotConfig/Resources/LocalFarmAssets/
@@ -23,9 +23,11 @@ unity/Assets/StreamingAssets/LocalFarmExports/
 unity/Assets/StreamingAssets/LocalVehicleAppearances/
 ```
 
-完整资源包需包含.meta、预览、导出、指纹和相应ROS模型。仅放入任意FBX不能通过一致性检查。取得有权提供的资源后放到对应路径，执行doctor --unity再构建。
+目录包含.meta、预览、导出、指纹和相应ROS模型。执行git lfs pull及doctor --unity --hashes核验实际资源；仅有LFS指针或任意替代FBX都不能算完整交付。
 
-另补齐的16个vehicle_config.json只供配置和AI目录读取，不表示相应网格已公开。模型准备脚本需合法原始CAD和工具环境，不是自动恢复购买资产的方法。
+当前57个预设均包含完整显示与导出资源和对应仿真SDF。原始购买压缩包和STEP源工程不作为运行前提；代码仓库附带的已生成资源足以重建当前软件。开发者若要重新加工其他CAD，仍需自行提供合法来源。
+
+Car0部署包导出所需的既有离线文件位于resources/deployment，仅供人工导出，不包含6750上位机、农机控制台或在线烧录功能。清单中的board_verified状态不改变；提供文件不等于实板验证。
 
 ## 来源
 

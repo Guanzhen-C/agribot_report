@@ -134,10 +134,18 @@ namespace Agribot.VehicleConfiguration
                     mesh.RecalculateNormals(); mesh.RecalculateBounds();
                     string shaderName = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline == null
                         ? "Standard" : "Universal Render Pipeline/Lit";
-                    var shader = Shader.Find(shaderName);
+                    bool twoSided = manifest.vehicleId == "compact_tractor" || Presets.Any(preset =>
+                        preset.id == manifest.vehicleId && preset.baseVehicleId == "compact_tractor");
+                    var shader = twoSided && UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline == null
+                        ? Resources.Load<Shader>("Shaders/CadPreviewTwoSided") : Shader.Find(shaderName);
                     if (shader == null) throw new InvalidOperationException("缺少农机预览着色器：" + shaderName);
                     var material = new Material(shader) { color = color };
                     material.SetFloat("_Smoothness", .25f);
+                    if (twoSided)
+                    {
+                        material.SetFloat("_Cull", (float)UnityEngine.Rendering.CullMode.Off);
+                        material.doubleSidedGI = true;
+                    }
                     var part = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
                     part.transform.SetParent(root.transform, false);
                     part.GetComponent<MeshFilter>().sharedMesh = mesh;

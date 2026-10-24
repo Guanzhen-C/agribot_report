@@ -8,10 +8,11 @@ if [[ ! -f /opt/ros/humble/setup.bash ]]; then
 fi
 sudo apt-get update
 sudo apt-get install -y \
-  git git-lfs build-essential cmake ninja-build pkg-config curl rsync zenity \
+  git git-lfs build-essential cmake ninja-build pkg-config curl rsync zenity zstd \
   python3-colcon-common-extensions python3-rosdep python3-pytest \
   python3-pip python3-venv python3-yaml python3-numpy python3-scipy \
   python3-pil python3-vtk9 python3-opencv python3-serial python3-tk \
+  python3-matplotlib python3-requests python3-psutil \
   libeigen3-dev libpcl-dev libopencv-dev libboost-all-dev libyaml-cpp-dev \
   libgeographiclib-dev ros-humble-gtsam libfmt-dev \
   libapr1-dev libtbb-dev libusb-1.0-0-dev libglew-dev nlohmann-json3-dev \
@@ -22,4 +23,4 @@ sudo apt-get install -y \
   ros-humble-pcl-conversions ros-humble-cv-bridge ros-humble-image-transport \
   ros-humble-camera-info-manager ros-humble-robot-localization \
   ros-humble-xacro ros-humble-joint-state-publisher ros-humble-rmw-cyclonedds-cpp
-echo '仿真基础依赖完成。Unity 许可证、授权模型及可选视觉AI权重另行准备。'
+echo '仿真基础依赖完成。完整运行模型已随Git LFS提供；Unity源码构建需使用者自己的许可证。'

@@ -81,7 +81,55 @@ namespace Agribot.VehicleConfiguration.Editor
             }
         }
 
-        private static void Render(GameObject preview, string id)
+        [MenuItem("农机配置/刷新Car6双面预览")]
+        public static void RefreshCompactTractorImages()
+        {
+            if (EditorApplication.isPlaying) throw new InvalidOperationException("请先退出运行模式。");
+            var setup = EditorSceneManager.GetSceneManagerSetup();
+            GameObject preview = null;
+            try
+            {
+                EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                Directory.CreateDirectory(Folder);
+                preview = FarmVehicleLibrary.CreatePreview("compact_tractor", link =>
+                    !FarmVehicleLibrary.Configuration("compact_tractor").sensors.Any(sensor =>
+                        sensor.frameId == link || sensor.measurementFrameId == link));
+                Render(preview, "Car6");
+                File.Copy(Folder + "Car6.bytes", Folder + "compact_tractor.bytes", true);
+                File.WriteAllText(Folder + "compact_tractor.bytes.source.txt", CurrentImageSource("compact_tractor"));
+
+                string diagnostics = Environment.GetEnvironmentVariable("AGRIBOT_CAR6_DIAGNOSTICS");
+                if (!string.IsNullOrEmpty(diagnostics))
+                {
+                    Directory.CreateDirectory(diagnostics);
+                    var materials = preview.GetComponentsInChildren<MeshRenderer>().Select(r => r.sharedMaterial).ToArray();
+                    var shader = Resources.Load<Shader>("Shaders/CadPreviewTwoSided");
+                    var directions = new[] { new Vector3(1.4f, .85f, 1.8f), new Vector3(-1.4f, .85f, 1.8f),
+                        new Vector3(1.4f, .85f, -1.8f), new Vector3(-1.4f, .85f, -1.8f) };
+                    for (int i = 0; i < directions.Length; i++)
+                    {
+                        Render(preview, "Car6", Path.Combine(diagnostics, $"car6_after_{i}.png"), directions[i]);
+                        foreach (var material in materials) material.shader = Shader.Find("Standard");
+                        Render(preview, "Car6", Path.Combine(diagnostics, $"car6_before_{i}.png"), directions[i]);
+                        foreach (var material in materials)
+                        {
+                            material.shader = shader;
+                            material.SetFloat("_Cull", (float)CullMode.Off);
+                        }
+                    }
+                }
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ValidateCurrentVehicleImages();
+            }
+            finally
+            {
+                if (preview != null) UnityEngine.Object.DestroyImmediate(preview);
+                if (setup.Length > 0 && setup.Any(scene => scene.isActive && scene.isLoaded))
+                    EditorSceneManager.RestoreSceneManagerSetup(setup);
+            }
+        }
+
+        private static void Render(GameObject preview, string id, string destination = null, Vector3? viewDirection = null)
         {
             foreach (var t in preview.GetComponentsInChildren<Transform>(true)) t.gameObject.layer = 31;
             foreach (var canvas in preview.GetComponentsInChildren<Canvas>(true)) canvas.gameObject.SetActive(false);
@@ -94,7 +142,7 @@ namespace Agribot.VehicleConfiguration.Editor
             camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = Color.clear;
             camera.orthographic = true; camera.aspect = 1.6f;
             camera.nearClipPlane = .01f; camera.farClipPlane = bounds.size.magnitude * 20 + 100;
-            camera.transform.position = bounds.center + new Vector3(1.4f, .85f, 1.8f).normalized * (bounds.size.magnitude * 3 + 5);
+            camera.transform.position = bounds.center + (viewDirection ?? new Vector3(1.4f, .85f, 1.8f)).normalized * (bounds.size.magnitude * 3 + 5);
             camera.transform.LookAt(bounds.center);
             float size = 0;
             foreach (int x in new[] { -1, 1 }) foreach (int y in new[] { -1, 1 }) foreach (int z in new[] { -1, 1 })
@@ -126,8 +174,8 @@ namespace Agribot.VehicleConfiguration.Editor
                 camera.targetTexture = rt;
                 camera.Render();
                 RenderTexture.active = rt; texture.ReadPixels(new Rect(0, 0, 1024, 640), 0, 0); texture.Apply();
-                File.WriteAllBytes(Folder + id + ".bytes", texture.EncodeToPNG());
-                File.WriteAllText(Folder + id + ".bytes.source.txt", CurrentImageSource(id));
+                File.WriteAllBytes(destination ?? Folder + id + ".bytes", texture.EncodeToPNG());
+                if (destination == null) File.WriteAllText(Folder + id + ".bytes.source.txt", CurrentImageSource(id));
             }
             finally
             {

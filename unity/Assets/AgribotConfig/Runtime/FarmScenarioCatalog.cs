@@ -36,7 +36,7 @@ namespace Agribot.VehicleConfiguration
         public static void ResetSelection() { selectedId = ""; scenarios = null; }
         public static string ImportedLibraryDirectory => Path.GetFullPath(
             Environment.GetEnvironmentVariable("AGRIBOT_SCANNED_SCENE_ROOT") ?? Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".local/share/agribot/scanned_scenes"));
+                NaturalRecommendationClient.WorkspaceSource, "..", "..", ".local", "scanned_scenes"));
         public static FarmScenario Selected => Scenarios.FirstOrDefault(item => item.id == selectedId);
         public static void RefreshImportedScenes() => scenarios = null;
 

@@ -38,16 +38,4 @@ sysinfo.txt
 /Assets/Resources/PerformanceTestRunInfo.json*
 /Assets/Resources/PerformanceTestRunSettings.json*
 
-# Local purchased CAD derivatives; redistribution permission is not verified.
-/Assets/AgribotConfig/Resources/LocalFarmAssets/
-/Assets/AgribotConfig/Resources/LocalFarmAssets.meta
-/Assets/StreamingAssets/LocalFarmExports/
-/Assets/StreamingAssets/LocalFarmExports.meta
-/Assets/AgribotConfig/Resources/LocalVehicleAppearances/
-/Assets/AgribotConfig/Resources/LocalVehicleAppearances.meta
-/Assets/StreamingAssets/LocalVehicleAppearances/
-/Assets/StreamingAssets/LocalVehicleAppearances.meta
-/Assets/AgribotConfig/Resources/LocalGarageThumbnails/
-/Assets/AgribotConfig/Resources/LocalGarageThumbnails.meta
-/Assets/AgribotConfig/Resources/LocalGarageVehicles/
-/Assets/AgribotConfig/Resources/LocalGarageVehicles.meta
+# Reviewed CAD-derived runtime resources are authorized and versioned in this delivery.

@@ -67,10 +67,11 @@ namespace Agribot.VehicleConfiguration.Tests
             yield return CheckFourSensors(bag, details, car.transform, true);
 
             var main = NamedComponent(Find("MainPanel"), "MainPanel");
-            var authoring = (VehicleConfigurationAuthoring)Invoke(main, "BuildSelectedVehicle");
-            Assert.That(authoring.BuildConfiguration().sensors.Length, Is.EqualTo(5));
+            var bundle = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
+            var configured = JsonUtility.FromJson<VehicleConfigurationData>(File.ReadAllText(bundle.JsonPath));
+            Assert.That(configured.sensors.Length, Is.EqualTo(5));
 
-            Click(Find("CloseButton"));
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(0.7f);
             Click(Find("Export_NewVehicle_Physical"));
             string draft = Path.Combine(draftTestRoot, "unity_" + carName.ToLowerInvariant() + "_physical_draft");
@@ -79,7 +80,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 yield return null;
             Assert.That(File.Exists(Path.Combine(draft, "manifest.json")), Is.True, "UI did not export " + carName);
             var exported = JsonUtility.FromJson<VehicleConfigurationData>(File.ReadAllText(Path.Combine(draft, "vehicle_config.json")));
-            Assert.That(exported.vehicleId, Is.EqualTo(authoring.VehicleId));
+            Assert.That(exported.vehicleId, Is.EqualTo(configured.vehicleId));
             Assert.That(exported.vehicleType, Is.EqualTo(carName == "Car3" ? "tracked" : "ackermann"));
             foreach (string file in new[] { "sensor_mounts.yaml", "nav2_geometry.yaml", "vehicle_kinematics.yaml", "fastlivo_extrinsics.yaml" })
                 Assert.That(File.Exists(Path.Combine(draft, file)), Is.True, file);
@@ -96,7 +97,7 @@ namespace Agribot.VehicleConfiguration.Tests
             yield return new WaitForSeconds(0.8f);
             Assert.That(Slots.All(slot => !Installed(bag, Equipment(bag, slot))), Is.True);
             Assert.That(Targets.All(name => !Child(car.transform, name).gameObject.activeSelf), Is.True);
-            var exception = Assert.Throws<TargetInvocationException>(() => Invoke(main, "BuildSelectedVehicle"));
+            var exception = Assert.Throws<TargetInvocationException>(() => Invoke(main, "ExportSelectedVehicle"));
             Assert.That(exception.InnerException, Is.TypeOf<InvalidOperationException>());
         }
 
@@ -205,12 +206,10 @@ namespace Agribot.VehicleConfiguration.Tests
                 yield return new WaitForSeconds(1f);
                 Click(Find("Car0_Img"));
                 yield return new WaitForSeconds(1f);
-                var last = NamedComponent(Find("LastPanel"), "LastPanel");
-                Invoke(last, "OpenLastPanel");
+                Assert.That(SceneManager.GetSceneByName("scene2").isLoaded, Is.False);
+                Click(Find("OpenBag_btn"));
                 yield return new WaitForSeconds(0.8f);
-                Click(Find("OpeBag_btn"));
-                yield return new WaitForSeconds(0.8f);
-                AssertCatalog(NamedComponent(Find("BagPanel"), "EquipmentBagController_copy"));
+                AssertCatalog(NamedComponent(Find("BagPanel"), "EquipmentBagController"));
                 Click(Find("Back_btn"));
                 yield return new WaitForSeconds(1f);
                 Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo("scene1"));

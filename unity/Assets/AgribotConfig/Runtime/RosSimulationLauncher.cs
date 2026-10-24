@@ -290,9 +290,8 @@ namespace Agribot.VehicleConfiguration
             };
 
         private const string ScriptEnvironmentVariable = "AGRIBOT_ROS_SYNC_SCRIPT";
-        private static string DefaultScriptPath => Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            "agribot_ws/ros2_ws/src/agribot_vehicle_description/scripts/unity_sync_and_simulate.sh");
+        private static string DefaultScriptPath => Path.Combine(NaturalRecommendationClient.WorkspaceSource,
+            "agribot_vehicle_description", "scripts", "unity_sync_and_simulate.sh");
 
         public static IReadOnlyList<RosSimulationComponentOption> Perceptions =>
             PerceptionOptions;

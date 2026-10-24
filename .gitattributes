@@ -5,3 +5,13 @@
 *.STL filter=lfs diff=lfs merge=lfs -text
 *.bytes filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.tar.zst filter=lfs diff=lfs merge=lfs -text
+# Preserve Unity's native serialized YAML instead of formatting empty fields.
+*.prefab -whitespace
+*.unity -whitespace
+*.asset -whitespace
+*.mat -whitespace
+*.meta -whitespace
+*.mtl -whitespace
+resources/deployment/HPM_SDK_LICENSE -whitespace

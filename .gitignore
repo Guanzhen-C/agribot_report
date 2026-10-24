@@ -23,6 +23,8 @@
 .venv/
 dist/
 .validation/
+.local/
+**/scanned_scenes/
 *.apk
 *.aab
 ros2_ws/docs/patent/

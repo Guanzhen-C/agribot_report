@@ -123,12 +123,19 @@ namespace Agribot.VehicleConfiguration.Editor
         private static void WriteLauncher(string outputDirectory, string executablePath)
         {
             string launcherPath = Path.Combine(outputDirectory, LauncherName);
+            string repository = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
+            string relativeRoot = Path.GetRelativePath(outputDirectory, repository).Replace("'", "'\"'\"'");
             string script =
                 "#!/usr/bin/env bash\n" +
                 "set -euo pipefail\n" +
-                "cd \"$(dirname \"$0\")\"\n" +
+                "HERE=\"$(cd \"$(dirname \"$0\")\" && pwd)\"\n" +
+                $"ROOT=\"${{AGRIBOT_REPORT_ROOT:-$(cd \"$HERE\"/'{relativeRoot}' && pwd)}}\"\n" +
+                "if [[ ! -f \"$ROOT/scripts/env.sh\" ]]; then echo '请从完整agribot_report仓库启动。' >&2; exit 2; fi\n" +
+                "source \"$ROOT/scripts/env.sh\"\n" +
+                "export XDG_CONFIG_HOME=\"$AGRIBOT_REPORT_CONFIG_HOME\"\n" +
+                "cd \"$HERE\"\n" +
                 "export LD_PRELOAD=\"$PWD/libagribot_linux_ime.so${LD_PRELOAD:+:$LD_PRELOAD}\"\n" +
-                $"exec \"{executablePath}\" -screen-fullscreen 0 -screen-width 1600 " +
+                $"exec \"$HERE/{ExecutableName}\" -screen-fullscreen 0 -screen-width 1600 " +
                 "-screen-height 900 \"$@\"\n";
             File.WriteAllText(launcherPath, script);
             RunCommand("/bin/chmod", $"+x \"{launcherPath}\"");
