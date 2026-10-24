@@ -12,6 +12,8 @@
 
 网页端大模型撰写设计说明和用户手册时，应先读这三份，再按[阅读指南](docs/00_reading_guide.md)核对源码及验证边界。
 
+独立克隆、程序安装、原生界面、默认23点完整路线和启动/停止/导出的实际结果见[验收记录](docs/10_validation.md)及[截图与测试附件](verification/evidence/20261024_independent/README.md)。支持平台及安装前提见[独立复现说明](docs/15_reproducibility.md)。
+
 ## 软件流程
 
 车库选车 -> 安装传感器和农机具 -> 选择场景与算法 -> 启动 Gazebo/RViz 仿真 -> 人工指定目标或经停点 -> 停止仿真 -> 导出配置。

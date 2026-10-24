@@ -1,7 +1,7 @@
 {
   "format": "agribot.independent-delivery-status",
   "version": 1,
-  "status": "final_package_verification",
+  "status": "verified_supported_platform",
   "scope": "Unity configuration software and matching ROS/Gazebo simulation",
   "excluded_user_scene": "user-imported automation institute campus",
   "verified_local": {
@@ -18,9 +18,9 @@
     "authorized_assets_included": true
   },
   "verified_remote": {
-    "source_commit": "b0fa5d557e7b90f28bff5b49503dc28c3681b0bf",
+    "source_commit": "97e3b045b9875e9073d2df880c77e754fcd15ea2",
     "fresh_github_clone": true,
-    "lfs_files": 2009,
+    "lfs_files": 2011,
     "lfs_fsck": "PASS"
   },
   "verified_independent_checkout": {
@@ -36,16 +36,36 @@
     "final_waypoint_radius_m": 0.2632937431335449,
     "native_garage_and_car6": "PASS",
     "native_continuous_ai_and_clickable_recipe": "PASS",
-    "native_launch_stop_export": "PASS_AFTER_BUILD_SCOPE_FIX",
+    "native_launch_stop_export": "PASS",
     "deployment_file_hashes": "PASS",
     "leftover_simulation_processes_after_stop": 0,
     "test_host": "Ubuntu 22.04 x86_64, RTX 3070 Ti, 32 GB RAM",
     "fresh_operating_system": false,
     "all_combinations_rerun": false
   },
-  "still_required": [
-    "publish and remotely download the final matching prebuilt app",
-    "verify final source fingerprint and launch the final installed app",
-    "final requirement-by-requirement audit"
+  "verified_final_package": {
+    "downloaded_from_github": true,
+    "archive_sha256": "957e59a21d35063382ac79acc4aa80438c85dffa7a77d946723e9ec2f1fd0b15",
+    "archive_bytes": 1887521913,
+    "build_source_commit": "4378fc576c7572f7e1d2abecc00ff6c55ac66195",
+    "runtime_input_sha256": "ec3908b60bee916c04423404274ca56e05135de35509e6b99e3defba73e7366f",
+    "source_manifest_and_installed_app_match": true,
+    "launched_from_unrelated_working_directory": true,
+    "actual_process_executable_inside_independent_clone": true,
+    "native_car6_high_detail": "PASS",
+    "source_inventory_files_verified": 10176,
+    "unexpected_missing_source_files": 0,
+    "unexpected_changed_source_files": 0,
+    "github_source_checks": "PASS",
+    "github_source_check_run": 40087966935
+  },
+  "still_required": [],
+  "verification_limits": [
+    "supported environment is Ubuntu 22.04 x86_64 with ROS Humble, Gazebo 11 and a working OpenGL desktop",
+    "the independent clone was tested on the same physical host, not on a fresh operating-system image",
+    "all vehicle, implement, scene and algorithm combinations were not rerun end to end",
+    "simulation speed depends on host hardware and is not guaranteed to be real time",
+    "AI requires the user's own API credentials and network",
+    "no physical CAN control or firmware flashing was tested"
   ]
 }
