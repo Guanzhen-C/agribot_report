@@ -72,6 +72,8 @@ public static class ChineseUiFont
 
     private static Font FindBundledFont()
     {
+        var bundled = Resources.Load<Font>("Fonts/NotoSansCJKsc-Regular");
+        if (bundled != null) return bundled;
         foreach (Font font in Resources.FindObjectsOfTypeAll<Font>())
         {
             if (font != null && font.name.StartsWith(FontNamePrefix))

@@ -57,15 +57,12 @@ def main():
         for attempt in range(3):
             temporary = None
             try:
-                started = time.monotonic()
                 with tempfile.NamedTemporaryFile(dir=target.parent, delete=False) as output:
                     temporary = Path(output.name)
                     request = Request(url + '?download=1&attempt=' + str(attempt),
                                       headers={'Accept-Encoding': 'identity'})
                     with urlopen(request, timeout=60) as response:
                         while block := response.read(1024**2):
-                            if time.monotonic() - started > 120:
-                                raise TimeoutError('LFS transfer exceeded 120 seconds: ' + path)
                             output.write(block)
                 if digest(temporary) != oid:
                     raise ValueError('SHA256 mismatch: ' + path)

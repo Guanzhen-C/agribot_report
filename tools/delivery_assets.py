@@ -75,6 +75,9 @@ def check(root, hashes=False):
         counts['vehicles'] += 1
     require(unity / 'Assets/AgribotConfig/Resources/LocalGarageVehicles/Car0.prefab')
     require(unity / 'Assets/AgribotConfig/Resources/Shaders/CadPreviewTwoSided.shader')
+    bundled_font = unity / 'Assets/AgribotConfig/Resources/Fonts/NotoSansCJKsc-Regular.otf'
+    if require(bundled_font) and hashes and digest(bundled_font) != digest(unity / 'Assets/Fonts/NotoSansCJKsc-Regular.otf'):
+        issues.append('运行时中文字体与原项目字体不一致')
 
     folders = ('clearpath_farm', 'harbot_greenhouse', 'maize_field', 'aoc_tomato',
                'harvester_strawberry', 'cropcraft_vineyard', 'pic4ser_vegetables', 'wide_headland')

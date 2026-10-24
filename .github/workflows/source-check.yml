@@ -14,7 +14,7 @@ jobs:
       - name: Pure source contracts (not a full simulation)
         run: |
           export PYTHONPATH="$PWD/ros2_ws/src/agribot_farm_sim:$PWD/ros2_ws/src/agribot_vehicle_config_tools:$PWD/ros2_ws/src/agribot_k2_sim"
-          python -m pytest -q ros2_ws/src/agribot_farm_sim/test/test_natural_recommendation.py ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py ros2_ws/src/agribot_k2_sim/test/test_import_scene.py
+          python -m pytest -q tools/tests ros2_ws/src/agribot_farm_sim/test/test_full_detail_preview.py ros2_ws/src/agribot_farm_sim/test/test_natural_recommendation.py ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py ros2_ws/src/agribot_k2_sim/test/test_import_scene.py
       - name: Documentation consistency
         run: |
           python tools/generate_function_catalog.py --check

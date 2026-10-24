@@ -104,29 +104,24 @@ namespace Agribot.VehicleConfiguration.Tests
         [UnityTest]
         public IEnumerator OriginalCarSensorClicks()
         {
-            yield return SceneManager.LoadSceneAsync("scene2", LoadSceneMode.Single);
+            yield return SceneManager.LoadSceneAsync("scene1", LoadSceneMode.Single);
             yield return null;
-            var last = NamedComponent(Find("LastPanel"), "LastPanel");
-            Invoke(last, "OpenLastPanel");
+            Click(Find("Car0_Img"));
             yield return new WaitForSeconds(0.8f);
-            Click(Find("OpeBag_btn"));
+            Click(Find("OpenBag_btn"));
             yield return new WaitForSeconds(1f);
-            var bag = NamedComponent(Find("BagPanel"), "EquipmentBagController_copy");
-            var details = NamedComponent(Find("BagPanel"), "EquipmentDetailsUI_copy");
+            var bag = NamedComponent(Find("BagPanel"), "EquipmentBagController");
+            var details = NamedComponent(Find("BagPanel"), "EquipmentDetailsUI");
             yield return CheckFourSensors(bag, details, Find("Car0").transform, false);
-            var bagPanel = NamedComponent(Find("BagPanel"), "BagPanel_copy");
-            var escapeButton = (Button)bagPanel.GetType().BaseType
-                .GetField("escButton", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(bagPanel);
-            Assert.That(escapeButton.gameObject.activeInHierarchy, Is.False,
-                "The shared header close button replaces the overlapping legacy escape button");
-            Click(bagPanel.transform.Find("Header/CloseButton").gameObject);
+            Assert.That(SceneManager.GetSceneByName("scene2").isLoaded, Is.False);
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(0.8f);
             string runtimeFile = Path.Combine(draftTestRoot, "ackermann_physical_runtime.json");
             var handoff = NamedComponent(Find("ROS_Simulation_Handoff"), "RosSimulationHandoffUi");
             handoff.GetType().GetMethod("SimulationStarted").Invoke(null, new object[] { runtimeFile });
-            Click(Find("Stop_Simulation_btn"));
+            Click(Find("Stop_NewVehicle_Simulation"));
             float deadline = Time.realtimeSinceStartup + 15f;
-            var export = Find("Export_Physical_btn").GetComponent<Button>();
+            var export = Find("Export_NewVehicle_Physical").GetComponent<Button>();
             while (!export.interactable && Time.realtimeSinceStartup < deadline) yield return null;
             Assert.That(export.interactable, Is.True, "Original export did not become available after stop");
             Click(export.gameObject);

@@ -111,6 +111,7 @@ public class MainPanel : MonoBehaviour
         stopSimulation.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(ShowSimulationMessage));
         explosionButton.onClick.AddListener(OpenExplodedView);
         exportPhysical.onClick.AddListener(ExportSelectedPhysical);
+        RosSimulationHandoffUi.AvailabilityChanged += RefreshExportAvailability;
         GarageVisualStyle.VehicleBackButton(backButton.GetComponent<Button>());
 
         bagPanel = FindSceneObject("BagPanel")?.GetComponent<BagPanel>();
@@ -174,7 +175,7 @@ public class MainPanel : MonoBehaviour
         else RosSimulationHandoffUi.RequestDraftExport(ExportPhysicalDraft());
     }
 
-    private void Update()
+    private void RefreshExportAvailability()
     {
         if (exportPhysical != null && visibleCar != null && actionToolbar.gameObject.activeInHierarchy)
             exportPhysical.interactable = visibleCar.GetComponent<Car0GarageVehicle>() != null
@@ -261,6 +262,7 @@ public class MainPanel : MonoBehaviour
 
     private void OnDestroy()
     {
+        RosSimulationHandoffUi.AvailabilityChanged -= RefreshExportAvailability;
         if (vehicleSelector != null) Destroy(vehicleSelector.gameObject);
         if (explodedView != null) Destroy(explodedView.gameObject);
         if (notificationPanel != null) Destroy(notificationPanel);
@@ -491,6 +493,7 @@ public class MainPanel : MonoBehaviour
         if (explosionButton != null) explosionButton.gameObject.SetActive(true);
         if (stopSimulation != null) stopSimulation.gameObject.SetActive(true);
         if (exportPhysical != null) exportPhysical.gameObject.SetActive(true);
+        RefreshExportAvailability();
         if (backButton == null)
             return;
 

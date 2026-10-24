@@ -9,16 +9,22 @@
     "mounting_presets": 57,
     "builtin_scenes": 9,
     "actual_visual_inference_modes": 3,
-    "source_contract_tests_passed": 112,
-    "unity_editmode_tests_passed": 167,
+    "source_contract_tests_passed": 119,
+    "unity_editmode_tests_passed": 169,
     "ros_packages_built": 34,
     "import_renderer_compiled_from_repository": true,
     "authorized_assets_included": true
   },
+  "verified_remote": {
+    "source_commit": "da62a5b050b7ce263587938dfe8c584aca9b5e13",
+    "fresh_github_clone": true,
+    "lfs_files": 2009,
+    "lfs_fsck": "PASS"
+  },
   "still_required": [
     "complete Unity PlayMode regression",
-    "publish all LFS objects and source to GitHub",
-    "fresh remote clone and full integrity verification",
+    "publish subsequent UI portability corrections and matching app",
+    "refresh fresh clone to the final published version",
     "independent runtime and complete default route verification",
     "publish matching offline Linux program package",
     "final requirement-by-requirement audit"

@@ -37,7 +37,7 @@
   {
     "path": "unity/.gitignore",
     "original_sha256": "6753e44f65546118a1203595b6ad8d910bb62e5bf08e480b37113515fe8f1803",
-    "delivery_sha256": "6d12ff296907d8066c67c82e9b814789e8e972291f7b9687ede2a9220c2768ea"
+    "delivery_sha256": "e60cd0cc865f4dbe07d83ac78ec687394b56d2ab516a2fbeb15a56e2ffb5cea9"
   },
   {
     "path": "unity/Assets/AgribotConfig/Editor/AgribotStandaloneBuilder.cs",
@@ -72,11 +72,26 @@
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs",
     "original_sha256": "fd638262ffa310273fb0c7d813720d616d84daf9682065dd43b4acbc72598dcd",
-    "delivery_sha256": "e4b856d261a668505893cac1be17546268f5a89b31e5037c75d80f32feed7586"
+    "delivery_sha256": "05d44eab80f66cbe19a9e7ce31e1271fca65b0f8d30a2d39ac0c44182802a914"
   },
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/SensorInstallationClickTests.cs",
     "original_sha256": "6625e2a4985aeb88168e7c0fb5e55a633a6f1f225b0bd0497e0583b72ebbfbdb",
-    "delivery_sha256": "73a3f98544d59dc6124537c9ef544bf741f5667ec8fba104913abac129a8d738"
+    "delivery_sha256": "c449e6d5171aeb5134c9e501fefa3e3060e30aed568a1ece5f9b6a2fad8ebd94"
+  },
+  {
+    "path": "unity/Assets/Scripts/ChineseUiFont.cs",
+    "original_sha256": "4b9d71e6df6757dc57b60a329929acf712c23f42c64b9398f74de2419fb4db4c",
+    "delivery_sha256": "5ee06672254500a630cde14c4c40cfd1299506d1966696c1e30d5cb3d462c455"
+  },
+  {
+    "path": "unity/Assets/Scripts/MainPanel.cs",
+    "original_sha256": "3377139cb06a1d3238a42c09a2a093cfb42caf79943f1c23247c9b0aa0bb587f",
+    "delivery_sha256": "da09ec7f3ba5680f7bc9a54e6bd37fd13e0c9f7ba40371ce827dfa5a4b66963d"
+  },
+  {
+    "path": "unity/Assets/Scripts/RosSimulationHandoffUi.cs",
+    "original_sha256": "bdc81413385b02e88aee800421eb032ac14c1a2f15da9f94ca71ba6abe28127e",
+    "delivery_sha256": "196358b7337f6fdacfbb470227dadae046c17bd674b491b902cce5976cf6796c"
   }
 ]

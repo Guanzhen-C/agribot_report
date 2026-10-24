@@ -35,6 +35,7 @@ sysinfo.txt
 
 # Unity test runner output
 /TestResults-*.xml
+/Assets/InitTestScene*.unity*
 /Assets/Resources/PerformanceTestRunInfo.json*
 /Assets/Resources/PerformanceTestRunSettings.json*
 

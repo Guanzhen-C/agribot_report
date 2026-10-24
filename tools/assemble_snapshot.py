@@ -32,6 +32,7 @@ def git(root, *args):
 
 def permitted(path):
     return not (set(path.parts) & DENIED_PARTS or path.name in DENIED_FILES
+                or path.name.startswith('InitTestScene')
                 or path.suffix in DENIED_SUFFIXES or str(path).startswith(PRIVATE_PREFIXES)
                 or path.name.startswith('.env.') and path.name != '.env.example')
 

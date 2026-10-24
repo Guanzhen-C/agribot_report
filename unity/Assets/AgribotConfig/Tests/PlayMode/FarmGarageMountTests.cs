@@ -596,14 +596,25 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(projectedMax.y, Is.LessThanOrEqualTo(1));
             Click(Find("Output_btn"));
             yield return null;
-            var scroll = Find("ScenarioViewport").GetComponent<ScrollRect>();
-            Assert.That(scroll.horizontal && !scroll.vertical, Is.True);
-            var buttons = scroll.content.GetComponentsInChildren<Button>();
+            var scroll = Find("SceneViewport").GetComponent<ScrollRect>();
+            Assert.That(!scroll.horizontal && scroll.vertical, Is.True);
+            var grid = scroll.content.GetComponent<GridLayoutGroup>();
+            Assert.That(grid.constraint, Is.EqualTo(GridLayoutGroup.Constraint.FixedColumnCount));
+            Assert.That(grid.constraintCount, Is.EqualTo(3));
+            var buttons = scroll.content.GetComponentsInChildren<Button>()
+                .Where(button => button.name.StartsWith("Scenario_", StringComparison.Ordinal)).ToArray();
             Assert.That(buttons.Length, Is.EqualTo(FarmScenarioCatalog.Scenarios.Length));
-            for (int index = 1; index < buttons.Length; index++)
-                Assert.That(buttons[index].GetComponent<RectTransform>().offsetMin.x,
-                    Is.GreaterThan(buttons[index - 1].GetComponent<RectTransform>().offsetMax.x));
-            scroll.horizontalNormalizedPosition = 1;
+            Canvas.ForceUpdateCanvases();
+            var rectangles = buttons.Select(button =>
+            {
+                var corners = new Vector3[4];
+                button.GetComponent<RectTransform>().GetWorldCorners(corners);
+                return new Rect(corners[0], corners[2] - corners[0]);
+            }).ToArray();
+            for (int a = 0; a < rectangles.Length; a++)
+                for (int b = a + 1; b < rectangles.Length; b++)
+                    Assert.That(rectangles[a].Overlaps(rectangles[b]), Is.False, "Scene cards overlap");
+            scroll.verticalNormalizedPosition = 0;
             yield return null;
             Click(Find("Scenario_vineyard"));
             Assert.That(FarmScenarioCatalog.SelectedId, Is.EqualTo("vineyard"));
@@ -808,6 +819,10 @@ namespace Agribot.VehicleConfiguration.Tests
         {
             yield return SceneManager.LoadSceneAsync("scene1");
             yield return null;
+            Click(Find("Car3_Img"));
+            yield return new WaitForSeconds(.8f);
+            Click(Find("OpenBag_btn"));
+            yield return new WaitForSeconds(1f);
             var reference = Find("BagPanel");
             var referenceRect = reference.GetComponent<RectTransform>();
             Vector2 position = referenceRect.anchoredPosition, size = referenceRect.sizeDelta;
@@ -817,6 +832,10 @@ namespace Agribot.VehicleConfiguration.Tests
             var installSprite = referenceInstall.GetComponent<Image>().sprite;
             var installColour = referenceInstall.GetComponent<Image>().color;
 
+            Click(reference.transform.Find("Header/CloseButton").gameObject);
+            yield return new WaitForSeconds(.8f);
+            Click(Find("Back_btn"));
+            yield return new WaitForSeconds(.8f);
             Click(Find("Car0_Img"));
             yield return new WaitForSeconds(.8f);
             var panel = Find("BagPanel");

@@ -16,6 +16,7 @@ namespace Agribot.VehicleConfiguration
         private string exportPath;
         private bool busy;
         private bool canExport;
+        public static event Action AvailabilityChanged;
         public static bool IsBusy => instance != null && instance.busy;
         public static bool CanExport => instance != null && !instance.busy && instance.canExport &&
             !string.IsNullOrEmpty(instance.exportPath);
@@ -100,6 +101,7 @@ namespace Agribot.VehicleConfiguration
         {
             if (stopButton != null) stopButton.interactable = !busy;
             if (exportButton != null) exportButton.interactable = !busy && canExport && !string.IsNullOrEmpty(exportPath);
+            AvailabilityChanged?.Invoke();
         }
 
         private IEnumerator Execute(bool export)
