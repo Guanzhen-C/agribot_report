@@ -1,7 +1,7 @@
 {
   "format": "agribot.independent-delivery-status",
   "version": 1,
-  "status": "in_progress",
+  "status": "final_package_verification",
   "scope": "Unity configuration software and matching ROS/Gazebo simulation",
   "excluded_user_scene": "user-imported automation institute campus",
   "verified_local": {
@@ -9,24 +9,43 @@
     "mounting_presets": 57,
     "builtin_scenes": 9,
     "actual_visual_inference_modes": 3,
-    "source_contract_tests_passed": 119,
+    "source_contract_tests_passed": 120,
     "unity_editmode_tests_passed": 169,
+    "unity_playmode_tests_passed": 57,
+    "unity_tests_skipped": 0,
     "ros_packages_built": 34,
     "import_renderer_compiled_from_repository": true,
     "authorized_assets_included": true
   },
   "verified_remote": {
-    "source_commit": "da62a5b050b7ce263587938dfe8c584aca9b5e13",
+    "source_commit": "b0fa5d557e7b90f28bff5b49503dc28c3681b0bf",
     "fresh_github_clone": true,
     "lfs_files": 2009,
     "lfs_fsck": "PASS"
   },
+  "verified_independent_checkout": {
+    "ros_packages_built": 34,
+    "borrowed_original_workspace_install": false,
+    "real_simulated_camera_vision_modes": 3,
+    "matched_visual_ros_outputs": [8, 7, 7],
+    "motion_control_connected_to_extra_vision": false,
+    "complete_default_route": "PASS",
+    "planned_waypoints": 23,
+    "driven_waypoints": 23,
+    "settled_final_error_m": 0.17630970549385955,
+    "final_waypoint_radius_m": 0.2632937431335449,
+    "native_garage_and_car6": "PASS",
+    "native_continuous_ai_and_clickable_recipe": "PASS",
+    "native_launch_stop_export": "PASS_AFTER_BUILD_SCOPE_FIX",
+    "deployment_file_hashes": "PASS",
+    "leftover_simulation_processes_after_stop": 0,
+    "test_host": "Ubuntu 22.04 x86_64, RTX 3070 Ti, 32 GB RAM",
+    "fresh_operating_system": false,
+    "all_combinations_rerun": false
+  },
   "still_required": [
-    "complete Unity PlayMode regression",
-    "publish subsequent UI portability corrections and matching app",
-    "refresh fresh clone to the final published version",
-    "independent runtime and complete default route verification",
-    "publish matching offline Linux program package",
+    "publish and remotely download the final matching prebuilt app",
+    "verify final source fingerprint and launch the final installed app",
     "final requirement-by-requirement audit"
   ]
 }

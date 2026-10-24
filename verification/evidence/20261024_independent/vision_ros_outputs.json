@@ -1,0 +1,171 @@
+{
+  "domain": 95,
+  "input": "/camera/rgb/image_raw",
+  "cases": [
+    {
+      "mode": "object_detection",
+      "status": "PASS",
+      "matched_outputs": 8,
+      "image": {
+        "width": 640,
+        "height": 512,
+        "frame": "right_camera_optical_frame",
+        "pixel_std": 46.34493974345289,
+        "encoding": "bgr8"
+      },
+      "processing": {
+        "average_processed_hz": 4.182902684059154,
+        "detected_objects": 0.0,
+        "dropped_frames": 4,
+        "last_processing_ms": 30.776083993259817,
+        "mode": "object_detection",
+        "motion_control_connected": false,
+        "processed_frames": 8,
+        "received_frames": 12
+      },
+      "publishers": [
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/rosout",
+          [
+            "rcl_interfaces/msg/Log"
+          ]
+        ],
+        [
+          "/vision/annotated_image",
+          [
+            "sensor_msgs/msg/Image"
+          ]
+        ],
+        [
+          "/vision/results",
+          [
+            "std_msgs/msg/String"
+          ]
+        ],
+        [
+          "/vision/status",
+          [
+            "std_msgs/msg/String"
+          ]
+        ]
+      ],
+      "objects_in_last_frame": 0
+    },
+    {
+      "mode": "instance_segmentation",
+      "status": "PASS",
+      "matched_outputs": 7,
+      "image": {
+        "width": 640,
+        "height": 512,
+        "frame": "right_camera_optical_frame",
+        "pixel_std": 44.707702491137475,
+        "encoding": "bgr8"
+      },
+      "processing": {
+        "average_processed_hz": 4.204784080570337,
+        "dropped_frames": 3,
+        "last_processing_ms": 42.30884101707488,
+        "mode": "instance_segmentation",
+        "motion_control_connected": false,
+        "processed_frames": 7,
+        "received_frames": 10,
+        "segmented_instances": 0.0
+      },
+      "publishers": [
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/rosout",
+          [
+            "rcl_interfaces/msg/Log"
+          ]
+        ],
+        [
+          "/vision/annotated_image",
+          [
+            "sensor_msgs/msg/Image"
+          ]
+        ],
+        [
+          "/vision/results",
+          [
+            "std_msgs/msg/String"
+          ]
+        ],
+        [
+          "/vision/status",
+          [
+            "std_msgs/msg/String"
+          ]
+        ]
+      ],
+      "objects_in_last_frame": 0
+    },
+    {
+      "mode": "pose_estimation",
+      "status": "PASS",
+      "matched_outputs": 7,
+      "image": {
+        "width": 640,
+        "height": 512,
+        "frame": "right_camera_optical_frame",
+        "pixel_std": 44.57761635656337,
+        "encoding": "bgr8"
+      },
+      "processing": {
+        "average_processed_hz": 4.25426004246153,
+        "detected_poses": 0.0,
+        "dropped_frames": 3,
+        "last_processing_ms": 32.54470002138987,
+        "mode": "pose_estimation",
+        "motion_control_connected": false,
+        "processed_frames": 7,
+        "received_frames": 10
+      },
+      "publishers": [
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/rosout",
+          [
+            "rcl_interfaces/msg/Log"
+          ]
+        ],
+        [
+          "/vision/annotated_image",
+          [
+            "sensor_msgs/msg/Image"
+          ]
+        ],
+        [
+          "/vision/results",
+          [
+            "std_msgs/msg/String"
+          ]
+        ],
+        [
+          "/vision/status",
+          [
+            "std_msgs/msg/String"
+          ]
+        ]
+      ],
+      "objects_in_last_frame": 0
+    }
+  ]
+}

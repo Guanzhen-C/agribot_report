@@ -4,7 +4,7 @@
 
 - 资源：完整10车型、57个装配预设及当前界面。
 - 程序包大小、SHA-256、源码/资源指纹：见[manifest.json](manifest.json)。
-- 构建输入版本：`6543350`；仅文档或本目录的发布提交不会改变运行输入指纹。
+- 构建输入版本见清单中的`runtime_inputs.source_commit`；仅文档或本目录的发布提交不会改变运行输入指纹。
 - 不包含用户园区扫描数据、私人AI配置、Unity Editor或Unity许可证。
 
 先下载完整仓库与Git LFS资源并安装ROS Humble。普通安装使用：
