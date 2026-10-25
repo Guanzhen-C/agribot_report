@@ -420,9 +420,16 @@ namespace Agribot.VehicleConfiguration.Tests
             {
                 string name = "Car" + index;
                 Click(name + "_Img");
-                yield return new WaitForSeconds(.8f);
+                yield return new WaitForSeconds(2.5f);
                 var vehicle = Find(name);
-                var positions = vehicle.GetComponentsInChildren<Transform>(true).ToDictionary(item => item, item => item.localPosition);
+                // Cinemachine may follow the expanded assembly; it is not a physical part.
+                var positions = vehicle.GetComponentsInChildren<Transform>(true).Where(item =>
+                    !item.GetComponents<MonoBehaviour>().Any(component =>
+                        component != null && component.GetType().Name == "CinemachineCamera"))
+                    .ToDictionary(item => item, item => item.localPosition);
+                var heights = vehicle.GetComponentsInChildren<MeshRenderer>().Where(item => item.enabled)
+                    .ToDictionary(item => item, item => item.bounds.min.y);
+                Vector3 vehiclePosition = vehicle.transform.position;
                 Click("Explode_NewVehicle_btn");
                 var view = Component("SceneVehicleExplodedView");
                 int count = (int)view.GetType().GetProperty("PartCount").GetValue(view);
@@ -439,8 +446,19 @@ namespace Agribot.VehicleConfiguration.Tests
                     .Select(item => item.transform).Distinct().Count();
                 Assert.That(count, Is.EqualTo(expected), name);
                 var slider = Find("ExplodedViewSlider").GetComponent<Slider>();
-                foreach (float amount in new[] { .3f, 1f, .6f, 1f }) slider.value = amount;
-                Assert.That(positions.Count(pair => Vector3.Distance(pair.Key.localPosition, pair.Value) > .001f), Is.EqualTo(count), name);
+                foreach (float amount in new[] { .3f, 1f, .6f, 1f })
+                {
+                    slider.value = amount;
+                    yield return new WaitForSeconds(.12f);
+                    Assert.That(Vector3.Distance(vehicle.transform.position, vehiclePosition), Is.LessThan(.00001f),
+                        name + " must not move the vehicle root while exploding its parts");
+                    foreach (var item in heights)
+                        Assert.That(item.Key.bounds.min.y, Is.GreaterThanOrEqualTo(item.Value - .001f),
+                            $"{name}/{item.Key.name} moved down toward or below the garage floor at slider={amount}");
+                }
+                Assert.That(positions.Count(pair => Vector3.Distance(pair.Key.localPosition, pair.Value) > .001f), Is.EqualTo(count),
+                    name + ": " + string.Join(",", positions.Where(pair =>
+                        Vector3.Distance(pair.Key.localPosition, pair.Value) > .001f).Select(pair => pair.Key.name)));
                 Click("CloseExplodedView");
                 Assert.That(positions.All(pair => Vector3.Distance(pair.Key.localPosition, pair.Value) < .00001f), Is.True,
                     name + " must restore every part exactly");

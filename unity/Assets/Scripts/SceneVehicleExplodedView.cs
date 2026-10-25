@@ -149,7 +149,7 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
         if (!hasBounds)
             return;
 
-        float distance = originalAckermann ? .96f : Mathf.Clamp(vehicleBounds.size.magnitude * 0.17f, 0.5f, 4f);
+        float distance = Mathf.Clamp(vehicleBounds.size.magnitude * 0.17f, 0.5f, 4f);
         foreach (Transform candidate in candidates)
         {
             Renderer[] renderers = candidate.GetComponentsInChildren<Renderer>(true);
@@ -158,7 +158,8 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
             Bounds bounds = renderers[0].bounds;
             for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
             Vector3 direction = bounds.center - vehicleBounds.center;
-            if (!originalAckermann) direction.y += vehicleBounds.size.y * 0.35f;
+            // Spread every model outward and upward, never through the floor.
+            direction.y = Mathf.Max(0f, direction.y + vehicleBounds.size.y * 0.35f);
             if (direction.sqrMagnitude < 0.001f)
             {
                 float angle = parts.Count * 2.4f;

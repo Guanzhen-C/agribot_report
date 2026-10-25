@@ -80,6 +80,11 @@
     "delivery_sha256": "c449e6d5171aeb5134c9e501fefa3e3060e30aed568a1ece5f9b6a2fad8ebd94"
   },
   {
+    "path": "unity/Assets/AgribotConfig/Tests/PlayMode/UnifiedCar0Tests.cs",
+    "original_sha256": "61a8f64c90e8e6464b23ad979f86800209c157c4b40c5c165c46fc4fde94ed90",
+    "delivery_sha256": "d4cd2f7b2bf00ea3b3150a9f669e17e47b18d51a8ba2ebc2493c10a0d3bb4949"
+  },
+  {
     "path": "unity/Assets/Scripts/BagPanel.cs",
     "original_sha256": "11a142effb2ca19b88157a6d00093b9b71b9917164f71918373ae827d90683d1",
     "delivery_sha256": "969d35a674ffb7ef65877dc366e4079dc699e3273c119e93a0dd6d3f6352207a"
@@ -112,7 +117,7 @@
   {
     "path": "unity/Assets/Scripts/SceneVehicleExplodedView.cs",
     "original_sha256": "d8399c673b004fd4bea83fdfcae9d8b47518bfe3b4a549a51b3c3f79eec4871d",
-    "delivery_sha256": "31c810b32c0db6ac94cf6d07753c83f344deea8eef047c934429e2058dbb9b77"
+    "delivery_sha256": "43b989dd620bd8095c2595aa74b111fb09dddef518dd5dcfca61cdadc9e26bc5"
   },
   {
     "path": "unity/Assets/Scripts/cameraControl.cs",
