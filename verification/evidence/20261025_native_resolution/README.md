@@ -18,3 +18,9 @@
 - 原生分辨率切换后实际点击右上角退出按钮，程序正常退出，systemd结果为success、MainPID为0。
 
 运行源码提交为`e585601`。
+
+## 正式安装
+
+桌面快捷方式对应独立目录已拉取GitHub源码，通过同SHA本机LFS缓存复用并安装匹配程序包，未重新下载同一个1.9GB文件。安装器校验包SHA-256及运行输入指纹通过，旧程序备份为`dist/unity_before_native_resolution_20261025`。
+
+正式安装版实际启动日志同样显示`previous=1600x900 target=2560x1440`，最终`render=2560x1440 monitor=2560x1440`。`installed_native_resolution.png`记录正式安装版实际窗口，没有图片缩放处理。程序包SHA-256为`b21550e17aecdd1d0084d4269dffe0334344012ee5d243389179b93a603717e8`。GitHub Source Checks运行40194365278通过。

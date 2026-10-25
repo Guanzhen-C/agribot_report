@@ -19,7 +19,7 @@
     "authorized_assets_included": true
   },
   "verified_remote": {
-    "source_commit": "b801aeac934b10f5a93945f751fb2884db61797a",
+    "source_commit": "be5de3a4b2d2d4ac80d4c5c65fc1a95dfe8f0267",
     "fresh_github_clone": true,
     "lfs_files": 2011,
     "lfs_fsck": "PASS"
@@ -47,10 +47,10 @@
   "verified_final_package": {
     "downloaded_from_github": false,
     "archive_source": "matching local build reused through verified LFS cache; source pulled from GitHub and identical archive uploaded",
-    "archive_sha256": "6ec4b8ddb2fed4ce835f0132bd1fc86966bbc587616f322bb0896ab46a2b9803",
-    "archive_bytes": 1887522464,
-    "build_source_commit": "6dbe35f2d7466b869ea1f064efeed1f57638cbc4",
-    "runtime_input_sha256": "896a4398e8dd373607180612e95c37fa66ba7c72207ea1889065bb76146e4ba3",
+    "archive_sha256": "b21550e17aecdd1d0084d4269dffe0334344012ee5d243389179b93a603717e8",
+    "archive_bytes": 1887514399,
+    "build_source_commit": "e585601cf1ef5b6771de62210731835572b2826a",
+    "runtime_input_sha256": "6a33a9ab475c69aa599cadcdf4a441e9a50d838efd65071f5cd3a99bd4149600",
     "source_manifest_and_installed_app_match": true,
     "launched_from_unrelated_working_directory": true,
     "actual_process_executable_inside_independent_clone": true,
@@ -59,7 +59,7 @@
     "unexpected_missing_source_files": 0,
     "unexpected_changed_source_files": 0,
     "github_source_checks": "PASS",
-    "github_source_check_run": 40191469797
+    "github_source_check_run": 40194365278
   },
   "still_required": [],
   "latest_gui_fix": {
@@ -90,6 +90,16 @@
     "native_glyph_visible": "PASS",
     "native_mouse_click_quits_process": "PASS: isolated native Linux display, systemd success and MainPID 0",
     "independent_installed_program": "PASS: matching runtime fingerprint; native process launched from independent clone, later exited successfully"
+  },
+  "native_resolution_fix": {
+    "source_commit": "e585601cf1ef5b6771de62210731835572b2826a",
+    "editmode_cases_passed": 6,
+    "targeted_playmode_passed": 5,
+    "tests_skipped": 0,
+    "source_tests_passed": 120,
+    "old_preferences_reproduced": "1600x900 render stretched into 2560x1440 borderless window",
+    "native_framebuffer": "PASS: render=2560x1440 monitor=2560x1440",
+    "independent_installed_program": "PASS: matching package and source fingerprint, native framebuffer log and screenshot"
   },
   "verification_limits": [
     "supported environment is Ubuntu 22.04 x86_64 with ROS Humble, Gazebo 11 and a working OpenGL desktop",
