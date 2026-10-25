@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.2482385">
+  <test-suite type="TestSuite" id="1085" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="63" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.248239" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1078" name="Agribot.VehicleConfiguration.PlayModeTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.PlayModeTests.dll" runstate="Runnable" testcasecount="63" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.243486" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="644650" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1079" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="63" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.242546" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1080" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="63" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.241936" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1081" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="63" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:26Z" duration="38.241360" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="ApplicationExitButtonTests" fullname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests" classname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:10Z" duration="22.565563" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1003" name="ExitControlDoesNotOverlapToolbarEquipmentOrAssistantButtons" fullname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests.ExitControlDoesNotOverlapToolbarEquipmentOrAssistantButtons" methodname="ExitControlDoesNotOverlapToolbarEquipmentOrAssistantButtons" classname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests" runstate="Runnable" seed="926854267" result="Passed" start-time="2026-10-25 11:50:48Z" end-time="2026-10-25 11:51:01Z" duration="13.520431" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+EXIT_BUTTON_LAYOUT car=Car0 screen=640x480 exit=(x:590.00, y:430.00, width:36.00, height:36.00) panelClose=(x:570.00, y:393.41, width:44.40, height:26.15)
+EXIT_BUTTON_LAYOUT car=Car3 screen=640x480 exit=(x:590.00, y:430.00, width:36.00, height:36.00) panelClose=(x:570.00, y:393.41, width:44.40, height:26.15)
+EXIT_BUTTON_LAYOUT car=Car9 screen=640x480 exit=(x:590.00, y:430.00, width:36.00, height:36.00) panelClose=(x:570.00, y:393.41, width:44.40, height:26.15)
+]]></output>
+              </test-case>
+              <test-case id="1002" name="ExitControlPersistsOnceAndOnlyInterceptsItsOwnCorner" fullname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests.ExitControlPersistsOnceAndOnlyInterceptsItsOwnCorner" methodname="ExitControlPersistsOnceAndOnlyInterceptsItsOwnCorner" classname="Agribot.VehicleConfiguration.Tests.ApplicationExitButtonTests" runstate="Runnable" seed="1418026937" result="Passed" start-time="2026-10-25 11:51:01Z" end-time="2026-10-25 11:51:10Z" duration="9.035260" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1033" name="HandoffButtonsTests" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 11:51:10Z" end-time="2026-10-25 11:51:26Z" duration="15.673400" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1034" name="FollowConfigurationPanelWithoutOverlapping" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests.FollowConfigurationPanelWithoutOverlapping" methodname="FollowConfigurationPanelWithoutOverlapping" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" seed="1244816538" result="Passed" start-time="2026-10-25 11:51:10Z" end-time="2026-10-25 11:51:21Z" duration="10.504874" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1035" name="ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests.ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" methodname="ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" seed="1612331057" result="Passed" start-time="2026-10-25 11:51:21Z" end-time="2026-10-25 11:51:26Z" duration="5.164226" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
