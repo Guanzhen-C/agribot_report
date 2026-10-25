@@ -22,13 +22,13 @@ public sealed class ApplicationExitButton : MonoBehaviour, IPointerEnterHandler,
         var rect = (RectTransform)root.transform;
         rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one;
         rect.anchoredPosition = new Vector2(-14, -14);
-        rect.sizeDelta = new Vector2(48, 48);
+        rect.sizeDelta = new Vector2(36, 36);
         var button = root.AddComponent<Button>();
         GarageVisualStyle.SetButtonLabel(button, "\u00d7");
         GarageVisualStyle.ButtonStyle(button);
         var label = button.GetComponentInChildren<Text>();
         label.resizeTextForBestFit = false;
-        label.fontSize = 32;
+        label.fontSize = 28;
         button.onClick.AddListener(() => Application.Quit());
 
         instance = root.AddComponent<ApplicationExitButton>();

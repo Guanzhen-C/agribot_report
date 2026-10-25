@@ -27,7 +27,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 Assert.That(exit.IsInteractable(), Is.True);
                 Assert.That(exit.GetComponentInChildren<Text>().text, Is.EqualTo("\u00d7"));
                 var bounds = Bounds(exit.GetComponent<RectTransform>());
-                Assert.That(bounds.size, Is.EqualTo(new Vector2(48, 48)));
+                Assert.That(bounds.size, Is.EqualTo(new Vector2(36, 36)));
                 Assert.That(Screen.width - bounds.xMax, Is.EqualTo(14).Within(.1f));
                 Assert.That(Screen.height - bounds.yMax, Is.EqualTo(14).Within(.1f));
                 var pointer = new PointerEventData(EventSystem.current) { position = bounds.center };
@@ -64,6 +64,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 Click("OpenBag_btn");
                 yield return new WaitForSeconds(.8f);
                 var close = Find("BagPanel").transform.Find("Header/CloseButton").GetComponent<Button>();
+                Debug.Log($"EXIT_BUTTON_LAYOUT car={car} screen={Screen.width}x{Screen.height} exit={Bounds(exit)} panelClose={Bounds(close.GetComponent<RectTransform>())}");
                 Assert.That(Bounds(exit).Overlaps(Bounds(close.GetComponent<RectTransform>())), Is.False);
                 close.onClick.Invoke();
                 yield return new WaitForSeconds(.5f);
