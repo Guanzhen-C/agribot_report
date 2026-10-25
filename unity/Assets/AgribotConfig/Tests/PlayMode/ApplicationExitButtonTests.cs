@@ -26,6 +26,8 @@ namespace Agribot.VehicleConfiguration.Tests
                 var exit = buttons.Single();
                 Assert.That(exit.IsInteractable(), Is.True);
                 Assert.That(exit.GetComponentInChildren<Text>().text, Is.EqualTo("\u00d7"));
+                Assert.That(exit.GetComponentInChildren<Text>().cachedTextGenerator.characterCountVisible, Is.EqualTo(1),
+                    "The close glyph must actually render, not merely exist as a text value.");
                 var bounds = Bounds(exit.GetComponent<RectTransform>());
                 Assert.That(bounds.size, Is.EqualTo(new Vector2(36, 36)));
                 Assert.That(Screen.width - bounds.xMax, Is.EqualTo(14).Within(.1f));

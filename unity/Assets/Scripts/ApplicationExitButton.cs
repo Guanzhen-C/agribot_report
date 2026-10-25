@@ -29,6 +29,8 @@ public sealed class ApplicationExitButton : MonoBehaviour, IPointerEnterHandler,
         var label = button.GetComponentInChildren<Text>();
         label.resizeTextForBestFit = false;
         label.fontSize = 28;
+        label.verticalOverflow = VerticalWrapMode.Overflow;
+        label.horizontalOverflow = HorizontalWrapMode.Overflow;
         button.onClick.AddListener(() => Application.Quit());
 
         instance = root.AddComponent<ApplicationExitButton>();
