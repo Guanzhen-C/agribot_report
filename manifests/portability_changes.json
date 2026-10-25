@@ -42,7 +42,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Editor/AgribotStandaloneBuilder.cs",
     "original_sha256": "1c886c3b2a09ff01a43d77d010308949b31193f2f349ff0d8fccf4ecb327aa15",
-    "delivery_sha256": "6f93f32f11788d37ab3a70cce23b045294ac3433342bbf154e0745189157b4bf"
+    "delivery_sha256": "bd7b89d898ec5ea5ff531facf546e806010cfd8280a21dd21335e572dc6fa382"
   },
   {
     "path": "unity/Assets/AgribotConfig/Editor/Car0GarageIntegration.cs",
@@ -72,7 +72,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs",
     "original_sha256": "fd638262ffa310273fb0c7d813720d616d84daf9682065dd43b4acbc72598dcd",
-    "delivery_sha256": "970c837a671007940be7c7fdd4488fb019bfc1ad1a9b4515bc5ea310824d2faa"
+    "delivery_sha256": "47e237c22d733a37379951331dc33dd8f622d00c16e4e3574cb12a30fbe09716"
   },
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/SensorInstallationClickTests.cs",
@@ -102,12 +102,17 @@
   {
     "path": "unity/Assets/Scripts/MainPanel.cs",
     "original_sha256": "3377139cb06a1d3238a42c09a2a093cfb42caf79943f1c23247c9b0aa0bb587f",
-    "delivery_sha256": "da09ec7f3ba5680f7bc9a54e6bd37fd13e0c9f7ba40371ce827dfa5a4b66963d"
+    "delivery_sha256": "5a11a3fe90589e41ece799dd4a8f6b5921b6f75c353f27e82749e3291379cdd7"
   },
   {
     "path": "unity/Assets/Scripts/RosSimulationHandoffUi.cs",
     "original_sha256": "bdc81413385b02e88aee800421eb032ac14c1a2f15da9f94ca71ba6abe28127e",
     "delivery_sha256": "196358b7337f6fdacfbb470227dadae046c17bd674b491b902cce5976cf6796c"
+  },
+  {
+    "path": "unity/Assets/Scripts/SceneVehicleExplodedView.cs",
+    "original_sha256": "d8399c673b004fd4bea83fdfcae9d8b47518bfe3b4a549a51b3c3f79eec4871d",
+    "delivery_sha256": "31c810b32c0db6ac94cf6d07753c83f344deea8eef047c934429e2058dbb9b77"
   },
   {
     "path": "unity/Assets/Scripts/cameraControl.cs",

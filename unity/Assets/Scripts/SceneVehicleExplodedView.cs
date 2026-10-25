@@ -14,6 +14,7 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
 
     private readonly List<Part> parts = new List<Part>();
     private Slider slider;
+    private GarageVehicleGrounding grounding;
     public int PartCount => parts.Count;
 
     public static SceneVehicleExplodedView Create(Transform canvas, GameObject buttonTemplate)
@@ -93,6 +94,8 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
         if (parts.Count == 0)
             return;
 
+        grounding = vehicle.GetComponent<GarageVehicleGrounding>();
+        if (grounding != null) grounding.Suspended = true;
         slider.SetValueWithoutNotify(0f);
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
@@ -101,6 +104,12 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
     public void Close()
     {
         Apply(0f);
+        if (grounding != null)
+        {
+            grounding.Suspended = false;
+            grounding.AlignToFloor();
+            grounding = null;
+        }
         parts.Clear();
         if (slider != null)
             slider.SetValueWithoutNotify(0f);

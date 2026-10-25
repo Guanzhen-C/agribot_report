@@ -15,6 +15,29 @@ namespace Agribot.VehicleConfiguration.Tests
     public sealed class FarmGarageMountTests
     {
         [UnityTest]
+        public IEnumerator EveryVehicleRestsOnGarageFloorAfterSelection()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            var gaps = new System.Collections.Generic.List<float>();
+            foreach (string name in Enumerable.Range(0, 10).Concat(new[] { 0, 9 }).Select(i => "Car" + i))
+            {
+                Click(Find(name + "_Img"));
+                var car = Find(name);
+                for (int sample = 0; sample < 3; sample++)
+                {
+                    yield return new WaitForSeconds(.12f);
+                    gaps.Add(Mathf.Abs(GroundGap(car)));
+                }
+                yield return new WaitForSeconds(.64f);
+                gaps.Add(Mathf.Abs(GroundGap(car)));
+                Click(Find("Back_btn"));
+                yield return new WaitForSeconds(.6f);
+            }
+            Assert.That(gaps.Max(), Is.LessThan(.002f), "Vehicle contact surfaces must rest on the garage floor.");
+        }
+
+        [UnityTest]
         public IEnumerator CompactToolUsesTightFramingWithoutScalingVehicle()
         {
             yield return SceneManager.LoadSceneAsync("scene1");
@@ -83,6 +106,7 @@ namespace Agribot.VehicleConfiguration.Tests
                     Debug.Log($"ARM_MOUNT_ZOOM car={name} equipment={tool} before={radius} after={field.GetValue(control)}");
                     Assert.That((float)field.GetValue(control), Is.EqualTo(radius).Within(.001f),
                         name + " must not force a distant camera preset when installing equipment.");
+                    Assert.That(Mathf.Abs(GroundGap(car)), Is.LessThan(.002f));
                 }
                 Click(Find("Back_btn"));
                 yield return new WaitForSeconds(.6f);
@@ -116,6 +140,7 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(Vector3.Distance(car.transform.position, position), Is.LessThan(.0001f));
             Assert.That(Quaternion.Angle(car.transform.rotation, rotation), Is.LessThan(.01f));
             Assert.That(car.transform.localScale, Is.EqualTo(scale));
+            Assert.That(Mathf.Abs(GroundGap(car)), Is.LessThan(.002f));
         }
 
         [UnityTest]
@@ -1010,6 +1035,20 @@ namespace Agribot.VehicleConfiguration.Tests
                 BindingFlags.NonPublic | BindingFlags.Instance).GetValue(details);
             Assert.That(description.gameObject.activeSelf, Is.False);
             Assert.That(description.GetType().GetProperty("text").GetValue(description), Is.EqualTo(string.Empty));
+        }
+
+        private static float GroundGap(GameObject car)
+        {
+            float floor = Find("Garage1").GetComponentsInChildren<Transform>(true)
+                .Single(t => t.name == "Floor").GetComponentsInChildren<Renderer>(true).Max(r => r.bounds.max.y);
+            var baseRoot = car.GetComponents<Component>().Any(c => c != null && c.GetType().Name == "FarmGarageVehicle")
+                ? car.transform.Find(car.name.ToLowerInvariant()) : null;
+            var body = baseRoot != null ? baseRoot : car.transform;
+            float bottom = body.GetComponentsInChildren<MeshRenderer>(true).Where(r => r.enabled &&
+                !r.GetComponentsInParent<Transform>(true).Any(t =>
+                    t.name is "RADAR" or "RTK" or "CarCamera" or "Imu_box" or "Hand")).Min(r => r.bounds.min.y);
+            Debug.Log($"GARAGE_GROUND car={car.name} floor={floor:F6} bottom={bottom:F6} gap={bottom-floor:F6}");
+            return bottom - floor;
         }
 
         private static GameObject Find(string name) => Resources.FindObjectsOfTypeAll<Transform>()

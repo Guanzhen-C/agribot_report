@@ -135,8 +135,7 @@ namespace Agribot.VehicleConfiguration.Editor
                 "export XDG_CONFIG_HOME=\"$AGRIBOT_REPORT_CONFIG_HOME\"\n" +
                 "cd \"$HERE\"\n" +
                 "export LD_PRELOAD=\"$PWD/libagribot_linux_ime.so${LD_PRELOAD:+:$LD_PRELOAD}\"\n" +
-                $"exec \"$HERE/{ExecutableName}\" -screen-fullscreen 0 -screen-width 1600 " +
-                "-screen-height 900 \"$@\"\n";
+                $"exec \"$HERE/{ExecutableName}\" -screen-fullscreen 1 \"$@\"\n";
             File.WriteAllText(launcherPath, script);
             RunCommand("/bin/chmod", $"+x \"{launcherPath}\"");
         }

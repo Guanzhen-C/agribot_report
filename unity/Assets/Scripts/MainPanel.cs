@@ -395,6 +395,7 @@ public class MainPanel : MonoBehaviour
             return;
 
         originalScales[car] = car.transform.localScale;
+        GarageVehicleGrounding.Attach(car);
         foreach (Renderer renderer in car.GetComponentsInChildren<Renderer>(true))
         {
             foreach (Material material in renderer.materials)
@@ -427,6 +428,7 @@ public class MainPanel : MonoBehaviour
         // Driving physics are not used by the configuration preview.
         DisablePreviewWheelColliders(car);
         car.SetActive(true);
+        car.GetComponent<GarageVehicleGrounding>().AlignToFloor();
         // Capture physical dimensions before the presentation scale animation.
         car.GetComponentInChildren<CarChange>(true)?.InitializeGeometry();
         Transform carTransform = car.transform;
@@ -437,7 +439,8 @@ public class MainPanel : MonoBehaviour
         RTween.Kill(carTransform);
         carTransform.localScale = targetScale * 0.05f;
         RTween.Scale(carTransform, targetScale, bounceDuration)
-            .SetEase(EaseType.OutBack);
+            .SetEase(EaseType.OutBack)
+            .OnUpdate(car.GetComponent<GarageVehicleGrounding>().AlignToFloor);
 
         HideMainPanel();
     }
