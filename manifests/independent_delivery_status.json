@@ -19,7 +19,7 @@
     "authorized_assets_included": true
   },
   "verified_remote": {
-    "source_commit": "be5de3a4b2d2d4ac80d4c5c65fc1a95dfe8f0267",
+    "source_commit": "ec673f955d3a63b23fcb94c6b89cc3f81490d0d9",
     "fresh_github_clone": true,
     "lfs_files": 2011,
     "lfs_fsck": "PASS"
@@ -47,10 +47,10 @@
   "verified_final_package": {
     "downloaded_from_github": false,
     "archive_source": "matching local build reused through verified LFS cache; source pulled from GitHub and identical archive uploaded",
-    "archive_sha256": "b21550e17aecdd1d0084d4269dffe0334344012ee5d243389179b93a603717e8",
-    "archive_bytes": 1887514399,
-    "build_source_commit": "e585601cf1ef5b6771de62210731835572b2826a",
-    "runtime_input_sha256": "6a33a9ab475c69aa599cadcdf4a441e9a50d838efd65071f5cd3a99bd4149600",
+    "archive_sha256": "c62615abf0a22913383f2f5013e603849ab32ae5345a3dce0e205d5b44195064",
+    "archive_bytes": 1887515157,
+    "build_source_commit": "17a0126c5d786ba6a4d07c030005264c1c876aac",
+    "runtime_input_sha256": "d7b6e22c3527f540580ffd2b1a28518c1501bc687250bbc7ef339eb5d1fc95d6",
     "source_manifest_and_installed_app_match": true,
     "launched_from_unrelated_working_directory": true,
     "actual_process_executable_inside_independent_clone": true,
@@ -59,7 +59,7 @@
     "unexpected_missing_source_files": 0,
     "unexpected_changed_source_files": 0,
     "github_source_checks": "PASS",
-    "github_source_check_run": 40194365278
+    "github_source_check_run": 40198019776
   },
   "still_required": [],
   "latest_gui_fix": {
@@ -100,6 +100,19 @@
     "old_preferences_reproduced": "1600x900 render stretched into 2560x1440 borderless window",
     "native_framebuffer": "PASS: render=2560x1440 monitor=2560x1440",
     "independent_installed_program": "PASS: matching package and source fingerprint, native framebuffer log and screenshot"
+  },
+  "exploded_ground_fix": {
+    "source_commit": "17a0126c5d786ba6a4d07c030005264c1c876aac",
+    "targeted_playmode_passed": 4,
+    "tests_skipped": 0,
+    "source_tests_passed": 120,
+    "garage_vehicles_checked": 10,
+    "car0_fine_part_groups": 53,
+    "physical_mesh_minimum_height_does_not_decrease": "PASS: slider 0.3, 1, 0.6, 1",
+    "physical_nodes_restore_exactly": "PASS",
+    "native_producer_expand_and_reassemble": "PASS",
+    "independent_installed_program": "PASS: matching archive/source fingerprint and native Linux startup",
+    "ros_navigation_rerun": false
   },
   "verification_limits": [
     "supported environment is Ubuntu 22.04 x86_64 with ROS Humble, Gazebo 11 and a working OpenGL desktop",
