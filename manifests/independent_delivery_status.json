@@ -63,15 +63,20 @@
     "verify the final installed native program"
   ],
   "latest_gui_fix": {
-    "source_commit": "c7f50297f0685019f28de394907d3569ec9ef32d",
-    "scope": "equipment camera framing only; model geometry and ROS algorithms unchanged",
+    "source_commit": "07b0b7ddcf5202a0d35d341d2bfd9aa613e3c32a",
+    "scope": "equipment view stability, fullscreen startup and garage ground alignment; geometry, relative sensor poses and ROS algorithms unchanged",
     "targeted_playmode_passed": 3,
     "complete_playmode_passed": 60,
     "complete_editmode_passed": 169,
     "source_tests_passed": 120,
-    "runtime_input_sha256": "7ccbc59f9ec2763aa36ac874f489ec15291ee5b36d3601305752b319c724f677",
-    "archive_sha256": "0a6d910b82d17b56d45cecf8df96be65508bf0bbbe4a98e317f246013b97abee",
-    "archive_bytes": 1887514807,
+    "final_targeted_playmode_passed": 7,
+    "final_tests_skipped": 0,
+    "garage_grounding_vehicles_checked": 10,
+    "native_producer_fullscreen": "PASS: 2560x1440, borderless",
+    "native_producer_car0_grounded": "PASS",
+    "runtime_input_sha256": "621e7ffe808fa81f387081c52643650c7c3680724907b9e25ab15f448476bf18",
+    "archive_sha256": "33d9b41a91a5a4a7ada0a4bd393591f88018a1b630b89dabbf16332b27621f28",
+    "archive_bytes": 1887522947,
     "native_installed_verification": "PENDING"
   },
   "verification_limits": [

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.1013577">
+  <test-suite type="TestSuite" id="1082" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.101358" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1075" name="Agribot.VehicleConfiguration.PlayModeTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.PlayModeTests.dll" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.097085" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="564992" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1076" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.096306" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1077" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.095744" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1078" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="61" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:04:07Z" duration="107.095156" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1005" name="FarmGarageMountTests" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:03:36Z" duration="76.231566" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1007" name="CompactToolUsesTightFramingWithoutScalingVehicle" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.CompactToolUsesTightFramingWithoutScalingVehicle" methodname="CompactToolUsesTightFramingWithoutScalingVehicle" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="660933607" result="Passed" start-time="2026-10-25 11:02:20Z" end-time="2026-10-25 11:02:29Z" duration="9.524414" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[COMPACT_MOUNT_ZOOM before=5.2 after=7.212902
+]]></output>
+              </test-case>
+              <test-case id="1006" name="EveryVehicleRestsOnGarageFloorAfterSelection" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.EveryVehicleRestsOnGarageFloorAfterSelection" methodname="EveryVehicleRestsOnGarageFloorAfterSelection" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1683409628" result="Passed" start-time="2026-10-25 11:02:29Z" end-time="2026-10-25 11:02:53Z" duration="23.609890" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=-0.000002
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=-0.000002
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=-0.000002
+GARAGE_GROUND car=Car1 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car1 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car1 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car1 floor=-22.585990 bottom=-22.585990 gap=0.000008
+GARAGE_GROUND car=Car2 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car2 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car2 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car2 floor=-22.585990 bottom=-22.585990 gap=0.000010
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.585990 gap=0.000002
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car4 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car4 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car4 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car4 floor=-22.585990 bottom=-22.585990 gap=0.000004
+GARAGE_GROUND car=Car5 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car5 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car5 floor=-22.585990 bottom=-22.585990 gap=0.000000
+GARAGE_GROUND car=Car5 floor=-22.585990 bottom=-22.585990 gap=0.000010
+GARAGE_GROUND car=Car6 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car6 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car6 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car6 floor=-22.586000 bottom=-22.585990 gap=0.000002
+GARAGE_GROUND car=Car7 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car7 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car7 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car7 floor=-22.586000 bottom=-22.585990 gap=0.000002
+GARAGE_GROUND car=Car8 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car8 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car8 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car8 floor=-22.586000 bottom=-22.585990 gap=0.000008
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.585990 gap=0.000004
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.586000 gap=0.000000
+GARAGE_GROUND car=Car9 floor=-22.586000 bottom=-22.585990 gap=0.000010
+]]></output>
+              </test-case>
+              <test-case id="1012" name="HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" methodname="HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="115067644" result="Passed" start-time="2026-10-25 11:02:53Z" end-time="2026-10-25 11:03:12Z" duration="19.066638" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" methodname="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="2097093940" result="Passed" start-time="2026-10-25 11:03:12Z" end-time="2026-10-25 11:03:28Z" duration="15.822470" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+EQUIPMENT_PANEL_ZOOM car=Car0 entry=30 open=30
+ARM_MOUNT_ZOOM car=Car0 equipment=Hand before=30 after=30
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.585990 gap=0.000002
+ARM_MOUNT_ZOOM car=Car0 equipment=RTK before=30 after=30
+GARAGE_GROUND car=Car0 floor=-22.586000 bottom=-22.585990 gap=0.000002
+EQUIPMENT_PANEL_ZOOM car=Car3 entry=50 open=50
+ARM_MOUNT_ZOOM car=Car3 equipment=Hand before=50 after=50
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.585990 gap=0.000006
+ARM_MOUNT_ZOOM car=Car3 equipment=RTK before=50 after=50
+GARAGE_GROUND car=Car3 floor=-22.586000 bottom=-22.585990 gap=0.000006
+]]></output>
+              </test-case>
+              <test-case id="1009" name="SwitchingFromTrailerRestoresNormalVehicleView" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.SwitchingFromTrailerRestoresNormalVehicleView" methodname="SwitchingFromTrailerRestoresNormalVehicleView" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1128588806" result="Passed" start-time="2026-10-25 11:03:28Z" end-time="2026-10-25 11:03:36Z" duration="8.195470" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-2.64, -20.81, 2.32), Extents: (5.23, 1.77, 5.25) shift=(2.57, 0.00, -0.95)
+TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-0.06, -20.81, 1.37), Extents: (5.23, 1.77, 5.25) shift=(0.00, 0.00, 0.00)
+TRAILER_SWITCH_VIEW fov=65 rotation=(0.00, 90.00, 0.00)
+GARAGE_GROUND car=Car7 floor=-22.586000 bottom=-22.586000 gap=0.000000
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1062" name="UnifiedCar0Tests" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-25 11:03:36Z" end-time="2026-10-25 11:04:07Z" duration="30.858822" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1073" name="ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" methodname="ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="555812794" result="Passed" start-time="2026-10-25 11:03:36Z" end-time="2026-10-25 11:03:56Z" duration="19.850011" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+FINE_EXPLODED_VIEW Car0 parts=53
+FINE_EXPLODED_VIEW Car1 parts=33
+FINE_EXPLODED_VIEW Car2 parts=64
+FINE_EXPLODED_VIEW Car3 parts=144
+FINE_EXPLODED_VIEW Car4 parts=20
+FINE_EXPLODED_VIEW Car5 parts=21
+FINE_EXPLODED_VIEW Car6 parts=14
+FINE_EXPLODED_VIEW Car7 parts=12
+FINE_EXPLODED_VIEW Car8 parts=15
+FINE_EXPLODED_VIEW Car9 parts=37
+]]></output>
+              </test-case>
+              <test-case id="1074" name="SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" methodname="SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="251552121" result="Passed" start-time="2026-10-25 11:03:56Z" end-time="2026-10-25 11:04:07Z" duration="11.004104" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+ROS 车辆配置已导出：/tmp/agribot-car0-shared-11806f80-a9ee-44b6-bd0c-29d998a30eb7/vehicle_config.json
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
