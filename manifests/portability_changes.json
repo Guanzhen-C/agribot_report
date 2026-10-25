@@ -72,7 +72,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs",
     "original_sha256": "fd638262ffa310273fb0c7d813720d616d84daf9682065dd43b4acbc72598dcd",
-    "delivery_sha256": "05d44eab80f66cbe19a9e7ce31e1271fca65b0f8d30a2d39ac0c44182802a914"
+    "delivery_sha256": "b6e9ba3df6c0e3f3ee75dde41a9e76f7732265645583fda0a2a18330e04f6204"
   },
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/SensorInstallationClickTests.cs",
@@ -80,9 +80,19 @@
     "delivery_sha256": "c449e6d5171aeb5134c9e501fefa3e3060e30aed568a1ece5f9b6a2fad8ebd94"
   },
   {
+    "path": "unity/Assets/Scripts/BagSystem/Core/EquipmentBagController.cs",
+    "original_sha256": "bedb8629cd336983165491e042779395db4e85b011a91316d926188dfa5de958",
+    "delivery_sha256": "d58a9fdc76f44e38a48555109e9812f1ee39022edbf918c60326894e97e7af41"
+  },
+  {
     "path": "unity/Assets/Scripts/ChineseUiFont.cs",
     "original_sha256": "4b9d71e6df6757dc57b60a329929acf712c23f42c64b9398f74de2419fb4db4c",
     "delivery_sha256": "5ee06672254500a630cde14c4c40cfd1299506d1966696c1e30d5cb3d462c455"
+  },
+  {
+    "path": "unity/Assets/Scripts/FarmGarageVehicle.cs",
+    "original_sha256": "f0ab6593641020ebf1f972d935e58cc419a12ada444702dee9fd080d773ddc10",
+    "delivery_sha256": "e3f3ab9a3473b13ff9987d301a312dea8e447cab0001d39d2bbcbe5761d1f92e"
   },
   {
     "path": "unity/Assets/Scripts/MainPanel.cs",

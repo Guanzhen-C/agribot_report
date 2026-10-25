@@ -15,6 +15,103 @@ namespace Agribot.VehicleConfiguration.Tests
     public sealed class FarmGarageMountTests
     {
         [UnityTest]
+        public IEnumerator CompactToolUsesTightFramingWithoutScalingVehicle()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            Click(Find("Car6_Img"));
+            yield return new WaitForSeconds(1.5f);
+            var car = Find("Car6");
+            var farm = Component(car, "FarmGarageVehicle");
+            float originalRadius = (float)farm.GetType().GetProperty("PreviewRadius").GetValue(farm);
+            Click(Find("OpenBag_btn"));
+            yield return new WaitForSeconds(.8f);
+            var details = Component(Find("BagPanel"), "EquipmentDetailsUI");
+            Click(Find("ChiselPlow_slot"));
+            yield return null;
+            Click((Button)details.GetType().GetProperty("InstallButton").GetValue(details));
+            yield return new WaitForSeconds(1f);
+            float mountedRadius = (float)farm.GetType().GetProperty("PreviewRadius").GetValue(farm);
+            float sphereRadius = RendererBounds(car).extents.magnitude * 1.1f /
+                Mathf.Sin(Camera.main.fieldOfView * .5f * Mathf.Deg2Rad);
+            Debug.Log($"COMPACT_MOUNT_ZOOM before={originalRadius} after={mountedRadius}");
+            Assert.That(car.transform.localScale, Is.EqualTo(Vector3.one));
+            Assert.That(mountedRadius, Is.LessThan(sphereRadius * .95f),
+                "Fit the tool in the actual frustum without excessive bounding-sphere padding.");
+            Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
+            yield return new WaitForSeconds(1f);
+            foreach (var filter in car.GetComponentsInChildren<MeshFilter>())
+                foreach (var corner in Corners(filter.sharedMesh.bounds))
+                {
+                    var point = Camera.main.WorldToViewportPoint(filter.transform.TransformPoint(corner));
+                    Assert.That(point.z, Is.GreaterThan(0));
+                    Assert.That(point.x, Is.InRange(0f, 1f));
+                    Assert.That(point.y, Is.InRange(0f, 1f));
+                }
+        }
+
+        [UnityTest]
+        public IEnumerator InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            foreach (string name in new[] { "Car0", "Car3" })
+            {
+                Click(Find(name + "_Img"));
+                yield return new WaitForSeconds(1.5f);
+                var car = Find(name);
+                Click(Find("OpenBag_btn"));
+                yield return new WaitForSeconds(.8f);
+                var control = car.GetComponentsInChildren<Component>(true).First(item => item != null &&
+                    item.GetType().Name is "cameraControl" or "OrbitCameraController");
+                var field = control.GetType().GetField("targetRadius", BindingFlags.Instance | BindingFlags.NonPublic);
+                float radius = (float)field.GetValue(control);
+                var details = Component(Find("BagPanel"), "EquipmentDetailsUI");
+                foreach (string tool in new[] { "Hand", "RTK" })
+                {
+                    Click(Find(tool + "_slot"));
+                    yield return null;
+                    Click((Button)details.GetType().GetProperty("InstallButton").GetValue(details));
+                    yield return new WaitForSeconds(1f);
+                    Debug.Log($"ARM_MOUNT_ZOOM car={name} equipment={tool} before={radius} after={field.GetValue(control)}");
+                    Assert.That((float)field.GetValue(control), Is.EqualTo(radius).Within(.001f),
+                        name + " must not force a distant camera preset when installing equipment.");
+                }
+                Click(Find("Back_btn"));
+                yield return new WaitForSeconds(.6f);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator SwitchingFromTrailerRestoresNormalVehicleView()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            Click(Find("Car7_Img"));
+            yield return new WaitForSeconds(1.5f);
+            var car = Find("Car7");
+            Vector3 position = car.transform.position;
+            Quaternion rotation = car.transform.rotation;
+            Vector3 scale = car.transform.localScale;
+            Click(Find("OpenBag_btn"));
+            yield return new WaitForSeconds(.8f);
+            var details = Component(Find("BagPanel"), "EquipmentDetailsUI");
+            foreach (string tool in new[] { "FarmTrailer", "ChiselPlow" })
+            {
+                Click(Find(tool + "_slot"));
+                yield return null;
+                Click((Button)details.GetType().GetProperty("InstallButton").GetValue(details));
+                yield return new WaitForSeconds(1f);
+            }
+            Debug.Log($"TRAILER_SWITCH_VIEW fov={Camera.main.fieldOfView} rotation={car.transform.rotation.eulerAngles}");
+            Assert.That(Camera.main.fieldOfView, Is.EqualTo(65f).Within(.01f),
+                "A normal tool must not inherit the trailer's wide-angle view.");
+            Assert.That(Vector3.Distance(car.transform.position, position), Is.LessThan(.0001f));
+            Assert.That(Quaternion.Angle(car.transform.rotation, rotation), Is.LessThan(.01f));
+            Assert.That(car.transform.localScale, Is.EqualTo(scale));
+        }
+
+        [UnityTest]
         public IEnumerator ExpandedRearMountsInstallExclusivelyExportAndStayInsideGarage()
         {
             yield return SceneManager.LoadSceneAsync("scene1");

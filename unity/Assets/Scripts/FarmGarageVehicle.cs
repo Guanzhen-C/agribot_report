@@ -15,6 +15,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
     private Vector3? trailerOriginalPosition;
     private Quaternion trailerOriginalRotation;
     private Vector3 trailerOriginalScale;
+    private float trailerOriginalFieldOfView;
     private float trailerGroundY;
     private Transform garage;
     private Vector3 garagePosition, garageScale, garageAnchor;
@@ -69,28 +70,21 @@ public sealed class FarmGarageVehicle : MonoBehaviour
 
     public void RefreshAssemblyView()
     {
-        bool rigidMount = SelectedPreset != Preset.id && SelectedPreset != "cab_trailer";
-        if (Preset.id == "tracked_harvester" || Preset.id.StartsWith("unity_car", StringComparison.Ordinal) ||
-            rigidMount || mountedPreviewRadius > 0)
-        {
-            var renderers = GetComponentsInChildren<Renderer>();
-            var bounds = renderers[0].bounds;
-            foreach (var renderer in renderers.Skip(1)) bounds.Encapsulate(renderer.bounds);
-            ViewTarget.localPosition = transform.InverseTransformPoint(bounds.center);
-            EquipmentTarget.localPosition = ViewTarget.localPosition;
-            var view = GetComponentInChildren<cameraControl>(true);
-            float fov = view.GetComponent<CinemachineCamera>().Lens.FieldOfView;
-            mountedPreviewRadius = rigidMount && Preset.id != "tracked_harvester"
-                ? bounds.extents.magnitude * 1.1f / Mathf.Sin(fov * .5f * Mathf.Deg2Rad) : 0;
-            SetGarageSize(RequiredGarageScale());
-            view.ConfigurePreviewRange(3f, Mathf.Max(24f, PreviewRadius * 1.5f), PreviewRadius);
-            view.FixCamera(PreviewRadius, -45f, 25f);
-            return;
-        }
         bool mounted = SelectedPreset == "cab_trailer";
-        if (!mounted && !trailerOriginalPosition.HasValue) return;
         var camera = GetComponentInChildren<cameraControl>(true);
         var lens = camera.GetComponent<CinemachineCamera>().Lens;
+        bool restoreTrailer = !mounted && trailerOriginalPosition.HasValue;
+        if (restoreTrailer)
+        {
+            transform.position = trailerOriginalPosition.Value;
+            transform.rotation = trailerOriginalRotation;
+            transform.localScale = trailerOriginalScale;
+            ViewTarget.localPosition = originalViewTarget;
+            EquipmentTarget.localPosition = originalEquipmentTarget;
+            lens.FieldOfView = trailerOriginalFieldOfView;
+            camera.GetComponent<CinemachineCamera>().Lens = lens;
+            trailerOriginalPosition = null;
+        }
         if (mounted)
         {
             if (!trailerOriginalPosition.HasValue)
@@ -98,6 +92,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
                 trailerOriginalPosition = transform.position;
                 trailerOriginalRotation = transform.rotation;
                 trailerOriginalScale = transform.localScale;
+                trailerOriginalFieldOfView = lens.FieldOfView;
                 var rawRenderers = GetComponentsInChildren<Renderer>();
                 var rawBounds = rawRenderers[0].bounds;
                 foreach (var renderer in rawRenderers.Skip(1)) rawBounds.Encapsulate(renderer.bounds);
@@ -105,6 +100,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
                 originalViewTarget = ViewTarget.localPosition;
                 originalEquipmentTarget = EquipmentTarget.localPosition;
             }
+            mountedPreviewRadius = 0;
             SetGarageSize(1.6f);
             transform.localScale = trailerOriginalScale;
             transform.rotation = Quaternion.AngleAxis(45f, Vector3.up)*trailerOriginalRotation;
@@ -121,22 +117,71 @@ public sealed class FarmGarageVehicle : MonoBehaviour
             camera.ConfigurePreviewRange(3.5f, 18f, PreviewRadius);
             camera.FixCamera(PreviewRadius, -110f, 30f);
             lens.FieldOfView = 90f;
+            camera.GetComponent<CinemachineCamera>().Lens = lens;
             Debug.Log($"TRAILER_VIEW room={room} assembly={bounds} shift={shift}");
+            return;
         }
-        else
+
+        bool rigidMount = SelectedPreset != Preset.id;
+        if (Preset.id == "tracked_harvester" || Preset.id.StartsWith("unity_car", StringComparison.Ordinal) ||
+            rigidMount || mountedPreviewRadius > 0 || restoreTrailer)
         {
-            transform.position = trailerOriginalPosition.Value;
-            transform.rotation = trailerOriginalRotation;
-            transform.localScale = trailerOriginalScale;
-            ViewTarget.localPosition = originalViewTarget;
-            EquipmentTarget.localPosition = originalEquipmentTarget;
-            trailerOriginalPosition = null;
-            SetGarageSize(1f);
-            camera.ConfigurePreviewRange(3.5f, 7.5f, 6.5f);
-            camera.FixCamera(6.5f, -45f, 20f);
-            lens.FieldOfView = 65f;
+            var bounds = AssemblyLocalBounds();
+            ViewTarget.localPosition = bounds.center;
+            EquipmentTarget.localPosition = bounds.center;
+            mountedPreviewRadius = rigidMount && Preset.id != "tracked_harvester"
+                ? RequiredAssemblyRadius(bounds, lens.FieldOfView) : 0;
+            SetGarageSize(RequiredGarageScale());
+            camera.ConfigurePreviewRange(3f, Mathf.Max(24f, PreviewRadius * 1.5f), PreviewRadius);
+            camera.FixCamera(PreviewRadius, -45f, 25f);
         }
-        camera.GetComponent<CinemachineCamera>().Lens = lens;
+    }
+
+    private Bounds AssemblyLocalBounds()
+    {
+        Bounds bounds = default;
+        bool initialized = false;
+        foreach (var filter in GetComponentsInChildren<MeshFilter>())
+        {
+            if (filter.sharedMesh == null) continue;
+            var branch = filter.transform;
+            while (branch.parent != null && branch.parent != transform) branch = branch.parent;
+            // Sensor installation animations must not change the assembly framing.
+            if (branch.name is "RADAR" or "RTK" or "CarCamera" or "Imu_box") continue;
+            var matrix = transform.worldToLocalMatrix * filter.transform.localToWorldMatrix;
+            foreach (var corner in Corners(filter.sharedMesh.bounds))
+            {
+                var point = matrix.MultiplyPoint3x4(corner);
+                if (!initialized) { bounds = new Bounds(point, Vector3.zero); initialized = true; }
+                else bounds.Encapsulate(point);
+            }
+        }
+        return bounds;
+    }
+
+    private float RequiredAssemblyRadius(Bounds bounds, float fieldOfView)
+    {
+        // These previews use Cinemachine's world-space spherical orbit at (-45, 25).
+        // Fit the actual frustum, not the much larger sphere around a rotated world AABB.
+        var cameraRotation = Quaternion.Inverse(Quaternion.Euler(25f, -45f, 0));
+        float vertical = Mathf.Tan(fieldOfView * .5f * Mathf.Deg2Rad) * .9f;
+        float horizontal = vertical * (Camera.main != null ? Camera.main.aspect : 16f / 9f);
+        float radius = 0;
+        foreach (var corner in Corners(bounds))
+        {
+            var offset = cameraRotation * (transform.rotation * (corner - bounds.center));
+            radius = Mathf.Max(radius, Mathf.Max(Mathf.Abs(offset.x) / horizontal,
+                Mathf.Abs(offset.y) / vertical) - offset.z);
+        }
+        return radius;
+    }
+
+    private static IEnumerable<Vector3> Corners(Bounds bounds)
+    {
+        foreach (float x in new[] { bounds.min.x, bounds.max.x })
+            foreach (float y in new[] { bounds.min.y, bounds.max.y })
+                foreach (float z in new[] { bounds.min.z, bounds.max.z })
+                    yield return new Vector3(x, y, z);
     }
 
     public static GameObject Create(GameObject cameraTemplate, FarmVehiclePreset preset)

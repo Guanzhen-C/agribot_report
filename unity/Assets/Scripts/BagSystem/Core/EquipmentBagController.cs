@@ -168,10 +168,6 @@ namespace AgriculturalMachinery.BagSystem
             if (changed)
             {
                 AssistantConversation.EquipmentChanged(equipment.EquipmentType.ToString(), equipment.DisplayName, installed);
-                if (installed &&
-                    (equipment.EquipmentType == EquipmentType.RTK || equipment.EquipmentType == EquipmentType.Hand))
-                    FixCurrentCarCameraForRtk();
-
                 InstallationChanged?.Invoke(equipment, installed);
             }
 
@@ -307,18 +303,6 @@ namespace AgriculturalMachinery.BagSystem
             }
 
             return FarmGarageVehicle.Visible;
-        }
-
-        private static void FixCurrentCarCameraForRtk()
-        {
-            GameObject currentCar = FindVisibleCar();
-            if (currentCar == null)
-                return;
-
-            cameraControl currentCamera =
-                currentCar.GetComponentInChildren<cameraControl>(true);
-            currentCamera?.FixCamera(currentCar.GetComponent<FarmGarageVehicle>() != null ? currentCar.GetComponent<FarmGarageVehicle>().PreviewRadius : 50f, -45f,
-                currentCar.GetComponent<FarmGarageVehicle>() != null ? 20f : 6f);
         }
 
         private void ApplyInstallationStateToScene()
