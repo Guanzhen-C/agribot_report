@@ -1,7 +1,7 @@
 {
   "format": "agribot.independent-delivery-status",
   "version": 1,
-  "status": "verified_supported_platform",
+  "status": "ui_update_validation",
   "scope": "Unity configuration software and matching ROS/Gazebo simulation",
   "excluded_user_scene": "user-imported automation institute campus",
   "verified_local": {
@@ -11,7 +11,7 @@
     "actual_visual_inference_modes": 3,
     "source_contract_tests_passed": 120,
     "unity_editmode_tests_passed": 169,
-    "unity_playmode_tests_passed": 57,
+    "unity_playmode_tests_passed": 60,
     "unity_tests_skipped": 0,
     "ros_packages_built": 34,
     "import_renderer_compiled_from_repository": true,
@@ -59,7 +59,21 @@
     "github_source_checks": "PASS",
     "github_source_check_run": 40087966935
   },
-  "still_required": [],
+  "still_required": [
+    "verify the final installed native program"
+  ],
+  "latest_gui_fix": {
+    "source_commit": "c7f50297f0685019f28de394907d3569ec9ef32d",
+    "scope": "equipment camera framing only; model geometry and ROS algorithms unchanged",
+    "targeted_playmode_passed": 3,
+    "complete_playmode_passed": 60,
+    "complete_editmode_passed": 169,
+    "source_tests_passed": 120,
+    "runtime_input_sha256": "7ccbc59f9ec2763aa36ac874f489ec15291ee5b36d3601305752b319c724f677",
+    "archive_sha256": "0a6d910b82d17b56d45cecf8df96be65508bf0bbbe4a98e317f246013b97abee",
+    "archive_bytes": 1887514807,
+    "native_installed_verification": "PENDING"
+  },
   "verification_limits": [
     "supported environment is Ubuntu 22.04 x86_64 with ROS Humble, Gazebo 11 and a working OpenGL desktop",
     "the independent clone was tested on the same physical host, not on a fresh operating-system image",

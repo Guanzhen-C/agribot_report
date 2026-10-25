@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="169" result="Passed" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.6179277">
+  <test-suite type="TestSuite" id="1000" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="169" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.617928" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1192" name="Agribot.VehicleConfiguration.EditorTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.EditorTests.dll" runstate="Runnable" testcasecount="169" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.613818" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="457776" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1193" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="169" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.612403" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1194" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="169" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.611241" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1195" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="169" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:51:22Z" duration="207.609969" total="169" passed="169" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="AuthoredManipulatorTests" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:48:09Z" duration="15.180697" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1004" name="AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests.AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:48:09Z" duration="15.178926" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1002" name="AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh(&quot;Car0&quot;)" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests.AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh(&quot;Car0&quot;)" methodname="AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests" runstate="Runnable" seed="1521685005" result="Passed" start-time="2026-10-25 09:47:54Z" end-time="2026-10-25 09:48:04Z" duration="10.360219" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/ackermann_current/vehicle_config.json
+]]></output>
+                </test-case>
+                <test-case id="1003" name="AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh(&quot;Car3&quot;)" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests.AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh(&quot;Car3&quot;)" methodname="AuthoredHandExportsOneMountedArmWithoutDuplicatingBodyMesh" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorTests" runstate="Runnable" seed="713354007" result="Passed" start-time="2026-10-25 09:48:04Z" end-time="2026-10-25 09:48:09Z" duration="4.810547" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[导航最大角速度超过最大车速下的曲率限制 0.522543 rad/s。
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1005" name="BuildPortabilityTests" fullname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests" classname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:48:09Z" end-time="2026-10-25 09:48:18Z" duration="9.083759" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="BuildPreparationKeepsTheVersionedCar0PrefabUnchanged" fullname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests.BuildPreparationKeepsTheVersionedCar0PrefabUnchanged" methodname="BuildPreparationKeepsTheVersionedCar0PrefabUnchanged" classname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests" runstate="Runnable" seed="1163498699" result="Passed" start-time="2026-10-25 09:48:09Z" end-time="2026-10-25 09:48:11Z" duration="1.268494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CAR0_SHARED_GARAGE_PREFAB_REUSED
+]]></output>
+              </test-case>
+              <test-case id="1007" name="ChineseFontLoadsWithoutSceneOrOperatingSystemFontDependencies" fullname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests.ChineseFontLoadsWithoutSceneOrOperatingSystemFontDependencies" methodname="ChineseFontLoadsWithoutSceneOrOperatingSystemFontDependencies" classname="Agribot.VehicleConfiguration.Tests.BuildPortabilityTests" runstate="Runnable" seed="722988225" result="Passed" start-time="2026-10-25 09:48:11Z" end-time="2026-10-25 09:48:18Z" duration="7.680227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1008" name="CadPreviewSurfaceTests" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 09:48:18Z" end-time="2026-10-25 09:48:23Z" duration="4.404965" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1021" name="CadSheetIsVisibleToCamerasOnEitherSide" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.CadSheetIsVisibleToCamerasOnEitherSide" methodname="CadSheetIsVisibleToCamerasOnEitherSide" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="1779820352" result="Passed" start-time="2026-10-25 09:48:18Z" end-time="2026-10-25 09:48:18Z" duration="0.009032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1016" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-25 09:48:18Z" end-time="2026-10-25 09:48:20Z" duration="1.869524" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1009" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;compact_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;compact_tractor&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="173597604" result="Passed" start-time="2026-10-25 09:48:18Z" end-time="2026-10-25 09:48:18Z" duration="0.247724" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1010" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_chisel&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="1065279592" result="Passed" start-time="2026-10-25 09:48:18Z" end-time="2026-10-25 09:48:19Z" duration="0.267970" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1011" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_harrow&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="712932973" result="Passed" start-time="2026-10-25 09:48:19Z" end-time="2026-10-25 09:48:19Z" duration="0.270824" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1012" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_garlic&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="1190201666" result="Passed" start-time="2026-10-25 09:48:19Z" end-time="2026-10-25 09:48:19Z" duration="0.286178" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1013" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_mulch&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="2122042372" result="Passed" start-time="2026-10-25 09:48:19Z" end-time="2026-10-25 09:48:20Z" duration="0.271181" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1014" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_groove&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="638692863" result="Passed" start-time="2026-10-25 09:48:20Z" end-time="2026-10-25 09:48:20Z" duration="0.260011" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1015" name="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets(&quot;tractor_cultivator&quot;)" methodname="Car6FamilyKeepsOriginalCadDetailSeparateFromSimulationAssets" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="2024638209" result="Passed" start-time="2026-10-25 09:48:20Z" end-time="2026-10-25 09:48:20Z" duration="0.260756" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1019" name="CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:48:20Z" end-time="2026-10-25 09:48:22Z" duration="2.356144" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1017" name="CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh(&quot;compact_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh(&quot;compact_tractor&quot;)" methodname="CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="715445434" result="Passed" start-time="2026-10-25 09:48:20Z" end-time="2026-10-25 09:48:21Z" duration="1.154391" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1018" name="CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh(&quot;tractor_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh(&quot;tractor_chisel&quot;)" methodname="CompactTractorRendersCadSheetsFromBothSidesWithoutChangingTheMesh" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="1521413447" result="Passed" start-time="2026-10-25 09:48:21Z" end-time="2026-10-25 09:48:22Z" duration="1.200761" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1020" name="OtherTractorsKeepTheirExistingMaterial" fullname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests.OtherTractorsKeepTheirExistingMaterial" methodname="OtherTractorsKeepTheirExistingMaterial" classname="Agribot.VehicleConfiguration.Tests.CadPreviewSurfaceTests" runstate="Runnable" seed="1185171153" result="Passed" start-time="2026-10-25 09:48:22Z" end-time="2026-10-25 09:48:23Z" duration="0.167900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1022" name="CompatibilityContractTests" fullname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests" classname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.009608" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1025" name="AllAlgorithmOptionsMatchTheRosCompatibilityContract" fullname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests.AllAlgorithmOptionsMatchTheRosCompatibilityContract" methodname="AllAlgorithmOptionsMatchTheRosCompatibilityContract" classname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests" runstate="Runnable" seed="659869255" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.002670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="EveryCarAndImplementButtonMatchesTheCompatibilityContract" fullname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests.EveryCarAndImplementButtonMatchesTheCompatibilityContract" methodname="EveryCarAndImplementButtonMatchesTheCompatibilityContract" classname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests" runstate="Runnable" seed="1638784871" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.004899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="EveryFarmPresetMatchesTheMountingContract" fullname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests.EveryFarmPresetMatchesTheMountingContract" methodname="EveryFarmPresetMatchesTheMountingContract" classname="Agribot.VehicleConfiguration.Tests.CompatibilityContractTests" runstate="Runnable" seed="1125584531" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.000573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1026" name="FarmScenarioCatalogTests" fullname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests" classname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.021490" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1027" name="CatalogHasDistinctSelectableScenesAndRejectsUnknownIds" fullname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests.CatalogHasDistinctSelectableScenesAndRejectsUnknownIds" methodname="CatalogHasDistinctSelectableScenesAndRejectsUnknownIds" classname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests" runstate="Runnable" seed="1313865260" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.007686" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="NewAppIgnoresOldScenarioPreferenceAndDoesNotSaveSelection" fullname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests.NewAppIgnoresOldScenarioPreferenceAndDoesNotSaveSelection" methodname="NewAppIgnoresOldScenarioPreferenceAndDoesNotSaveSelection" classname="Agribot.VehicleConfiguration.Tests.FarmScenarioCatalogTests" runstate="Runnable" seed="1984979119" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:23Z" duration="0.001432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1029" name="FarmVehicleLibraryTests" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" testcasecount="115" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:50:34Z" duration="131.310296" total="115" passed="115" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1088" name="CanonicalExportPreservesGeometryAndExtendedParameters" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:49:54Z" duration="91.792225" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1031" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car1&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car1&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="5484529" result="Passed" start-time="2026-10-25 09:48:23Z" end-time="2026-10-25 09:48:25Z" duration="2.081676" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1032" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car2&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car2&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1681418819" result="Passed" start-time="2026-10-25 09:48:25Z" end-time="2026-10-25 09:48:28Z" duration="3.461300" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1033" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car4&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car4&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="105504808" result="Passed" start-time="2026-10-25 09:48:28Z" end-time="2026-10-25 09:48:30Z" duration="2.151441" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1034" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car5&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;unity_car5&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="453109938" result="Passed" start-time="2026-10-25 09:48:30Z" end-time="2026-10-25 09:48:31Z" duration="1.112861" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1035" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;compact_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;compact_tractor&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1310944978" result="Passed" start-time="2026-10-25 09:48:31Z" end-time="2026-10-25 09:48:32Z" duration="0.490461" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1036" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_tractor&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="177512979" result="Passed" start-time="2026-10-25 09:48:32Z" end-time="2026-10-25 09:48:32Z" duration="0.489485" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1037" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;ride_on_mower&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;ride_on_mower&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="630305769" result="Passed" start-time="2026-10-25 09:48:32Z" end-time="2026-10-25 09:48:33Z" duration="0.494982" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1038" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tracked_harvester&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tracked_harvester&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="183165597" result="Passed" start-time="2026-10-25 09:48:33Z" end-time="2026-10-25 09:48:34Z" duration="0.670168" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1039" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;mower_front_cutter&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;mower_front_cutter&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1764887581" result="Passed" start-time="2026-10-25 09:48:34Z" end-time="2026-10-25 09:48:34Z" duration="0.492423" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1040" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;harvester_header&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;harvester_header&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="925720014" result="Passed" start-time="2026-10-25 09:48:34Z" end-time="2026-10-25 09:48:35Z" duration="0.724897" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1041" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_trailer&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_trailer&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1031634889" result="Passed" start-time="2026-10-25 09:48:35Z" end-time="2026-10-25 09:48:35Z" duration="0.571694" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1042" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1085735796" result="Passed" start-time="2026-10-25 09:48:35Z" end-time="2026-10-25 09:48:38Z" duration="2.144030" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1043" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="346546519" result="Passed" start-time="2026-10-25 09:48:38Z" end-time="2026-10-25 09:48:40Z" duration="2.175609" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1044" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="929717490" result="Passed" start-time="2026-10-25 09:48:40Z" end-time="2026-10-25 09:48:42Z" duration="2.149863" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1045" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="2093908724" result="Passed" start-time="2026-10-25 09:48:42Z" end-time="2026-10-25 09:48:44Z" duration="2.159571" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1046" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_crusher&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="312968196" result="Passed" start-time="2026-10-25 09:48:44Z" end-time="2026-10-25 09:48:46Z" duration="2.209973" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1047" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_interrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="816781220" result="Passed" start-time="2026-10-25 09:48:46Z" end-time="2026-10-25 09:48:48Z" duration="2.258776" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1048" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1304253925" result="Passed" start-time="2026-10-25 09:48:48Z" end-time="2026-10-25 09:48:51Z" duration="2.183023" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1049" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car1_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="991791682" result="Passed" start-time="2026-10-25 09:48:51Z" end-time="2026-10-25 09:48:53Z" duration="2.132347" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1050" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="350945967" result="Passed" start-time="2026-10-25 09:48:53Z" end-time="2026-10-25 09:48:56Z" duration="3.422207" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1051" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1622111503" result="Passed" start-time="2026-10-25 09:48:56Z" end-time="2026-10-25 09:49:00Z" duration="3.609982" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1052" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="842871041" result="Passed" start-time="2026-10-25 09:49:00Z" end-time="2026-10-25 09:49:03Z" duration="3.411354" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1053" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1113476929" result="Passed" start-time="2026-10-25 09:49:03Z" end-time="2026-10-25 09:49:07Z" duration="3.412880" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1054" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_crusher&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1237487137" result="Passed" start-time="2026-10-25 09:49:07Z" end-time="2026-10-25 09:49:10Z" duration="3.479468" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1055" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_interrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1481199063" result="Passed" start-time="2026-10-25 09:49:10Z" end-time="2026-10-25 09:49:14Z" duration="3.510628" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1056" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="735704558" result="Passed" start-time="2026-10-25 09:49:14Z" end-time="2026-10-25 09:49:17Z" duration="3.456341" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1057" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car2_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1773049701" result="Passed" start-time="2026-10-25 09:49:17Z" end-time="2026-10-25 09:49:21Z" duration="3.410672" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1058" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1562450911" result="Passed" start-time="2026-10-25 09:49:21Z" end-time="2026-10-25 09:49:23Z" duration="1.996219" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1059" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1106675915" result="Passed" start-time="2026-10-25 09:49:23Z" end-time="2026-10-25 09:49:24Z" duration="1.984746" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1060" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="709014817" result="Passed" start-time="2026-10-25 09:49:24Z" end-time="2026-10-25 09:49:26Z" duration="1.985296" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1061" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1299421678" result="Passed" start-time="2026-10-25 09:49:26Z" end-time="2026-10-25 09:49:28Z" duration="2.007906" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1062" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_crusher&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1856303082" result="Passed" start-time="2026-10-25 09:49:28Z" end-time="2026-10-25 09:49:31Z" duration="2.044668" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1063" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_interrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="236470775" result="Passed" start-time="2026-10-25 09:49:31Z" end-time="2026-10-25 09:49:33Z" duration="2.258538" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1064" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1912136272" result="Passed" start-time="2026-10-25 09:49:33Z" end-time="2026-10-25 09:49:35Z" duration="2.039755" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1065" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car4_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="572777202" result="Passed" start-time="2026-10-25 09:49:35Z" end-time="2026-10-25 09:49:37Z" duration="1.978335" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1066" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="253714169" result="Passed" start-time="2026-10-25 09:49:37Z" end-time="2026-10-25 09:49:38Z" duration="1.148362" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1067" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1868763520" result="Passed" start-time="2026-10-25 09:49:38Z" end-time="2026-10-25 09:49:39Z" duration="1.152727" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1068" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1633534004" result="Passed" start-time="2026-10-25 09:49:39Z" end-time="2026-10-25 09:49:40Z" duration="1.149737" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1069" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="412634398" result="Passed" start-time="2026-10-25 09:49:40Z" end-time="2026-10-25 09:49:41Z" duration="1.158799" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1070" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_crusher&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="408870130" result="Passed" start-time="2026-10-25 09:49:41Z" end-time="2026-10-25 09:49:43Z" duration="1.207971" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1071" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_interrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="469592133" result="Passed" start-time="2026-10-25 09:49:43Z" end-time="2026-10-25 09:49:44Z" duration="1.250293" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1072" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1175589916" result="Passed" start-time="2026-10-25 09:49:44Z" end-time="2026-10-25 09:49:45Z" duration="1.178995" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1073" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;car5_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="408733921" result="Passed" start-time="2026-10-25 09:49:45Z" end-time="2026-10-25 09:49:46Z" duration="1.127967" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1074" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1975457319" result="Passed" start-time="2026-10-25 09:49:46Z" end-time="2026-10-25 09:49:47Z" duration="0.583178" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1075" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="551973522" result="Passed" start-time="2026-10-25 09:49:47Z" end-time="2026-10-25 09:49:47Z" duration="0.574414" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1076" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1552355372" result="Passed" start-time="2026-10-25 09:49:47Z" end-time="2026-10-25 09:49:48Z" duration="0.586713" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1077" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="371867012" result="Passed" start-time="2026-10-25 09:49:48Z" end-time="2026-10-25 09:49:49Z" duration="0.576822" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1078" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="180098724" result="Passed" start-time="2026-10-25 09:49:49Z" end-time="2026-10-25 09:49:49Z" duration="0.656129" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1079" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;tractor_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="413072153" result="Passed" start-time="2026-10-25 09:49:49Z" end-time="2026-10-25 09:49:50Z" duration="0.573888" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1080" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_chisel&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1520807903" result="Passed" start-time="2026-10-25 09:49:50Z" end-time="2026-10-25 09:49:50Z" duration="0.574298" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1081" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_harrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="609975244" result="Passed" start-time="2026-10-25 09:49:50Z" end-time="2026-10-25 09:49:51Z" duration="0.562338" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1082" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_groove&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="934623668" result="Passed" start-time="2026-10-25 09:49:51Z" end-time="2026-10-25 09:49:51Z" duration="0.553279" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1083" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_cultivator&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="705502295" result="Passed" start-time="2026-10-25 09:49:51Z" end-time="2026-10-25 09:49:52Z" duration="0.563972" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1084" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_crusher&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1178917590" result="Passed" start-time="2026-10-25 09:49:52Z" end-time="2026-10-25 09:49:53Z" duration="0.620496" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1085" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_interrow&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1297491327" result="Passed" start-time="2026-10-25 09:49:53Z" end-time="2026-10-25 09:49:53Z" duration="0.660405" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1086" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_garlic&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1310097135" result="Passed" start-time="2026-10-25 09:49:53Z" end-time="2026-10-25 09:49:54Z" duration="0.611980" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1087" name="CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CanonicalExportPreservesGeometryAndExtendedParameters(&quot;cab_mulch&quot;)" methodname="CanonicalExportPreservesGeometryAndExtendedParameters" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="567941890" result="Passed" start-time="2026-10-25 09:49:54Z" end-time="2026-10-25 09:49:54Z" duration="0.538687" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1030" name="CatalogHasCompatibleTractorCombinations" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.CatalogHasCompatibleTractorCombinations" methodname="CatalogHasCompatibleTractorCombinations" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="337488466" result="Passed" start-time="2026-10-25 09:49:54Z" end-time="2026-10-25 09:49:54Z" duration="0.001407" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1146" name="PreviewMatchesRosGeometryWithoutRescaling" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-10-25 09:49:54Z" end-time="2026-10-25 09:50:34Z" duration="39.514488" total="57" passed="57" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1089" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car1&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car1&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1215486473" result="Passed" start-time="2026-10-25 09:49:54Z" end-time="2026-10-25 09:49:55Z" duration="0.573205" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1090" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car2&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car2&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="835412442" result="Passed" start-time="2026-10-25 09:49:55Z" end-time="2026-10-25 09:49:56Z" duration="0.922408" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1091" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car4&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car4&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1275414479" result="Passed" start-time="2026-10-25 09:49:56Z" end-time="2026-10-25 09:49:57Z" duration="0.625708" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1092" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car5&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;unity_car5&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1298119657" result="Passed" start-time="2026-10-25 09:49:57Z" end-time="2026-10-25 09:49:57Z" duration="0.384283" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1093" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;compact_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;compact_tractor&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1997544781" result="Passed" start-time="2026-10-25 09:49:57Z" end-time="2026-10-25 09:49:59Z" duration="1.656936" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1094" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_tractor&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_tractor&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="3666826" result="Passed" start-time="2026-10-25 09:49:59Z" end-time="2026-10-25 09:49:59Z" duration="0.236738" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1095" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;ride_on_mower&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;ride_on_mower&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="433578987" result="Passed" start-time="2026-10-25 09:49:59Z" end-time="2026-10-25 09:49:59Z" duration="0.215962" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1096" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tracked_harvester&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tracked_harvester&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1502129043" result="Passed" start-time="2026-10-25 09:49:59Z" end-time="2026-10-25 09:49:59Z" duration="0.289211" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1097" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;mower_front_cutter&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;mower_front_cutter&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1140805868" result="Passed" start-time="2026-10-25 09:49:59Z" end-time="2026-10-25 09:50:00Z" duration="0.217885" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1098" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;harvester_header&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;harvester_header&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1268167757" result="Passed" start-time="2026-10-25 09:50:00Z" end-time="2026-10-25 09:50:00Z" duration="0.297815" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1099" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_trailer&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_trailer&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1262449872" result="Passed" start-time="2026-10-25 09:50:00Z" end-time="2026-10-25 09:50:00Z" duration="0.308009" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1100" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="367962391" result="Passed" start-time="2026-10-25 09:50:00Z" end-time="2026-10-25 09:50:01Z" duration="0.548598" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1101" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1856312470" result="Passed" start-time="2026-10-25 09:50:01Z" end-time="2026-10-25 09:50:01Z" duration="0.566700" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1102" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="699704957" result="Passed" start-time="2026-10-25 09:50:01Z" end-time="2026-10-25 09:50:02Z" duration="0.564067" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1103" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1369838524" result="Passed" start-time="2026-10-25 09:50:02Z" end-time="2026-10-25 09:50:02Z" duration="0.570141" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1104" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_crusher&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="894286967" result="Passed" start-time="2026-10-25 09:50:02Z" end-time="2026-10-25 09:50:03Z" duration="0.589009" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1105" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_interrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1299618919" result="Passed" start-time="2026-10-25 09:50:03Z" end-time="2026-10-25 09:50:04Z" duration="0.639594" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1106" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="605797736" result="Passed" start-time="2026-10-25 09:50:04Z" end-time="2026-10-25 09:50:04Z" duration="0.734189" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1107" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car1_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="808245362" result="Passed" start-time="2026-10-25 09:50:04Z" end-time="2026-10-25 09:50:05Z" duration="0.562834" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1108" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="110667606" result="Passed" start-time="2026-10-25 09:50:05Z" end-time="2026-10-25 09:50:06Z" duration="0.965922" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1109" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="233317496" result="Passed" start-time="2026-10-25 09:50:06Z" end-time="2026-10-25 09:50:07Z" duration="0.986776" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1110" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="479622439" result="Passed" start-time="2026-10-25 09:50:07Z" end-time="2026-10-25 09:50:08Z" duration="0.963687" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1111" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1416614246" result="Passed" start-time="2026-10-25 09:50:08Z" end-time="2026-10-25 09:50:09Z" duration="0.972241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1112" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_crusher&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="308165684" result="Passed" start-time="2026-10-25 09:50:09Z" end-time="2026-10-25 09:50:10Z" duration="1.000848" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1113" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_interrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="641211493" result="Passed" start-time="2026-10-25 09:50:10Z" end-time="2026-10-25 09:50:11Z" duration="1.054897" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1114" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1058521574" result="Passed" start-time="2026-10-25 09:50:11Z" end-time="2026-10-25 09:50:12Z" duration="0.990274" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1115" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car2_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="657125633" result="Passed" start-time="2026-10-25 09:50:12Z" end-time="2026-10-25 09:50:13Z" duration="1.133013" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1116" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="139489142" result="Passed" start-time="2026-10-25 09:50:13Z" end-time="2026-10-25 09:50:14Z" duration="0.578100" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1117" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="671066951" result="Passed" start-time="2026-10-25 09:50:14Z" end-time="2026-10-25 09:50:14Z" duration="0.567364" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1118" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="403285117" result="Passed" start-time="2026-10-25 09:50:14Z" end-time="2026-10-25 09:50:15Z" duration="0.574110" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1119" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1786454701" result="Passed" start-time="2026-10-25 09:50:15Z" end-time="2026-10-25 09:50:15Z" duration="0.580309" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1120" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_crusher&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="204715244" result="Passed" start-time="2026-10-25 09:50:15Z" end-time="2026-10-25 09:50:16Z" duration="0.619063" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1121" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_interrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="910115456" result="Passed" start-time="2026-10-25 09:50:16Z" end-time="2026-10-25 09:50:17Z" duration="0.627263" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1122" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="680164924" result="Passed" start-time="2026-10-25 09:50:17Z" end-time="2026-10-25 09:50:17Z" duration="0.600964" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1123" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car4_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1507324212" result="Passed" start-time="2026-10-25 09:50:17Z" end-time="2026-10-25 09:50:18Z" duration="0.563113" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1124" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="2000589220" result="Passed" start-time="2026-10-25 09:50:18Z" end-time="2026-10-25 09:50:18Z" duration="0.345349" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1125" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="471008996" result="Passed" start-time="2026-10-25 09:50:18Z" end-time="2026-10-25 09:50:18Z" duration="0.366909" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1126" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="316539571" result="Passed" start-time="2026-10-25 09:50:18Z" end-time="2026-10-25 09:50:19Z" duration="0.347519" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1127" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="2020710831" result="Passed" start-time="2026-10-25 09:50:19Z" end-time="2026-10-25 09:50:19Z" duration="0.364930" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1128" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_crusher&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="165578977" result="Passed" start-time="2026-10-25 09:50:19Z" end-time="2026-10-25 09:50:20Z" duration="0.385655" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1129" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_interrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1383276733" result="Passed" start-time="2026-10-25 09:50:20Z" end-time="2026-10-25 09:50:20Z" duration="0.428947" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1130" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1933638831" result="Passed" start-time="2026-10-25 09:50:20Z" end-time="2026-10-25 09:50:20Z" duration="0.370714" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1131" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;car5_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="75596118" result="Passed" start-time="2026-10-25 09:50:20Z" end-time="2026-10-25 09:50:21Z" duration="0.354261" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1132" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1841810480" result="Passed" start-time="2026-10-25 09:50:21Z" end-time="2026-10-25 09:50:23Z" duration="1.877852" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1133" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1625754301" result="Passed" start-time="2026-10-25 09:50:23Z" end-time="2026-10-25 09:50:24Z" duration="1.712290" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1134" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="2042464685" result="Passed" start-time="2026-10-25 09:50:24Z" end-time="2026-10-25 09:50:26Z" duration="1.689367" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1135" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1606270468" result="Passed" start-time="2026-10-25 09:50:26Z" end-time="2026-10-25 09:50:28Z" duration="1.843672" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1136" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="646395253" result="Passed" start-time="2026-10-25 09:50:28Z" end-time="2026-10-25 09:50:30Z" duration="1.779684" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1137" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;tractor_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="613478424" result="Passed" start-time="2026-10-25 09:50:30Z" end-time="2026-10-25 09:50:31Z" duration="1.679436" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1138" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_chisel&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_chisel&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="338866823" result="Passed" start-time="2026-10-25 09:50:31Z" end-time="2026-10-25 09:50:32Z" duration="0.343880" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1139" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_harrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_harrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1717718181" result="Passed" start-time="2026-10-25 09:50:32Z" end-time="2026-10-25 09:50:32Z" duration="0.419428" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1140" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_groove&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_groove&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1087699659" result="Passed" start-time="2026-10-25 09:50:32Z" end-time="2026-10-25 09:50:32Z" duration="0.290985" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1141" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_cultivator&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_cultivator&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="911510219" result="Passed" start-time="2026-10-25 09:50:32Z" end-time="2026-10-25 09:50:33Z" duration="0.306835" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1142" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_crusher&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_crusher&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1887534585" result="Passed" start-time="2026-10-25 09:50:33Z" end-time="2026-10-25 09:50:33Z" duration="0.328008" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1143" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_interrow&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_interrow&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="994382622" result="Passed" start-time="2026-10-25 09:50:33Z" end-time="2026-10-25 09:50:33Z" duration="0.355434" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1144" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_garlic&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_garlic&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="735864034" result="Passed" start-time="2026-10-25 09:50:33Z" end-time="2026-10-25 09:50:34Z" duration="0.326323" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1145" name="PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_mulch&quot;)" fullname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests.PreviewMatchesRosGeometryWithoutRescaling(&quot;cab_mulch&quot;)" methodname="PreviewMatchesRosGeometryWithoutRescaling" classname="Agribot.VehicleConfiguration.Tests.FarmVehicleLibraryTests" runstate="Runnable" seed="1566281843" result="Passed" start-time="2026-10-25 09:50:34Z" end-time="2026-10-25 09:50:34Z" duration="0.277268" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1147" name="GarageThumbnailTests" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 09:50:34Z" end-time="2026-10-25 09:50:38Z" duration="3.635155" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1149" name="AllVehicleIconsAreBoundToTheCurrentDetailModels" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.AllVehicleIconsAreBoundToTheCurrentDetailModels" methodname="AllVehicleIconsAreBoundToTheCurrentDetailModels" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="1864846535" result="Passed" start-time="2026-10-25 09:50:34Z" end-time="2026-10-25 09:50:36Z" duration="1.663116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1153" name="InvalidThumbnailPathsAreRejected" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.InvalidThumbnailPathsAreRejected" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:36Z" duration="0.020147" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1150" name="InvalidThumbnailPathsAreRejected(&quot;../Car0&quot;)" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.InvalidThumbnailPathsAreRejected(&quot;../Car0&quot;)" methodname="InvalidThumbnailPathsAreRejected" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="807789422" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:36Z" duration="0.001045" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1151" name="InvalidThumbnailPathsAreRejected(&quot;Car0/icon&quot;)" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.InvalidThumbnailPathsAreRejected(&quot;Car0/icon&quot;)" methodname="InvalidThumbnailPathsAreRejected" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="654444341" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:36Z" duration="0.000092" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1152" name="InvalidThumbnailPathsAreRejected(&quot;&quot;)" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.InvalidThumbnailPathsAreRejected(&quot;&quot;)" methodname="InvalidThumbnailPathsAreRejected" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="1514067814" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:36Z" duration="0.002959" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1154" name="MissingThumbnailIsReported" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.MissingThumbnailIsReported" methodname="MissingThumbnailIsReported" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="1568157079" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:36Z" duration="0.000647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1148" name="RuntimePngBytesMatchTheOriginalVehicleAndImplementImages" fullname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests.RuntimePngBytesMatchTheOriginalVehicleAndImplementImages" methodname="RuntimePngBytesMatchTheOriginalVehicleAndImplementImages" classname="Agribot.VehicleConfiguration.Tests.GarageThumbnailTests" runstate="Runnable" seed="1766666212" result="Passed" start-time="2026-10-25 09:50:36Z" end-time="2026-10-25 09:50:38Z" duration="1.946835" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1155" name="ImportedSceneCatalogTests" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.125402" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1162" name="DeletedImportClearsOnlyItsOwnSelectionAndRecentReference" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.DeletedImportClearsOnlyItsOwnSelectionAndRecentReference" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.007832" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1160" name="DeletedImportClearsOnlyItsOwnSelectionAndRecentReference(True)" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.DeletedImportClearsOnlyItsOwnSelectionAndRecentReference(True)" methodname="DeletedImportClearsOnlyItsOwnSelectionAndRecentReference" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="529534683" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.006565" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1161" name="DeletedImportClearsOnlyItsOwnSelectionAndRecentReference(False)" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.DeletedImportClearsOnlyItsOwnSelectionAndRecentReference(False)" methodname="DeletedImportClearsOnlyItsOwnSelectionAndRecentReference" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="1457945844" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000881" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1158" name="ImportedManifestIsAnExtraLaunchArgumentAndAlgorithmIsPreserved" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.ImportedManifestIsAnExtraLaunchArgumentAndAlgorithmIsPreserved" methodname="ImportedManifestIsAnExtraLaunchArgumentAndAlgorithmIsPreserved" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="1664715969" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.001381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1159" name="ImportedSceneIdentitySurvivesHistoryTrimmingWithoutChangingCurrentSelection" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.ImportedSceneIdentitySurvivesHistoryTrimmingWithoutChangingCurrentSelection" methodname="ImportedSceneIdentitySurvivesHistoryTrimmingWithoutChangingCurrentSelection" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="288844284" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.003054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1157" name="MissingImportedAssetDoesNotBreakBuiltInScenes" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.MissingImportedAssetDoesNotBreakBuiltInScenes" methodname="MissingImportedAssetDoesNotBreakBuiltInScenes" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="891427450" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1156" name="NamedImportsPersistButNoSceneIsAutomaticallySelected" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.NamedImportsPersistButNoSceneIsAutomaticallySelected" methodname="NamedImportsPersistButNoSceneIsAutomaticallySelected" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="1327261719" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="SceneCatalogCacheLivesInConversationButClearsOnImportDeleteAndNewChat" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests.SceneCatalogCacheLivesInConversationButClearsOnImportDeleteAndNewChat" methodname="SceneCatalogCacheLivesInConversationButClearsOnImportDeleteAndNewChat" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneCatalogTests" runstate="Runnable" seed="690941943" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.001276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1164" name="RosFluConverterTests" fullname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests" classname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.001587" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1165" name="ConvertsUnityAxesToRosFlu" fullname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests.ConvertsUnityAxesToRosFlu" methodname="ConvertsUnityAxesToRosFlu" classname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests" runstate="Runnable" seed="375715913" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1167" name="ProducesRosOpticalFrameRotation" fullname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests.ProducesRosOpticalFrameRotation" methodname="ProducesRosOpticalFrameRotation" classname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests" runstate="Runnable" seed="757679276" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="RoundTripsRosPosition" fullname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests.RoundTripsRosPosition" methodname="RoundTripsRosPosition" classname="Agribot.VehicleConfiguration.Tests.RosFluConverterTests" runstate="Runnable" seed="400782090" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1168" name="RosSimulationLauncherTests" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.004385" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1172" name="ComposesAnArbitraryStackFromFiveIndependentSelections" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests.ComposesAnArbitraryStackFromFiveIndependentSelections" methodname="ComposesAnArbitraryStackFromFiveIndependentSelections" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" seed="1766486680" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1169" name="GameLaunchWaitsForUserSelectedNavigationPoses" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests.GameLaunchWaitsForUserSelectedNavigationPoses" methodname="GameLaunchWaitsForUserSelectedNavigationPoses" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" seed="561831219" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1171" name="GeneratesEveryIndependentComponentCombination" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests.GeneratesEveryIndependentComponentCombination" methodname="GeneratesEveryIndependentComponentCombination" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" seed="980244516" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.001344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1170" name="MissingSceneRejectsLaunchInsteadOfUsingLastSessionOrDefault" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests.MissingSceneRejectsLaunchInsteadOfUsingLastSessionOrDefault" methodname="MissingSceneRejectsLaunchInsteadOfUsingLastSessionOrDefault" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" seed="261757419" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1173" name="PreservesLegacyAlgorithmIdentifiers" fullname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests.PreservesLegacyAlgorithmIdentifiers" methodname="PreservesLegacyAlgorithmIdentifiers" classname="Agribot.VehicleConfiguration.Tests.RosSimulationLauncherTests" runstate="Runnable" seed="1669806781" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.000252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1174" name="SceneBindingsTests" fullname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests" classname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:39Z" duration="1.129586" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1176" name="AckermannConfigurationPanelsHaveValidScripts" fullname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests.AckermannConfigurationPanelsHaveValidScripts" methodname="AckermannConfigurationPanelsHaveValidScripts" classname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests" runstate="Runnable" seed="784398355" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:38Z" duration="0.298914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1175" name="Car0SceneAndResourcesUseConsistentNames" fullname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests.Car0SceneAndResourcesUseConsistentNames" methodname="Car0SceneAndResourcesUseConsistentNames" classname="Agribot.VehicleConfiguration.Tests.SceneBindingsTests" runstate="Runnable" seed="1739311771" result="Passed" start-time="2026-10-25 09:50:38Z" end-time="2026-10-25 09:50:39Z" duration="0.830140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1177" name="SceneVehiclesExportTests" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 09:50:39Z" end-time="2026-10-25 09:51:17Z" duration="38.377451" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1178" name="AckermannSeparatesSensorVisualsWithoutMovingMeasurementOrigins" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.AckermannSeparatesSensorVisualsWithoutMovingMeasurementOrigins" methodname="AckermannSeparatesSensorVisualsWithoutMovingMeasurementOrigins" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="2095156695" result="Passed" start-time="2026-10-25 09:50:39Z" end-time="2026-10-25 09:50:44Z" duration="5.203579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/ackermann_current/vehicle_config.json
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1184" name="NewVehicleExportsOwnGeometryAndSensors" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 09:50:44Z" end-time="2026-10-25 09:51:17Z" duration="33.128502" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1179" name="NewVehicleExportsOwnGeometryAndSensors(&quot;Car1&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors(&quot;Car1&quot;)" methodname="NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="526412904" result="Passed" start-time="2026-10-25 09:50:44Z" end-time="2026-10-25 09:50:51Z" duration="7.180807" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car1/vehicle_config.json
+]]></output>
+                </test-case>
+                <test-case id="1180" name="NewVehicleExportsOwnGeometryAndSensors(&quot;Car2&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors(&quot;Car2&quot;)" methodname="NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="1625363247" result="Passed" start-time="2026-10-25 09:50:51Z" end-time="2026-10-25 09:51:04Z" duration="12.565552" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car2/vehicle_config.json
+]]></output>
+                </test-case>
+                <test-case id="1181" name="NewVehicleExportsOwnGeometryAndSensors(&quot;Car3&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors(&quot;Car3&quot;)" methodname="NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="1196941974" result="Passed" start-time="2026-10-25 09:51:04Z" end-time="2026-10-25 09:51:06Z" duration="2.164517" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[导航最大角速度超过最大车速下的曲率限制 0.522543 rad/s。
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+]]></output>
+                </test-case>
+                <test-case id="1182" name="NewVehicleExportsOwnGeometryAndSensors(&quot;Car4&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors(&quot;Car4&quot;)" methodname="NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="2070931772" result="Passed" start-time="2026-10-25 09:51:06Z" end-time="2026-10-25 09:51:13Z" duration="7.197813" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car4/vehicle_config.json
+]]></output>
+                </test-case>
+                <test-case id="1183" name="NewVehicleExportsOwnGeometryAndSensors(&quot;Car5&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests.NewVehicleExportsOwnGeometryAndSensors(&quot;Car5&quot;)" methodname="NewVehicleExportsOwnGeometryAndSensors" classname="Agribot.VehicleConfiguration.Tests.SceneVehiclesExportTests" runstate="Runnable" seed="431738695" result="Passed" start-time="2026-10-25 09:51:13Z" end-time="2026-10-25 09:51:17Z" duration="4.016517" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car5/vehicle_config.json
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1185" name="SimulationAppearanceTests" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 09:51:17Z" end-time="2026-10-25 09:51:22Z" duration="4.322783" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1187" name="ChangedContactGeometryDoesNotSilentlyReuseFixedAppearance" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.ChangedContactGeometryDoesNotSilentlyReuseFixedAppearance" methodname="ChangedContactGeometryDoesNotSilentlyReuseFixedAppearance" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" seed="974454046" result="Passed" start-time="2026-10-25 09:51:17Z" end-time="2026-10-25 09:51:17Z" duration="0.194049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1188" name="CompactContactCentersUseInspectedIdlersAndExportSameGeometry" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.CompactContactCentersUseInspectedIdlersAndExportSameGeometry" methodname="CompactContactCentersUseInspectedIdlersAndExportSameGeometry" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" seed="361686636" result="Passed" start-time="2026-10-25 09:51:17Z" end-time="2026-10-25 09:51:18Z" duration="0.392771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1186" name="CompactTracksKeepSceneAnchorsAndExportAnimationAssets" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.CompactTracksKeepSceneAnchorsAndExportAnimationAssets" methodname="CompactTracksKeepSceneAnchorsAndExportAnimationAssets" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" seed="1576945713" result="Passed" start-time="2026-10-25 09:51:18Z" end-time="2026-10-25 09:51:20Z" duration="2.671265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[导航最大角速度超过最大车速下的曲率限制 0.522543 rad/s。
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1191" name="HarvesterExportsCompleteMovingTracksAndTexture" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.HarvesterExportsCompleteMovingTracksAndTexture" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:51:20Z" end-time="2026-10-25 09:51:22Z" duration="1.062163" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1189" name="HarvesterExportsCompleteMovingTracksAndTexture(&quot;tracked_harvester&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.HarvesterExportsCompleteMovingTracksAndTexture(&quot;tracked_harvester&quot;)" methodname="HarvesterExportsCompleteMovingTracksAndTexture" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" seed="21775170" result="Passed" start-time="2026-10-25 09:51:20Z" end-time="2026-10-25 09:51:21Z" duration="0.503661" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1190" name="HarvesterExportsCompleteMovingTracksAndTexture(&quot;harvester_header&quot;)" fullname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests.HarvesterExportsCompleteMovingTracksAndTexture(&quot;harvester_header&quot;)" methodname="HarvesterExportsCompleteMovingTracksAndTexture" classname="Agribot.VehicleConfiguration.Tests.SimulationAppearanceTests" runstate="Runnable" seed="1991965270" result="Passed" start-time="2026-10-25 09:51:21Z" end-time="2026-10-25 09:51:22Z" duration="0.556567" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

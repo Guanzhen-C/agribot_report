@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.9655206">
+  <test-suite type="TestSuite" id="1081" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.965521" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1074" name="Agribot.VehicleConfiguration.PlayModeTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.PlayModeTests.dll" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.961254" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="433368" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1075" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.960512" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1076" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.959971" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1077" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.959402" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1005" name="FarmGarageMountTests" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:38Z" duration="31.956875" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="CompactToolUsesTightFramingWithoutScalingVehicle" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.CompactToolUsesTightFramingWithoutScalingVehicle" methodname="CompactToolUsesTightFramingWithoutScalingVehicle" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="375304217" result="Passed" start-time="2026-10-25 09:29:06Z" end-time="2026-10-25 09:29:15Z" duration="9.501956" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[COMPACT_MOUNT_ZOOM before=5.2 after=7.212902
+]]></output>
+              </test-case>
+              <test-case id="1007" name="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" methodname="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1266502393" result="Passed" start-time="2026-10-25 09:29:15Z" end-time="2026-10-25 09:29:29Z" duration="14.110681" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+ARM_MOUNT_ZOOM car=Car0 equipment=Hand before=32 after=32
+ARM_MOUNT_ZOOM car=Car0 equipment=RTK before=32 after=32
+ARM_MOUNT_ZOOM car=Car3 equipment=Hand before=35 after=35
+ARM_MOUNT_ZOOM car=Car3 equipment=RTK before=35 after=35
+]]></output>
+              </test-case>
+              <test-case id="1008" name="SwitchingFromTrailerRestoresNormalVehicleView" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.SwitchingFromTrailerRestoresNormalVehicleView" methodname="SwitchingFromTrailerRestoresNormalVehicleView" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="2113132351" result="Passed" start-time="2026-10-25 09:29:29Z" end-time="2026-10-25 09:29:38Z" duration="8.333724" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-2.64, -20.87, 2.32), Extents: (5.23, 1.77, 5.25) shift=(2.57, 0.00, -0.95)
+TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-0.06, -20.87, 1.37), Extents: (5.23, 1.77, 5.25) shift=(0.00, 0.00, 0.00)
+TRAILER_SWITCH_VIEW fov=65 rotation=(0.00, 90.00, 0.00)
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

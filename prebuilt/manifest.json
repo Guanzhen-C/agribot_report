@@ -3,12 +3,12 @@
   "version": 1,
   "platform": "ubuntu-22.04-x86_64",
   "archive": "agribot-configurator-linux-x86_64.tar.zst",
-  "sha256": "957e59a21d35063382ac79acc4aa80438c85dffa7a77d946723e9ec2f1fd0b15",
-  "bytes": 1887521913,
+  "sha256": "0a6d910b82d17b56d45cecf8df96be65508bf0bbbe4a98e317f246013b97abee",
+  "bytes": 1887514807,
   "runtime_inputs": {
     "method": "git-runtime-input-blobs-v1",
-    "sha256": "ec3908b60bee916c04423404274ca56e05135de35509e6b99e3defba73e7366f",
+    "sha256": "7ccbc59f9ec2763aa36ac874f489ec15291ee5b36d3601305752b319c724f677",
     "files": 10222,
-    "source_commit": "4378fc576c7572f7e1d2abecc00ff6c55ac66195"
+    "source_commit": "c7f50297f0685019f28de394907d3569ec9ef32d"
   }
 }

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="60" result="Passed" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.9159455">
+  <test-suite type="TestSuite" id="1081" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.915946" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1074" name="Agribot.VehicleConfiguration.PlayModeTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.PlayModeTests.dll" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.911765" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="436497" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1075" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.910968" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1076" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.910369" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1077" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:47:20Z" duration="956.909639" total="60" passed="60" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="AuthoredManipulatorClickTests" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorClickTests" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorClickTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:31:45Z" duration="21.408119" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="NewHandEquipmentInstallsMovesAndUninstallsOnBothCars" fullname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorClickTests.NewHandEquipmentInstallsMovesAndUninstallsOnBothCars" methodname="NewHandEquipmentInstallsMovesAndUninstallsOnBothCars" classname="Agribot.VehicleConfiguration.Tests.AuthoredManipulatorClickTests" runstate="Runnable" seed="880522434" result="Passed" start-time="2026-10-25 09:31:23Z" end-time="2026-10-25 09:31:45Z" duration="21.399081" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1003" name="CompactTractorPresentationTests" fullname="Agribot.VehicleConfiguration.Tests.CompactTractorPresentationTests" classname="Agribot.VehicleConfiguration.Tests.CompactTractorPresentationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-25 09:31:45Z" end-time="2026-10-25 09:31:59Z" duration="14.510261" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1004" name="Car6UsesCompleteTwoSidedPreviewThroughoutCameraOrbitAndReturn" fullname="Agribot.VehicleConfiguration.Tests.CompactTractorPresentationTests.Car6UsesCompleteTwoSidedPreviewThroughoutCameraOrbitAndReturn" methodname="Car6UsesCompleteTwoSidedPreviewThroughoutCameraOrbitAndReturn" classname="Agribot.VehicleConfiguration.Tests.CompactTractorPresentationTests" runstate="Runnable" seed="50200403" result="Passed" start-time="2026-10-25 09:31:45Z" end-time="2026-10-25 09:31:59Z" duration="14.509351" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1005" name="FarmGarageMountTests" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-25 09:31:59Z" end-time="2026-10-25 09:38:47Z" duration="408.023495" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1015" name="CabTractorInstallsSensorsExportsAndSelectsNewScene" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.CabTractorInstallsSensorsExportsAndSelectsNewScene" methodname="CabTractorInstallsSensorsExportsAndSelectsNewScene" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1811902780" result="Passed" start-time="2026-10-25 09:31:59Z" end-time="2026-10-25 09:32:17Z" duration="17.916357" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CAB_CAMERA pose=(5.10, -16.99, -4.62) fov=65 bounds=Center: (-0.06, -20.94, 1.38), Extents: (2.86, 1.70, 1.59)
+]]></output>
+              </test-case>
+              <test-case id="1006" name="CompactToolUsesTightFramingWithoutScalingVehicle" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.CompactToolUsesTightFramingWithoutScalingVehicle" methodname="CompactToolUsesTightFramingWithoutScalingVehicle" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="365103158" result="Passed" start-time="2026-10-25 09:32:17Z" end-time="2026-10-25 09:32:26Z" duration="8.572551" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[COMPACT_MOUNT_ZOOM before=5.2 after=7.212902
+]]></output>
+              </test-case>
+              <test-case id="1017" name="ExistingGarageInstallsFixedSensorsAndExclusiveImplements" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.ExistingGarageInstallsFixedSensorsAndExclusiveImplements" methodname="ExistingGarageInstallsFixedSensorsAndExclusiveImplements" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1245001016" result="Passed" start-time="2026-10-25 09:32:26Z" end-time="2026-10-25 09:32:45Z" duration="19.226736" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="ExpandedRearMountsInstallExclusivelyExportAndStayInsideGarage" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.ExpandedRearMountsInstallExclusivelyExportAndStayInsideGarage" methodname="ExpandedRearMountsInstallExclusivelyExportAndStayInsideGarage" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="865001743" result="Passed" start-time="2026-10-25 09:32:45Z" end-time="2026-10-25 09:35:25Z" duration="159.773815" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" methodname="HarvesterHeaderInstallsSeparatelyWithoutShrinkingVehicle" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1817532081" result="Passed" start-time="2026-10-25 09:35:25Z" end-time="2026-10-25 09:35:44Z" duration="19.037093" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="ImplementListShowsScrollbarAndLastRowCanBeClicked" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.ImplementListShowsScrollbarAndLastRowCanBeClicked" methodname="ImplementListShowsScrollbarAndLastRowCanBeClicked" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1942175832" result="Passed" start-time="2026-10-25 09:35:44Z" end-time="2026-10-25 09:35:52Z" duration="8.331481" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1007" name="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" methodname="InstallingArmAndRtkKeepsCurrentEquipmentCameraDistance" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1228680920" result="Passed" start-time="2026-10-25 09:35:52Z" end-time="2026-10-25 09:36:06Z" duration="13.948296" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+ARM_MOUNT_ZOOM car=Car0 equipment=Hand before=32 after=32
+ARM_MOUNT_ZOOM car=Car0 equipment=RTK before=32 after=32
+ARM_MOUNT_ZOOM car=Car3 equipment=Hand before=35 after=35
+ARM_MOUNT_ZOOM car=Car3 equipment=RTK before=35 after=35
+]]></output>
+              </test-case>
+              <test-case id="1013" name="MowerUsesExistingGarageSensorInstallationAndExport" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.MowerUsesExistingGarageSensorInstallationAndExport" methodname="MowerUsesExistingGarageSensorInstallationAndExport" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="499071720" result="Passed" start-time="2026-10-25 09:36:06Z" end-time="2026-10-25 09:36:21Z" duration="15.071423" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="NewSeedersTrailerAndHarvesterUseExistingInstallationAndExport" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.NewSeedersTrailerAndHarvesterUseExistingInstallationAndExport" methodname="NewSeedersTrailerAndHarvesterUseExistingInstallationAndExport" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="182440065" result="Passed" start-time="2026-10-25 09:36:21Z" end-time="2026-10-25 09:36:52Z" duration="30.697538" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-2.64, -20.64, 2.32), Extents: (5.23, 2.00, 5.25) shift=(2.57, 0.00, -0.95)
+]]></output>
+              </test-case>
+              <test-case id="1016" name="NewVehicleCameraRemainsInsideGarage" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.NewVehicleCameraRemainsInsideGarage" methodname="NewVehicleCameraRemainsInsideGarage" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="111836048" result="Passed" start-time="2026-10-25 09:36:52Z" end-time="2026-10-25 09:37:52Z" duration="60.058385" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[GARAGE_CAMERA_BOUNDS walls=Center: (-0.06, -20.27, 1.37), Extents: (5.55, 2.43, 6.05) floor=Center: (-0.21, -22.67, 1.34), Extents: (5.74, 0.08, 6.08) ceiling=Center: (-0.06, -17.84, 1.29), Extents: (5.56, 0.00, 5.98)
+GARAGE_CAMERA_TARGET (0.64, -21.64, 0.47) camera=(3.81, -19.53, -2.86)
+]]></output>
+              </test-case>
+              <test-case id="1019" name="OriginalCarDisablesIncompatibleImplementsWithoutDescription" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.OriginalCarDisablesIncompatibleImplementsWithoutDescription" methodname="OriginalCarDisablesIncompatibleImplementsWithoutDescription" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1146795140" result="Passed" start-time="2026-10-25 09:37:52Z" end-time="2026-10-25 09:37:54Z" duration="2.243849" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1018" name="OriginalCarUsesSharedEquipmentPanelStyleAndCanReopen" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.OriginalCarUsesSharedEquipmentPanelStyleAndCanReopen" methodname="OriginalCarUsesSharedEquipmentPanelStyleAndCanReopen" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1289930534" result="Passed" start-time="2026-10-25 09:37:54Z" end-time="2026-10-25 09:38:06Z" duration="11.488251" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1010" name="OriginalTractorsUseMetricModelsAndExportInstalledImplements" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.OriginalTractorsUseMetricModelsAndExportInstalledImplements" methodname="OriginalTractorsUseMetricModelsAndExportInstalledImplements" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1756791164" result="Passed" start-time="2026-10-25 09:38:06Z" end-time="2026-10-25 09:38:39Z" duration="33.307066" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="SwitchingFromTrailerRestoresNormalVehicleView" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.SwitchingFromTrailerRestoresNormalVehicleView" methodname="SwitchingFromTrailerRestoresNormalVehicleView" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="649248843" result="Passed" start-time="2026-10-25 09:38:39Z" end-time="2026-10-25 09:38:47Z" duration="8.347873" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-2.64, -20.87, 2.32), Extents: (5.23, 1.77, 5.25) shift=(2.57, 0.00, -0.95)
+TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-0.06, -20.87, 1.37), Extents: (5.23, 1.77, 5.25) shift=(0.00, 0.00, 0.00)
+TRAILER_SWITCH_VIEW fov=65 rotation=(0.00, 90.00, 0.00)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1020" name="GarageNotificationTests" fullname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests" classname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:38:47Z" end-time="2026-10-25 09:39:00Z" duration="13.093615" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1022" name="Car4AndCar5HaveFourBlackTyresAndLightHubs" fullname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests.Car4AndCar5HaveFourBlackTyresAndLightHubs" methodname="Car4AndCar5HaveFourBlackTyresAndLightHubs" classname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests" runstate="Runnable" seed="29029784" result="Passed" start-time="2026-10-25 09:38:47Z" end-time="2026-10-25 09:38:55Z" duration="7.153425" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="NoticesWrapReplaceAndDismissWithoutCoveringControls" fullname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests.NoticesWrapReplaceAndDismissWithoutCoveringControls" methodname="NoticesWrapReplaceAndDismissWithoutCoveringControls" classname="Agribot.VehicleConfiguration.Tests.GarageNotificationTests" runstate="Runnable" seed="1450053333" result="Passed" start-time="2026-10-25 09:38:55Z" end-time="2026-10-25 09:39:00Z" duration="5.932569" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[ROS 配置导出失败：请先安装雷达、RTK、相机和 IMU，等待安装动画结束。
+请检查配置后重试。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+长错误信息和配置路径不会撑破提示框。
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1023" name="GaragePresentationTests" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 09:39:00Z" end-time="2026-10-25 09:40:02Z" duration="61.860015" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1028" name="EveryVehicleCanReturnToTheOriginalGarageOverview" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests.EveryVehicleCanReturnToTheOriginalGarageOverview" methodname="EveryVehicleCanReturnToTheOriginalGarageOverview" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" seed="133056206" result="Passed" start-time="2026-10-25 09:39:00Z" end-time="2026-10-25 09:39:32Z" duration="31.138612" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1027" name="GarageCardsPreserveSourceColoursInEveryButtonState" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests.GarageCardsPreserveSourceColoursInEveryButtonState" methodname="GarageCardsPreserveSourceColoursInEveryButtonState" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" seed="735814210" result="Passed" start-time="2026-10-25 09:39:32Z" end-time="2026-10-25 09:39:41Z" duration="9.061218" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[GARAGE_COLOUR Car0 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car1 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car2 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car3 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car4 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car5 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car6 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car7 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car8 imported=ARGB32/87 png=ARGB32/87 error=0.000
+GARAGE_COLOUR Car9 imported=ARGB32/87 png=ARGB32/87 error=0.000
+]]></output>
+              </test-case>
+              <test-case id="1025" name="OriginalEquipmentIconsPreserveSensorColours" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests.OriginalEquipmentIconsPreserveSensorColours" methodname="OriginalEquipmentIconsPreserveSensorColours" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" seed="1926822517" result="Passed" start-time="2026-10-25 09:39:41Z" end-time="2026-10-25 09:39:43Z" duration="2.110178" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+SENSOR_ICON_COLOUR EquipmentDetailsUI_copy/RADAR meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI_copy/RTK meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI_copy/CarCamera meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI_copy/ImuBox meanError=0.0000
+]]></output>
+              </test-case>
+              <test-case id="1026" name="ReturningFromLargeVehicleRestoresOverviewCamera" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests.ReturningFromLargeVehicleRestoresOverviewCamera" methodname="ReturningFromLargeVehicleRestoresOverviewCamera" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" seed="1052647162" result="Passed" start-time="2026-10-25 09:39:43Z" end-time="2026-10-25 09:39:56Z" duration="12.975627" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="SharedEquipmentIconsPreserveSensorColours" fullname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests.SharedEquipmentIconsPreserveSensorColours" methodname="SharedEquipmentIconsPreserveSensorColours" classname="Agribot.VehicleConfiguration.Tests.GaragePresentationTests" runstate="Runnable" seed="1510094764" result="Passed" start-time="2026-10-25 09:39:56Z" end-time="2026-10-25 09:40:02Z" duration="6.573145" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SENSOR_ICON_COLOUR EquipmentDetailsUI/RADAR meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI/RTK meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI/CarCamera meanError=0.0000
+SENSOR_ICON_COLOUR EquipmentDetailsUI/ImuBox meanError=0.0000
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1029" name="HandoffButtonsTests" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:40:02Z" end-time="2026-10-25 09:40:18Z" duration="15.395668" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1030" name="FollowConfigurationPanelWithoutOverlapping" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests.FollowConfigurationPanelWithoutOverlapping" methodname="FollowConfigurationPanelWithoutOverlapping" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" seed="628329234" result="Passed" start-time="2026-10-25 09:40:02Z" end-time="2026-10-25 09:40:13Z" duration="10.303988" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1031" name="ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" fullname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests.ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" methodname="ToolbarWrapsWithoutOverlappingButtonsOrSidePanels" classname="Agribot.VehicleConfiguration.Tests.HandoffButtonsTests" runstate="Runnable" seed="123922928" result="Passed" start-time="2026-10-25 09:40:13Z" end-time="2026-10-25 09:40:18Z" duration="5.090586" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1032" name="ImportedSceneUiTests" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:40:18Z" end-time="2026-10-25 09:40:35Z" duration="16.801480" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1035" name="DeleteButtonConfirmsBlocksActiveSimulationAndClearsCacheAndSelection" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests.DeleteButtonConfirmsBlocksActiveSimulationAndClearsCacheAndSelection" methodname="DeleteButtonConfirmsBlocksActiveSimulationAndClearsCacheAndSelection" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests" runstate="Runnable" seed="224071254" result="Passed" start-time="2026-10-25 09:40:18Z" end-time="2026-10-25 09:40:24Z" duration="5.934127" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1033" name="ImportDialogUsesEditableChineseNameAndDoesNotAutoImport" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests.ImportDialogUsesEditableChineseNameAndDoesNotAutoImport" methodname="ImportDialogUsesEditableChineseNameAndDoesNotAutoImport" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests" runstate="Runnable" seed="2046324866" result="Passed" start-time="2026-10-25 09:40:24Z" end-time="2026-10-25 09:40:29Z" duration="4.921019" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1034" name="ImportedAssistantPlanRevalidatesAndAppliesWithoutStartingSimulation" fullname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests.ImportedAssistantPlanRevalidatesAndAppliesWithoutStartingSimulation" methodname="ImportedAssistantPlanRevalidatesAndAppliesWithoutStartingSimulation" classname="Agribot.VehicleConfiguration.Tests.ImportedSceneUiTests" runstate="Runnable" seed="328512018" result="Passed" start-time="2026-10-25 09:40:29Z" end-time="2026-10-25 09:40:35Z" duration="5.945131" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1036" name="NaturalRecommendationTests" fullname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests" classname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:40:35Z" end-time="2026-10-25 09:40:59Z" duration="24.904568" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1038" name="Car0ConfigurationCanAlsoBeApplied" fullname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests.Car0ConfigurationCanAlsoBeApplied" methodname="Car0ConfigurationCanAlsoBeApplied" classname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests" runstate="Runnable" seed="1388274970" result="Passed" start-time="2026-10-25 09:40:35Z" end-time="2026-10-25 09:40:42Z" duration="7.029326" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1039" name="LocalRevalidationRejectsUnconfirmedCandidateAndMissingKeyIsNotNeeded" fullname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests.LocalRevalidationRejectsUnconfirmedCandidateAndMissingKeyIsNotNeeded" methodname="LocalRevalidationRejectsUnconfirmedCandidateAndMissingKeyIsNotNeeded" classname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests" runstate="Runnable" seed="58217533" result="Passed" start-time="2026-10-25 09:40:42Z" end-time="2026-10-25 09:40:42Z" duration="0.414089" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1037" name="RecommendationsApplyDifferentVehiclesToolsAndAlgorithmsWithoutLaunching" fullname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests.RecommendationsApplyDifferentVehiclesToolsAndAlgorithmsWithoutLaunching" methodname="RecommendationsApplyDifferentVehiclesToolsAndAlgorithmsWithoutLaunching" classname="Agribot.VehicleConfiguration.Tests.NaturalRecommendationTests" runstate="Runnable" seed="817636340" result="Passed" start-time="2026-10-25 09:40:42Z" end-time="2026-10-25 09:40:59Z" duration="17.459969" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[导航最大角速度超过最大车速下的曲率限制 0.522543 rad/s。
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1040" name="NewVehicleButtonsTests" fullname="Agribot.VehicleConfiguration.Tests.NewVehicleButtonsTests" classname="Agribot.VehicleConfiguration.Tests.NewVehicleButtonsTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-25 09:40:59Z" end-time="2026-10-25 09:41:16Z" duration="16.272997" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1041" name="EachNewVehicleShowsExportAndStopControls" fullname="Agribot.VehicleConfiguration.Tests.NewVehicleButtonsTests.EachNewVehicleShowsExportAndStopControls" methodname="EachNewVehicleShowsExportAndStopControls" classname="Agribot.VehicleConfiguration.Tests.NewVehicleButtonsTests" runstate="Runnable" seed="856410530" result="Passed" start-time="2026-10-25 09:40:59Z" end-time="2026-10-25 09:41:16Z" duration="16.253769" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1042" name="PanelTextTests" fullname="Agribot.VehicleConfiguration.Tests.PanelTextTests" classname="Agribot.VehicleConfiguration.Tests.PanelTextTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-25 09:41:16Z" end-time="2026-10-25 09:41:21Z" duration="5.485535" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1043" name="EquipmentPromptIsEditableTextAndUsesUpdatedWording" fullname="Agribot.VehicleConfiguration.Tests.PanelTextTests.EquipmentPromptIsEditableTextAndUsesUpdatedWording" methodname="EquipmentPromptIsEditableTextAndUsesUpdatedWording" classname="Agribot.VehicleConfiguration.Tests.PanelTextTests" runstate="Runnable" seed="1737484250" result="Passed" start-time="2026-10-25 09:41:16Z" end-time="2026-10-25 09:41:21Z" duration="5.484918" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1044" name="SensorInstallationClickTests" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-25 09:41:21Z" end-time="2026-10-25 09:45:03Z" duration="221.453873" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1045" name="Car1SensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.Car1SensorClicks" methodname="Car1SensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="1452515976" result="Passed" start-time="2026-10-25 09:41:21Z" end-time="2026-10-25 09:41:48Z" duration="27.017132" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[正在导出当前车型的未标定配置草案
+OK: 已导出未经真机标定的离线草案: /tmp/agribot-ui-draft-24c4fce4-1c5e-4f83-ac07-1a7fd612cb29/unity_car1_physical_draft
+
+已导出未标定配置草案：/tmp/agribot-ui-draft-24c4fce4-1c5e-4f83-ac07-1a7fd612cb29/unity_car1_physical_draft
+]]></output>
+              </test-case>
+              <test-case id="1046" name="Car2SensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.Car2SensorClicks" methodname="Car2SensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="2003830071" result="Passed" start-time="2026-10-25 09:41:48Z" end-time="2026-10-25 09:42:17Z" duration="28.464255" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[正在导出当前车型的未标定配置草案
+OK: 已导出未经真机标定的离线草案: /tmp/agribot-ui-draft-2ad7c1d6-e064-4dcd-8e72-479e4ae836db/unity_car2_physical_draft
+
+已导出未标定配置草案：/tmp/agribot-ui-draft-2ad7c1d6-e064-4dcd-8e72-479e4ae836db/unity_car2_physical_draft
+]]></output>
+              </test-case>
+              <test-case id="1047" name="Car3SensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.Car3SensorClicks" methodname="Car3SensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="570075113" result="Passed" start-time="2026-10-25 09:42:17Z" end-time="2026-10-25 09:42:44Z" duration="27.096647" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[导航最大角速度超过最大车速下的曲率限制 0.522543 rad/s。
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+ROS 车辆配置已导出：/home/cgz/agribot_report/unity/ConfigExports/unity_car3/vehicle_config.json
+正在导出当前车型的未标定配置草案
+OK: 已导出未经真机标定的离线草案: /tmp/agribot-ui-draft-38678ada-d89c-4a17-8ea3-d2c643524c55/unity_car3_physical_draft
+
+已导出未标定配置草案：/tmp/agribot-ui-draft-38678ada-d89c-4a17-8ea3-d2c643524c55/unity_car3_physical_draft
+]]></output>
+              </test-case>
+              <test-case id="1048" name="Car4SensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.Car4SensorClicks" methodname="Car4SensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="2144876055" result="Passed" start-time="2026-10-25 09:42:44Z" end-time="2026-10-25 09:43:11Z" duration="26.908314" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[正在导出当前车型的未标定配置草案
+OK: 已导出未经真机标定的离线草案: /tmp/agribot-ui-draft-aca3659e-1c22-48c2-9e44-7ae93cde27fd/unity_car4_physical_draft
+
+已导出未标定配置草案：/tmp/agribot-ui-draft-aca3659e-1c22-48c2-9e44-7ae93cde27fd/unity_car4_physical_draft
+]]></output>
+              </test-case>
+              <test-case id="1049" name="Car5SensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.Car5SensorClicks" methodname="Car5SensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="1967880268" result="Passed" start-time="2026-10-25 09:43:11Z" end-time="2026-10-25 09:43:37Z" duration="25.891794" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[正在导出当前车型的未标定配置草案
+OK: 已导出未经真机标定的离线草案: /tmp/agribot-ui-draft-613f62d1-39a5-421e-b01d-8263a5f81ee0/unity_car5_physical_draft
+
+已导出未标定配置草案：/tmp/agribot-ui-draft-613f62d1-39a5-421e-b01d-8263a5f81ee0/unity_car5_physical_draft
+]]></output>
+              </test-case>
+              <test-case id="1052" name="EmptyInventorySaveStillOffersFourSensors" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.EmptyInventorySaveStillOffersFourSensors" methodname="EmptyInventorySaveStillOffersFourSensors" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="1294550325" result="Passed" start-time="2026-10-25 09:43:37Z" end-time="2026-10-25 09:43:45Z" duration="8.118041" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1053" name="OriginalAndNewScenesKeepCatalogAcrossRepeatedSwitches" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.OriginalAndNewScenesKeepCatalogAcrossRepeatedSwitches" methodname="OriginalAndNewScenesKeepCatalogAcrossRepeatedSwitches" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="1098477270" result="Passed" start-time="2026-10-25 09:43:45Z" end-time="2026-10-25 09:44:06Z" duration="20.885876" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1050" name="OriginalCarSensorClicks" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.OriginalCarSensorClicks" methodname="OriginalCarSensorClicks" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="1641323628" result="Passed" start-time="2026-10-25 09:44:06Z" end-time="2026-10-25 09:44:27Z" duration="20.955390" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+正在停止仿真
+仿真已停止
+正在导出真机配置
+]]></output>
+              </test-case>
+              <test-case id="1051" name="SwitchingVehiclesDoesNotInstallOnPreviousVehicle" fullname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests.SwitchingVehiclesDoesNotInstallOnPreviousVehicle" methodname="SwitchingVehiclesDoesNotInstallOnPreviousVehicle" classname="Agribot.VehicleConfiguration.Tests.SensorInstallationClickTests" runstate="Runnable" seed="577595673" result="Passed" start-time="2026-10-25 09:44:27Z" end-time="2026-10-25 09:45:03Z" duration="36.113635" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[已导出配置和6750固件，请人工烧录
+真机配置已导出：/tmp/agribot-ui-draft-bb713ac4-cb53-4782-9bc2-ee677b3f8d5b/ackermann_physical_runtime.json
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1054" name="UnifiedAssistantTests" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 09:45:03Z" end-time="2026-10-25 09:45:42Z" duration="39.225180" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1060" name="AlternativeAlgorithmRevalidatesWithoutStartingSimulation" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.AlternativeAlgorithmRevalidatesWithoutStartingSimulation" methodname="AlternativeAlgorithmRevalidatesWithoutStartingSimulation" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="749993096" result="Passed" start-time="2026-10-25 09:45:03Z" end-time="2026-10-25 09:45:03Z" duration="0.607095" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1059" name="EntireAppStartsInGarageWithoutRestoringSceneOrInstalledEquipment" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.EntireAppStartsInGarageWithoutRestoringSceneOrInstalledEquipment" methodname="EntireAppStartsInGarageWithoutRestoringSceneOrInstalledEquipment" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="1887316265" result="Passed" start-time="2026-10-25 09:45:03Z" end-time="2026-10-25 09:45:18Z" duration="15.198988" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1057" name="InterfaceEventsRemainInContextButNeverAppearAsChatMessages" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.InterfaceEventsRemainInContextButNeverAppearAsChatMessages" methodname="InterfaceEventsRemainInContextButNeverAppearAsChatMessages" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="2050331623" result="Passed" start-time="2026-10-25 09:45:18Z" end-time="2026-10-25 09:45:23Z" duration="4.300374" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1055" name="SessionTracksOrderedChatActionsSnapshotAndMemory" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.SessionTracksOrderedChatActionsSnapshotAndMemory" methodname="SessionTracksOrderedChatActionsSnapshotAndMemory" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="1765701897" result="Passed" start-time="2026-10-25 09:45:23Z" end-time="2026-10-25 09:45:23Z" duration="0.006243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1056" name="SingleAssistantAndConversationSurviveGarageAndSceneChanges" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.SingleAssistantAndConversationSurviveGarageAndSceneChanges" methodname="SingleAssistantAndConversationSurviveGarageAndSceneChanges" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="1459856454" result="Passed" start-time="2026-10-25 09:45:23Z" end-time="2026-10-25 09:45:33Z" duration="10.379910" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1058" name="StartupHasNoAlgorithmAndNewConversationClearsChatAndDraft" fullname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests.StartupHasNoAlgorithmAndNewConversationClearsChatAndDraft" methodname="StartupHasNoAlgorithmAndNewConversationClearsChatAndDraft" classname="Agribot.VehicleConfiguration.Tests.UnifiedAssistantTests" runstate="Runnable" seed="1274598235" result="Passed" start-time="2026-10-25 09:45:33Z" end-time="2026-10-25 09:45:42Z" duration="8.730580" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1061" name="UnifiedCar0Tests" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-25 09:45:42Z" end-time="2026-10-25 09:47:20Z" duration="98.472085" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1062" name="AllVehiclesUseTheSameGarageAndFastReturn" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.AllVehiclesUseTheSameGarageAndFastReturn" methodname="AllVehiclesUseTheSameGarageAndFastReturn" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="679788034" result="Passed" start-time="2026-10-25 09:45:42Z" end-time="2026-10-25 09:45:54Z" duration="12.353733" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+SHARED_GARAGE_RETURN Car0 0.349s
+SHARED_GARAGE_RETURN Car1 0.349s
+SHARED_GARAGE_RETURN Car3 0.347s
+SHARED_GARAGE_RETURN Car9 0.351s
+SHARED_GARAGE_RETURN Car0 0.349s
+]]></output>
+              </test-case>
+              <test-case id="1066" name="AssistantAcceptsCommittedTextWithoutDuplicatingLegacyInput" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.AssistantAcceptsCommittedTextWithoutDuplicatingLegacyInput" methodname="AssistantAcceptsCommittedTextWithoutDuplicatingLegacyInput" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="1489001648" result="Passed" start-time="2026-10-25 09:45:54Z" end-time="2026-10-25 09:45:58Z" duration="4.137968" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="AssistantCompletesWholeChineseCommitsIncludingPartiallyHandledBatches" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.AssistantCompletesWholeChineseCommitsIncludingPartiallyHandledBatches" methodname="AssistantCompletesWholeChineseCommitsIncludingPartiallyHandledBatches" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="2116935108" result="Passed" start-time="2026-10-25 09:45:58Z" end-time="2026-10-25 09:46:03Z" duration="4.262849" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1070" name="AssistantEnterSendsShiftEnterAddsNewlineAndImeEnterDoesNotSend" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.AssistantEnterSendsShiftEnterAddsNewlineAndImeEnterDoesNotSend" methodname="AssistantEnterSendsShiftEnterAddsNewlineAndImeEnterDoesNotSend" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="581036678" result="Passed" start-time="2026-10-25 09:46:03Z" end-time="2026-10-25 09:46:07Z" duration="4.226507" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1064" name="BodyDoubleClickUsesTheSharedRenderingCamera" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.BodyDoubleClickUsesTheSharedRenderingCamera" methodname="BodyDoubleClickUsesTheSharedRenderingCamera" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="2105445775" result="Passed" start-time="2026-10-25 09:46:07Z" end-time="2026-10-25 09:46:13Z" duration="6.432518" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+CAR0_BODY_PICK point=(313.25, 215.37) collider=True hits=Floor,BodyCollider ui=BodyCollider,Floor
+]]></output>
+              </test-case>
+              <test-case id="1072" name="ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" methodname="ExplodedViewsUseFinePartsAndRestoreEveryVehicleExactly" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="102572160" result="Passed" start-time="2026-10-25 09:46:13Z" end-time="2026-10-25 09:46:33Z" duration="20.022211" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+FINE_EXPLODED_VIEW Car0 parts=53
+FINE_EXPLODED_VIEW Car1 parts=33
+FINE_EXPLODED_VIEW Car2 parts=64
+FINE_EXPLODED_VIEW Car3 parts=144
+FINE_EXPLODED_VIEW Car4 parts=20
+FINE_EXPLODED_VIEW Car5 parts=21
+FINE_EXPLODED_VIEW Car6 parts=14
+FINE_EXPLODED_VIEW Car7 parts=12
+FINE_EXPLODED_VIEW Car8 parts=15
+FINE_EXPLODED_VIEW Car9 parts=37
+]]></output>
+              </test-case>
+              <test-case id="1065" name="GarageCardCanSelectCar0ThroughPointerInput" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.GarageCardCanSelectCar0ThroughPointerInput" methodname="GarageCardCanSelectCar0ThroughPointerInput" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="1006556824" result="Passed" start-time="2026-10-25 09:46:33Z" end-time="2026-10-25 09:46:39Z" duration="5.461288" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CAR0_CARD_PICK point=(119.55, 337.20) hits=Car0_Img,GarageScroll,GarageBackground,MainPanel
+UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1067" name="InstalledCameraIsOnlyAVisualModel" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.InstalledCameraIsOnlyAVisualModel" methodname="InstalledCameraIsOnlyAVisualModel" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="583881487" result="Passed" start-time="2026-10-25 09:46:39Z" end-time="2026-10-25 09:46:45Z" duration="6.147678" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+CAMERA_PREVIEW_COMPONENTS 
+]]></output>
+              </test-case>
+              <test-case id="1069" name="NativeChineseCommitsKeepWholeWordsSelectionAndUnicodeLimit" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.NativeChineseCommitsKeepWholeWordsSelectionAndUnicodeLimit" methodname="NativeChineseCommitsKeepWholeWordsSelectionAndUnicodeLimit" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="501830114" result="Passed" start-time="2026-10-25 09:46:45Z" end-time="2026-10-25 09:46:49Z" duration="4.099654" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[The character with Unicode value \U0001F69C was not found in the [] font asset or any potential fallbacks. It was replaced by Unicode character \u25A1 in text object [Text].
+The character with Unicode value \U0001F69C was not found in the [] font asset or any potential fallbacks. It was replaced by Unicode character \u25A1 in text object [Text].
+]]></output>
+              </test-case>
+              <test-case id="1063" name="RepairIsCar0OnlyAndSharedEquipmentCloseIsVisible" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.RepairIsCar0OnlyAndSharedEquipmentCloseIsVisible" methodname="RepairIsCar0OnlyAndSharedEquipmentCloseIsVisible" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="768335794" result="Passed" start-time="2026-10-25 09:46:49Z" end-time="2026-10-25 09:46:59Z" duration="10.440830" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1071" name="RepairKeepsPreviewScaleAndRestoresViewOnGracefulClose" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.RepairKeepsPreviewScaleAndRestoresViewOnGracefulClose" methodname="RepairKeepsPreviewScaleAndRestoresViewOnGracefulClose" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="1495110522" result="Passed" start-time="2026-10-25 09:46:59Z" end-time="2026-10-25 09:47:10Z" duration="10.055700" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+]]></output>
+              </test-case>
+              <test-case id="1073" name="SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" fullname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests.SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" methodname="SharedCar0PreservesCalibrationAndExportsTheCurrentAssembly" classname="Agribot.VehicleConfiguration.Tests.UnifiedCar0Tests" runstate="Runnable" seed="108758342" result="Passed" start-time="2026-10-25 09:47:10Z" end-time="2026-10-25 09:47:20Z" duration="10.825723" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+UICanvas的世界坐标：(-0.16, -21.30, 0.89)
+ROS 车辆配置已导出：/tmp/agribot-car0-shared-9f8d0403-1f7d-4e37-9f9a-2e2eaa0ff5da/vehicle_config.json
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

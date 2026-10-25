@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.5544209">
+  <test-suite type="TestSuite" id="1080" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.554421" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1073" name="Agribot.VehicleConfiguration.PlayModeTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.PlayModeTests.dll" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.550123" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="415852" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1074" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.549280" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1075" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.548704" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1076" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.548138" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1005" name="FarmGarageMountTests" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:19Z" duration="17.545951" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1006" name="InstallingCompactToolKeepsDefaultZoom" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.InstallingCompactToolKeepsDefaultZoom" methodname="InstallingCompactToolKeepsDefaultZoom" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1440818021" result="Failed" start-time="2026-10-25 09:18:02Z" end-time="2026-10-25 09:18:11Z" duration="8.933727" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A compact rear tool must not make the whole vehicle look miniature.
+  Expected: less than or equal to 5.71999979f
+  But was:  8.32167912f
+]]></message>
+                  <stack-trace><![CDATA[at Agribot.VehicleConfiguration.Tests.FarmGarageMountTests+<InstallingCompactToolKeepsDefaultZoom>d__0.MoveNext () [0x0020c] in /home/cgz/agribot_report/unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs:37
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[COMPACT_MOUNT_ZOOM before=5.2 after=8.321679
+]]></output>
+              </test-case>
+              <test-case id="1007" name="SwitchingFromTrailerRestoresNormalVehicleView" fullname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests.SwitchingFromTrailerRestoresNormalVehicleView" methodname="SwitchingFromTrailerRestoresNormalVehicleView" classname="Agribot.VehicleConfiguration.Tests.FarmGarageMountTests" runstate="Runnable" seed="1348304566" result="Failed" start-time="2026-10-25 09:18:11Z" end-time="2026-10-25 09:18:19Z" duration="8.602037" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A normal tool must not inherit the trailer's wide-angle view.
+  Expected: 65.0f +/- 0.00999999978f
+  But was:  90.0f
+]]></message>
+                  <stack-trace><![CDATA[at Agribot.VehicleConfiguration.Tests.FarmGarageMountTests+<SwitchingFromTrailerRestoresNormalVehicleView>d__1.MoveNext () [0x00240] in /home/cgz/agribot_report/unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs:63
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-2.64, -20.87, 2.32), Extents: (5.23, 1.77, 5.25) shift=(2.57, 0.00, -0.95)
+TRAILER_VIEW room=Center: (-0.06, -18.87, 1.37), Extents: (8.88, 3.89, 9.67) assembly=Center: (-0.06, -20.87, 1.37), Extents: (5.23, 1.77, 5.25) shift=(0.00, 0.00, 0.00)
+TRAILER_SWITCH_VIEW fov=90 rotation=(0.00, 135.00, 0.00)
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
