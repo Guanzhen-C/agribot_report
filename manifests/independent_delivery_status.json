@@ -1,7 +1,7 @@
 {
   "format": "agribot.independent-delivery-status",
   "version": 1,
-  "status": "ui_update_validation",
+  "status": "complete",
   "scope": "Unity configuration software and matching ROS/Gazebo simulation",
   "excluded_user_scene": "user-imported automation institute campus",
   "verified_local": {
@@ -12,13 +12,14 @@
     "source_contract_tests_passed": 120,
     "unity_editmode_tests_passed": 169,
     "unity_playmode_tests_passed": 60,
+    "unity_full_suite_source_commit": "c7f50297f0685019f28de394907d3569ec9ef32d",
     "unity_tests_skipped": 0,
     "ros_packages_built": 34,
     "import_renderer_compiled_from_repository": true,
     "authorized_assets_included": true
   },
   "verified_remote": {
-    "source_commit": "97e3b045b9875e9073d2df880c77e754fcd15ea2",
+    "source_commit": "279c59454f7953fd6e25d16ab0ebd4f66dfee3dd",
     "fresh_github_clone": true,
     "lfs_files": 2011,
     "lfs_fsck": "PASS"
@@ -45,10 +46,10 @@
   },
   "verified_final_package": {
     "downloaded_from_github": true,
-    "archive_sha256": "957e59a21d35063382ac79acc4aa80438c85dffa7a77d946723e9ec2f1fd0b15",
-    "archive_bytes": 1887521913,
-    "build_source_commit": "4378fc576c7572f7e1d2abecc00ff6c55ac66195",
-    "runtime_input_sha256": "ec3908b60bee916c04423404274ca56e05135de35509e6b99e3defba73e7366f",
+    "archive_sha256": "33d9b41a91a5a4a7ada0a4bd393591f88018a1b630b89dabbf16332b27621f28",
+    "archive_bytes": 1887522947,
+    "build_source_commit": "07b0b7ddcf5202a0d35d341d2bfd9aa613e3c32a",
+    "runtime_input_sha256": "621e7ffe808fa81f387081c52643650c7c3680724907b9e25ab15f448476bf18",
     "source_manifest_and_installed_app_match": true,
     "launched_from_unrelated_working_directory": true,
     "actual_process_executable_inside_independent_clone": true,
@@ -57,17 +58,15 @@
     "unexpected_missing_source_files": 0,
     "unexpected_changed_source_files": 0,
     "github_source_checks": "PASS",
-    "github_source_check_run": 40087966935
+    "github_source_check_run": 40187864202
   },
-  "still_required": [
-    "verify the final installed native program"
-  ],
+  "still_required": [],
   "latest_gui_fix": {
     "source_commit": "07b0b7ddcf5202a0d35d341d2bfd9aa613e3c32a",
     "scope": "equipment view stability, fullscreen startup and garage ground alignment; geometry, relative sensor poses and ROS algorithms unchanged",
-    "targeted_playmode_passed": 3,
-    "complete_playmode_passed": 60,
-    "complete_editmode_passed": 169,
+    "first_phase_targeted_playmode_passed": 3,
+    "first_phase_complete_playmode_passed": 60,
+    "first_phase_complete_editmode_passed": 169,
     "source_tests_passed": 120,
     "final_targeted_playmode_passed": 7,
     "final_tests_skipped": 0,
@@ -77,7 +76,10 @@
     "runtime_input_sha256": "621e7ffe808fa81f387081c52643650c7c3680724907b9e25ab15f448476bf18",
     "archive_sha256": "33d9b41a91a5a4a7ada0a4bd393591f88018a1b630b89dabbf16332b27621f28",
     "archive_bytes": 1887522947,
-    "native_installed_verification": "PENDING"
+    "native_installed_verification": "PASS",
+    "native_installed_fullscreen": "PASS: 2560x1440, borderless",
+    "native_installed_car0_grounded": "PASS",
+    "installed_source_contract_tests_passed": 120
   },
   "verification_limits": [
     "supported environment is Ubuntu 22.04 x86_64 with ROS Humble, Gazebo 11 and a working OpenGL desktop",

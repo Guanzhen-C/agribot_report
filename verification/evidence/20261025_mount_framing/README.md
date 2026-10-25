@@ -38,3 +38,5 @@ Car6凿式犁修复后的必要视距为7.212902，所有网格包围盒角点�
 `ground_final.xml`最终7项全部通过、无跳过，包括全部10辆车的入场动画和静态接触高度、Car0/Car9再次选车、装臂/RTK后的视距及高度、拖车切换、Car6视锥取景、Car9割台安装、10辆车爆炸图原样恢复，以及Car0与旧校准基线一致的完整导出。接触高度差最大约0.00001个场景单位。这里没有将上一版的60项完整回归或169项编辑器回归冒称为最终版重新全量执行。
 
 最终构建来自`07b0b7d`，程序包SHA-256为`33d9b41a91a5a4a7ada0a4bd393591f88018a1b630b89dabbf16332b27621f28`，运行输入指纹`621e7ffe808fa81f387081c52643650c7c3680724907b9e25ab15f448476bf18`。原生窗口实测2560×1440无边框全屏；`car0_grounded_fullscreen.png`及`car0_grounded_equipment.png`分别记录Car0点开后及打开装备面板的实际画面。`ground_native_garage.png`记录全屏车库。
+
+独立目录已从GitHub实际下载新版程序包、核验SHA和运行输入指纹后安装，旧程序保留为`dist/unity_before_fullscreen_grounding_20261025`。由原桌面快捷方式所指脚本启动，实际进程来自独立目录的`dist/unity`，参数为`-screen-fullscreen 1`，窗口实测2560×1440；`installed_car0_grounded_fullscreen.png`为这次正式安装后的Car0画面。独立目录再次通过120项源码测试及10176份来源文件核对。GitHub Source Checks运行40187864202通过。本次没有重跑导航路线，也没有修改导航算法或参数。
