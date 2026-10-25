@@ -149,7 +149,7 @@ public sealed class SceneVehicleExplodedView : MonoBehaviour
         if (!hasBounds)
             return;
 
-        float distance = Mathf.Clamp(vehicleBounds.size.magnitude * 0.17f, 0.5f, 4f);
+        float distance = originalAckermann ? .96f : Mathf.Clamp(vehicleBounds.size.magnitude * 0.17f, 0.5f, 4f);
         foreach (Transform candidate in candidates)
         {
             Renderer[] renderers = candidate.GetComponentsInChildren<Renderer>(true);

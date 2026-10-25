@@ -117,7 +117,7 @@
   {
     "path": "unity/Assets/Scripts/SceneVehicleExplodedView.cs",
     "original_sha256": "d8399c673b004fd4bea83fdfcae9d8b47518bfe3b4a549a51b3c3f79eec4871d",
-    "delivery_sha256": "43b989dd620bd8095c2595aa74b111fb09dddef518dd5dcfca61cdadc9e26bc5"
+    "delivery_sha256": "c14901fbe47bc2f7ee509079027e2a8a240ea13c9521336af0961e379eb22b28"
   },
   {
     "path": "unity/Assets/Scripts/cameraControl.cs",
