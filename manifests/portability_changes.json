@@ -72,12 +72,17 @@
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FarmGarageMountTests.cs",
     "original_sha256": "fd638262ffa310273fb0c7d813720d616d84daf9682065dd43b4acbc72598dcd",
-    "delivery_sha256": "b6e9ba3df6c0e3f3ee75dde41a9e76f7732265645583fda0a2a18330e04f6204"
+    "delivery_sha256": "970c837a671007940be7c7fdd4488fb019bfc1ad1a9b4515bc5ea310824d2faa"
   },
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/SensorInstallationClickTests.cs",
     "original_sha256": "6625e2a4985aeb88168e7c0fb5e55a633a6f1f225b0bd0497e0583b72ebbfbdb",
     "delivery_sha256": "c449e6d5171aeb5134c9e501fefa3e3060e30aed568a1ece5f9b6a2fad8ebd94"
+  },
+  {
+    "path": "unity/Assets/Scripts/BagPanel.cs",
+    "original_sha256": "11a142effb2ca19b88157a6d00093b9b71b9917164f71918373ae827d90683d1",
+    "delivery_sha256": "969d35a674ffb7ef65877dc366e4079dc699e3273c119e93a0dd6d3f6352207a"
   },
   {
     "path": "unity/Assets/Scripts/BagSystem/Core/EquipmentBagController.cs",
@@ -103,5 +108,10 @@
     "path": "unity/Assets/Scripts/RosSimulationHandoffUi.cs",
     "original_sha256": "bdc81413385b02e88aee800421eb032ac14c1a2f15da9f94ca71ba6abe28127e",
     "delivery_sha256": "196358b7337f6fdacfbb470227dadae046c17bd674b491b902cce5976cf6796c"
+  },
+  {
+    "path": "unity/Assets/Scripts/cameraControl.cs",
+    "original_sha256": "7d53a5b7c3c47a5a47356a1ca652b498207d02c7f6a866aa8fb21ef2fcae9ddd",
+    "delivery_sha256": "d57d9d825ff6efdca24166a6f05dd55a303b992e70b478c0f8c9cc6c5833312e"
   }
 ]

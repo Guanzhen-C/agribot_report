@@ -102,6 +102,15 @@ public class cameraControl : MonoBehaviour
     /// Locks this vehicle's camera while the equipment bag is open.
     /// Only the camera component on the current vehicle is affected.
     /// </summary>
+    public void HoldCurrentView()
+    {
+        inputLocked = true;
+        targetHorizontal = orbitalFollow.HorizontalAxis.Value;
+        targetVertical = orbitalFollow.VerticalAxis.Value;
+        targetRadius = orbitalFollow.Radius;
+        horizontalVelocity = verticalVelocity = radiusVelocity = 0f;
+    }
+
     public void FixCamera(float radius = 35f, float horizontal = -55f, float vertical = 20f)
     {
         inputLocked = true;

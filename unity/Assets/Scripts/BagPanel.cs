@@ -52,15 +52,17 @@ public class BagPanel : WheelChangePanel
         if (currentCameraControl != null || legacyCameraController != null)
         {
             previousCameraTarget = GetTargetForCurrentCar(false);
+            var farm = currentCar.GetComponent<FarmGarageVehicle>();
             if (currentCameraControl != null)
-                currentCameraControl.FixCamera(currentCar.GetComponent<FarmGarageVehicle>() != null ? currentCar.GetComponent<FarmGarageVehicle>().PreviewRadius : 35f,
-                    currentCar.GetComponent<FarmGarageVehicle>() != null ? -45f : -55f,
-                    currentCar.GetComponent<FarmGarageVehicle>() != null ? 25f : 20f);
+            {
+                if (farm != null) currentCameraControl.FixCamera(farm.PreviewRadius, -45f, 25f);
+                else currentCameraControl.HoldCurrentView();
+            }
             else
-                legacyCameraController.FixCamera(35f, -55f, 20f);
+                legacyCameraController.HoldCurrentView();
 
             Transform bagTarget = GetTargetForCurrentCar(true);
-            if (bagTarget != null)
+            if (farm != null && bagTarget != null)
             {
                 if (currentCameraControl != null)
                     currentCameraControl.ChangeCameraTarget(bagTarget);

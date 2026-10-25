@@ -58,14 +58,21 @@ namespace Agribot.VehicleConfiguration.Tests
             foreach (string name in new[] { "Car0", "Car3" })
             {
                 Click(Find(name + "_Img"));
-                yield return new WaitForSeconds(1.5f);
+                // Wait for the menu-to-vehicle camera blend as well as the scale animation.
+                yield return new WaitForSeconds(2.5f);
                 var car = Find(name);
-                Click(Find("OpenBag_btn"));
-                yield return new WaitForSeconds(.8f);
                 var control = car.GetComponentsInChildren<Component>(true).First(item => item != null &&
                     item.GetType().Name is "cameraControl" or "OrbitCameraController");
                 var field = control.GetType().GetField("targetRadius", BindingFlags.Instance | BindingFlags.NonPublic);
+                float entryRadius = (float)field.GetValue(control);
+                Vector3 entryPosition = Camera.main.transform.position;
+                Click(Find("OpenBag_btn"));
+                yield return new WaitForSeconds(.8f);
                 float radius = (float)field.GetValue(control);
+                Debug.Log($"EQUIPMENT_PANEL_ZOOM car={name} entry={entryRadius} open={radius}");
+                Assert.That(radius, Is.EqualTo(entryRadius).Within(.01f),
+                    "Opening the equipment panel must preserve the vehicle view.");
+                Assert.That(Vector3.Distance(Camera.main.transform.position, entryPosition), Is.LessThan(.1f));
                 var details = Component(Find("BagPanel"), "EquipmentDetailsUI");
                 foreach (string tool in new[] { "Hand", "RTK" })
                 {
