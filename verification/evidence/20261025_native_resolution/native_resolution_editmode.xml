@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.0312825">
+  <test-suite type="TestSuite" id="1000" name="AgriculturalMachinery" fullname="AgriculturalMachinery" runstate="Runnable" testcasecount="175" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.031283" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1200" name="Agribot.VehicleConfiguration.EditorTests.dll" fullname="/home/cgz/agribot_report/unity/Library/ScriptAssemblies/Agribot.VehicleConfiguration.EditorTests.dll" runstate="Runnable" testcasecount="175" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.026795" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="693474" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1201" name="Agribot" fullname="Agribot" runstate="Runnable" testcasecount="175" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.024317" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1202" name="VehicleConfiguration" fullname="Agribot.VehicleConfiguration" runstate="Runnable" testcasecount="175" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.022762" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1203" name="Tests" fullname="Agribot.VehicleConfiguration.Tests" runstate="Runnable" testcasecount="175" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.021162" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1164" name="NativeDesktopResolutionTests" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.019501" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1171" name="UsesNativePixelsOnlyForBorderlessFullscreen" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.017745" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1165" name="UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1600,900,2560,1440,2560,1440)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1600,900,2560,1440,2560,1440)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="1000330930" result="Passed" start-time="2026-10-25 12:24:57Z" end-time="2026-10-25 12:24:58Z" duration="0.009110" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1166" name="UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1600,900,3840,2160,3840,2160)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1600,900,3840,2160,3840,2160)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="1153976768" result="Passed" start-time="2026-10-25 12:24:58Z" end-time="2026-10-25 12:24:58Z" duration="0.000093" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1167" name="UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,2560,1440,2560,1440,2560,1440)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,2560,1440,2560,1440,2560,1440)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="77597256" result="Passed" start-time="2026-10-25 12:24:58Z" end-time="2026-10-25 12:24:58Z" duration="0.000072" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1168" name="UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1280,720,0,0,1280,720)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(FullScreenWindow,1280,720,0,0,1280,720)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="1813365718" result="Passed" start-time="2026-10-25 12:24:58Z" end-time="2026-10-25 12:24:58Z" duration="0.000058" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1169" name="UsesNativePixelsOnlyForBorderlessFullscreen(Windowed,1280,720,2560,1440,1280,720)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(Windowed,1280,720,2560,1440,1280,720)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="414301018" result="Passed" start-time="2026-10-25 12:24:58Z" end-time="2026-10-25 12:24:58Z" duration="0.000058" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1170" name="UsesNativePixelsOnlyForBorderlessFullscreen(ExclusiveFullScreen,1280,720,2560,1440,1280,720)" fullname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests.UsesNativePixelsOnlyForBorderlessFullscreen(ExclusiveFullScreen,1280,720,2560,1440,1280,720)" methodname="UsesNativePixelsOnlyForBorderlessFullscreen" classname="Agribot.VehicleConfiguration.Tests.NativeDesktopResolutionTests" runstate="Runnable" seed="569732649" result="Passed" start-time="2026-10-25 12:24:58Z" end-time="2026-10-25 12:24:58Z" duration="0.000053" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /home/cgz/.config/unity3d/DefaultCompany/AgriculturalMachinery/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
