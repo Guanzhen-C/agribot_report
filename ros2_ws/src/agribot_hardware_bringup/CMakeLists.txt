@@ -273,12 +273,13 @@ target_include_directories(rtk_eskf_localization PRIVATE
   localization/navsat/third_party/kf_gins
   ${EIGEN3_INCLUDE_DIRS}
 )
-target_link_libraries(rtk_eskf_localization Eigen3::Eigen)
+target_link_libraries(rtk_eskf_localization Eigen3::Eigen yaml-cpp)
 ament_target_dependencies(rtk_eskf_localization
   geometry_msgs
   nav_msgs
   rclcpp
   sensor_msgs
+  std_msgs
 )
 
 add_executable(

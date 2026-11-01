@@ -5,6 +5,7 @@ using System.Linq;
 using Agribot.VehicleConfiguration;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 // Car0 contributes only its calibrated authoring and repair capability; all
@@ -76,27 +77,50 @@ public sealed class Car0GarageVehicle : MonoBehaviour, IPointerClickHandler
         HandleBodyClick(eventData.position, Time.unscaledTime);
     }
 
+    private void Update()
+    {
+        var mouse = Mouse.current;
+        var touch = Touchscreen.current?.primaryTouch;
+        bool touchPressed = touch != null && touch.press.wasPressedThisFrame;
+        if (!touchPressed && (mouse == null || !mouse.leftButton.wasPressedThisFrame)) return;
+        var position = touchPressed ? touch.position.ReadValue() : mouse.position.ReadValue();
+        ObservePointerPress(position);
+    }
+
+    private void ObservePointerPress(Vector2 position)
+    {
+        if (IsOverUi(position) || !IsBodyAt(position)) CancelBodyClickSequence();
+    }
+
+    public void CancelBodyClickSequence() => previousClick = float.NegativeInfinity;
+
+    private bool IsOverUi(Vector2 position)
+    {
+        if (EventSystem.current == null) return false;
+        uiHits.Clear();
+        EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = position }, uiHits);
+        return uiHits.Any(hit => hit.module is GraphicRaycaster);
+    }
+
     public void HandleBodyClick(Vector2 position, float now)
     {
-        if (EventSystem.current != null)
-        {
-            uiHits.Clear();
-            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = position }, uiHits);
-            if (uiHits.Any(hit => hit.module is GraphicRaycaster))
-            { previousClick = float.NegativeInfinity; return; }
-        }
+        if (IsOverUi(position)) { CancelBodyClickSequence(); return; }
+        if (!IsBodyAt(position)) { CancelBodyClickSequence(); return; }
+        RegisterBodyClick(position, now);
+    }
+
+    private bool IsBodyAt(Vector2 position)
+    {
         var camera = Camera.main;
-        if (camera == null) return;
+        if (camera == null) return false;
         var hits = Physics.RaycastAll(camera.ScreenPointToRay(position)).OrderBy(hit => hit.distance);
         var hit = hits.FirstOrDefault(item => item.collider != null &&
             item.collider.transform.IsChildOf(configurationRoot));
         // RaycastHit.transform may be the parent rigidbody, not the hit surface.
         var surface = hit.collider != null ? hit.collider.transform : null;
         var bodyRoot = Find("CarBody");
-        bool body = surface != null && (surface.name == "BodyCollider" ||
+        return surface != null && (surface.name == "BodyCollider" ||
             surface == bodyRoot || bodyRoot != null && surface.IsChildOf(bodyRoot));
-        if (!body) { previousClick = float.NegativeInfinity; return; }
-        RegisterBodyClick(position, now);
     }
 
     public void RegisterBodyClick(Vector2 position, float now)

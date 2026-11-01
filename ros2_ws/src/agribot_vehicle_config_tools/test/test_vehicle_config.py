@@ -47,6 +47,57 @@ def test_current_ackermann_configuration_is_valid():
     assert warnings == []
 
 
+@pytest.mark.parametrize("fault, field", [
+    ("duplicate_wheel", "geometry.wheelCenters[3].id"),
+    ("unknown_wheel", "geometry.wheelCenters[0].id"),
+    ("three_wheels", "geometry.wheelCenters"),
+    ("only_min", "navigation.obstacleMaxHeightM"),
+    ("only_max", "navigation.obstacleMinHeightM"),
+    ("nan_min", "navigation.obstacleMinHeightM"),
+    ("inf_max", "navigation.obstacleMaxHeightM"),
+    ("equal_heights", "navigation.obstacleMinHeightM"),
+    ("inverted_heights", "navigation.obstacleMaxHeightM"),
+])
+def test_geometry_errors_report_exact_json_field_paths(tmp_path, capsys, fault, field):
+    config = _load()
+    nav = config["navigation"]
+    nav.update(obstacleMinHeightM=0.1, obstacleMaxHeightM=1.0)
+    if fault == "duplicate_wheel":
+        config["geometry"]["wheelCenters"][3]["id"] = config["geometry"]["wheelCenters"][0]["id"]
+    elif fault == "unknown_wheel":
+        config["geometry"]["wheelCenters"][0]["id"] = "other"
+    elif fault == "three_wheels":
+        config["geometry"]["wheelCenters"].pop()
+    elif fault == "only_min":
+        del nav["obstacleMaxHeightM"]
+    elif fault == "only_max":
+        del nav["obstacleMinHeightM"]
+    elif fault == "nan_min":
+        nav["obstacleMinHeightM"] = math.nan
+    elif fault == "inf_max":
+        nav["obstacleMaxHeightM"] = math.inf
+    elif fault == "equal_heights":
+        nav["obstacleMinHeightM"] = nav["obstacleMaxHeightM"]
+    elif fault == "inverted_heights":
+        nav["obstacleMinHeightM"] = 2.0
+    path = tmp_path / "invalid.json"
+    path.write_text(json.dumps(config))
+    assert config_main(["validate", str(path)]) == 2
+    assert field in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("heights", [None, (0.1, 1.0)])
+def test_optional_obstacle_heights_preserve_valid_inputs(tmp_path, heights):
+    config = _load()
+    for key in ("obstacleMinHeightM", "obstacleMaxHeightM"):
+        config["navigation"].pop(key, None)
+    if heights is not None:
+        config["navigation"].update(zip(("obstacleMinHeightM", "obstacleMaxHeightM"), heights))
+    path = tmp_path / "valid.json"
+    path.write_text(json.dumps(config))
+    assert config_main(["validate", str(path)]) == 0
+
+
 def test_ackermann_radius_is_consistent():
     config = _load()
     geometry = config["geometry"]

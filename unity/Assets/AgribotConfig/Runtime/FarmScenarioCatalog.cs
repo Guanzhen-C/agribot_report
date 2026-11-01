@@ -16,6 +16,10 @@ namespace Agribot.VehicleConfiguration
         public bool imported;
         public string sceneManifest;
         public string previewFile;
+        public string simulationProfile;
+        public string fixedVehicleId;
+        public string fixedAlgorithmId;
+        public bool HasFixedRoute => !string.IsNullOrWhiteSpace(simulationProfile);
     }
 
     public static class FarmScenarioCatalog

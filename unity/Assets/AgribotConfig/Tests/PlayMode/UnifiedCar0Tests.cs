@@ -151,6 +151,45 @@ namespace Agribot.VehicleConfiguration.Tests
         }
 
         [UnityTest]
+        public IEnumerator SetupOperationsBreakPendingBodyDoubleClick()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            Click("Car0_Img");
+            yield return new WaitForSeconds(1);
+            var host = Component("Car0GarageVehicle");
+            var repair = Find("Car0").GetComponentsInChildren<Transform>(true).Single(item => item.name == "fixPanel");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10f);
+            Click("Output_btn");
+            var selector = Component("LastPanel");
+            Invoke(selector, "CloseSetup");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10.1f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False,
+                "UI operations between two body clicks must break the sequence");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10.2f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.True,
+                "Two subsequent uninterrupted body clicks must still open repair");
+            Invoke(host, "CloseRepair");
+        }
+
+        [UnityTest]
+        public IEnumerator UiPressBreaksBodyClickEvenWhenNoPanelChanges()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            Click("Car0_Img");
+            yield return new WaitForSeconds(1);
+            var host = Component("Car0GarageVehicle");
+            var repair = Find("Car0").GetComponentsInChildren<Transform>(true).Single(item => item.name == "fixPanel");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10f);
+            Vector2 point = RectTransformUtility.WorldToScreenPoint(null, Find("Output_btn").transform.position);
+            Assert.That(Invoke(host, "IsOverUi", point), Is.True);
+            Invoke(host, "ObservePointerPress", point);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10.1f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+        }
+
+        [UnityTest]
         public IEnumerator GarageCardCanSelectCar0ThroughPointerInput()
         {
             yield return SceneManager.LoadSceneAsync("scene1");

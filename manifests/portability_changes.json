@@ -2,7 +2,7 @@
   {
     "path": "ros2_ws/build_ros2_humble.sh",
     "original_sha256": "fac7046c67ace4b169f400a83055e47d5735a453934deef8e3aed3a5e39a868b",
-    "delivery_sha256": "031928c8d33d211cd53fbdf82de94aed10f0ff2589d068da3e707c1e5f6cca7f"
+    "delivery_sha256": "6de547bd3dab87edc7fe80100be1e85e21198af8b31a7f4c52f45d21773ba3f3"
   },
   {
     "path": "ros2_ws/src/FAST-LIVO2/CMakeLists.txt",
@@ -10,9 +10,59 @@
     "delivery_sha256": "33cd849767902313753eddb9051563eb58af7727901375c5b39458dd2f7aa928"
   },
   {
+    "path": "ros2_ws/src/agribot_ackermann_mppi/launch/ackermann_waypoint_depth_collect_sim.launch.py",
+    "original_sha256": "679235e836b79a2bb2505348476120f917fa65fd72c337e24e80aca5771ab1dd",
+    "delivery_sha256": "050891c912b6a1ccc7ca790134f2e8798c8213efa0c0ed980a9b6f6f3e5c8ab3"
+  },
+  {
+    "path": "ros2_ws/src/agribot_ackermann_mppi/package.xml",
+    "original_sha256": "816ee6beb435d4b196d687cbf83c0f49f655957028e37e435b98ee27e2d42347",
+    "delivery_sha256": "c24f9949578554de6f6f80241ec3798eaaf01068973c96f67b434b50737b175b"
+  },
+  {
+    "path": "ros2_ws/src/agribot_ackermann_mppi/scripts/sim_navsat_bridge.py",
+    "original_sha256": "ad6af6b45c8ccac861f23ea9e4fdc63cc4ed39eb5145eb9cf6dfa49ab35e28a0",
+    "delivery_sha256": "a0937bdf01e2883926655bd146822d79b0afac7badf14e23c588378b3ee55aae"
+  },
+  {
+    "path": "ros2_ws/src/agribot_farm_sim/agribot_farm_sim/assistant_scenes.py",
+    "original_sha256": "16b6395c650bd627f8d600f50a177aaa7c8f87959d45c941f1066d6a0dc8ba95",
+    "delivery_sha256": "ce7a6c86b27734559c28a18bc97c9417d2ad87fe83e0c45e8c696d86bc60e8b8"
+  },
+  {
+    "path": "ros2_ws/src/agribot_farm_sim/agribot_farm_sim/natural_recommendation.py",
+    "original_sha256": "6b746b3f9e1ec3cd87216609ab8c25b10c745b9059b3a8d0d50018d5f66def72",
+    "delivery_sha256": "943784ed87131e60b1c2557da421de73f0200fa47bb0ce55683099422b3bd18b"
+  },
+  {
+    "path": "ros2_ws/src/agribot_farm_sim/config/assistant_system_prompt.txt",
+    "original_sha256": "14138e6ef9701cb518793dad7f76a8acd9f4f6ebb27e536234948bf80d830d0f",
+    "delivery_sha256": "164d14480f7f07446abbd91cda1e2aabd84944657af73bfa12022145767ddb33"
+  },
+  {
+    "path": "ros2_ws/src/agribot_farm_sim/test/test_compact_track_appearance.py",
+    "original_sha256": "886e759669e44db4b66dc43d072e7523f6a78d5f9885389487ff3890b63ca0a0",
+    "delivery_sha256": "5e20faf7de7a4183de2cda6b0ef7a39b8af803d14261e72b9c4a51ff3de2fcb3"
+  },
+  {
+    "path": "ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py",
+    "original_sha256": "6e3ee47fd844dde962bd8a62298a441160a7a2f23e6e8c4420683e9e85843f45",
+    "delivery_sha256": "44ee6680754f253752aaf9236ca6a693577d8ad06ce39bef774db98c38963868"
+  },
+  {
+    "path": "ros2_ws/src/agribot_hardware_bringup/CMakeLists.txt",
+    "original_sha256": "5a680f6d3eb38d5fced5aa365e042543b33601f6f1c6bb22fa72e6d9b0ae7ed1",
+    "delivery_sha256": "98e832c5b588bbd971e1b1909a37d27ddde4573123675e86c9c62b3f0dc832be"
+  },
+  {
     "path": "ros2_ws/src/agribot_hardware_bringup/README.md",
     "original_sha256": "f22432aea17289595c52c27a2979cdd42f2fc5729d3c601c48adeb405a350987",
     "delivery_sha256": "1bb92ffb3979f408d9bdf59e0db6ffdc2969609305d538a748f3935521613981"
+  },
+  {
+    "path": "ros2_ws/src/agribot_hardware_bringup/localization/navsat/src/rtk_eskf_localization_node.cpp",
+    "original_sha256": "d9bebdd512dffdb3c83e1a8d9720f5377a3723bcb1abfbc0fa335f0b5195298d",
+    "delivery_sha256": "9a24b812d4cff956651c940aac75bfbd184565ab2262970392c81d9051c38a62"
   },
   {
     "path": "ros2_ws/src/agribot_vehicle_config_tools/DEPLOYMENT.md",
@@ -20,14 +70,44 @@
     "delivery_sha256": "55849f32819d03bbbe9da427b1739fd8747fe41b4954be3a15507451dcf9aa0f"
   },
   {
+    "path": "ros2_ws/src/agribot_vehicle_config_tools/agribot_vehicle_config_tools/model.py",
+    "original_sha256": "4f504d3475f36652404d81cc440210b1d7a6a3431b84eeee292d74c8928f80de",
+    "delivery_sha256": "dff4335c31a08e7940fda570a6069dc5b241a591f71c12974fe1735c7cb8df19"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_config_tools/test/test_vehicle_config.py",
+    "original_sha256": "9276abb3539ab5040d5794b62daad913af1fc90792a06fc38ebecd992a9a4215",
+    "delivery_sha256": "1c76f5fbfd728a6df5e2f0fee4542bfb2e8a0972dbd3f0fc2896bb2e967f8c0c"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/CMakeLists.txt",
+    "original_sha256": "075681459a3a2f829b185b53ac53f226a391779828aede05425529931fde2330",
+    "delivery_sha256": "2f5ca736754e476681e546cd1d3bcce7ff85fb2d6718be08f393e4c0e4af9b19"
+  },
+  {
     "path": "ros2_ws/src/agribot_vehicle_description/README.md",
     "original_sha256": "5dcc804ea8a5861b2d807acba4935c7735adcbc65d7508a9f3a5c16226c3e0a8",
     "delivery_sha256": "97a52553b79ab0f2b1b1c559f7f7cda8f57282d1cfe339e1694310457f045fa0"
   },
   {
+    "path": "ros2_ws/src/agribot_vehicle_description/launch/configured_ackermann_sim.launch.py",
+    "original_sha256": "f60f014d0c271aae7ca73c1b63e8d4f2fe09ec7969e18fdc8c1cfcffe6eee249",
+    "delivery_sha256": "77502199f7a51c6b8e4c49a282bb8d25e2eb9c0f047862b467a4c031185dd2f4"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/package.xml",
+    "original_sha256": "75d3feaf948e4ff100ed0ba95cf608f4a54bfe8180a7220b9069a8b3bf65b61e",
+    "delivery_sha256": "5b6d1d772bb5fddb9a215f8bff7f72cc7d98fbd8a44b3a0c6dfe3b2ed143a2fd"
+  },
+  {
     "path": "ros2_ws/src/agribot_vehicle_description/scripts/unity_sync_and_simulate.sh",
     "original_sha256": "d8c4795841bc13c010e1590b51623fe4d72cffdb160d65006311d328ed3c13c2",
-    "delivery_sha256": "8ad8e23fd4d23dcaf2c9517f7734b76da78b435bbb6e63c2de822fa8a4cd5b34"
+    "delivery_sha256": "fb06df51b0bac1f97400df01ee30bd1ad2a26ef62f25706f1da5a6d46e964120"
+  },
+  {
+    "path": "ros2_ws/src/agribot_vehicle_description/test/test_algorithm_matrix.py",
+    "original_sha256": "36abd7fa5dc458bd0b82cf7e1ca9ede5f5e455c92b5118ef623a7fb570e3ae9e",
+    "delivery_sha256": "bef83325cbdd552fac9365f76a86c5e4bbe40aa57b957a6c24257186626b2176"
   },
   {
     "path": "ros2_ws/src/agribot_visual_perception/scripts/setup_ai_runtime.sh",
@@ -52,7 +132,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Runtime/FarmScenarioCatalog.cs",
     "original_sha256": "0cc30d9ff32458308b3b4afdce62ee8760108af062ca5c05bfdba96e0543c3c6",
-    "delivery_sha256": "1e7739463d11d3cf5c86de0053441478c8464bbb1c827d5eacc4970e4117bc8d"
+    "delivery_sha256": "6b5b2b6fbc0edebda43f27d7d84d85090afcf5248149ee79d3bced261351fa18"
   },
   {
     "path": "unity/Assets/AgribotConfig/Runtime/NaturalRecommendationClient.cs",
@@ -62,7 +142,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Runtime/RosSimulationLauncher.cs",
     "original_sha256": "07ec5ba50e53936dee33d7af47a1ee55a9c0a5fce4bca3380937e904001985a2",
-    "delivery_sha256": "f51ae4a25c7186d5508bb4f84570f86c258168e6fcfb330b3c598817ad56a806"
+    "delivery_sha256": "ac990fcf8d34812fcb5bd317fec98f2f7d2759c889ca2bee16dc1064868a3612"
   },
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/AuthoredManipulatorClickTests.cs",
@@ -82,7 +162,7 @@
   {
     "path": "unity/Assets/AgribotConfig/Tests/PlayMode/UnifiedCar0Tests.cs",
     "original_sha256": "61a8f64c90e8e6464b23ad979f86800209c157c4b40c5c165c46fc4fde94ed90",
-    "delivery_sha256": "d4cd2f7b2bf00ea3b3150a9f669e17e47b18d51a8ba2ebc2493c10a0d3bb4949"
+    "delivery_sha256": "4c33c568cd00d56b35683c87b6f5abb5e2b102c45089de87d8f76044b5e77edd"
   },
   {
     "path": "unity/Assets/Scripts/BagPanel.cs",
@@ -95,6 +175,11 @@
     "delivery_sha256": "d58a9fdc76f44e38a48555109e9812f1ee39022edbf918c60326894e97e7af41"
   },
   {
+    "path": "unity/Assets/Scripts/Car0GarageVehicle.cs",
+    "original_sha256": "8915a4c955067eb137629b223bf9f88d5795b38147289f143764347f09342fee",
+    "delivery_sha256": "989568360735d7c630d57feb2796ac0939f0785d5ed83769693d4bc8a39cbc7c"
+  },
+  {
     "path": "unity/Assets/Scripts/ChineseUiFont.cs",
     "original_sha256": "4b9d71e6df6757dc57b60a329929acf712c23f42c64b9398f74de2419fb4db4c",
     "delivery_sha256": "5ee06672254500a630cde14c4c40cfd1299506d1966696c1e30d5cb3d462c455"
@@ -103,6 +188,16 @@
     "path": "unity/Assets/Scripts/FarmGarageVehicle.cs",
     "original_sha256": "f0ab6593641020ebf1f972d935e58cc419a12ada444702dee9fd080d773ddc10",
     "delivery_sha256": "e3f3ab9a3473b13ff9987d301a312dea8e447cab0001d39d2bbcbe5761d1f92e"
+  },
+  {
+    "path": "unity/Assets/Scripts/LastPanel.Setup.cs",
+    "original_sha256": "83629e7072924567ce21e141a934c38826df1ffb135651a84fb6cf533661f23f",
+    "delivery_sha256": "d844fc1955f4ebaaecd91a7a4131fa0b11d46023ba7d3968974d91007a959aee"
+  },
+  {
+    "path": "unity/Assets/Scripts/LastPanel.cs",
+    "original_sha256": "365f94ec19ea886179e9cad2fa05ffbd52ed95f00629465e306bd3c2bc9b459b",
+    "delivery_sha256": "91ddf1750b78ea45b975225d53f2a9a81a204a29de49e78461695d9d1e18657b"
   },
   {
     "path": "unity/Assets/Scripts/MainPanel.cs",

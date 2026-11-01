@@ -18,7 +18,7 @@
 | AI | 可选，需本机凭据和可达的模型接口；手动流程不依赖 AI 成功 |
 | 额外视觉 AI | 可选，需相应 Python 环境和权重 |
 
-当前仓库部分完整车库资源仍未补传。已有 App 的功能描述不等于当前仓库已完成所有资源交付；从源码构建前先查看[资源说明](09_resources_and_licenses.md)，不要跳过预检或用空模型代替。
+当前交付仓库包含完整车库及仿真所需资产，大文件通过 Git LFS 获取。匹配版本的预编译程序包可以直接安装使用；从源码构建还需对应 Unity Editor 和许可证。先查看[资源说明](09_resources_and_licenses.md)并执行资源预检，不要跳过检查或用空模型代替。
 
 ### 1.2 从仓库准备环境
 
@@ -267,11 +267,13 @@ Car0 采用原有较细分的展开方式，其他车的粒度取决于模型层
 不要连续点击启动。先查看最近日志：
 
 ```bash
-tail -n 100 ~/.local/state/agribot-unity-sim/latest.log
-cat ~/.local/state/agribot-unity-sim/status
+cd /path/to/agribot_report
+source scripts/env.sh
+tail -n 100 "$XDG_STATE_HOME/agribot-unity-sim/latest.log"
+cat "$XDG_STATE_HOME/agribot-unity-sim/status"
 ```
 
-如果设置了 `XDG_STATE_HOME`，目录相应改变。修正缺依赖、路径、模型或算法问题后再启动。
+交付入口默认使用仓库内 `.local/state`；可在启动前通过 `AGRIBOT_REPORT_STATE_HOME` 覆盖。检查命令与启动软件应使用相同的环境设置。修正缺依赖、路径、模型或算法问题后再启动。
 
 ## 11. 在 RViz 设置单目标
 
@@ -289,7 +291,7 @@ cat ~/.local/state/agribot-unity-sim/status
 
 1. 在 Navigation 2 面板进入 Waypoint/Nav Through Poses 模式。
 2. 用 Nav2 Goal 按顺序设置每个位置和方向。
-3. 检查路径是否符合通道、车宽和转弯要求。
+3. 检查地图上的目标箭头及 `wp_1`、`wp_2` 等编号是否按添加顺序排列；未点击 Start 前不会执行新连续任务。
 4. 点击 Start Nav Through Poses，提交连续任务。
 5. 观察顺序通过与最终停止。
 
@@ -380,8 +382,8 @@ No Image 时先检查消息和渲染，不先怀疑镜头盖或真实相机。�
 | Unity 构建 | 默认本仓库 `dist/unity/` |
 | 装配/ROS 导出 | `ConfigExports` 或 Unity 用户数据目录中的同名导出目录，以本次提示为准 |
 | 机具预置导出 | 当前预设对应的导出目录；不要把不同车型文件互相覆盖 |
-| 场景目录 | 默认 `~/.local/share/agribot/scanned_scenes/`，可由 `AGRIBOT_SCANNED_SCENE_ROOT` 覆盖 |
-| 受管任务 | 默认 `~/.local/state/agribot-unity-sim/` |
+| 场景目录 | 默认本仓库 `.local/scanned_scenes/`，可由 `AGRIBOT_SCANNED_SCENE_ROOT` 覆盖 |
+| 受管任务 | 默认本仓库 `.local/state/agribot-unity-sim/`，可由 `AGRIBOT_REPORT_STATE_HOME` 覆盖状态根目录 |
 | ROS 构建日志 | 本仓库 `ros2_ws/log/` |
 | ROS 运行日志 | 当前 ROS 日志目录，通常 `~/.ros/log/` |
 | AI 会话 | Unity `persistentDataPath/assistant_sessions/*.jsonl` |

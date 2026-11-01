@@ -32,6 +32,15 @@
     "path": "ros2_ws/src/agribot_autonomy/package.xml"
   },
   {
+    "name": "agribot_differential_fastlivo_mppi",
+    "version": "0.1.0",
+    "license": [
+      "MIT",
+      "GPL-3.0-only"
+    ],
+    "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/package.xml"
+  },
+  {
     "name": "agribot_farm_sim",
     "version": "0.1.0",
     "license": [

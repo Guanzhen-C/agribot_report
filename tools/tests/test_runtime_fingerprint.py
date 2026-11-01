@@ -71,3 +71,18 @@ def test_runtime_executable_mode_is_part_of_identity(repository):
     (repository / 'unity/source.cs').chmod(0o755)
     git(repository, 'commit', '-qm', 'executable mode')
     assert runtime.fingerprint(repository)['sha256'] != before['sha256']
+
+
+def test_explicit_development_build_records_actual_dirty_and_new_content(repository):
+    before = runtime.fingerprint(repository, require_clean=False)
+    (repository / 'unity/source.cs').write_text('edited runtime\n')
+    (repository / 'unity/new.cs').write_text('new runtime\n')
+    after = runtime.fingerprint(repository, require_clean=False)
+    assert after['method'] == 'git-runtime-working-tree-v1'
+    assert after['uncommitted_runtime_changes'] is True
+    assert after['sha256'] != before['sha256']
+    assert after['files'] == before['files'] + 1
+    (repository / 'unity/new.cs').write_text('different new runtime\n')
+    assert runtime.fingerprint(repository, require_clean=False)['sha256'] != after['sha256']
+    with pytest.raises(ValueError, match='未提交修改'):
+        runtime.fingerprint(repository)

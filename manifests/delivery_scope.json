@@ -3,7 +3,7 @@
   "product": "Unity车辆配置软件及配套ROS/Gazebo仿真",
   "ros_source_roots": [
     "FAST-LIVO2", "FAST_LIO_ROS2", "agribot_ackermann_mppi", "agribot_autonomy",
-    "agribot_farm_sim", "agribot_hardware_bringup", "agribot_k2_sim",
+    "agribot_farm_sim", "agribot_hardware_bringup", "agribot_k2_sim", "agribot_differential_fastlivo_mppi",
     "agribot_manipulator_sim", "agribot_time_sync", "agribot_vehicle_config_tools",
     "agribot_vehicle_description", "agribot_visual_perception", "gazebo_ros_pkgs",
     "hikrobot_mvs_ros2", "hipnuc_imu", "kiss-icp", "livox_ros_driver2",

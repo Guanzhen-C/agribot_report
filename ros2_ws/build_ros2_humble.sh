@@ -39,6 +39,8 @@ else
 fi
 
 export CMAKE_BUILD_PARALLEL_LEVEL="${CMAKE_BUILD_PARALLEL_LEVEL:-${AGRIBOT_BUILD_JOBS_PER_PACKAGE:-$default_build_jobs}}"
+# colcon-cmake otherwise appends its own CPU-count -j flags, overriding CMake's limit.
+export MAKEFLAGS="${MAKEFLAGS:--j${CMAKE_BUILD_PARALLEL_LEVEL}}"
 
 colcon_concurrency_args=()
 has_parallel_workers=false

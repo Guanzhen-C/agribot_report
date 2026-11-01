@@ -240,15 +240,20 @@ def validate(config: dict[str, Any]) -> list[str]:
     required_wheels = {"front_left", "front_right", "rear_left", "rear_right"}
     wheel_ids = set()
     for index, wheel in enumerate(wheels):
-        _require_keys(wheel, ("id", "position", "steering", "driven"), f"wheelCenters[{index}]")
+        path = f"geometry.wheelCenters[{index}]"
+        _require_keys(wheel, ("id", "position", "steering", "driven"), path)
+        if not isinstance(wheel["id"], str) or wheel["id"] not in required_wheels:
+            raise ConfigError(f"{path}.id must be front_left, front_right, rear_left or rear_right")
+        if wheel["id"] in wheel_ids:
+            raise ConfigError(f"{path}.id duplicates wheel position {wheel['id']}")
         wheel_ids.add(wheel["id"])
-        _vector(wheel["position"], 3, f"wheelCenters[{index}].position")
+        _vector(wheel["position"], 3, f"{path}.position")
         for key in ("radiusM", "widthM"):
             if wheel.get(key, 0) != 0:
-                _positive(wheel[key], f"wheelCenters[{index}].{key}")
+                _positive(wheel[key], f"{path}.{key}")
         for key in ("massKg", "steeringMassKg"):
             if key in wheel:
-                _positive(wheel[key], f"wheelCenters[{index}].{key}")
+                _positive(wheel[key], f"{path}.{key}")
         if config["vehicleType"] != "ackermann" and wheel["steering"]:
             raise ConfigError("differential/tracked wheels must not have steering joints")
         if "steeringAssembly" in wheel:
@@ -273,7 +278,7 @@ def validate(config: dict[str, Any]) -> list[str]:
             if caster["meshUri"] != expected:
                 raise ConfigError("caster.meshUri must use the canonical vehicle-local mesh")
     if wheel_ids != required_wheels:
-        raise ConfigError("wheel IDs must be front_left, front_right, rear_left and rear_right")
+        raise ConfigError("geometry.wheelCenters must contain each required wheel position exactly once")
     if any("caster" in wheel for wheel in wheels):
         for axle in ("front", "rear"):
             pair = [wheel for wheel in wheels if wheel["id"].startswith(axle)]
@@ -306,10 +311,10 @@ def validate(config: dict[str, Any]) -> list[str]:
     height_keys = ("obstacleMinHeightM", "obstacleMaxHeightM")
     if any(key in navigation for key in height_keys):
         if not all(key in navigation for key in height_keys):
-            raise ConfigError("navigation obstacle height bounds must be provided together")
-        heights = _vector([navigation[key] for key in height_keys], 2, "navigation.obstacleHeight")
+            raise ConfigError("navigation.obstacleMinHeightM and navigation.obstacleMaxHeightM must be provided together")
+        heights = [_finite_number(navigation[key], f"navigation.{key}") for key in height_keys]
         if heights[0] >= heights[1]:
-            raise ConfigError("navigation obstacle minimum height must be below maximum height")
+            raise ConfigError("navigation.obstacleMinHeightM must be below navigation.obstacleMaxHeightM")
 
     chassis = config["chassis"]
     _require_keys(

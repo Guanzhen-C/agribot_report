@@ -495,10 +495,21 @@ namespace Agribot.VehicleConfiguration
                 throw new InvalidOperationException("请先选择作业场景。");
             if (FarmScenarioCatalog.Selected.imported && !File.Exists(FarmScenarioCatalog.Selected.sceneManifest))
                 throw new InvalidOperationException("导入场景文件已不存在，请重新导入或选择其他场景。");
+            FarmScenario scene = FarmScenarioCatalog.Selected;
+            bool useFixedRoute = scene.HasFixedRoute;
+            if (useFixedRoute)
+            {
+                if (!File.Exists(scene.simulationProfile))
+                    throw new FileNotFoundException("固定路线仿真配置缺失。", scene.simulationProfile);
+                var vehicle = JsonUtility.FromJson<VehicleConfigurationData>(
+                    File.ReadAllText(Path.Combine(exportDirectory, "vehicle_config.json")));
+                if (vehicle.vehicleId != scene.fixedVehicleId)
+                    throw new InvalidOperationException("伏羲农场固定104点仿真请选择Car3差速履带车。");
+            }
             string arguments =
                 QuoteProcessArgument(scriptPath) +
                 " --export-dir " + QuoteProcessArgument(exportDirectory) +
-                " --run-waypoints false" +
+                " --run-waypoints " + (useFixedRoute ? "true" : "false") +
                 " --scenario " + QuoteProcessArgument(FarmScenarioCatalog.Selected.imported ? "orchard" : FarmScenarioCatalog.SelectedId) +
                 " --perception " + QuoteProcessArgument(algorithm.PerceptionComponent.Id) +
                 " --vision " +
@@ -508,6 +519,8 @@ namespace Agribot.VehicleConfiguration
                 " --controller " + QuoteProcessArgument(algorithm.ControllerComponent.Id);
             if (FarmScenarioCatalog.Selected.imported)
                 arguments += " --scene-manifest " + QuoteProcessArgument(FarmScenarioCatalog.Selected.sceneManifest);
+            if (useFixedRoute)
+                arguments += " --simulation-profile " + QuoteProcessArgument(scene.simulationProfile);
             const string terminal = "/usr/bin/gnome-terminal";
 
             ProcessStartInfo result;

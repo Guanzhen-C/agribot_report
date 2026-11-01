@@ -102,7 +102,14 @@ def test_unity_simulation_rviz_shows_the_published_rgb_image(vision_mode, tmp_pa
         if (display["Class"] == "rviz_default_plugins/Path" and
                 display.get("Topic", {}).get("Value") in ("/plan", "/local_plan", "/waypoint_path")):
             display["Class"] = "scout_viz/NavigationPath"
-    assert [d for d in displays if d["Name"] != "RGB Image"] == [
+    waypoint_displays = [d for d in displays if d["Name"] == "Ordered Waypoints"]
+    assert len(waypoint_displays) == 1
+    assert waypoint_displays[0]["Enabled"] and waypoint_displays[0]["Value"]
+    assert waypoint_displays[0]["Class"] == "rviz_default_plugins/MarkerArray"
+    assert waypoint_displays[0]["Topic"] == {
+        "Value": "/waypoints", "Depth": 10, "Reliability Policy": "Reliable",
+        "Durability Policy": "Transient Local"}
+    assert [d for d in displays if d["Name"] not in ("RGB Image", "Ordered Waypoints")] == [
         d for d in previous if d["Name"] != "RGB Image"]
     assert source.read_bytes() == original
     launch = LAUNCH_FILE.read_text()

@@ -12,4 +12,4 @@ if [[ ! -f /opt/ros/humble/setup.bash ]]; then
   exit 2
 fi
 exec bash "$ROOT/ros2_ws/build_ros2_humble.sh" "${skip[@]}" \
-  --packages-up-to agribot_vehicle_description agribot_farm_sim agribot_k2_sim agribot_visual_perception "$@"
+  --packages-up-to agribot_vehicle_description agribot_farm_sim agribot_k2_sim agribot_visual_perception agribot_differential_fastlivo_mppi "$@"

@@ -1,0 +1,393 @@
+{
+  "source": "agribot_report_independent_20261024",
+  "source_commit": "ef817ab8d4245b47d17c2a7033c2ac37151d3f53",
+  "date": "2026-11-01",
+  "scope": "Unity and companion simulation only",
+  "excludes": [
+    "console and APK",
+    "user runtime exports",
+    "private imported scenes and credentials"
+  ],
+  "files": [
+    {
+      "path": "docs/14_fuxi_farm_104.md",
+      "sha256": "cb6f5665d5c18684fc7309805d1b1abb9c692a1159e1eb876f5dcf0b51d615e2",
+      "bytes": 7101
+    },
+    {
+      "path": "manifests/delivery_scope.json",
+      "sha256": "47ed88958f032ef985ccef8951137e04761351b7d17c0665f5355ead82447999",
+      "bytes": 1266
+    },
+    {
+      "path": "ros2_ws/src/agribot_ackermann_mppi/launch/ackermann_waypoint_depth_collect_sim.launch.py",
+      "sha256": "050891c912b6a1ccc7ca790134f2e8798c8213efa0c0ed980a9b6f6f3e5c8ab3",
+      "bytes": 59060
+    },
+    {
+      "path": "ros2_ws/src/agribot_ackermann_mppi/package.xml",
+      "sha256": "c24f9949578554de6f6f80241ec3798eaaf01068973c96f67b434b50737b175b",
+      "bytes": 2156
+    },
+    {
+      "path": "ros2_ws/src/agribot_ackermann_mppi/scripts/sim_navsat_bridge.py",
+      "sha256": "a0937bdf01e2883926655bd146822d79b0afac7badf14e23c588378b3ee55aae",
+      "bytes": 10770
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/CMakeLists.txt",
+      "sha256": "45b80e357c08bc48991972c6b8d7fa7d27c0e05f34fb405cdb59637d42410696",
+      "bytes": 4293
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/README.md",
+      "sha256": "a674cb13b5c78ff293de229b7a86e5e96a4c6a546e353f01875b40ab19dda65e",
+      "bytes": 8823
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/__init__.py",
+      "sha256": "d466a0e0149129cdd4eb0ebc72d33f516997165297f9ba2cd5d19f3bf0ce40f1",
+      "bytes": 76
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/__init__.py",
+      "sha256": "0d8e4e99f9ea73e5cc2559402dc0eb79291439155e56430896889d5239a995d4",
+      "bytes": 83
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/catalog.py",
+      "sha256": "61271d6ba70ece718b8cbc0b9418479dc74898599def419dbd677b5592ea8a86",
+      "bytes": 12902
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/navigation_health.py",
+      "sha256": "ef7cc5591e58b2054eb9c58d87f9ae0e0dcdad0090353432f834d005c7a61999",
+      "bytes": 3242
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/route_preflight.py",
+      "sha256": "acbd74e4bbeec1cd120368e6c9ae9d4acd83964f03a8f6727f7049a0855e822b",
+      "bytes": 2323
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/saved_path.py",
+      "sha256": "9f29b98c5191a01fa2d969126e95159e04df4b59a8d1fd240497469fc5b3a2d0",
+      "bytes": 5082
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/saved_path_runner.py",
+      "sha256": "75b4d385174e076e16dec283e21e2b629f3be8ae78b5d3ea3be8543bb09f2a3e",
+      "bytes": 13173
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/agribot_differential_fastlivo_mppi/saved_route_runtime/snapshot.json",
+      "sha256": "f92081266043448a72e16c7dce7dfb03c1546eef4c01253d7f1c0d392c61ffeb",
+      "bytes": 454
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/fastlivo_rtk_fusion_sim.yaml",
+      "sha256": "52936dfd3bfea46eacef1f74488e1e749197dae2eacab1dcbf75a0b4208fe3a5",
+      "bytes": 2047
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/fastlivo_sim.yaml",
+      "sha256": "4a8d5ab25d99bb64754c14ffa603fd2080aeb741909dc7eac28be2bed9e61318",
+      "bytes": 2682
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/fastlivo_sim_bridge.yaml",
+      "sha256": "1557a785a3d276abc4881eaae81e127f93afec75a9c5176a4fd8f69ba4ccf44d",
+      "bytes": 411
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/fastlivo_sim_camera.yaml",
+      "sha256": "4893b929ae431d3dc2912b81fb28a5bb8a4986cc887d2ae2c8fe099c2d42685f",
+      "bytes": 407
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/motion_primitives/scout_diff_5cm.json",
+      "sha256": "105b37351d15e340cc2921fa8878c8ea727a65cd7e89c39c977be0654be3b2a9",
+      "bytes": 71540
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/nav2_params_scout_orchard_sim.yaml",
+      "sha256": "4b2e00062a576da8491e6a109046f843f16fb77e35a91299c85ecb54de989b89",
+      "bytes": 11187
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/orchard_sim_georeference.yaml",
+      "sha256": "abda127d5cc86b98862c70cc1245eeeb2615f9f2af042eaefeec2ca1dd5ccb93",
+      "bytes": 541
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/scanned_saved_route.rviz",
+      "sha256": "1ce16331dde2f957fa3ecfa78333edceeb30f2c016e3ad42a41874d7e251c200",
+      "bytes": 2053
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/scanned_saved_route_nav2_overlay.yaml",
+      "sha256": "82a323dedb164970782869402e347a6e45b3e4d2f26f246de46b146dc71fbd2f",
+      "bytes": 390
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/config/scanned_saved_route_rpp_overlay.yaml",
+      "sha256": "f24dc784f2ce0d22e2d2106611a874bd2b59888c604745d27ab1d183ad9e587c",
+      "bytes": 899
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/include/scanned_collision_layers.hpp",
+      "sha256": "d21b7b06bdf85a8415838958351beeb3b6f61a9ce9d5ae5a2b3ee994b3a81fe3",
+      "bytes": 428
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/include/track_command_limits.hpp",
+      "sha256": "e23fa858156c865fe5ad9a0623a3c5fb7c0b0154c563841109713f466bcd8ab6",
+      "bytes": 1344
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/launch/differential_mppi_fastlivo_rtk_sim.launch.py",
+      "sha256": "9f42f17071550bce5fa324d5fdb7a4cc760a3a6c7508b9579d250b726e7774a7",
+      "bytes": 13536
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/launch/saved_path_gazebo_validation.launch.py",
+      "sha256": "973e8d3d1e066a7ecd2645023182e7cf4772ccc21544741115a12434ab3431f5",
+      "bytes": 6565
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/launch/scanned_saved_route_validation.launch.py",
+      "sha256": "b114bf20cb9f2a32a0c6854f8c2e71a7f141dba25b7d9334425bac295e433fbd",
+      "bytes": 9105
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/package.xml",
+      "sha256": "5f9b4001276812f3437feab9692177316d7e53f4513ccf7d639a706d34c7d074",
+      "bytes": 2067
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/add_scanned_ground_support.py",
+      "sha256": "be7a7332305e98a77dbd06b8d7147ac72ced85ba31821a618e797bc54956e33e",
+      "bytes": 13412
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/differential_sim_cmd_bridge.py",
+      "sha256": "6bcfedd4068d0b615935b89a9b0dc1bcf484cb4b8901b0981d311a270c3e93a5",
+      "bytes": 2246
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/differential_sim_sensor_bridge.py",
+      "sha256": "485f217ea41a71f85a131f616481905ac956bf83a72cf438d52449767c8fd77e",
+      "bytes": 5937
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/differential_sim_validator.py",
+      "sha256": "81fbef9c9dbef90ff7942d6b50c205a675aeb4f195a3608c6ca75ba5fa6cb19d",
+      "bytes": 12636
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/display_scanned_route_result.py",
+      "sha256": "ff1b38f55da5166c7d38e55d9155afe1cfc2bc7f3f38470e666333dc6662b426",
+      "bytes": 3538
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/fuxi_farm_profile.py",
+      "sha256": "01766ebca670858777879ca00cdc4c9e9eb1a9fa235982abcb2d2264c1244ffc",
+      "bytes": 14816
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/prepare_scanned_contact_proxy.py",
+      "sha256": "7c0bd1e8e4c220568190f61793732629907e8ab143b476e5073fb205818191b5",
+      "bytes": 9394
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/prepare_scanned_route_validation.py",
+      "sha256": "027494ceb2481e683cbef544865223d0bb99113cbf1c9b0f0502930bab68330d",
+      "bytes": 12655
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/run_scanned_saved_route.py",
+      "sha256": "ff8b26ca6ed9bcd5a46c99177ec9986b83fbc87591af3f89f5d759181397d12f",
+      "bytes": 21414
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/scripts/test_saved_path_gazebo.py",
+      "sha256": "8450a78bfeaca320d07802eccfc32761a64ab970a965b8a6d7b96ac901985892",
+      "bytes": 3443
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/src/gazebo_render_path_workaround.c",
+      "sha256": "aa4cfd4a5c0fa3af3fefa4be3684aee8d7a4572ead0d87146d6b893108d3d063",
+      "bytes": 668
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/src/gazebo_scene_sync_plugin.cpp",
+      "sha256": "3040d84dbf922dab315887cd0efe3d42575a8431ded159e73a6d0ce10c58814f",
+      "bytes": 1955
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/src/scanned_track_drive.cpp",
+      "sha256": "27036b4673c494506b63ad40a7f0f7ef5ef6f87efad42c1f780a0977f7c05aba",
+      "bytes": 8555
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/test/test_fuxi_farm_profile.py",
+      "sha256": "53d879baeac6df4da2b7b38dc749098f75c9f9842d9533056dcf976b8298513d",
+      "bytes": 9961
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/test/test_scanned_route_display.py",
+      "sha256": "9846a3526345befdf60518f06d331757b0c534e576da70c539f581768992c881",
+      "bytes": 1700
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/test/test_scanned_route_preparation.py",
+      "sha256": "fc3a0a19326c086303573b9cbcaa3f385584862c798b547fb3e1a584452b2611",
+      "bytes": 18463
+    },
+    {
+      "path": "ros2_ws/src/agribot_differential_fastlivo_mppi/urdf/differential_sim_rgb_camera.urdf.xacro",
+      "sha256": "d4c84f8dfb0e8e03822003dc358b336455402bf70e6476589303fa5d293b5b57",
+      "bytes": 2027
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/agribot_farm_sim/assistant_scenes.py",
+      "sha256": "ce7a6c86b27734559c28a18bc97c9417d2ad87fe83e0c45e8c696d86bc60e8b8",
+      "bytes": 6167
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/agribot_farm_sim/assistant_transport.py",
+      "sha256": "28e3cb13df7923fcb1216258de797d377ba10de105b3fe5681028afe6995c0c4",
+      "bytes": 2127
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/agribot_farm_sim/natural_recommendation.py",
+      "sha256": "943784ed87131e60b1c2557da421de73f0200fa47bb0ce55683099422b3bd18b",
+      "bytes": 28703
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/config/assistant_system_prompt.txt",
+      "sha256": "164d14480f7f07446abbd91cda1e2aabd84944657af73bfa12022145767ddb33",
+      "bytes": 14593
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/test/test_assistant_transport.py",
+      "sha256": "b178619f84f10a4f0e5eb466f5ff28873deec8646b2a770b41f62d3053bdd3b5",
+      "bytes": 2932
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/test/test_compact_track_appearance.py",
+      "sha256": "5e20faf7de7a4183de2cda6b0ef7a39b8af803d14261e72b9c4a51ff3de2fcb3",
+      "bytes": 2334
+    },
+    {
+      "path": "ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py",
+      "sha256": "44ee6680754f253752aaf9236ca6a693577d8ad06ce39bef774db98c38963868",
+      "bytes": 19210
+    },
+    {
+      "path": "ros2_ws/src/agribot_hardware_bringup/CMakeLists.txt",
+      "sha256": "98e832c5b588bbd971e1b1909a37d27ddde4573123675e86c9c62b3f0dc832be",
+      "bytes": 15450
+    },
+    {
+      "path": "ros2_ws/src/agribot_hardware_bringup/localization/navsat/src/rtk_eskf_localization_node.cpp",
+      "sha256": "9a24b812d4cff956651c940aac75bfbd184565ab2262970392c81d9051c38a62",
+      "bytes": 52900
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/CMakeLists.txt",
+      "sha256": "2f5ca736754e476681e546cd1d3bcce7ff85fb2d6718be08f393e4c0e4af9b19",
+      "bytes": 7959
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/launch/configured_ackermann_sim.launch.py",
+      "sha256": "77502199f7a51c6b8e4c49a282bb8d25e2eb9c0f047862b467a4c031185dd2f4",
+      "bytes": 70755
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/package.xml",
+      "sha256": "5b6d1d772bb5fddb9a215f8bff7f72cc7d98fbd8a44b3a0c6dfe3b2ed143a2fd",
+      "bytes": 2406
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/scripts/unity_sync_and_simulate.sh",
+      "sha256": "fb06df51b0bac1f97400df01ee30bd1ad2a26ef62f25706f1da5a6d46e964120",
+      "bytes": 27038
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/test/test_simulation_continuous_tracks.py",
+      "sha256": "397fda6d6d15cd1d54c0e4fe8ecc18ae3a736e135386873f3af3d9011033f32d",
+      "bytes": 3883
+    },
+    {
+      "path": "ros2_ws/src/agribot_vehicle_description/test/test_simulation_navsat_wgs84.py",
+      "sha256": "9b0bbf36caedbe4512d00653f7cd818e40156734d13e7469c2c4dc2248547fc2",
+      "bytes": 2628
+    },
+    {
+      "path": "scripts/build_ros.sh",
+      "sha256": "9145724fcdbe24aa415786393370391e0b7f25eaad43411c07f1f5515731c627",
+      "bytes": 661
+    },
+    {
+      "path": "scripts/build_unity.sh",
+      "sha256": "8d510dacd9ee9f159ea58166b77b877da0383f1f9b6d3d5402b1e2093da3babf",
+      "bytes": 1320
+    },
+    {
+      "path": "tools/runtime_fingerprint.py",
+      "sha256": "afa983e0a73f5a74701594b1756ea25058498cede045b5bab286115c016d5d09",
+      "bytes": 3086
+    },
+    {
+      "path": "tools/tests/test_runtime_fingerprint.py",
+      "sha256": "984d5850331adc1b3baf5f370e4cb4d05c91acb7f862bd43e2fab90e9f889c60",
+      "bytes": 3706
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Runtime/FarmScenarioCatalog.cs",
+      "sha256": "6b5b2b6fbc0edebda43f27d7d84d85090afcf5248149ee79d3bced261351fa18",
+      "bytes": 4451
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Runtime/RosSimulationLauncher.cs",
+      "sha256": "ac990fcf8d34812fcb5bd317fec98f2f7d2759c889ca2bee16dc1064868a3612",
+      "bytes": 28668
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Tests/Editor/FuxiFarmProfileTests.cs",
+      "sha256": "954ab05a2c49a2806b6493bc8767f9ffb41a5c78d25b89872a0f36bb5c3a5fd1",
+      "bytes": 4017
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Tests/Editor/FuxiFarmProfileTests.cs.meta",
+      "sha256": "9ea73e5b5dfc68ba33ee33f263fc14bb54b6f261402230c40e8d954d5b217292",
+      "bytes": 59
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FuxiFarmUiTests.cs",
+      "sha256": "e92c0f25c0146b7272d8c496e9ebb708420630b1939afa9c4d58a7a0630e18be",
+      "bytes": 3936
+    },
+    {
+      "path": "unity/Assets/AgribotConfig/Tests/PlayMode/FuxiFarmUiTests.cs.meta",
+      "sha256": "ca19e767cabb159e6176e9c27fd0c03428967e47d820885010835c43b73ca331",
+      "bytes": 59
+    },
+    {
+      "path": "unity/Assets/Scripts/LastPanel.Setup.cs",
+      "sha256": "d844fc1955f4ebaaecd91a7a4131fa0b11d46023ba7d3968974d91007a959aee",
+      "bytes": 9302
+    },
+    {
+      "path": "unity/Assets/Scripts/LastPanel.cs",
+      "sha256": "91ddf1750b78ea45b975225d53f2a9a81a204a29de49e78461695d9d1e18657b",
+      "bytes": 32657
+    }
+  ]
+}

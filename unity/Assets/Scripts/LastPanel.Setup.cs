@@ -92,6 +92,9 @@ public partial class LastPanel
     }
     private void RefreshScenes()
     {
+        var fixedScene = FarmScenarioCatalog.Selected;
+        if (fixedScene?.HasFixedRoute == true && selectedAlgorithm == null)
+            SelectAlgorithm(RosSimulationLauncher.FindAlgorithm(fixedScene.fixedAlgorithmId));
         if (currentScene != null) currentScene.text = "作业场景  /  未选择";
         foreach (var entry in sceneButtons)
         {
@@ -99,6 +102,18 @@ public partial class LastPanel
             entry.button.GetComponent<Image>().color = selected ? new Color(.28f, .35f, .15f) : GarageVisualStyle.Surface;
             if (selected && currentScene != null) currentScene.text = "作业场景  /  " + entry.scene.name;
         }
+        bool fixedRoute = fixedScene?.HasFixedRoute == true;
+        foreach (var option in componentOptions) option.Button.interactable = true;
+        if (fixedRoute && selectedAlgorithm?.Id == fixedScene.fixedAlgorithmId)
+        {
+            algorithmDetailTitle.text = "Car3 / 已验证固定配置";
+            algorithmLocalizationValue.text = "KF-GINS";
+            algorithmPlannerValue.text = "Smac（差速State Lattice）";
+            algorithmRouteValue.text = "预设104个经停点";
+            if (currentScene != null && AssistantConversation.State.car != "Car3")
+                currentScene.text = "伏羲农场 / 请选择Car3";
+        }
+        else if (selectedAlgorithm != null) RefreshSelectedAlgorithm(false);
         RefreshLaunchAvailability();
     }
     private void ShowSetupTab(bool algorithms)

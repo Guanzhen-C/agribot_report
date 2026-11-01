@@ -301,6 +301,7 @@ public partial class LastPanel : WheelChangePanel
 
     private void BeginExportRosConfiguration()
     {
+        FindFirstObjectByType<Car0GarageVehicle>()?.CancelBodyClickSequence();
         if (algorithmDialog == null)
             ConfigureAlgorithmDialog();
 
@@ -583,7 +584,8 @@ public partial class LastPanel : WheelChangePanel
         algorithmLocalizationValue.text = selectedLocalization?.DisplayName ?? "未选择";
         algorithmPlannerValue.text = selectedPlanner?.DisplayName ?? "未选择";
         algorithmControllerValue.text = selectedController?.DisplayName ?? "未选择";
-        algorithmRouteValue.text = selectedAlgorithm?.RouteMode ?? "未选择";
+        algorithmRouteValue.text = FarmScenarioCatalog.Selected?.HasFixedRoute == true
+            ? "预设104个经停点" : selectedAlgorithm?.RouteMode ?? "未选择";
         RefreshLaunchAvailability();
 
         foreach (ComponentOptionVisual option in componentOptions)
@@ -613,8 +615,10 @@ public partial class LastPanel : WheelChangePanel
 
     private void RefreshLaunchAvailability()
     {
+        bool fixedVehicleMatches = FarmScenarioCatalog.Selected?.HasFixedRoute != true ||
+            AssistantConversation.State.car == "Car3";
         if (launchSelectedAlgorithmButton != null)
-            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && !sceneImportBusy && !sceneDeleteBusy;
+            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy;
     }
 
     private bool IsSelectedComponent(RosSimulationComponentOption component)
