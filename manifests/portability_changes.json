@@ -12,7 +12,7 @@
   {
     "path": "ros2_ws/src/agribot_ackermann_mppi/launch/ackermann_waypoint_depth_collect_sim.launch.py",
     "original_sha256": "679235e836b79a2bb2505348476120f917fa65fd72c337e24e80aca5771ab1dd",
-    "delivery_sha256": "050891c912b6a1ccc7ca790134f2e8798c8213efa0c0ed980a9b6f6f3e5c8ab3"
+    "delivery_sha256": "a71e90230e6c546cdc831c0a130a06f9c53ab25402fa32977a1eeee1d4cbab51"
   },
   {
     "path": "ros2_ws/src/agribot_ackermann_mppi/package.xml",
