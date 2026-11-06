@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,9 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
     private Button newConversation;
     private ScrollRect conversationScroll;
     private readonly List<UnityEngine.Object> previewImages = new();
+    private string pendingAnswer = "";
+    private float firstCharacterSeconds = -1;
+    private Text streamingAnswer, streamingTime;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Bootstrap() => Ensure(null);
@@ -172,9 +176,11 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
                 FlowText(results, "UserMessage", "你：" + entry.content, 19, green);
             else if (entry.response != null) Present(entry.response);
         }
+        streamingAnswer = streamingTime = null;
+        if (busy && !string.IsNullOrEmpty(pendingAnswer)) ShowStreamPreview(pendingAnswer);
         Canvas.ForceUpdateCanvases();
         conversationScroll.verticalNormalizedPosition = 0f;
-        if (busy) status.text = "正在思考…";
+        if (busy) status.text = "正在等待回复…";
     }
 
     private void StartNewConversation()
@@ -198,7 +204,9 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         if (busy) yield break;
         if (string.IsNullOrWhiteSpace(input.text)) { status.text = "请先输入任务需求。"; yield break; }
         request?.Dispose(); request = new CancellationTokenSource();
-        SetBusy(true); status.text = "正在思考…";
+        var elapsed = System.Diagnostics.Stopwatch.StartNew();
+        pendingAnswer = ""; firstCharacterSeconds = -1;
+        SetBusy(true); status.text = "正在等待回复…";
         string question = input.text;
         RefreshState();
         var context = AssistantConversation.Snapshot();
@@ -206,14 +214,54 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         AssistantConversation.User(question);
         input.text = "";
         RenderConversation();
-        var task = NaturalRecommendationClient.Query(question, request.Token, "assistant", context, history, AssistantConversation.Memory);
-        yield return Await(task);
+        var progress = new ConcurrentQueue<NaturalRecommendationClient.StreamUpdate>();
+        var task = NaturalRecommendationClient.Query(question, request.Token, "assistant", context, history,
+            AssistantConversation.Memory, progress.Enqueue);
+        do
+        {
+            while (progress.TryDequeue(out var update))
+            {
+                if (update.type == "reset")
+                {
+                    pendingAnswer = "";
+                    if (streamingAnswer != null) streamingAnswer.text = "";
+                    status.text = update.text;
+                }
+                else if (!string.IsNullOrEmpty(update.text))
+                {
+                    if (firstCharacterSeconds < 0) firstCharacterSeconds = (float)elapsed.Elapsed.TotalSeconds;
+                    ShowStreamPreview(update.text);
+                    status.text = "正在回复…";
+                }
+            }
+            if (!task.IsCompleted) yield return null;
+        } while (!task.IsCompleted || !progress.IsEmpty);
         SetBusy(false);
-        if (task.IsCanceled) { status.text = "已取消。"; yield break; }
-        if (task.IsFaulted) { status.text = task.Exception.GetBaseException().Message; yield break; }
+        if (task.IsCanceled || task.IsFaulted)
+        {
+            if (streamingTime != null) streamingTime.text = $"首字耗时 {firstCharacterSeconds:F2} 秒 · 回复未完成";
+            status.text = task.IsCanceled ? "已取消。" : task.Exception.GetBaseException().Message;
+            yield break;
+        }
+        if (firstCharacterSeconds < 0) firstCharacterSeconds = (float)elapsed.Elapsed.TotalSeconds;
+        task.Result.hasFirstCharacterTime = true;
+        task.Result.firstCharacterSeconds = firstCharacterSeconds;
+        pendingAnswer = "";
         AssistantConversation.Assistant(task.Result);
         RenderConversation();
         input.ActivateInputField();
+    }
+
+    private void ShowStreamPreview(string text)
+    {
+        pendingAnswer = text;
+        if (streamingTime == null)
+            streamingTime = FlowText(results, "StreamingFirstCharacterTime", "", 15, new Color(.65f, .72f, .73f));
+        streamingTime.text = $"首字耗时 {firstCharacterSeconds:F2} 秒 · 回复中";
+        if (streamingAnswer == null) streamingAnswer = FlowText(results, "StreamingAssistantAnswer", "", 18, ink);
+        streamingAnswer.text = text;
+        Canvas.ForceUpdateCanvases();
+        conversationScroll.verticalNormalizedPosition = 0f;
     }
 
     public void Present(NaturalRecommendationResponse response)
@@ -221,6 +269,8 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         if (dialog == null) Build();
         var rows = response.recommendations ?? Array.Empty<NaturalRecommendation>();
         status.text = rows.Length > 0 ? $"为你准备了 {rows.Length} 个方案" : "助手回复";
+        if (response.hasFirstCharacterTime)
+            FlowText(results, "AssistantFirstCharacterTime", $"首字耗时 {response.firstCharacterSeconds:F2} 秒", 15, new Color(.65f, .72f, .73f));
         if (!string.IsNullOrWhiteSpace(response.answer)) FlowText(results, "AssistantAnswer", response.answer, 18, ink);
         if (!string.IsNullOrWhiteSpace(response.clarification)) FlowText(results, "Clarification", response.clarification, 18, ink);
         foreach (var item in rows)
@@ -381,10 +431,11 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         text.alignment = TextAnchor.MiddleLeft; text.supportRichText = false; text.raycastTarget = false;
         return text;
     }
-    private void FlowText(Transform parent, string name, string value, int size, Color color, bool bold = false)
+    private Text FlowText(Transform parent, string name, string value, int size, Color color, bool bold = false)
     {
         var text = Label(parent, name, value, size, Vector2.zero, Vector2.one, color, bold);
         text.verticalOverflow = VerticalWrapMode.Overflow;
+        return text;
     }
     private Button Button(Transform parent, string name, string title, Color color)
     {

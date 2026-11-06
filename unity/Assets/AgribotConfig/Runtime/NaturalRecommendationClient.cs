@@ -28,6 +28,8 @@ namespace Agribot.VehicleConfiguration
         public bool sceneToolUsed;
         public bool sceneCatalogReused;
         public int modelRequestCount;
+        public bool hasFirstCharacterTime;
+        public float firstCharacterSeconds;
         public string sceneCatalogVersion;
         public string error, clarification, limitation, answer, memory;
         public NaturalRecommendation[] recommendations;
@@ -46,6 +48,7 @@ namespace Agribot.VehicleConfiguration
             public float wheelbaseM, wheelTrackM, wheelRadiusM;
         }
         [Serializable] public sealed class Turn { public string role, content; }
+        [Serializable] public sealed class StreamUpdate { public string type, text; }
         [Serializable] private sealed class Request { public string text, mode, memory; public Context context; public Turn[] history; }
 
         public static string WorkspaceSource
@@ -68,8 +71,9 @@ namespace Agribot.VehicleConfiguration
         }
 
         public static Task<NaturalRecommendationResponse> Query(string text, CancellationToken token,
-            string mode = "assistant", Context context = null, Turn[] history = null, string memory = "") =>
-            Run(JsonUtility.ToJson(new Request { text = text, mode = mode, context = context, history = history, memory = memory }), null, token);
+            string mode = "assistant", Context context = null, Turn[] history = null, string memory = "",
+            Action<StreamUpdate> onProgress = null) =>
+            Run(JsonUtility.ToJson(new Request { text = text, mode = mode, context = context, history = history, memory = memory }), null, token, onProgress);
 
         public static async Task<NaturalRecommendation> Revalidate(NaturalRecommendation item, CancellationToken token)
         {
@@ -84,7 +88,8 @@ namespace Agribot.VehicleConfiguration
             return response.recommendations[0];
         }
 
-        private static async Task<NaturalRecommendationResponse> Run(string input, string candidate, CancellationToken token)
+        private static async Task<NaturalRecommendationResponse> Run(string input, string candidate, CancellationToken token,
+            Action<StreamUpdate> onProgress = null)
         {
             string src = WorkspaceSource;
             if (!File.Exists(Path.Combine(src, "agribot_farm_sim", "agribot_farm_sim", "natural_recommendation.py")))
@@ -96,7 +101,7 @@ namespace Agribot.VehicleConfiguration
                 StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8,
                 WorkingDirectory = src,
                 Arguments = "-m agribot_farm_sim.natural_recommendation --workspace-src " + Quote(src) +
-                    (candidate == null ? "" : " --candidate-id " + Quote(candidate))
+                    (candidate == null ? " --stream" : " --candidate-id " + Quote(candidate))
             };
             start.Environment["PYTHONPATH"] = Path.Combine(src, "agribot_farm_sim") + ":" +
                 Path.Combine(src, "agribot_vehicle_config_tools");
@@ -109,26 +114,44 @@ namespace Agribot.VehicleConfiguration
             {
                 try { if (!process.HasExited) process.Kill(); } catch (InvalidOperationException) { }
             });
-            var stdout = process.StandardOutput.ReadToEndAsync();
+            var stdout = candidate == null ? ReadStream(process.StandardOutput, onProgress, timeout.Token) :
+                process.StandardOutput.ReadToEndAsync();
             var stderr = process.StandardError.ReadToEndAsync();
             byte[] requestBytes = Encoding.UTF8.GetBytes(input);
             await process.StandardInput.BaseStream.WriteAsync(requestBytes, 0, requestBytes.Length);
             await process.StandardInput.BaseStream.FlushAsync();
             process.StandardInput.Close();
             await Task.Run(() => process.WaitForExit());
-            string json = await stdout;
-            await stderr; // Never surface traces or HTTP headers to the UI.
             if (timeout.IsCancellationRequested)
             {
+                try { await stdout; } catch (OperationCanceledException) { }
+                await stderr;
                 token.ThrowIfCancellationRequested();
                 throw new TimeoutException("推荐请求超时，请检查网络后重试。");
             }
+            string json = await stdout;
+            await stderr; // Never surface traces or HTTP headers to the UI.
             NaturalRecommendationResponse response;
             try { response = JsonUtility.FromJson<NaturalRecommendationResponse>(json); }
             catch (Exception) { throw new InvalidOperationException("推荐服务返回内容无效。"); }
             if (response == null || !response.ok || process.ExitCode != 0)
                 throw new InvalidOperationException(response?.error ?? "推荐服务未正常完成。");
             return response;
+        }
+
+        private static async Task<string> ReadStream(StreamReader reader, Action<StreamUpdate> onProgress, CancellationToken token)
+        {
+            string result = null, line;
+            while ((line = await reader.ReadLineAsync()) != null)
+            {
+                token.ThrowIfCancellationRequested();
+                if (line.Length > 1024 * 1024) throw new InvalidOperationException("推荐服务流式内容过大。");
+                var update = JsonUtility.FromJson<StreamUpdate>(line);
+                if (update?.type == "result") result = line;
+                else if (update?.type == "text" || update?.type == "reset") onProgress?.Invoke(update);
+                else throw new InvalidOperationException("推荐服务流式内容无效。");
+            }
+            return result ?? throw new InvalidOperationException("推荐服务流式回复中断，请重试。");
         }
 
         private static string Quote(string value) => "\"" + value.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";

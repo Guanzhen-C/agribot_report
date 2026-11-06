@@ -20,6 +20,35 @@ namespace Agribot.VehicleConfiguration.Tests
         private static object Invoke(Component component, string method, params object[] args) =>
             component.GetType().GetMethod(method, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Invoke(component, args);
 
+        [UnityTest]
+        public IEnumerator StreamingPreviewAndPerReplyTimingDoNotCreateUnvalidatedCards()
+        {
+            AssistantConversation.Reset();
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            var panel = Component("NaturalRecommendationPanel");
+            Invoke(panel, "Open");
+            Invoke(panel, "ShowStreamPreview", "第一段中文");
+            yield return null;
+            Assert.That(GameObject.Find("StreamingAssistantAnswer").GetComponent<Text>().text, Is.EqualTo("第一段中文"));
+            Assert.That(GameObject.Find("StreamingAssistantAnswer").GetComponent<Text>().supportRichText, Is.False);
+            Invoke(panel, "ShowStreamPreview", "第一段中文，继续回复。");
+            yield return null;
+            Assert.That(GameObject.Find("StreamingAssistantAnswer").GetComponent<Text>().text, Does.Contain("继续回复"));
+            Assert.That(GameObject.Find("ApplyRecommendation"), Is.Null);
+            Assert.That(AssistantConversation.Entries.Any(e => e.kind == "chat"), Is.False,
+                "Unvalidated preview must never become dialogue history");
+            AssistantConversation.Assistant(new NaturalRecommendationResponse {
+                answer = "完整回复", hasFirstCharacterTime = true, firstCharacterSeconds = 1.234f });
+            Invoke(panel, "Open");
+            yield return null;
+            Assert.That(GameObject.Find("StreamingAssistantAnswer"), Is.Null);
+            Assert.That(GameObject.Find("AssistantFirstCharacterTime").GetComponent<Text>().text, Does.Contain("1.23"));
+            Assert.That(AssistantConversation.Entries.Last().response.firstCharacterSeconds, Is.EqualTo(1.234f));
+            Assert.That(AssistantConversation.History().Last().content, Does.Not.Contain("首字"));
+            Invoke(panel, "Close");
+        }
+
         [Test]
         public void SessionTracksOrderedChatActionsSnapshotAndMemory()
         {

@@ -190,7 +190,7 @@ def configuration():
     return key, base, config.get('model', 'deepseek-flash')
 
 
-def request_model_reply(payload):
+def request_model_reply(payload, on_progress=None):
     key, base, model = configuration()
     payload['model'] = model
     request = urllib.request.Request(base + '/chat/completions',
@@ -198,6 +198,13 @@ def request_model_reply(payload):
         headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key})
     try:
         with model_urlopen(request, timeout=25) as response:
+            if payload.get('stream'):
+                from .assistant_stream import read_completion, StreamProtocolError
+                try:
+                    return read_completion(response, lambda text: on_progress(dict(type='text', text=text))
+                                           if on_progress else None)
+                except StreamProtocolError as error:
+                    raise InvalidModelReply(str(error)) from None
             raw = response.read(512_001)
         if len(raw) > 512_000:
             raise InvalidModelReply('模型返回内容过大。')
@@ -284,7 +291,7 @@ def validate_reply(reply, rows, context=None):
 
 
 def recommend(text, rows, call=None, mode='assistant', context=None, history=None, knowledge=None, memory='',
-              scene_catalog=None):
+              scene_catalog=None, on_progress=None):
     if not isinstance(text, str) or not text.strip() or len(text) > 2000:
         raise ValueError('请输入1至2000字的任务需求。')
     if mode not in ('assistant', 'vehicle', 'algorithm', 'help'):
@@ -332,12 +339,15 @@ def recommend(text, rows, call=None, mode='assistant', context=None, history=Non
         dict(role='system', content=json.dumps(dict(knowledge=initial_knowledge), ensure_ascii=False)), *turns,
         dict(role='user', content=json.dumps(dict(request=text, mode=mode,
             current_state={k: v for k, v in context.items() if k != 'sceneCatalogVersion'}, memory=memory[:4000]), ensure_ascii=False))],
-        response_format={'type': 'json_object'}, thinking={'type': 'disabled'}, max_tokens=3000, stream=False,
+        response_format={'type': 'json_object'}, thinking={'type': 'disabled'}, max_tokens=3000, stream=on_progress is not None,
         tools=[SCENE_TOOL], tool_choice=tool_choice)
     queried, corrected = False, False
     for attempt in range(3):
         try:
-            reply = (call or request_model_reply)(payload)
+            if on_progress:
+                on_progress(dict(type='reset', text='正在查询场景…' if queried else
+                                 '正在重新生成…' if corrected else '正在等待回复…'))
+            reply = call(payload) if call else request_model_reply(payload, on_progress=on_progress)
             if isinstance(reply, dict) and '_tool_message' in reply:
                 message = reply['_tool_message']
                 calls = message.get('tool_calls') if isinstance(message, dict) else None
@@ -404,6 +414,7 @@ def main():
     parser.add_argument('--workspace-src', type=Path, required=True)
     parser.add_argument('--catalog-only', action='store_true')
     parser.add_argument('--candidate-id')
+    parser.add_argument('--stream', action='store_true', help='Emit flushed JSONL preview events and a validated result.')
     args = parser.parse_args()
     try:
         rows, knowledge = assistant_catalog(args.workspace_src)
@@ -430,12 +441,14 @@ def main():
                 result = recommend(request['text'], rows, mode=request.get('mode', 'assistant'), context=request.get('context'),
                     history=request.get('history') if isinstance(request.get('history'), list) else [],
                     memory=request.get('memory') if isinstance(request.get('memory'), str) else '', knowledge=knowledge,
-                    scene_catalog=lambda: assistant_catalog(args.workspace_src))
-        print(json.dumps(dict(ok=True, **result), ensure_ascii=False))
+                    scene_catalog=lambda: assistant_catalog(args.workspace_src),
+                    on_progress=(lambda event: print(json.dumps(event, ensure_ascii=False), flush=True))
+                    if args.stream else None)
+        print(json.dumps(dict(ok=True, **result, **({'type': 'result'} if args.stream else {})), ensure_ascii=False), flush=True)
     except Exception as error:
         # Do not include request headers, SDK traces or response bodies containing secrets.
         message = str(error) if isinstance(error, ValueError) else '推荐服务发生错误，请检查本机配置和记录。'
-        print(json.dumps(dict(ok=False, error=message), ensure_ascii=False))
+        print(json.dumps(dict(ok=False, error=message, **({'type': 'result'} if args.stream else {})), ensure_ascii=False), flush=True)
         raise SystemExit(1)
 
 
