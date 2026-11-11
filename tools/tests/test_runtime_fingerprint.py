@@ -65,6 +65,16 @@ def test_vendor_pdf_deletion_does_not_require_committing_unrelated_user_changes(
         runtime.fingerprint(repository)
 
 
+def test_vendor_standalone_misspelled_pdf_manual_is_not_a_runtime_input(repository):
+    manual = repository/'unity/Documentaion.pdf'
+    manual.write_bytes(b'Vendor manual')
+    git(repository, 'add', 'unity')
+    git(repository, 'commit', '-qm', 'standalone vendor manual')
+    before = runtime.fingerprint(repository)
+    manual.unlink()
+    assert runtime.fingerprint(repository)['sha256'] == before['sha256']
+
+
 @pytest.mark.parametrize('state', ['working', 'staged', 'untracked'])
 def test_uncommitted_runtime_input_cannot_be_released(repository, state):
     path = repository / 'unity' / ('new.cs' if state == 'untracked' else 'source.cs')

@@ -14,8 +14,10 @@ def runtime_input(name):
     path = Path(name)
     # Vendor PDF manuals and their Unity metadata are not player build inputs.
     manual = path.suffix.lower() == '.pdf' or path.name.lower().endswith('.pdf.meta')
+    standalone_manual = path.name.lower() in ('documentation.pdf', 'documentation.pdf.meta',
+                                             'documentaion.pdf', 'documentaion.pdf.meta')
     return not (path.parts[0] == 'unity' and manual and
-                any(part in ('Documentation', 'Documentaion') for part in path.parts))
+                (standalone_manual or any(part in ('Documentation', 'Documentaion') for part in path.parts)))
 
 
 def fingerprint(root, require_clean=True):
