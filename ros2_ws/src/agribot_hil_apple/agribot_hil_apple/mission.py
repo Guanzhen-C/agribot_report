@@ -96,7 +96,9 @@ class Mission:
 
     def save(self):
         self.output.mkdir(parents=True, exist_ok=True)
-        (self.output/'mission.json').write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary = self.output/'mission.tmp'
+        temporary.write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary.replace(self.output/'mission.json')
 
     def navigate(self, phase, points):
         nav = self.navigator

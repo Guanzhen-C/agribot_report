@@ -171,7 +171,9 @@ class Mission(Node):
         self.current_stage.update(action='completed', endpoint_error_m=math.hypot(p.x-goal['x'], p.y-goal['y']))
 
     def save(self):
-        (self.output/'result.json').write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary = self.output/'result.tmp'
+        temporary.write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary.replace(self.output/'result.json')
         self.record.flush()
 
     def run(self, manifest):

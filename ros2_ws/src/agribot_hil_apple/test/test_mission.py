@@ -13,6 +13,21 @@ from lifecycle_msgs.msg import State
 from agribot_hil_apple.path_preflight import path_metrics
 
 
+def test_report_is_replaced_only_after_complete_json_is_written(tmp_path, monkeypatch):
+    final = tmp_path/'mission.json'
+    final.write_text('{"status":"running"}')
+    replace = Path.replace
+    observations = []
+    def inspect(temporary, destination):
+        observations.append((json.loads(final.read_text()), json.loads(temporary.read_text())))
+        return replace(temporary, destination)
+    monkeypatch.setattr(Path, 'replace', inspect)
+    Mission.save(SimpleNamespace(output=tmp_path, report={'status': 'succeeded'}))
+    assert observations == [({'status': 'running'}, {'status': 'succeeded'})]
+    assert json.loads(final.read_text())['status'] == 'succeeded'
+    assert not (tmp_path/'mission.tmp').exists()
+
+
 def test_terminal_progress_detects_circling_even_while_vehicle_is_moving():
     progress = TerminalProgress()
     for stamp in range(14):

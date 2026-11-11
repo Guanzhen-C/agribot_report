@@ -172,14 +172,19 @@ class Agent:
         directory = self.root/'runs'/run_id
         result_path = directory/('mission/result.json' if selected['car'] == 'Car4' else
                                  'mission/mission.json' if selected['car'] == 'Car0' else 'mission.json')
+        pending_report = False
         if result_path.exists():
-            value = json.loads(result_path.read_text())
+            try:
+                value = json.loads(result_path.read_text())
+            except (json.JSONDecodeError, FileNotFoundError):
+                value, pending_report = {}, True
             if value.get('passed') is True or value.get('status') in ('succeeded', 'completed'):
                 return {'status': 'completed', 'result': value}
         state = execute(['systemctl', '--user', 'is-active', self.unit(True)], check=False).stdout.strip()
         if state in ('active', 'activating', 'deactivating'):
-            return {'status': 'running'}
-        return {'status': 'failed', 'message': 'X5 mission ended without a successful result',
+            return {'status': 'running', 'report_pending': pending_report}
+        return {'status': 'failed', 'message': ('X5 mission ended with an unreadable report' if pending_report else
+                'X5 mission ended without a successful result'),
                 'result_file': str(result_path), 'unit_state': state}
 
 

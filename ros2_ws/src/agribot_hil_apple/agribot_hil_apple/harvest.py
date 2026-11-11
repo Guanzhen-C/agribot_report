@@ -138,7 +138,9 @@ class Harvester(Node):
     def event(self, name, **values):
         self.report['events'].append({'event': name, 'sim_time': self.get_clock().now().nanoseconds/1e9, **values})
         self.output.parent.mkdir(parents=True, exist_ok=True)
-        self.output.write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary = self.output.with_suffix('.tmp')
+        temporary.write_text(json.dumps(self.report, indent=2)+'\n')
+        temporary.replace(self.output)
         if rclpy.ok():
             self.get_logger().info(name+': '+json.dumps(values))
 

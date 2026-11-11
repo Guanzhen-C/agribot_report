@@ -6,6 +6,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parents[1]/'hil'))
 from agent import Agent
+import agent as agent_module
 from backend import RuntimeBackend
 from catalog import ROOT, profile
 
@@ -60,3 +61,18 @@ def test_confirmed_stop_is_idempotent_but_failed_stop_can_be_retried(tmp_path, m
     backend.safe_stop()
     assert backend.stop_confirmed is True
     assert calls == [('rdk', 'stop'), ('pc', 'stop')]*2
+
+
+@pytest.mark.parametrize('unit_state,expected', [('active', 'running'), ('inactive', 'failed')])
+def test_partial_mission_report_never_cancels_a_live_task_or_becomes_a_pass(tmp_path, monkeypatch, unit_state, expected):
+    from types import SimpleNamespace
+    directory = tmp_path/'runs/test_run/mission'
+    directory.mkdir(parents=True)
+    (directory/'mission.json').write_text('')
+    instance = SimpleNamespace(root=tmp_path, select=lambda _: {'car': 'Car0'},
+                               unit=lambda _: 'test-mission.service')
+    monkeypatch.setattr(agent_module, 'execute', lambda *args, **kwargs: SimpleNamespace(stdout=unit_state))
+    result = Agent.mission_status(instance, 'ackermann_apple', 'test_run')
+    assert result['status'] == expected
+    assert 'result' not in result
+    if expected == 'running': assert result['report_pending'] is True
