@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
@@ -11,6 +12,24 @@ namespace Agribot.VehicleConfiguration.Tests
 {
     public sealed class HilUiTests
     {
+        private string previousRoot, temporaryRoot;
+
+        [SetUp]
+        public void UseAnIsolatedUiSession()
+        {
+            previousRoot = Environment.GetEnvironmentVariable("AGRIBOT_REPORT_ROOT");
+            temporaryRoot = Path.Combine(Path.GetTempPath(), "agribot-hil-ui-" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporaryRoot);
+            Environment.SetEnvironmentVariable("AGRIBOT_REPORT_ROOT", temporaryRoot);
+        }
+
+        [TearDown]
+        public void RestoreUiSession()
+        {
+            Environment.SetEnvironmentVariable("AGRIBOT_REPORT_ROOT", previousRoot);
+            Directory.Delete(temporaryRoot, true);
+        }
+
         private static GameObject Find(string name) => UnityEngine.Object.FindObjectsByType<Transform>(
             FindObjectsInactive.Include, FindObjectsSortMode.None).First(item => item.name == name).gameObject;
 
@@ -45,11 +64,24 @@ namespace Agribot.VehicleConfiguration.Tests
             }
             Assert.That(car.transform.Find("ROS_base_link/HilSprayer").gameObject.activeSelf, Is.False);
             Find("BagPanel").transform.Find("Header/CloseButton").GetComponent<Button>().onClick.Invoke();
-            Find("Start_Hil_Simulation").GetComponent<Button>().onClick.Invoke();
+            var toolbar = Find("VehicleActionToolbar");
+            Assert.That(toolbar.GetComponentsInChildren<Button>(true)
+                .Any(button => button.name == "Start_Hil_Simulation"), Is.False);
+            toolbar.GetComponentsInChildren<Button>(true).Single(button => button.name == "Output_btn")
+                .onClick.Invoke();
             yield return null;
-            var normal = Find("Launch").GetComponent<RectTransform>();
-            var hil = Find("LaunchHil").GetComponent<RectTransform>();
+            var dialog = UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsSortMode.None)
+                .Single(item => item.name == "ROS_Algorithm_Selection" && item.gameObject.activeInHierarchy);
+            dialog.GetComponentsInChildren<Button>(true).Single(button => button.name == "Scenario_orchard")
+                .onClick.Invoke();
+            var buttons = dialog.GetComponentsInChildren<Button>(true);
+            var normal = buttons.Single(button => button.name == "Launch").GetComponent<RectTransform>();
+            var hil = buttons.Single(button => button.name == "LaunchHil").GetComponent<RectTransform>();
+            Assert.That(AssistantConversation.State.car, Is.EqualTo("Car3"));
+            Assert.That(AssistantConversation.State.implement, Is.EqualTo("hil_shredder"));
+            Assert.That(HilSimulationLauncher.ReadStatus().phase, Is.EqualTo("stopped"));
             Assert.That(normal.anchorMax.x, Is.LessThan(hil.anchorMin.x));
+            Assert.That(normal.GetComponent<Button>().interactable, Is.False);
             Assert.That(hil.GetComponent<Button>().interactable, Is.True);
             Assert.That(FarmScenarioCatalog.SelectedId, Is.EqualTo("orchard"));
         }

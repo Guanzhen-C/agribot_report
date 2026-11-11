@@ -1,4 +1,5 @@
 import json
+import shutil
 from pathlib import Path
 import sys
 
@@ -44,3 +45,14 @@ def test_dedicated_hil_workspace_is_allowed(tmp_path):
     args = config.ssh_arguments(loaded, 'python3', '/a path/agent.py', 'status')
     assert args[-1] == "python3 '/a path/agent.py' status"
     assert 'BatchMode=yes' in args
+
+
+def test_flash_scripts_are_pinned_and_tampering_is_rejected(tmp_path):
+    original = config.ROOT/'resources/hil/openocd'
+    config.verify_flash_scripts({'openocd_scripts': str(original)})
+    copy = tmp_path/'openocd'
+    shutil.copytree(original, copy)
+    config.verify_flash_scripts({'openocd_scripts': str(copy)})
+    (copy/'soc/hpm_reset.cfg').write_text('modified reset')
+    with pytest.raises(ValueError, match='已验证版本不一致'):
+        config.verify_flash_scripts({'openocd_scripts': str(copy)})

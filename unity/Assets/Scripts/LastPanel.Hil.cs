@@ -9,17 +9,6 @@ public partial class LastPanel
     private Text hilStatus;
     private string hilTransmission = "cvt_auto";
 
-    public void OpenHilSetup()
-    {
-        BeginExportRosConfiguration();
-        if (!FarmScenarioCatalog.HasSelection)
-            FarmScenarioCatalog.SelectedId = AssistantConversation.State.car == "Car4" ? "wide_headland" : "orchard";
-        var profile = SelectedHilProfile();
-        if (profile != null && selectedAlgorithm == null)
-            SelectAlgorithm(RosSimulationLauncher.FindAlgorithm(profile.algorithm));
-        RefreshScenes();
-    }
-
     private HilProfile SelectedHilProfile() => HilSimulationLauncher.Match(AssistantConversation.State.car,
         AssistantConversation.State.implement, FarmScenarioCatalog.SelectedId, hilTransmission);
 

@@ -47,6 +47,24 @@ def test_documentation_commit_does_not_invalidate_the_app(repository):
     assert after['sha256'] == before['sha256']
 
 
+def test_vendor_pdf_deletion_does_not_require_committing_unrelated_user_changes(repository):
+    directory = repository/'unity/Assets/Vendor/Documentation'
+    directory.mkdir(parents=True)
+    manual = directory/'API.pdf'
+    metadata = directory/'API.pdf.meta'
+    manual.write_bytes(b'PDF manual')
+    metadata.write_text('guid: documentation')
+    git(repository, 'add', 'unity')
+    git(repository, 'commit', '-qm', 'vendor manual')
+    before = runtime.fingerprint(repository)
+    manual.unlink()
+    metadata.unlink()
+    assert runtime.fingerprint(repository)['sha256'] == before['sha256']
+    (directory/'runtime.cs').write_text('runtime code')
+    with pytest.raises(ValueError, match='未提交修改'):
+        runtime.fingerprint(repository)
+
+
 @pytest.mark.parametrize('state', ['working', 'staged', 'untracked'])
 def test_uncommitted_runtime_input_cannot_be_released(repository, state):
     path = repository / 'unity' / ('new.cs' if state == 'untracked' else 'source.cs')

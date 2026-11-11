@@ -4,7 +4,6 @@
   "identity": "~/.ssh/agribot_hil_app_ed25519",
   "known_hosts": "~/.ssh/known_hosts",
   "openocd": "/opt/hpm-openocd/bin/openocd",
-  "openocd_scripts": "/opt/hpm-sdk/boards/openocd",
   "openocd_library_path": "/opt/hpm-openocd/lib",
   "probe_serial": "REPLACE_WITH_REVIEWED_PROBE_SERIAL",
   "real_runtime_fingerprint": "/home/cgz/agribot_report/.local/hil/protected-real-runtime.json"

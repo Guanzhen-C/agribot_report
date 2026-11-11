@@ -46,3 +46,19 @@ ros2_ws/src/agribot_farm_sim/agribot_farm_sim/assistant_scenes.py
 ros2_ws/src/agribot_k2_sim/agribot_k2_sim/import_scene.py
 ros2_ws/src/FAST-LIVO2/src/LIVMapper.cpp
 ```
+
+## 可选HIL入口
+
+| 路径 | 责任 |
+| --- | --- |
+| `unity/Assets/Scripts/LastPanel.Hil.cs`、`HilSimulationUi.cs` | 原面板入口、模式选择、提交与状态 |
+| `unity/Assets/AgribotConfig/Runtime/HilSimulationLauncher.cs` | 方案匹配和短时CLI接口 |
+| `unity/Assets/AgribotConfig/Resources/hil_profiles.json` | 5个HIL方案与3组固件唯一目录 |
+| `tools/hil/cli.py`、`workflow.py`、`backend.py` | 用户请求、必烧录状态机、物理启动与清理 |
+| `tools/hil/deploy.py`、`prepare_runtime.py`、`protect_real_runtime.py` | 独立部署及真车文件保护 |
+| `tools/hil/agent.py`、`ros_control.py` | 专用运行单元、就绪检查和授权 |
+| `resources/hil/` | 固定ELF与可重定位场景资源 |
+| `ros2_ws/src/agribot_hil_apple` | 苹果园、原底盘CAN、机械臂及ISOBUS农具 |
+| `ros2_ws/src/agribot_hil_hitch` | 独立悬挂协议、动力换挡/CVT和作业可视化 |
+
+验证和产品边界见[HIL集成说明](18_hil_integration.md)，此模块不包含手机/网页农机控制台。

@@ -7,7 +7,7 @@ import subprocess
 import time
 
 from catalog import ROOT
-from config import ssh_arguments
+from config import ssh_arguments, verify_flash_scripts
 from protect_real_runtime import compare, remote_snapshot, RUNTIME_OUTPUTS
 from admin_bus import pc_device
 
@@ -16,6 +16,7 @@ class RuntimeBackend:
     def __init__(self, config, run, emit, cancelled=lambda: False):
         self.config, self.run, self.emit, self.cancelled = config, Path(run), emit, cancelled
         self.profile = None
+        self.stop_confirmed = False
         self.log = self.run/'operations.log'
         self.run.mkdir(parents=True, exist_ok=True)
 
@@ -40,6 +41,7 @@ class RuntimeBackend:
 
     def preflight(self, selected, image):
         self.profile = selected
+        verify_flash_scripts(self.config)
         if not Path('/usr/local/libexec/agribot-hil-bus').is_file():
             raise RuntimeError('HIL权限助手未安装，请先运行HIL部署准备。')
         # No commands are sent to a debug probe or CAN bus during this check.
@@ -86,6 +88,7 @@ class RuntimeBackend:
             raise RuntimeError('X5真车工作区指纹有变化，已阻止HIL启动，请先核对。')
 
     def flash(self, image):
+        verify_flash_scripts(self.config)
         path = Path(image['path'])
         if any(letter in str(path) for letter in '{};\r\n'):
             raise ValueError('Unsafe firmware path')
@@ -131,6 +134,8 @@ class RuntimeBackend:
         self.agent('rdk', 'mission', '--profile', selected['id'], '--run-id', self.run.name)
 
     def safe_stop(self):
+        if self.stop_confirmed:
+            return
         errors = []
         for role in ('rdk', 'pc'):
             try:
@@ -140,6 +145,7 @@ class RuntimeBackend:
         if errors:
             (self.run/'stop-errors.json').write_text(json.dumps(errors, indent=2)+'\n')
             raise RuntimeError('HIL清理未完全确认：'+'; '.join(errors))
+        self.stop_confirmed = True
 
     def monitor(self, selected):
         while True:

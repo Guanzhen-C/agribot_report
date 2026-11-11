@@ -129,7 +129,9 @@ def test_side_approaches_keep_the_grasp_axis_perpendicular_to_the_stem():
     target = np.array([.2, .3, .7])
     stem = Rotation.from_euler('xy', [.04, -.02]).apply([0., 0., 1.])
     options = list(approach_options(target, [.25, 0., .384], stem))
-    assert len(options) == 19
+    assert len(options) == 44
+    assert [(a, e) for a, e, _, _ in options[:7]] == [(0., e) for e in (0., -.2, -.4, -.6, .2, .45, .7)]
+    assert any(0. < abs(a) < .6 for a, _, _, _ in options[19:])
     assert any(abs(a) > 1. for a, _, _, _ in options)
     for _, _, pre, quaternion in options:
         rotation = Rotation.from_quat(quaternion)
@@ -156,6 +158,34 @@ def test_online_selection_stops_after_enough_reachable_candidates(limit, count):
 def test_selection_rejects_nonpositive_limit():
     with pytest.raises(ValueError):
         Harvester.candidates(SimpleNamespace(), maximum=0)
+
+
+def test_selection_retries_target_seed_but_still_requires_cartesian_and_ompl_paths():
+    fruit = {'model': 'apple', 'grasp_in_base': [.263, .473, .646],
+             'stem_axis_in_base': [0., 0., 1.]}
+    current, first, goal, second = (RobotState() for _ in range(4))
+    solutions = iter([first, goal, second])
+    seeds, approaches, plans = [], [], []
+    path = SimpleNamespace(points=[None])
+    def ik(position, quaternion, seed):
+        seeds.append(seed)
+        return next(solutions)
+    def cartesian(start, target):
+        approaches.append(start)
+        if start is first:
+            raise RuntimeError('Incomplete collision-checked approach: 0.889')
+        return path
+    node = SimpleNamespace(report={'harvested': [], 'candidates': []},
+        wait_observation=lambda: {'fruits': [fruit]}, environment=lambda _: None,
+        fk=lambda **kwargs: pose([.25, 0., .384]), state=lambda: current,
+        ik=ik, cartesian=cartesian,
+        plan=lambda start, end: plans.append((start, end)) or path,
+        event=lambda *args, **kwargs: None)
+    assert len(Harvester.candidates(node, maximum=1)) == 1
+    assert seeds == [current, current, goal]
+    assert approaches == [first, second]
+    assert plans == [(current, second)]
+    assert node.report['candidates'][0]['seed_strategy'] == 'target_seed'
 
 
 def test_precise_approach_retains_collision_check_and_lower_speed():

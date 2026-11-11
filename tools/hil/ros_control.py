@@ -69,8 +69,9 @@ class Control(Node):
         gateway = self.fresh('/hil/isobus/events', .75)
         if not status or not gateway: return False
         raw = bytes.fromhex(gateway['data'])
+        mask = {'sprayer': 3, 'shredder': 4}.get(status.get('implement_kind'))
         return bool(not status.get('fault') and status.get('truth_fresh') and status.get('motors_fresh') and
-            len(raw) == 8 and raw[0] == raw[1] == 1 and raw[2] & 3 == 3)
+            mask is not None and len(raw) == 8 and raw[0] == raw[1] == 1 and raw[2] & mask == mask)
 
     def ready(self, stop_file=None):
         clients = {name: self.create_client(GetState, '/'+name+'/get_state')
@@ -103,7 +104,11 @@ class Control(Node):
                 if now-stable[0] > .7 and self.fresh('/clock') > stable[1]:
                     return {'ready': True, 'lifecycle': self.lifecycle}
             else: stable = None
-        raise TimeoutError('HIL等待就绪超时；请检查CAN、定位、仿真时钟和X5算法日志。')
+        diagnostic = {'lifecycle': self.lifecycle, 'topics': {
+            name: {'age_sec': round(time.monotonic()-received, 2), 'value': value}
+            for name, (received, value) in self.data.items()}}
+        raise TimeoutError('HIL等待就绪超时；请检查CAN、定位、仿真时钟和X5算法日志。\n'+
+                           json.dumps(diagnostic, ensure_ascii=False))
 
     def authorization(self, enabled):
         if self.car == 'Car4':

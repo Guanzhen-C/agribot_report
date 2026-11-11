@@ -619,7 +619,8 @@ public partial class LastPanel : WheelChangePanel
         bool fixedVehicleMatches = FarmScenarioCatalog.Selected?.HasFixedRoute != true ||
             AssistantConversation.State.car == "Car3";
         if (launchSelectedAlgorithmButton != null)
-            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy;
+            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy &&
+                !HilImplementLibrary.Supports(AssistantConversation.State.implement);
         RefreshHilAvailability();
     }
 

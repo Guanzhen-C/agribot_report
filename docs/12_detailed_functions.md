@@ -235,3 +235,9 @@ Gazebo 展示场景、车辆、运动及虚拟传感器。RViz 展示二维地�
 | 生成与仿真 | `agribot_vehicle_config_tools/`、`configured_ackermann_sim.launch.py` |
 
 上述 Unity 短路径位于 `unity/Assets/Scripts/` 或 `unity/Assets/AgribotConfig/Runtime/`；完整代码导航见[代码导航](11_code_map.md)。
+
+## 9. 新增可选HIL模块
+
+2026-11-11集成分支新增原界面中的HIL启动入口，支持已选定的Car0机械臂采摘、Car3风送植保/碎枝、Car4悬挂圆盘耙与动力换挡/CVT工况。PC负责Gazebo物理和传感器，X5运行算法，6750在实际CAN链路中参与控制或中继；每次启动均自动烧录对应已校验ELF，硬件及定位未就绪时不能执行任务。
+
+新增农具沿用装备面板与自动固定挂载，任务使用原默认路线；停止复用已有按钮，过程状态记录进入AI助手会话。采用独立X5目录、ROS域、运行单元和真车文件指纹保护，不部署到真车工作区。喷雾、碎土等属于作业可视化，不补充为真实农艺物理模型，也不把独立旧HIL通过记录等同于新入口全部通过。具体工况、限制和逐项进度见[HIL集成](18_hil_integration.md)。

@@ -1,0 +1,14 @@
+{
+  "upstream": "HPMicro HPM SDK boards/openocd",
+  "license": "BSD-3-Clause",
+  "modified": false,
+  "files": {
+    "probes/cmsis_dap.cfg": "d93ca480708086b4e8628b2e8507dae6df80f0a8d0621b56f1dd70b4d02f5c76",
+    "soc/hpm6750-single-core.cfg": "66553895c98a94fbd2c36db5bb60109ca9660e4f50ba2642b6ea6cab3446810d",
+    "boards/hpm6750evk2.cfg": "1aa1dec16a88cd3fe01c3e21824a8d53df947afae3656168975c04af56eb787c",
+    "soc/hpm_common.cfg": "1591620f7255149b4bc036bd362842ea45871efcf1b4b1b2705e90f0e653187b",
+    "soc/hpm_common_csr.cfg": "52f01daeca5d4586288823c0dcff4665f6bae291338f730466a656adb716c74f",
+    "soc/hpm_reset.cfg": "6ac20afdfa83259aaf30628d0c8546c2628fca018ed300368400563385da7d06",
+    "LICENSE": "196fe7ebcd675f4427fd9cb54cb7dd1e99f4b0dacb07a643190bedf07a62febf"
+  }
+}

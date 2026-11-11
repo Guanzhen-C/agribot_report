@@ -26,6 +26,7 @@ MESSAGES = {
     'flashing': '正在烧录并校验6750固件', 'configuring_can': '正在配置HIL通信',
     'starting_pc': '正在启动Gazebo场景', 'starting_x5': '正在启动X5算法',
     'waiting_ready': '正在等待定位和硬件反馈就绪', 'running': 'HIL任务正在运行',
+    'starting_mission': '正在授权并提交默认任务',
     'stopping_after_error': '正在停止HIL并撤销授权', 'completed': 'HIL任务已完成',
     'stopped': 'HIL仿真已停止', 'failed': 'HIL启动或运行失败', 'stopping': '正在停止HIL仿真'}
 
@@ -111,7 +112,7 @@ def worker(identifier, run_id, stop_only=False):
             stream.write(json.dumps(current, ensure_ascii=False)+'\n')
     backend = None
     try:
-        backend = RuntimeBackend(load(), run, emit, lambda: (STATE/'stop.request').exists())
+        backend = RuntimeBackend(load(validate_flash=not stop_only), run, emit, lambda: (STATE/'stop.request').exists())
         if stop_only:
             emit('stopping')
             backend.safe_stop()
@@ -125,6 +126,7 @@ def worker(identifier, run_id, stop_only=False):
         if backend is not None:
             try: backend.safe_stop(); current['session_alive'] = False
             except Exception as failure:
+                current['session_alive'] = True
                 (run/'cleanup-error.log').write_text(str(failure))
         if (isinstance(error, InterruptedError) or (backend and backend.cancelled())) and not current.get('session_alive'):
             emit('stopped')

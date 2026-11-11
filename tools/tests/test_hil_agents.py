@@ -37,3 +37,26 @@ def test_legacy_bridges_are_authorized_only_after_readiness_before_mission(tmp_p
     calls.clear()
     backend.start_mission(profile('tractor_cvt'))
     assert calls == [('rdk', 'mission')]
+
+
+def test_confirmed_stop_is_idempotent_but_failed_stop_can_be_retried(tmp_path, monkeypatch):
+    backend = RuntimeBackend({}, tmp_path, lambda *_: None)
+    calls = []
+    monkeypatch.setattr(backend, 'agent', lambda role, action, **kwargs: calls.append((role, action)))
+    backend.safe_stop()
+    backend.safe_stop()
+    assert calls == [('rdk', 'stop'), ('pc', 'stop')]
+    backend.stop_confirmed = False
+    calls.clear()
+    def failed(role, action, **kwargs):
+        calls.append((role, action))
+        if role == 'rdk':
+            raise RuntimeError('transport unavailable')
+    monkeypatch.setattr(backend, 'agent', failed)
+    with pytest.raises(RuntimeError, match='清理未完全确认'):
+        backend.safe_stop()
+    assert backend.stop_confirmed is False
+    monkeypatch.setattr(backend, 'agent', lambda role, action, **kwargs: calls.append((role, action)))
+    backend.safe_stop()
+    assert backend.stop_confirmed is True
+    assert calls == [('rdk', 'stop'), ('pc', 'stop')]*2

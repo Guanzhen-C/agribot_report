@@ -48,6 +48,9 @@ class Agent:
             AGRIBOT_HIL_CODE_ROOT=str(self.code),
             AGRIBOT_HIL_PLUGIN_ROOT=str(self.root/'plugins'),
             AGRIBOT_ISOBUS_ENDPOINT=str(self.root/'build-isobus/hil_isobus_endpoint'))
+        if self.role == 'pc':
+            env['GAZEBO_MODEL_PATH'] = ':'.join((str(self.code/'ros2_ws/src/agribot_ackermann_mppi/models'),
+                str(self.code/'ros2_ws/src'), env.get('GAZEBO_MODEL_PATH', '')))
         paths = [str(self.root/'install/agribot_hil_hitch/lib'), str(self.root/'install/lib'),
                  str(self.root/'plugins'), env.get('GAZEBO_PLUGIN_PATH', '')]
         env['GAZEBO_PLUGIN_PATH'] = ':'.join(paths)
@@ -55,7 +58,7 @@ class Agent:
 
     def ros_command(self, profile, command):
         setup = self.settings['underlay']
-        overlay = str(self.root/'install/setup.bash')
+        overlay = str(self.root/'install/local_setup.bash')
         # Setup paths and all executable arguments are positional, not shell source.
         shell = ('set -e; unset AMENT_PREFIX_PATH COLCON_PREFIX_PATH CMAKE_PREFIX_PATH '
                  'LD_LIBRARY_PATH PYTHONPATH ROS_PACKAGE_PATH; '

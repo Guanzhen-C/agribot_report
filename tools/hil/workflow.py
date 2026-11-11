@@ -30,7 +30,8 @@ class Startup:
             self.step('starting_x5', lambda: self.backend.start_x5(selected))
             self.step('waiting_ready', lambda: self.backend.wait_ready(selected))
             self.step('checking_protected_runtime', self.backend.verify_real_runtime)
-            self.step('running', lambda: self.backend.start_mission(selected))
+            self.step('starting_mission', lambda: self.backend.start_mission(selected))
+            self.emit('running')
         except BaseException:
             self.emit('stopping_after_error')
             try:

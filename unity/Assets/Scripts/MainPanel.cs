@@ -52,7 +52,6 @@ public class MainPanel : MonoBehaviour
     private readonly List<GameObject> farmCars = new();
     private Button explosionButton;
     private Button stopSimulation;
-    private Button startHilSimulation;
     private Button exportPhysical;
     private RectTransform actionToolbar;
     private SceneVehicleExplodedView explodedView;
@@ -108,8 +107,6 @@ public class MainPanel : MonoBehaviour
         BindButton("Back_btn", ShowMainPanel);
         vehicleSelector = LastPanel.CreatePresetSelector(GetComponentInParent<Canvas>().transform,
             outputButton.GetComponent<Button>(), ExportSelectedVehicle, ShowSimulationMessage);
-        startHilSimulation.onClick.AddListener(vehicleSelector.OpenHilSetup);
-        HilSimulationUi.Changed += RefreshHilToolbar;
         HilSimulationUi.Changed += RefreshExportAvailability;
         NaturalRecommendationPanel.Ensure(null);
         stopSimulation.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(ShowSimulationMessage));
@@ -198,6 +195,8 @@ public class MainPanel : MonoBehaviour
     {
         explodedView?.Close();
         if (visibleCar == null) throw new InvalidOperationException("请先选择车辆。");
+        if (HilImplementLibrary.Supports(AssistantConversation.State.implement))
+            throw new InvalidOperationException("该机具当前只接入HIL，请使用启动HIL仿真。");
         if (Time.time - selectedAt < bounceDuration)
             throw new InvalidOperationException("请等待车辆展示动画结束后再导出。");
         var controller = bagPanel.GetComponentInChildren<EquipmentBagController>(true);
@@ -274,7 +273,6 @@ public class MainPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        HilSimulationUi.Changed -= RefreshHilToolbar;
         HilSimulationUi.Changed -= RefreshExportAvailability;
         RosSimulationHandoffUi.AvailabilityChanged -= RefreshExportAvailability;
         if (vehicleSelector != null) Destroy(vehicleSelector.gameObject);
@@ -342,7 +340,6 @@ public class MainPanel : MonoBehaviour
         outputButton.transform.SetParent(actionToolbar, false);
         outputButton.GetComponentInChildren<Text>(true).text = "启动仿真";
         ConfigureActionButton(outputButton);
-        startHilSimulation = CreateActionButton("Start_Hil_Simulation", "启动HIL仿真");
         stopSimulation = CreateActionButton("Stop_NewVehicle_Simulation", "停止仿真");
         exportPhysical = CreateActionButton("Export_NewVehicle_Physical", "导出真机配置");
         openBagButton.transform.SetParent(actionToolbar, false);
@@ -388,14 +385,6 @@ public class MainPanel : MonoBehaviour
     {
         if (visibleCar != null)
             explodedView.Open(visibleCar);
-    }
-
-    private void RefreshHilToolbar()
-    {
-        if (startHilSimulation == null) return;
-        string car = visibleCar != null ? visibleCar.name : "";
-        startHilSimulation.gameObject.SetActive(car == "Car0" || car == "Car3" || car == "Car4");
-        startHilSimulation.interactable = !HilSimulationUi.IsBusy && !HilSimulationLauncher.ReadStatus().Active;
     }
 
     private void BindButton(string objectName, UnityEngine.Events.UnityAction action)
@@ -530,7 +519,6 @@ public class MainPanel : MonoBehaviour
         if (explosionButton != null) explosionButton.gameObject.SetActive(true);
         if (stopSimulation != null) stopSimulation.gameObject.SetActive(true);
         if (exportPhysical != null) exportPhysical.gameObject.SetActive(true);
-        RefreshHilToolbar();
         RefreshExportAvailability();
         if (backButton == null)
             return;

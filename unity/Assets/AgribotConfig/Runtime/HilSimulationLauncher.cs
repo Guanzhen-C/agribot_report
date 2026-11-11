@@ -9,6 +9,7 @@ namespace Agribot.VehicleConfiguration
     [Serializable] public sealed class HilProfile
     {
         public string id, car, implement, scene, name, firmware, algorithm, route, runtime, transmission;
+        public string unityType;
         public int domain, gazeboPort;
     }
 
@@ -45,7 +46,10 @@ namespace Agribot.VehicleConfiguration
         public static string Repository => Environment.GetEnvironmentVariable("AGRIBOT_REPORT_ROOT") ??
             Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
         public static string StatusPath => Path.Combine(Repository, ".local", "hil", "state.json");
-        public static bool HasSession => ReadStatus().session_alive || ReadStatus().Active;
+        public static bool HasSession
+        {
+            get { var status = ReadStatus(); return status.session_alive || status.Active; }
+        }
 
         public static HilRunStatus ReadStatus()
         {

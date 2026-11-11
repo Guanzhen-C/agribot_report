@@ -71,6 +71,9 @@ def approach_options(target, shoulder, stem_axis):
     horizontal /= np.linalg.norm(horizontal)
     angles = [(0., e) for e in (0., -.2, -.4, -.6, .2, .45, .7)]
     angles += [(a, e) for a in (-.6, .6, -1.2, 1.2) for e in (-.2, -.4, 0.)]
+    # Keep the validated fast path first; refine only after coarse poses fail.
+    angles += [(a, e) for a in (0., -.15, .15, -.3, .3)
+               for e in (-.1, -.3, .1, .3, .55)]
     for azimuth, elevation in angles:
         lateral = Rotation.from_rotvec(stem*azimuth).apply(horizontal)
         direction = np.cos(elevation)*lateral+np.sin(elevation)*stem
@@ -383,15 +386,27 @@ class Harvester(Node):
             entry['attempts'] = []
             for azimuth, elevation, pre, quaternion in approach_options(target, shoulder, stem):
                 try:
-                    state = self.ik(pre, quaternion, self.state())
-                    approach = self.cartesian(state, pose(target, quaternion))
+                    seed_strategy = 'pregrasp_first'
+                    try:
+                        state = self.ik(pre, quaternion, self.state())
+                        approach = self.cartesian(state, pose(target, quaternion))
+                    except RuntimeError as initial_error:
+                        # A second IK branch may admit the same collision-checked approach.
+                        seed_strategy = 'target_seed'
+                        entry['attempts'].append({'azimuth_rad': azimuth, 'elevation_rad': elevation,
+                            'seed_strategy': 'pregrasp_first', 'reason': str(initial_error)})
+                        goal = self.ik(target, quaternion, self.state())
+                        state = self.ik(pre, quaternion, goal)
+                        approach = self.cartesian(state, pose(target, quaternion))
                     plan = self.plan(self.state(), state)
                     entry.update(status='reachable', azimuth_rad=azimuth, elevation_rad=elevation,
+                                 seed_strategy=seed_strategy,
                                  pregrasp_points=len(plan.points), approach_points=len(approach.points))
                     accepted.append((fruit, plan, approach, pose(pre, quaternion)))
                     break
                 except RuntimeError as error:
-                    entry['attempts'].append({'azimuth_rad': azimuth, 'elevation_rad': elevation, 'reason': str(error)})
+                    entry['attempts'].append({'azimuth_rad': azimuth, 'elevation_rad': elevation,
+                                             'seed_strategy': seed_strategy, 'reason': str(error)})
             else:
                 entry['status'] = 'skipped'
             self.event('candidate_checked', **entry)
