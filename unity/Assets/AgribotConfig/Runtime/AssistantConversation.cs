@@ -73,7 +73,8 @@ namespace Agribot.VehicleConfiguration
                 "Hand" => "lite6", "ChiselPlow" => "compact_chisel_plow", "DiscHarrow" => "mounted_disc_harrow",
                 "GrooveMaker" => "groove_maker", "Cultivator" => "mounted_cultivator", "ChainCrusher" => "forest_chain_crusher",
                 "InterrowMill" => "inter_row_milling_cutter", "FrontCutter" => "front_sickle_bar", "GarlicPlanter" => "garlic_planter",
-                "MulchPlanter" => "mulch_planter", "FarmTrailer" => "farm_trailer", "CombineHeader" => "combine_header", _ => null
+                "MulchPlanter" => "mulch_planter", "FarmTrailer" => "farm_trailer", "CombineHeader" => "combine_header",
+                "HilSprayer" => "hil_sprayer", "HilShredder" => "hil_shredder", _ => null
             };
             RecordUi((installed ? "安装装备：" : "卸下装备：") + name, state =>
             {

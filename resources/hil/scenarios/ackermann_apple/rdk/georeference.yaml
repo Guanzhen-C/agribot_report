@@ -1,0 +1,27 @@
+schema_version: 1
+map:
+  id: hil_apple_orchard
+  pcd: orchard_v2_simulated.pcd
+  fingerprint_fnv1a64: simulated-map-no-pcd-check
+reference:
+  latitude_deg: 30.5
+  longitude_deg: 114.0
+  altitude_m: 20.0
+map_from_enu:
+  xyz:
+  - 2.142499953508377
+  - 36.29525852203369
+  - 0.397259521484375
+  rpy:
+  - 0.0
+  - 0.0
+  - 0.0
+calibration:
+  horizontal_rmse_m: 0.01
+  yaw_rmse_deg: 0.0
+  yaw_validation_passed: true
+  sample_count: 100
+  source_bag: simulated_ground_truth
+  version: ackermann-sim-v1
+  hash: deterministic-orchard-enu
+created_at_utc: '2026-09-14T00:00:00Z'

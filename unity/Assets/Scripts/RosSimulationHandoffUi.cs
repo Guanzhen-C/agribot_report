@@ -18,7 +18,7 @@ namespace Agribot.VehicleConfiguration
         private bool canExport;
         public static event Action AvailabilityChanged;
         public static bool IsBusy => instance != null && instance.busy;
-        public static bool CanExport => instance != null && !instance.busy && instance.canExport &&
+        public static bool CanExport => instance != null && !instance.busy && instance.canExport && !HilSimulationLauncher.HasSession &&
             !string.IsNullOrEmpty(instance.exportPath);
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -67,7 +67,11 @@ namespace Agribot.VehicleConfiguration
             if (exportButton != null) exportButton.onClick.RemoveListener(ExportConfiguration);
         }
 
-        private void StopSimulation() => StartCoroutine(Execute(false));
+        private void StopSimulation()
+        {
+            if (HilSimulationLauncher.HasSession) HilSimulationUi.Stop(showMessage);
+            else StartCoroutine(Execute(false));
+        }
         public static void RequestStop(Action<string> notification)
         {
             Create(); instance.showMessage = notification; instance.StopSimulation();

@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "scenario": "hil_apple_orchard",
+  "source_scenario": "orchard",
+  "source_world": "scout_gazebo/worlds/orchard_barriers.world",
+  "source_map": "scout_navigation/maps/orchard_v2_map6.yaml",
+  "fruit_row": 2,
+  "fruit_asset": "YCB 013_apple/google_16k",
+  "background_tree_components": 337,
+  "background_apples_before_task_deduplication": 1011,
+  "branch_anchors": [
+    [
+      28.110000610351562,
+      31.610000610351562,
+      0.7663179636001587
+    ],
+    [
+      28.030000686645508,
+      31.530000686645508,
+      0.7594094276428223
+    ],
+    [
+      28.010000228881836,
+      31.43000030517578,
+      0.7927815914154053
+    ],
+    [
+      27.989999771118164,
+      31.329999923706055,
+      0.8376067876815796
+    ],
+    [
+      30.299999237060547,
+      31.440000534057617,
+      0.7263179421424866
+    ],
+    [
+      30.219999313354492,
+      31.360000610351562,
+      0.7183395624160767
+    ],
+    [
+      30.389999389648438,
+      31.420000076293945,
+      0.7292885184288025
+    ]
+  ],
+  "fruit_socket_to_branch_m": {
+    "harvest_apple_1": 0.04,
+    "harvest_apple_2": 0.07,
+    "harvest_apple_3": 0.04,
+    "harvest_apple_4": 0.04,
+    "harvest_apple_5": 0.07,
+    "harvest_apple_6": 0.07,
+    "harvest_apple_7": 0.07
+  },
+  "apple_reference": "stem_socket",
+  "grasp_targets": [
+    [
+      28.110000610351562,
+      31.610000610351562,
+      0.7463179636001587
+    ],
+    [
+      28.030000686645508,
+      31.530000686645508,
+      0.7094094276428222
+    ],
+    [
+      28.010000228881836,
+      31.43000030517578,
+      0.7727815914154053
+    ],
+    [
+      27.989999771118164,
+      31.329999923706055,
+      0.8176067876815796
+    ],
+    [
+      30.299999237060547,
+      31.440000534057617,
+      0.6763179421424865
+    ],
+    [
+      30.219999313354492,
+      31.360000610351562,
+      0.6683395624160766
+    ],
+    [
+      30.389999389648438,
+      31.420000076293945,
+      0.6792885184288024
+    ]
+  ],
+  "grasp_part": "stem",
+  "stem_diameter_m": 0.0036,
+  "selection_policy": "collision-free IK and OMPL from the parked vehicle; skip unreachable fruit",
+  "maximum_harvest_count": 3,
+  "gripper_max_aperture_m": 0.0178,
+  "gripper_aperture_includes_custom_stem_pads": true,
+  "fixed_route_source": "agribot_ackermann_mppi/config/orchard_waypoints_ackermann_smac.yaml",
+  "fixed_route_points": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "fixed_route_order": [
+    1,
+    2,
+    3
+  ],
+  "forward_only": true,
+  "outbound_via": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      32.07,
+      31.83,
+      3.141592653589793
+    ],
+    [
+      30.57,
+      31.83,
+      3.141592653589793
+    ]
+  ],
+  "pickup_stops": [
+    {
+      "park": [
+        30.57,
+        31.83,
+        3.141592653589793
+      ],
+      "target_models": [
+        "harvest_apple_5",
+        "harvest_apple_7"
+      ]
+    }
+  ],
+  "pickup_position_tolerance_m": 0.1,
+  "pickup_yaw_tolerance_rad": 0.15,
+  "pickup_orientation_required": true,
+  "return_position_tolerance_m": 0.2632937431335449,
+  "final_orientation_required": false,
+  "control_velocity_topic": "/wheel/odometry",
+  "completion_via": [
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "finish": [
+    3.0,
+    32.5,
+    3.14159
+  ],
+  "finish_is_spawn": false,
+  "route_sequence": [
+    1,
+    2,
+    3
+  ],
+  "transit_gripper_opening_m": 0.0089,
+  "navigation_phases": [
+    "outbound",
+    "completion"
+  ],
+  "spawn": [
+    2.0,
+    36.0,
+    0.1325,
+    0.0
+  ],
+  "park": [
+    30.57,
+    31.83,
+    3.141592653589793
+  ],
+  "apples": [
+    [
+      28.110000610351562,
+      31.610000610351562,
+      0.7263179636001587
+    ],
+    [
+      28.030000686645508,
+      31.530000686645508,
+      0.6894094276428222
+    ],
+    [
+      28.010000228881836,
+      31.43000030517578,
+      0.7527815914154052
+    ],
+    [
+      27.989999771118164,
+      31.329999923706055,
+      0.7976067876815796
+    ],
+    [
+      30.299999237060547,
+      31.440000534057617,
+      0.6563179421424865
+    ],
+    [
+      30.219999313354492,
+      31.360000610351562,
+      0.6483395624160766
+    ],
+    [
+      30.389999389648438,
+      31.420000076293945,
+      0.6592885184288024
+    ]
+  ],
+  "trees": [],
+  "base_to_antenna": [
+    0.14249995350837708,
+    0.2952585220336914,
+    0.264759521484375
+  ],
+  "rtk_antenna_lowering_m": 0.52,
+  "manipulator": {
+    "model": "lite6",
+    "parentFrameId": "base_link",
+    "pose": {
+      "xyz": [
+        0.25232720375061035,
+        0.0009719826048240066,
+        0.1402149200439453
+      ],
+      "quaternion": [
+        6.746694504878702e-15,
+        0.0,
+        5.6595396813463594e-08,
+        1.0
+      ],
+      "rpy": [
+        0.0,
+        2.384185791015625e-07,
+        1.1319077941607247e-07
+      ]
+    },
+    "demoEnabled": true
+  },
+  "minimum_turning_radius_m": 1.303246323188244,
+  "can_topology": "hpm6750_native_bridge",
+  "hpm6750_enabled": true,
+  "can_command_topic": "/hil/actuator/cmd_vel",
+  "can_required_for_motion": true,
+  "ground_truth_topic": "/hil/ground_truth",
+  "status": "generated_not_a_full_run_acceptance"
+}

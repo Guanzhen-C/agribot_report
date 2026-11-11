@@ -21,6 +21,8 @@ namespace AgriculturalMachinery.BagSystem
         GarlicPlanter = 12,
         MulchPlanter = 13,
         FarmTrailer = 14,
-        CombineHeader = 15
+        CombineHeader = 15,
+        HilSprayer = 16,
+        HilShredder = 17
     }
 }

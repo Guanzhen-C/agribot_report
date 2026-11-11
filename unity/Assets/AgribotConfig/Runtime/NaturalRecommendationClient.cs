@@ -45,6 +45,8 @@ namespace Agribot.VehicleConfiguration
             public bool sceneImported;
             public string perception = "", vision = "", localization = "", planner = "", controller = "";
             public string[] sensors = Array.Empty<string>();
+            public string hilProfile = "", hilStatus = "stopped";
+            public string[] hilAvailableProfiles = Array.Empty<string>();
             public float wheelbaseM, wheelTrackM, wheelRadiusM;
         }
         [Serializable] public sealed class Turn { public string role, content; }

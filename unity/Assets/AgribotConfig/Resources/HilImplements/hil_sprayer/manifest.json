@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "hil_sprayer",
+  "meshGroups": 101,
+  "triangles": 150748,
+  "previewSha256": "c1edfc525dab9e43057b4a051d86f273eb32047f101c28577229dae6c2f7216c",
+  "sourceSdfSha256": "3f223e2453c168fe8251089895c37c1a800e6618e91dac6a78a4999213da09e6"
+}

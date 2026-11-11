@@ -4,7 +4,7 @@
 
 Ubuntu 22.04 amd64、ROS 2 Humble、Gazebo Classic 11、系统 Python 3.10。建议32GB内存和充足SSD。源码构建使用Unity6000.0.26f1、Linux Build Support (Mono)和有效许可证；安装匹配的预编译程序不需要Unity Editor。
 
-本仓库不需要 Node、Android SDK、手机控制台或6750固件工具链。
+普通仿真不需要Node、Android SDK、手机控制台或6750固件工具链。可选HIL功能需要X5、6750、烧录器和USB-CAN，另需HPM OpenOCD进行每次启动时的自动烧录；使用已校验ELF不要求每次重编译固件。详见[HIL集成](18_hil_integration.md)。
 
 ## 克隆
 

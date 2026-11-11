@@ -29,7 +29,9 @@ namespace AgriculturalMachinery.BagSystem
                 (EquipmentType.GarlicPlanter, "garlic_planter", "大蒜播种机"),
                 (EquipmentType.MulchPlanter, "mulch_planter", "灌水覆膜播种机"),
                 (EquipmentType.FarmTrailer, "farm_trailer", "双轴农用拖车"),
-                (EquipmentType.CombineHeader, "combine_header", "谷物收割割台") })
+                (EquipmentType.CombineHeader, "combine_header", "谷物收割割台"),
+                (EquipmentType.HilSprayer, "hil_sprayer", "风送植保机"),
+                (EquipmentType.HilShredder, "hil_shredder", "碎枝机") })
             {
                 var texture = GarageThumbnailLibrary.LoadTexture(item.Item2);
                 owned.Add(texture);
@@ -91,10 +93,14 @@ namespace AgriculturalMachinery.BagSystem
             type == EquipmentType.ChainCrusher || type == EquipmentType.InterrowMill ||
             type == EquipmentType.FrontCutter || type == EquipmentType.GarlicPlanter ||
             type == EquipmentType.MulchPlanter || type == EquipmentType.FarmTrailer ||
-            type == EquipmentType.CombineHeader;
+            type == EquipmentType.CombineHeader || type == EquipmentType.HilSprayer || type == EquipmentType.HilShredder;
+
+        public static bool IsImplement(EquipmentType type) => type == EquipmentType.Hand || IsMountedImplement(type);
 
         public static string UnavailableReason(EquipmentType type, string car)
         {
+            if (type == EquipmentType.HilSprayer || type == EquipmentType.HilShredder)
+                return car == "Car3" ? null : "该机具仅适配Car3履带车";
             if (type == EquipmentType.Hand && car != "Car0" && car != "Car3")
                 return "机械臂适配阿克曼车和履带车";
             if (IsMountedImplement(type))

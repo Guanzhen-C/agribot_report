@@ -1,0 +1,11 @@
+{
+  "source": "@HIL_ROOT@/shared_assets/6006bf6ce28f/sensor_rtk_master_visual.obj",
+  "source_sha256": "76c861302646eedce69096de65e4be698c65905923f7bcbe060c15fb19edb039",
+  "result_sha256": "5b4a339b0f09d8bb19343eca283214a7c9a71931c00b12bc6c3a376366b2c94a",
+  "removed_primitives": {
+    "Cube2": 12,
+    "Cube1": 12
+  },
+  "antenna_lowering_m": 0.52,
+  "scope": "Cube1/Cube2 removed; both antenna frames lowered 520 mm onto the deck; retained bottom rail stays at its original height"
+}

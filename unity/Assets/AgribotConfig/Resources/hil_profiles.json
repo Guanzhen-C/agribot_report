@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "firmwares": [
+    {"id":"ackermann_apple","file":"resources/hil/firmware/ackermann_apple.elf","sha256":"ab4f61ee8ff35657ced66ea75567d33804d53fb453890ac7d24a78852bc00191","bitrate":1000000},
+    {"id":"tracked_isobus","file":"resources/hil/firmware/tracked_isobus.elf","sha256":"932444008e70e4b4f306e0d37cd8d65c798814da2a06e5456e2d4d2177402c4c","bitrate":250000},
+    {"id":"tractor_powertrain","file":"resources/hil/firmware/tractor_powertrain.elf","sha256":"3337810f52bd2711e1dc0dcbd8d351ac2b626eaba339c98878d8c0f528865113","bitrate":250000}
+  ],
+  "profiles": [
+    {"id":"ackermann_apple","car":"Car0","implement":"lite6","scene":"orchard","name":"阿克曼机械臂采摘","firmware":"ackermann_apple","algorithm":"stvl_off_fastlivo_rtk_smac_hybrid_mppi","route":"苹果园1→2→3，途中采摘，3点停车","domain":73,"gazeboPort":11355,"runtime":"ackermann_apple","transmission":"off"},
+    {"id":"tracked_sprayer","car":"Car3","implement":"hil_sprayer","scene":"orchard","name":"履带植保喷水","firmware":"tracked_isobus","algorithm":"stvl_off_fastlivo_rtk_smac_hybrid_mppi","route":"苹果园1→2→3，行走与喷水联动","domain":73,"gazeboPort":11357,"runtime":"tracked_sprayer","transmission":"off"},
+    {"id":"tracked_shredder","car":"Car3","implement":"hil_shredder","scene":"orchard","name":"履带碎枝机","firmware":"tracked_isobus","algorithm":"stvl_off_fastlivo_rtk_smac_hybrid_mppi","route":"苹果园1→2→3，行走与刀轴联动","domain":73,"gazeboPort":11357,"runtime":"tracked_shredder","transmission":"off"},
+    {"id":"tractor_powershift","car":"Car4","implement":"mounted_disc_harrow","scene":"wide_headland","name":"拖拉机悬挂与动力换挡","firmware":"tractor_powertrain","algorithm":"stvl_off_navsat_smac_hybrid_mppi","route":"接近→第一作业行→抬耙转弯→第二作业行→停车","domain":74,"gazeboPort":11358,"runtime":"tractor_harrow","transmission":"powershift_auto"},
+    {"id":"tractor_cvt","car":"Car4","implement":"mounted_disc_harrow","scene":"wide_headland","name":"拖拉机悬挂与CVT","firmware":"tractor_powertrain","algorithm":"stvl_off_navsat_smac_hybrid_mppi","route":"接近→第一作业行→抬耙转弯→第二作业行→停车","domain":74,"gazeboPort":11358,"runtime":"tractor_harrow","transmission":"cvt_auto"}
+  ]
+}

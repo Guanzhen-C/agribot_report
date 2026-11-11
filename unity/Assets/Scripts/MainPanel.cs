@@ -52,6 +52,7 @@ public class MainPanel : MonoBehaviour
     private readonly List<GameObject> farmCars = new();
     private Button explosionButton;
     private Button stopSimulation;
+    private Button startHilSimulation;
     private Button exportPhysical;
     private RectTransform actionToolbar;
     private SceneVehicleExplodedView explodedView;
@@ -63,6 +64,7 @@ public class MainPanel : MonoBehaviour
     private Camera overviewCamera;
     private Pose overviewPose;
     private LensSettings overviewLens;
+    private bool trackedPreviewLoaded;
 
     private void Awake()
     {
@@ -82,7 +84,7 @@ public class MainPanel : MonoBehaviour
         var cameraTemplate = car5;
         foreach (var preset in FarmVehicleLibrary.Presets.Where(p => !string.IsNullOrEmpty(p.garageName)))
         {
-            var car = FarmGarageVehicle.Create(cameraTemplate, preset);
+            var car = FarmGarageVehicle.Create(cameraTemplate, preset, deferGeometry: true);
             if (car == null) throw new InvalidOperationException("缺少米制车辆资源：" + preset.id);
             // Reuse the original card and workflow, retaining authored source
             // models inactive for editing instead of exporting their miniature scale.
@@ -95,7 +97,6 @@ public class MainPanel : MonoBehaviour
                 default: farmCars.Add(car); break;
             }
         }
-        SimulationAppearanceLibrary.ApplyToSceneVehicle(car3);
         if (farmCars.Count > 0) FarmGarageGrid.Extend(transform, farmCars, SelectCarFromImage);
         ConfigureActionToolbar();
         BindButton("Car0_Img", () => SelectCarFromImage(car0));
@@ -107,6 +108,9 @@ public class MainPanel : MonoBehaviour
         BindButton("Back_btn", ShowMainPanel);
         vehicleSelector = LastPanel.CreatePresetSelector(GetComponentInParent<Canvas>().transform,
             outputButton.GetComponent<Button>(), ExportSelectedVehicle, ShowSimulationMessage);
+        startHilSimulation.onClick.AddListener(vehicleSelector.OpenHilSetup);
+        HilSimulationUi.Changed += RefreshHilToolbar;
+        HilSimulationUi.Changed += RefreshExportAvailability;
         NaturalRecommendationPanel.Ensure(null);
         stopSimulation.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(ShowSimulationMessage));
         explosionButton.onClick.AddListener(OpenExplodedView);
@@ -149,6 +153,14 @@ public class MainPanel : MonoBehaviour
             openBagButton.SetActive(false);
         if (actionToolbar != null)
             actionToolbar.gameObject.SetActive(false);
+        StartCoroutine(RecordStartupReady());
+    }
+
+    private IEnumerator RecordStartupReady()
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.Log($"AGRIBOT_GARAGE_READY seconds={Time.realtimeSinceStartup:F3} " +
+            $"loadedFarmVehicles={farmCars.Count(c => c.GetComponent<FarmGarageVehicle>().IsLoaded)}");
     }
 
     private VehicleConfigurationAuthoring BuildSelectedVehicle()
@@ -262,6 +274,8 @@ public class MainPanel : MonoBehaviour
 
     private void OnDestroy()
     {
+        HilSimulationUi.Changed -= RefreshHilToolbar;
+        HilSimulationUi.Changed -= RefreshExportAvailability;
         RosSimulationHandoffUi.AvailabilityChanged -= RefreshExportAvailability;
         if (vehicleSelector != null) Destroy(vehicleSelector.gameObject);
         if (explodedView != null) Destroy(explodedView.gameObject);
@@ -328,6 +342,7 @@ public class MainPanel : MonoBehaviour
         outputButton.transform.SetParent(actionToolbar, false);
         outputButton.GetComponentInChildren<Text>(true).text = "启动仿真";
         ConfigureActionButton(outputButton);
+        startHilSimulation = CreateActionButton("Start_Hil_Simulation", "启动HIL仿真");
         stopSimulation = CreateActionButton("Stop_NewVehicle_Simulation", "停止仿真");
         exportPhysical = CreateActionButton("Export_NewVehicle_Physical", "导出真机配置");
         openBagButton.transform.SetParent(actionToolbar, false);
@@ -375,6 +390,14 @@ public class MainPanel : MonoBehaviour
             explodedView.Open(visibleCar);
     }
 
+    private void RefreshHilToolbar()
+    {
+        if (startHilSimulation == null) return;
+        string car = visibleCar != null ? visibleCar.name : "";
+        startHilSimulation.gameObject.SetActive(car == "Car0" || car == "Car3" || car == "Car4");
+        startHilSimulation.interactable = !HilSimulationUi.IsBusy && !HilSimulationLauncher.ReadStatus().Active;
+    }
+
     private void BindButton(string objectName, UnityEngine.Events.UnityAction action)
     {
         GameObject target = FindSceneObject(objectName);
@@ -393,6 +416,8 @@ public class MainPanel : MonoBehaviour
     {
         if (car == null)
             return;
+        var farm = car.GetComponent<FarmGarageVehicle>();
+        if (farm != null && !farm.IsLoaded) return;
 
         originalScales[car] = car.transform.localScale;
         GarageVehicleGrounding.Attach(car);
@@ -414,6 +439,15 @@ public class MainPanel : MonoBehaviour
             Debug.LogWarning("MainPanel: The selected car reference is missing.", this);
             return;
         }
+
+        car.GetComponent<FarmGarageVehicle>()?.EnsureLoaded();
+        if (car == car3 && !trackedPreviewLoaded)
+        {
+            SimulationAppearanceLibrary.ApplyToSceneVehicle(car);
+            trackedPreviewLoaded = true;
+            CacheCarState(car);
+        }
+        if (!originalScales.ContainsKey(car)) CacheCarState(car);
 
         HideOtherCars(car);
         RestoreCarVisuals(car);
@@ -496,6 +530,7 @@ public class MainPanel : MonoBehaviour
         if (explosionButton != null) explosionButton.gameObject.SetActive(true);
         if (stopSimulation != null) stopSimulation.gameObject.SetActive(true);
         if (exportPhysical != null) exportPhysical.gameObject.SetActive(true);
+        RefreshHilToolbar();
         RefreshExportAvailability();
         if (backButton == null)
             return;

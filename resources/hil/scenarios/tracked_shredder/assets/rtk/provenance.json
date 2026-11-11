@@ -1,0 +1,15 @@
+{
+  "source": "@HIL_ROOT@/shared_assets/06872d41ddd4/sensor_rtk_master_visual.obj",
+  "source_sha256": "3629661b52f54c872c5bcc39b20fec81d6e304469ad9174e0e5adce8de58b5e1",
+  "result_sha256": "23cb89eedf650e21a034f6dbce2726df736f441bcd173cdc5884ecdb9945f084",
+  "removed_primitives": {
+    "RTK": 12,
+    "Cube1": 12,
+    "Cube2": 12,
+    "Plane1": 200,
+    "Plane2": 200
+  },
+  "baseline_m": 0.58,
+  "short_stems_retained": true,
+  "scope": "Two housings with original 62 mm stems/feet; no tall posts or rails"
+}

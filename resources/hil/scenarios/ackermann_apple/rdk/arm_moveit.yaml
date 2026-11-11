@@ -1,0 +1,286 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_description: "<robot name=\"ackermann_current\"><link name=\"base_link\"\
+      ><inertial><origin xyz=\"0.262391507626 0 0.061550501734\" rpy=\"0 0 0\" />\n\
+      \      <mass value=\"50\" />\n      <inertia ixx=\"1.91400003433\" ixy=\"0\"\
+      \ ixz=\"0\" iyy=\"2.67199993134\" iyz=\"0\" izz=\"4.08400011063\" />\n    </inertial>\n\
+      \    <collision><origin xyz=\"0.262391507626 0 0.061550501734\" rpy=\"0 0 0\"\
+      \ />\n      <geometry><box size=\"0.761610984802 0.631783008575 0.245800003409\"\
+      \ />\n      </geometry>\n    </collision>\n    <collision name=\"cargo_floor\"\
+      ><origin xyz=\"-0.06 0.0 0.205\" rpy=\"0 0 0\" /><geometry><box size=\"0.18\
+      \ 0.28 0.01\" /></geometry></collision><collision name=\"cargo_rear\"><origin\
+      \ xyz=\"-0.155 0.0 0.24\" rpy=\"0 0 0\" /><geometry><box size=\"0.01 0.28 0.08\"\
+      \ /></geometry></collision><collision name=\"cargo_front\"><origin xyz=\"0.035\
+      \ 0.0 0.24\" rpy=\"0 0 0\" /><geometry><box size=\"0.01 0.28 0.08\" /></geometry></collision><collision\
+      \ name=\"cargo_left\"><origin xyz=\"-0.06 0.145 0.24\" rpy=\"0 0 0\" /><geometry><box\
+      \ size=\"0.2 0.01 0.08\" /></geometry></collision><collision name=\"cargo_right\"\
+      ><origin xyz=\"-0.06 -0.145 0.24\" rpy=\"0 0 0\" /><geometry><box size=\"0.2\
+      \ 0.01 0.08\" /></geometry></collision><collision name=\"cargo_support_rear_left\"\
+      ><origin xyz=\"-0.1 0.105 0.155\" rpy=\"0 0 0\" /><geometry><box size=\"0.024\
+      \ 0.024 0.09\" /></geometry></collision><collision name=\"cargo_support_rear_right\"\
+      ><origin xyz=\"-0.1 -0.105 0.155\" rpy=\"0 0 0\" /><geometry><box size=\"0.024\
+      \ 0.024 0.09\" /></geometry></collision><collision name=\"cargo_support_front_left\"\
+      ><origin xyz=\"0.015 0.105 0.155\" rpy=\"0 0 0\" /><geometry><box size=\"0.024\
+      \ 0.024 0.09\" /></geometry></collision><collision name=\"cargo_support_front_right\"\
+      ><origin xyz=\"0.015 -0.105 0.155\" rpy=\"0 0 0\" /><geometry><box size=\"0.024\
+      \ 0.024 0.09\" /></geometry></collision></link>\n  <link name=\"imu_link\" />\n\
+      \  <joint name=\"imu_mount_joint\" type=\"fixed\"><origin xyz=\"0.142499983311\
+      \ 5.68556153269e-08 0.142999649048\" rpy=\"0.000572423974518 -0.00913954898715\
+      \ -2.61600075646e-06\" />\n    <parent link=\"base_link\" />\n    <child link=\"\
+      imu_link\" />\n  </joint>\n  <link name=\"lidar_link\" />\n  <joint name=\"\
+      lidar_mount_joint\" type=\"fixed\"><origin xyz=\"0.479999959469 3.54528566504e-08\
+      \ 0.232999801636\" rpy=\"-0.00764848850667 -0.00183566124178 7.020000794e-06\"\
+      \ />\n    <parent link=\"base_link\" />\n    <child link=\"lidar_link\" />\n\
+      \  </joint>\n  <link name=\"right_camera_link\" />\n  <joint name=\"right_camera_mount_joint\"\
+      \ type=\"fixed\"><origin xyz=\"0.575500011444 4.62625813213e-08 0.153999328613\"\
+      \ rpy=\"0 0 0\" />\n    <parent link=\"base_link\" />\n    <child link=\"right_camera_link\"\
+      \ />\n  </joint>\n  <link name=\"right_camera_optical_frame\" />\n  <joint name=\"\
+      right_camera_measurement_joint\" type=\"fixed\"><origin xyz=\"2.5449002905e-09\
+      \ 4.62625813213e-08 0\" rpy=\"-1.57079637051 0 -1.57079637051\" />\n    <parent\
+      \ link=\"right_camera_link\" />\n    <child link=\"right_camera_optical_frame\"\
+      \ />\n  </joint>\n  <link name=\"rtk_link\" />\n  <joint name=\"rtk_master_mount_joint\"\
+      \ type=\"fixed\"><origin xyz=\"0.142499953508 0.295258522034 0.26475952148399995\"\
+      \ rpy=\"0 0 0\" />\n    <parent link=\"base_link\" />\n    <child link=\"rtk_link\"\
+      \ />\n  </joint>\n  <link name=\"rtk_secondary_link\" />\n  <joint name=\"rtk_secondary_mount_joint\"\
+      \ type=\"fixed\"><origin xyz=\"0.142499953508 -0.295258462429 0.26475952148399995\"\
+      \ rpy=\"0 0 0\" />\n    <parent link=\"base_link\" />\n    <child link=\"rtk_secondary_link\"\
+      \ />\n  </joint>\n  <link name=\"front_left_steering_link\" />\n  <joint name=\"\
+      front_left_steering_joint\" type=\"revolute\"><origin xyz=\"0.52584695816 0.294999092817\
+      \ 0.00139999389648\" rpy=\"0 0 0\" />\n    <parent link=\"base_link\" />\n \
+      \   <child link=\"front_left_steering_link\" />\n    <axis xyz=\"0 0 1\" />\n\
+      \    <limit lower=\"-0.384000003338\" upper=\"0.384000003338\" effort=\"200\"\
+      \ velocity=\"1.5\" />\n  </joint>\n  <link name=\"front_left_wheel_link\"><collision><origin\
+      \ rpy=\"1.570796326795 0 0\" />\n      <geometry><cylinder radius=\"0.127499997616\"\
+      \ length=\"0.0814310014248\" />\n      </geometry>\n    </collision>\n  </link>\n\
+      \  <joint name=\"front_left_wheel_joint\" type=\"continuous\"><origin xyz=\"\
+      0 0 0\" rpy=\"0 0 0\" />\n    <parent link=\"front_left_steering_link\" />\n\
+      \    <child link=\"front_left_wheel_link\" />\n    <axis xyz=\"0 1 0\" />\n\
+      \  </joint>\n  <link name=\"front_right_steering_link\" />\n  <joint name=\"\
+      front_right_steering_joint\" type=\"revolute\"><origin xyz=\"0.527324318886\
+      \ -0.29499900341 0.00139999389648\" rpy=\"0 0 0\" />\n    <parent link=\"base_link\"\
+      \ />\n    <child link=\"front_right_steering_link\" />\n    <axis xyz=\"0 0\
+      \ 1\" />\n    <limit lower=\"-0.384000003338\" upper=\"0.384000003338\" effort=\"\
+      200\" velocity=\"1.5\" />\n  </joint>\n  <link name=\"front_right_wheel_link\"\
+      ><collision><origin rpy=\"1.570796326795 0 0\" />\n      <geometry><cylinder\
+      \ radius=\"0.127499997616\" length=\"0.0814310014248\" />\n      </geometry>\n\
+      \    </collision>\n  </link>\n  <joint name=\"front_right_wheel_joint\" type=\"\
+      continuous\"><origin xyz=\"0 0 0\" rpy=\"0 0 0\" />\n    <parent link=\"front_right_steering_link\"\
+      \ />\n    <child link=\"front_right_wheel_link\" />\n    <axis xyz=\"0 1 0\"\
+      \ />\n  </joint>\n  <link name=\"rear_left_wheel_link\"><collision><origin rpy=\"\
+      1.570796326795 0 0\" />\n      <geometry><cylinder radius=\"0.127499997616\"\
+      \ length=\"0.0814310014248\" />\n      </geometry>\n    </collision>\n  </link>\n\
+      \  <joint name=\"rear_left_wheel_joint\" type=\"continuous\"><origin xyz=\"\
+      -3.08463832255e-08 0.294999986887 0\" rpy=\"0 0 0\" />\n    <parent link=\"\
+      base_link\" />\n    <child link=\"rear_left_wheel_link\" />\n    <axis xyz=\"\
+      0 1 0\" />\n  </joint>\n  <link name=\"rear_right_wheel_link\"><collision><origin\
+      \ rpy=\"1.570796326795 0 0\" />\n      <geometry><cylinder radius=\"0.127499997616\"\
+      \ length=\"0.0814310014248\" />\n      </geometry>\n    </collision>\n  </link>\n\
+      \  <joint name=\"rear_right_wheel_joint\" type=\"continuous\"><origin xyz=\"\
+      -2.36684734034e-08 -0.294999957085 -1.90734863281e-06\" rpy=\"0 0 0\" />\n \
+      \   <parent link=\"base_link\" />\n    <child link=\"rear_right_wheel_link\"\
+      \ />\n    <axis xyz=\"0 1 0\" />\n  </joint>\n  <link name=\"manipulator_link_base\"\
+      ><collision><origin xyz=\"0 0 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"\
+      file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link_base.stl\" />\n    \
+      \  </geometry>\n      <material name=\"manipulator_link_base_material\"><color\
+      \ rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n  </link>\n\
+      \  <link name=\"manipulator_link1\"><collision><origin xyz=\"0 0 0\" rpy=\"\
+      0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link1.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link1_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_link2\"><collision><origin xyz=\"0 0\
+      \ 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link2.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link2_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_link3\"><collision><origin xyz=\"0 0\
+      \ 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link3.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link3_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_link4\"><collision><origin xyz=\"0 0\
+      \ 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link4.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link4_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_link5\"><collision><origin xyz=\"0 0\
+      \ 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link5.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link5_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_link6\"><collision><origin xyz=\"0 0\
+      \ 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/link6.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_link6_material\"\
+      ><color rgba=\"0.60 0.64 0.68 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_gripper_shell\"><collision><origin xyz=\"\
+      0 0 0\" rpy=\"0 0 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/gripper_shell.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_gripper_shell_material\"\
+      ><color rgba=\"0.85 0.88 0.90 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_finger1\"><collision name=\"stem_soft_pad\"\
+      ><origin xyz=\"0 0.0056 .018\" rpy=\"0 0 0\" /><geometry><box size=\".018 .0112\
+      \ .018\" /></geometry></collision><collision><origin xyz=\"0 0 0\" rpy=\"0 0\
+      \ 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/finger1.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_finger1_material\"\
+      ><color rgba=\"0.20 0.22 0.24 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <link name=\"manipulator_finger2\"><collision name=\"stem_soft_pad\"\
+      ><origin xyz=\"0 -0.0056 .018\" rpy=\"0 0 0\" /><geometry><box size=\".018 .0112\
+      \ .018\" /></geometry></collision><collision><origin xyz=\"0 0 0\" rpy=\"0 0\
+      \ 0\" />\n      <geometry><mesh filename=\"file://@HIL_ROOT@/ackermann_apple/rdk/assets/lite6/finger2.stl\"\
+      \ />\n      </geometry>\n      <material name=\"manipulator_finger2_material\"\
+      ><color rgba=\"0.20 0.22 0.24 1\" />\n      </material>\n    </collision>\n\
+      \  </link>\n  <joint name=\"manipulator_mount_joint\" type=\"fixed\"><parent\
+      \ link=\"base_link\" />\n    <child link=\"manipulator_link_base\" />\n    <origin\
+      \ xyz=\"0.2523272038 0.0009719826048 0.14021492\" rpy=\"0 2.384185791e-07 1.131907794e-07\"\
+      \ />\n  </joint>\n  <joint name=\"manipulator_joint1\" type=\"revolute\"><parent\
+      \ link=\"manipulator_link_base\" />\n    <child link=\"manipulator_link1\" />\n\
+      \    <origin xyz=\"0 0 0.2435\" rpy=\"0 0 0\" />\n    <axis xyz=\"0 0 1\" />\n\
+      \    <limit lower=\"-6.283185307179586\" upper=\"6.283185307179586\" effort=\"\
+      50\" velocity=\"3.14\" />\n    <dynamics damping=\"1.0\" friction=\"1.0\" />\n\
+      \  </joint>\n  <joint name=\"manipulator_joint2\" type=\"revolute\"><parent\
+      \ link=\"manipulator_link1\" />\n    <child link=\"manipulator_link2\" />\n\
+      \    <origin xyz=\"0 0 0\" rpy=\"1.5708 -1.5708 3.1416\" />\n    <axis xyz=\"\
+      0 0 1\" />\n    <limit lower=\"-2.61799\" upper=\"2.61799\" effort=\"50\" velocity=\"\
+      3.14\" />\n    <dynamics damping=\"1.0\" friction=\"1.0\" />\n  </joint>\n \
+      \ <joint name=\"manipulator_joint3\" type=\"revolute\"><parent link=\"manipulator_link2\"\
+      \ />\n    <child link=\"manipulator_link3\" />\n    <origin xyz=\"0.2002 0 0\"\
+      \ rpy=\"-3.1416 0 1.5708\" />\n    <axis xyz=\"0 0 1\" />\n    <limit lower=\"\
+      -0.061087\" upper=\"5.235988\" effort=\"50\" velocity=\"3.14\" />\n    <dynamics\
+      \ damping=\"1.0\" friction=\"1.0\" />\n  </joint>\n  <joint name=\"manipulator_joint4\"\
+      \ type=\"revolute\"><parent link=\"manipulator_link3\" />\n    <child link=\"\
+      manipulator_link4\" />\n    <origin xyz=\"0.087 -0.22761 0\" rpy=\"1.5708 0\
+      \ 0\" />\n    <axis xyz=\"0 0 1\" />\n    <limit lower=\"-6.283185307179586\"\
+      \ upper=\"6.283185307179586\" effort=\"50\" velocity=\"3.14\" />\n    <dynamics\
+      \ damping=\"1.0\" friction=\"1.0\" />\n  </joint>\n  <joint name=\"manipulator_joint5\"\
+      \ type=\"revolute\"><parent link=\"manipulator_link4\" />\n    <child link=\"\
+      manipulator_link5\" />\n    <origin xyz=\"0 0 0\" rpy=\"1.5708 0 0\" />\n  \
+      \  <axis xyz=\"0 0 1\" />\n    <limit lower=\"-2.1642\" upper=\"2.1642\" effort=\"\
+      50\" velocity=\"3.14\" />\n    <dynamics damping=\"1.0\" friction=\"1.0\" />\n\
+      \  </joint>\n  <joint name=\"manipulator_joint6\" type=\"revolute\"><parent\
+      \ link=\"manipulator_link5\" />\n    <child link=\"manipulator_link6\" />\n\
+      \    <origin xyz=\"0 0.0625 0\" rpy=\"-1.5708 0 0\" />\n    <axis xyz=\"0 0\
+      \ 1\" />\n    <limit lower=\"-6.283185307179586\" upper=\"6.283185307179586\"\
+      \ effort=\"50\" velocity=\"3.14\" />\n    <dynamics damping=\"1.0\" friction=\"\
+      1.0\" />\n  </joint>\n  <joint name=\"manipulator_gripper_mount\" type=\"fixed\"\
+      ><parent link=\"manipulator_link6\" />\n    <child link=\"manipulator_gripper_shell\"\
+      \ />\n    <origin xyz=\"0 0 0\" rpy=\"0 0 0\" />\n  </joint>\n  <joint name=\"\
+      manipulator_finger_joint1\" type=\"prismatic\"><parent link=\"manipulator_gripper_shell\"\
+      \ />\n    <child link=\"manipulator_finger1\" />\n    <origin xyz=\"0 0 0.0543\"\
+      \ rpy=\"0 0 0\" />\n    <axis xyz=\"0 1 0\" />\n    <limit lower=\"0\" upper=\"\
+      0.0089\" effort=\"5\" velocity=\"0.05\" />\n  </joint>\n  <joint name=\"manipulator_finger_joint2\"\
+      \ type=\"prismatic\"><parent link=\"manipulator_gripper_shell\" />\n    <child\
+      \ link=\"manipulator_finger2\" />\n    <origin xyz=\"0 0 0.0543\" rpy=\"0 0\
+      \ 0\" />\n    <axis xyz=\"0 -1 0\" />\n    <limit lower=\"0\" upper=\"0.0089\"\
+      \ effort=\"5\" velocity=\"0.05\" />\n  </joint>\n<link name=\"manipulator_tcp\"\
+      \ /><joint name=\"manipulator_tcp_mount\" type=\"fixed\"><parent link=\"manipulator_gripper_shell\"\
+      \ /><child link=\"manipulator_tcp\" /><origin xyz=\"0 0 .071\" rpy=\"0 0 0\"\
+      \ /></joint></robot>"
+    robot_description_semantic: <robot name="ackermann_current"><group name="arm"><chain
+      base_link="base_link" tip_link="manipulator_tcp" /></group><disable_collisions
+      link1="base_link" link2="imu_link" reason="Adjacent" /><disable_collisions link1="base_link"
+      link2="lidar_link" reason="Adjacent" /><disable_collisions link1="base_link"
+      link2="right_camera_link" reason="Adjacent" /><disable_collisions link1="right_camera_link"
+      link2="right_camera_optical_frame" reason="Adjacent" /><disable_collisions link1="base_link"
+      link2="rtk_link" reason="Adjacent" /><disable_collisions link1="base_link" link2="rtk_secondary_link"
+      reason="Adjacent" /><disable_collisions link1="base_link" link2="front_left_steering_link"
+      reason="Adjacent" /><disable_collisions link1="front_left_steering_link" link2="front_left_wheel_link"
+      reason="Adjacent" /><disable_collisions link1="base_link" link2="front_right_steering_link"
+      reason="Adjacent" /><disable_collisions link1="front_right_steering_link" link2="front_right_wheel_link"
+      reason="Adjacent" /><disable_collisions link1="base_link" link2="rear_left_wheel_link"
+      reason="Adjacent" /><disable_collisions link1="base_link" link2="rear_right_wheel_link"
+      reason="Adjacent" /><disable_collisions link1="base_link" link2="manipulator_link_base"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link_base" link2="manipulator_link1"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link1" link2="manipulator_link2"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link2" link2="manipulator_link3"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link3" link2="manipulator_link4"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link4" link2="manipulator_link5"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link5" link2="manipulator_link6"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link6" link2="manipulator_gripper_shell"
+      reason="Adjacent" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_finger1"
+      reason="Adjacent" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_finger2"
+      reason="Adjacent" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_tcp"
+      reason="Adjacent" /><disable_collisions link1="manipulator_link1" link2="manipulator_link3"
+      reason="Never" /><disable_collisions link1="manipulator_link2" link2="manipulator_link4"
+      reason="Never" /><disable_collisions link1="manipulator_link2" link2="manipulator_link_base"
+      reason="Never" /><disable_collisions link1="manipulator_link3" link2="manipulator_link5"
+      reason="Never" /><disable_collisions link1="manipulator_link3" link2="manipulator_link6"
+      reason="Never" /><disable_collisions link1="manipulator_link4" link2="manipulator_link6"
+      reason="Never" /><disable_collisions link1="manipulator_finger1" link2="manipulator_finger2"
+      reason="Never" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_link4"
+      reason="Never" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_link5"
+      reason="Never" /><disable_collisions link1="manipulator_gripper_shell" link2="manipulator_link6"
+      reason="Never" /><disable_collisions link1="manipulator_finger1" link2="manipulator_link4"
+      reason="Never" /><disable_collisions link1="manipulator_finger1" link2="manipulator_link5"
+      reason="Never" /><disable_collisions link1="manipulator_finger1" link2="manipulator_link6"
+      reason="Never" /><disable_collisions link1="manipulator_finger2" link2="manipulator_link4"
+      reason="Never" /><disable_collisions link1="manipulator_finger2" link2="manipulator_link5"
+      reason="Never" /><disable_collisions link1="manipulator_finger2" link2="manipulator_link6"
+      reason="Never" /></robot>
+    robot_description_kinematics:
+      arm:
+        kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+        kinematics_solver_timeout: 0.1
+        position_only_ik: false
+    robot_description_planning:
+      joint_limits:
+        manipulator_joint1:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+        manipulator_joint2:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+        manipulator_joint3:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+        manipulator_joint4:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+        manipulator_joint5:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+        manipulator_joint6:
+          has_velocity_limits: true
+          max_velocity: 0.9
+          has_acceleration_limits: true
+          max_acceleration: 1.5
+    planning_pipelines:
+    - ompl
+    default_planning_pipeline: ompl
+    ompl:
+      planning_plugin: ompl_interface/OMPLPlanner
+      request_adapters: default_planner_request_adapters/AddTimeOptimalParameterization
+        default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds
+        default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints
+      start_state_max_bounds_error: 0.1
+      planner_configs:
+        RRTConnectkConfigDefault:
+          type: geometric::RRTConnect
+          range: 0.15
+      arm:
+        planner_configs:
+        - RRTConnectkConfigDefault
+        longest_valid_segment_fraction: 0.001
+    allow_trajectory_execution: false
+    moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+    moveit_simple_controller_manager:
+      controller_names:
+      - hil_arm_controller
+      hil_arm_controller:
+        type: FollowJointTrajectory
+        action_ns: follow_joint_trajectory
+        default: true
+        joints:
+        - manipulator_joint1
+        - manipulator_joint2
+        - manipulator_joint3
+        - manipulator_joint4
+        - manipulator_joint5
+        - manipulator_joint6
+    publish_robot_description_semantic: true
+    planning_scene_monitor_options:
+      joint_state_topic: /joint_states

@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "scenario": "hil_tracked_shredder_orchard",
+  "vehicle": "Car3",
+  "spawn": [
+    2.0,
+    36.0,
+    0.24,
+    0.0
+  ],
+  "base_to_antenna": [
+    0.44,
+    0.29,
+    0.52665
+  ],
+  "fixed_route_order": [
+    1,
+    2,
+    3
+  ],
+  "fixed_route_points": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "outbound_via": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "finish": [
+    3.0,
+    32.5,
+    3.14159
+  ],
+  "finish_is_spawn": false,
+  "goal_tolerance_m": 0.4185015549046406,
+  "world_source_sha256": "320c92280381a2fda64a899dbff3ef8eff8b6a4fbfabebf1150d55fb5b8fff8e",
+  "map_image_sha256": "82d9495b00e370eaeac85914df101bcd40340551e6f62eff978ee4209616ea81",
+  "can_topology": "x5_mixed_isobus_hpm6750_native_pc",
+  "work_control": "ISOBUS commands converted by implement ECU HPM6750",
+  "algorithms": [
+    "FAST-LIVO2 + RTK",
+    "Smac Hybrid-A*",
+    "MPPI DiffDrive"
+  ],
+  "implement_collision": false,
+  "presentation": {
+    "shredder_mount": [
+      -0.1,
+      0.0,
+      0.42665
+    ],
+    "shredder_mount_rpy": [
+      0.0,
+      0.0,
+      3.141592653589793
+    ],
+    "feed_direction": "front (+X)",
+    "discharge_direction": "rear (-X)",
+    "shredder_scale": 0.55,
+    "dimensions_m": [
+      0.7224046953913512,
+      0.4400000000000119,
+      0.44394413258010723
+    ],
+    "rotor_base_xyz": [
+      -0.14909132651829793,
+      0.08404000000000204,
+      0.5382609309179454
+    ],
+    "rotor_axis": [
+      -1.500448104943206e-15,
+      -1.0,
+      6.63263845603189e-16
+    ],
+    "rotor_axis_frame": "work_shredder_rotor",
+    "rotor_axis_base": [
+      1.6229127848579414e-15,
+      1.0,
+      6.63263845603189e-16
+    ],
+    "rtk_master": [
+      0.44,
+      0.29,
+      0.52665
+    ],
+    "rtk_secondary": [
+      0.44,
+      -0.29,
+      0.52665
+    ],
+    "imu_xyz": [
+      0.31,
+      0.0,
+      0.436081
+    ],
+    "chassis_finish": "grey powder-coated shell, scenario-local materials",
+    "limitation": "Scaled illustrative mount/rotor response; no branch fracture or real implement calibration"
+  },
+  "implement_kind": "shredder",
+  "shredding": {
+    "minimum_speed_mps": 0.03,
+    "row_y": [
+      36.0,
+      32.5
+    ],
+    "row_half_width_m": 0.65,
+    "x_range": [
+      3.0,
+      39.5
+    ],
+    "shredder_level": 3500
+  }
+}

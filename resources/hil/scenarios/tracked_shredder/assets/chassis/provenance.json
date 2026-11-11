@@ -1,0 +1,7 @@
+{
+  "source": "@HIL_ROOT@/shared_assets/06872d41ddd4/vehicle_visual.obj",
+  "source_sha256": "0acf7aeee8044bfb54d2c9a6d2f952a431265dc3d3f27ae3357d657a5d18ea4c",
+  "result_sha256": "0acf7aeee8044bfb54d2c9a6d2f952a431265dc3d3f27ae3357d657a5d18ea4c",
+  "changed_materials": 64,
+  "scope": "Display only; chassis geometry unchanged, lights/tracks/wheel hubs/sensors retained"
+}

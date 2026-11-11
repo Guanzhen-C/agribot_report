@@ -198,6 +198,7 @@ public partial class LastPanel : WheelChangePanel
         }
 
         RosSimulationHandoffUi.Unbind(stopSimulationButton, exportPhysicalButton);
+        HilSimulationUi.Changed -= RefreshHilAvailability;
 
         RemoveEscClickListener(OpenLastPanel);
     }
@@ -619,6 +620,7 @@ public partial class LastPanel : WheelChangePanel
             AssistantConversation.State.car == "Car3";
         if (launchSelectedAlgorithmButton != null)
             launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy;
+        RefreshHilAvailability();
     }
 
     private bool IsSelectedComponent(RosSimulationComponentOption component)
@@ -792,6 +794,8 @@ public partial class LastPanel : WheelChangePanel
 
         try
         {
+            if (HilSimulationLauncher.HasSession)
+                throw new InvalidOperationException("请先停止HIL仿真，再启动普通仿真。");
             if (externalVehicle == null && externalExport == null && !ValidateInstalledEquipment(out string installationError))
                 throw new InvalidOperationException(installationError);
 

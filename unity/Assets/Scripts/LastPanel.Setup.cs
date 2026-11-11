@@ -67,16 +67,32 @@ public partial class LastPanel
         algorithmControllerValue = CreateDetailRow(details.transform, "Controller", "控制", .19f);
         algorithmRouteValue = CreateDetailRow(details.transform, "Route", "路线", .08f);
 
+        transmissionControls = GarageVisualStyle.Panel(panel.transform, "HilTransmission", GarageVisualStyle.Background);
+        GarageVisualStyle.Rect(transmissionControls.transform, new Vector2(.025f, .25f), new Vector2(.155f, .56f));
+        GarageVisualStyle.Label(transmissionControls.transform, "TransmissionTitle", "HIL 变速箱", 16,
+            new Vector2(0, .75f), new Vector2(1, 1));
+        cvtButton = SetupButton(transmissionControls.transform, "CVT", "CVT", 0, .4f, 1, .68f);
+        powershiftButton = SetupButton(transmissionControls.transform, "PowerShift", "动力换挡", 0, .03f, 1, .31f);
+        cvtButton.onClick.AddListener(() => { hilTransmission = "cvt_auto"; RefreshHilAvailability(); });
+        powershiftButton.onClick.AddListener(() => { hilTransmission = "powershift_auto"; RefreshHilAvailability(); });
+        hilStatus = GarageVisualStyle.Label(panel.transform, "HilStatus", "", 14,
+            new Vector2(.185f, .107f), new Vector2(.98f, .137f), GarageVisualStyle.Muted);
+
         var footer = GarageVisualStyle.Panel(panel.transform, "Footer", GarageVisualStyle.Surface);
         GarageVisualStyle.Rect(footer.transform, Vector2.zero, new Vector2(1, .105f));
         currentScene = GarageVisualStyle.Label(footer.transform, "CurrentScene", "", 18,
-            new Vector2(.025f, .1f), new Vector2(.49f, .9f), GarageVisualStyle.Muted);
-        var next = SetupButton(footer.transform, "SetupNext", "选择算法", .52f, .2f, .67f, .8f);
+            new Vector2(.025f, .1f), new Vector2(.30f, .9f), GarageVisualStyle.Muted);
+        currentScene.resizeTextForBestFit = true; currentScene.resizeTextMinSize = 12; currentScene.resizeTextMaxSize = 18;
+        var next = SetupButton(footer.transform, "SetupNext", "选择算法", .31f, .2f, .44f, .8f);
         next.onClick.AddListener(() => ShowSetupTab(true));
-        var cancel = SetupButton(footer.transform, "Cancel", "取消", .69f, .2f, .79f, .8f);
+        var cancel = SetupButton(footer.transform, "Cancel", "取消", .45f, .2f, .53f, .8f);
         cancel.onClick.AddListener(CloseSetup);
-        launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .81f, .2f, .975f, .8f, true);
+        launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .55f, .2f, .745f, .8f, true);
         launchSelectedAlgorithmButton.onClick.AddListener(() => { if (selectedAlgorithm != null) StartSelectedAlgorithm(selectedAlgorithm.Id); });
+        launchHilButton = SetupButton(footer.transform, "LaunchHil", "启动HIL仿真", .765f, .2f, .975f, .8f, true);
+        launchHilButton.onClick.AddListener(StartSelectedHil);
+        HilSimulationUi.Observe();
+        HilSimulationUi.Changed += RefreshHilAvailability;
         ClearAlgorithmSelection();
         algorithmDialog.SetActive(false);
         RefreshScenes(); ShowSetupTab(false);
