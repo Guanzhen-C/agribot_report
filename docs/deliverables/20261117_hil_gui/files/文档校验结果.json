@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "hardware_actions": false,
+  "cases": 30,
+  "documents": [
+    {
+      "file": "三类控制器硬件在环测试需求规格说明_V2.2_五工况界面操作版.docx",
+      "pages": 9,
+      "sha256": "b35d518b60328c3a42bb641f3fe4a7f1e6dc2d332eb9f541a44cb4d8cda4a03c"
+    },
+    {
+      "file": "2026042-01 农机控制器测试用例与记录表_V1.7_五工况界面操作版.docx",
+      "pages": 26,
+      "sha256": "8d83c09fb77c014a25d0f24f7b93d1cceae19cab123018a4f28993eecdc1b18b"
+    }
+  ]
+}

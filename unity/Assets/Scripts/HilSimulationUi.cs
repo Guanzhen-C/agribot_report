@@ -10,7 +10,7 @@ namespace Agribot.VehicleConfiguration
         private static HilSimulationUi instance;
         private bool busy;
         private bool stopRequested, lastCommandSucceeded;
-        private string observed;
+        private string observed, recordingObserved;
         public static bool IsBusy => instance != null && (instance.busy || instance.stopRequested);
         public static bool IsStopPending => instance != null && instance.stopRequested;
         public static event Action Changed;
@@ -88,7 +88,27 @@ namespace Agribot.VehicleConfiguration
             else
             {
                 lastCommandSucceeded = true;
-                notify?.Invoke(stop ? "正在停止HIL仿真；烧录期间会等待校验完成" : "正在准备HIL仿真");
+                if (!stop)
+                {
+                    HilRunStatus queued = null;
+                    try { queued = JsonUtility.FromJson<HilRunStatus>(task.Result); }
+                    catch (ArgumentException) { }
+                    if (queued == null || string.IsNullOrEmpty(queued.run_id))
+                    {
+                        notify?.Invoke("HIL已启动，但未返回运行编号，不能确认自动记录。");
+                        busy = false;
+                        Changed?.Invoke();
+                        yield break;
+                    }
+                    string repository = HilSimulationLauncher.Repository;
+                    var recording = Task.Run(() => HilRecordingLauncher.Attach(repository, queued.run_id, id));
+                    while (!recording.IsCompleted) yield return null;
+                    if (recording.IsFaulted || recording.IsCanceled)
+                        notify?.Invoke("HIL已启动，但自动记录未确认：" +
+                            (recording.Exception?.GetBaseException().Message ?? "记录请求已取消"));
+                    else notify?.Invoke("正在准备HIL仿真，已启用本次工况自动记录");
+                }
+                else notify?.Invoke("正在停止HIL仿真；烧录期间会等待校验完成");
             }
             busy = false;
             Changed?.Invoke();
@@ -100,6 +120,13 @@ namespace Agribot.VehicleConfiguration
             {
                 var status = HilSimulationLauncher.ReadStatus();
                 RefreshFlashProgress(status);
+                var recording = HilRecordingLauncher.ReadStatus(status.run_id);
+                string recordingKey = status.run_id + ":" + recording.phase + ":" + recording.message;
+                if (recordingKey != recordingObserved)
+                {
+                    recordingObserved = recordingKey;
+                    Changed?.Invoke();
+                }
                 string key = status.run_id + ":" + status.phase;
                 if (key != observed)
                 {

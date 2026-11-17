@@ -41,7 +41,9 @@ public partial class LastPanel
         if (hilStatus != null)
         {
             string summary = (status.message ?? "").Split('\n')[0];
-            hilStatus.text = summary.Length > 100 ? summary.Substring(0, 97) + "..." : summary;
+            var recording = HilRecordingLauncher.ReadStatus(status.run_id);
+            if (!string.IsNullOrEmpty(recording.message)) summary += " · 记录：" + recording.message;
+            hilStatus.text = summary.Length > 120 ? summary.Substring(0, 117) + "..." : summary;
         }
     }
 

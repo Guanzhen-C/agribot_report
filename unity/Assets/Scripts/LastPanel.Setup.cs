@@ -20,7 +20,9 @@ public partial class LastPanel
         var panel = GarageVisualStyle.Panel(algorithmDialog.transform, "SimulationSetup", GarageVisualStyle.Background);
         GarageVisualStyle.Rect(panel.transform, Vector2.zero, Vector2.one);
         GarageVisualStyle.Label(panel.transform, "SetupBrand", "AGRIBOT  /  仿真实验室", 27,
-            new Vector2(.025f, .90f), new Vector2(.67f, .99f));
+            new Vector2(.025f, .90f), new Vector2(.56f, .99f));
+        var records = SetupButton(panel.transform, "HilRecords", "测试记录", .59f, .92f, .72f, .975f);
+        records.onClick.AddListener(HilRecordingLauncher.OpenRecords);
         var close = SetupButton(panel.transform, "Close", "返回车辆", .74f, .92f, .86f, .975f);
         close.onClick.AddListener(CloseSetup);
         sceneTab = SetupButton(panel.transform, "SceneTab", "01  作业场景", .025f, .75f, .155f, .83f);
