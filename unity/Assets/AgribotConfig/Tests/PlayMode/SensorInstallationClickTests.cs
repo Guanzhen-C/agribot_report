@@ -18,15 +18,10 @@ namespace Agribot.VehicleConfiguration.Tests
         private static readonly string[] Slots = { "Radar", "RTK", "Camera", "Imu" };
         private static readonly string[] Targets = { "RADAR", "RTK", "CarCamera", "Imu_box" };
         private readonly Dictionary<string, string> savedState = new();
-        private string previousExportRoot;
-        private string draftTestRoot;
 
         [SetUp]
         public void PreserveInventory()
         {
-            previousExportRoot = Environment.GetEnvironmentVariable("AGRIBOT_PHYSICAL_EXPORT_ROOT");
-            draftTestRoot = Path.Combine(Path.GetTempPath(), "agribot-ui-draft-" + Guid.NewGuid());
-            Environment.SetEnvironmentVariable("AGRIBOT_PHYSICAL_EXPORT_ROOT", draftTestRoot);
             foreach (string name in new[] { "equipment-bag-state.json", "equipment-bag-state-copy.json",
                          "equipment-bag-state-scene1.json" })
             {
@@ -38,8 +33,6 @@ namespace Agribot.VehicleConfiguration.Tests
         [TearDown]
         public void RestoreInventory()
         {
-            Environment.SetEnvironmentVariable("AGRIBOT_PHYSICAL_EXPORT_ROOT", previousExportRoot);
-            if (Directory.Exists(draftTestRoot)) Directory.Delete(draftTestRoot, true);
             foreach (var pair in savedState)
                 if (pair.Value != null) File.WriteAllText(pair.Key, pair.Value);
                 else if (File.Exists(pair.Key)) File.Delete(pair.Key);
@@ -73,18 +66,9 @@ namespace Agribot.VehicleConfiguration.Tests
 
             Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(0.7f);
-            Click(Find("Export_NewVehicle_Physical"));
-            string draft = Path.Combine(draftTestRoot, "unity_" + carName.ToLowerInvariant() + "_physical_draft");
-            float deadline = Time.realtimeSinceStartup + 15f;
-            while (!File.Exists(Path.Combine(draft, "manifest.json")) && Time.realtimeSinceStartup < deadline)
-                yield return null;
-            Assert.That(File.Exists(Path.Combine(draft, "manifest.json")), Is.True, "UI did not export " + carName);
-            var exported = JsonUtility.FromJson<VehicleConfigurationData>(File.ReadAllText(Path.Combine(draft, "vehicle_config.json")));
-            Assert.That(exported.vehicleId, Is.EqualTo(configured.vehicleId));
-            Assert.That(exported.vehicleType, Is.EqualTo(carName == "Car3" ? "tracked" : "ackermann"));
-            foreach (string file in new[] { "sensor_mounts.yaml", "nav2_geometry.yaml", "vehicle_kinematics.yaml", "fastlivo_extrinsics.yaml" })
-                Assert.That(File.Exists(Path.Combine(draft, file)), Is.True, file);
-            Assert.That(Directory.Exists(Path.Combine(draft, "firmware")), Is.False);
+            Assert.That(configured.vehicleType, Is.EqualTo(carName == "Car3" ? "tracked" : "ackermann"));
+            Assert.That(Resources.FindObjectsOfTypeAll<Button>().Any(button => button.gameObject.scene.IsValid() &&
+                button.name == "Export_NewVehicle_Physical"), Is.False);
             Click(Find("OpenBag_btn"));
             yield return new WaitForSeconds(0.8f);
             Assert.That(Slots.All(slot => Installed(bag, Equipment(bag, slot))), Is.True,
@@ -116,22 +100,13 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(SceneManager.GetSceneByName("scene2").isLoaded, Is.False);
             Click(Find("BagPanel").transform.Find("Header/CloseButton").gameObject);
             yield return new WaitForSeconds(0.8f);
-            string runtimeFile = Path.Combine(draftTestRoot, "ackermann_physical_runtime.json");
-            var handoff = NamedComponent(Find("ROS_Simulation_Handoff"), "RosSimulationHandoffUi");
-            handoff.GetType().GetMethod("SimulationStarted").Invoke(null, new object[] { runtimeFile });
-            Click(Find("Stop_NewVehicle_Simulation"));
-            float deadline = Time.realtimeSinceStartup + 15f;
-            var export = Find("Export_NewVehicle_Physical").GetComponent<Button>();
-            while (!export.interactable && Time.realtimeSinceStartup < deadline) yield return null;
-            Assert.That(export.interactable, Is.True, "Original export did not become available after stop");
-            Click(export.gameObject);
-            deadline = Time.realtimeSinceStartup + 15f;
-            while (!File.Exists(runtimeFile) && Time.realtimeSinceStartup < deadline) yield return null;
-            Assert.That(File.Exists(runtimeFile), Is.True, "Car0 UI export failed");
-            string deployment = Path.Combine(draftTestRoot, "ackermann_physical_runtime_deployment");
-            Assert.That(File.Exists(Path.Combine(deployment, "manifest.json")), Is.True);
-            foreach (string name in new[] { "hpm6750_ackermann.bin", "hpm6750_ackermann.elf" })
-                Assert.That(File.Exists(Path.Combine(deployment, "firmware", name)), Is.True, name);
+            var main = NamedComponent(Find("MainPanel"), "MainPanel");
+            var bundle = (VehicleConfigurationExportResult)Invoke(main, "ExportSelectedVehicle");
+            var configured = JsonUtility.FromJson<VehicleConfigurationData>(File.ReadAllText(bundle.JsonPath));
+            Assert.That(configured.vehicleId, Is.EqualTo("ackermann_current"));
+            Assert.That(configured.sensors.Length, Is.EqualTo(5));
+            Assert.That(Resources.FindObjectsOfTypeAll<Button>().Any(button => button.gameObject.scene.IsValid() &&
+                button.name == "Export_NewVehicle_Physical"), Is.False);
         }
 
         [UnityTest]

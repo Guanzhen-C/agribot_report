@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using RG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -52,11 +50,9 @@ public class MainPanel : MonoBehaviour
     private readonly List<GameObject> farmCars = new();
     private Button explosionButton;
     private Button stopSimulation;
-    private Button exportPhysical;
     private RectTransform actionToolbar;
     private SceneVehicleExplodedView explodedView;
     private GameObject notificationPanel;
-    private bool physicalExportBusy;
     private float selectedAt;
     private TweenHandle fadeTween;
     private TweenHandle openBagTween;
@@ -107,12 +103,11 @@ public class MainPanel : MonoBehaviour
         BindButton("Back_btn", ShowMainPanel);
         vehicleSelector = LastPanel.CreatePresetSelector(GetComponentInParent<Canvas>().transform,
             outputButton.GetComponent<Button>(), ExportSelectedVehicle, ShowSimulationMessage, SetSimulationSetupVisible);
-        HilSimulationUi.Changed += RefreshExportAvailability;
+        HilSimulationUi.Changed += RefreshStopAvailability;
         NaturalRecommendationPanel.Ensure(null);
         stopSimulation.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(ShowSimulationMessage));
         explosionButton.onClick.AddListener(OpenExplodedView);
-        exportPhysical.onClick.AddListener(ExportSelectedPhysical);
-        RosSimulationHandoffUi.AvailabilityChanged += RefreshExportAvailability;
+        RosSimulationHandoffUi.AvailabilityChanged += RefreshStopAvailability;
         GarageVisualStyle.VehicleBackButton(backButton.GetComponent<Button>());
 
         bagPanel = FindSceneObject("BagPanel")?.GetComponent<BagPanel>();
@@ -160,14 +155,6 @@ public class MainPanel : MonoBehaviour
             $"loadedFarmVehicles={farmCars.Count(c => c.GetComponent<FarmGarageVehicle>().IsLoaded)}");
     }
 
-    private VehicleConfigurationAuthoring BuildSelectedVehicle()
-    {
-        ValidateSelectedEquipment();
-        var ackermann = visibleCar.GetComponent<Car0GarageVehicle>();
-        if (ackermann != null) return ackermann.BuildConfiguration();
-        return SceneVehicleConfiguration.Build(visibleCar);
-    }
-
     private VehicleConfigurationExportResult ExportSelectedVehicle()
     {
         ValidateSelectedEquipment();
@@ -177,14 +164,7 @@ public class MainPanel : MonoBehaviour
         return farm != null ? farm.Export() : SceneVehicleConfiguration.Build(visibleCar).ExportConfigurationBundle();
     }
 
-    private void ExportSelectedPhysical()
-    {
-        if (visibleCar != null && visibleCar.GetComponent<Car0GarageVehicle>() != null)
-            RosSimulationHandoffUi.RequestExport(ShowSimulationMessage);
-        else RosSimulationHandoffUi.RequestDraftExport(ExportPhysicalDraft());
-    }
-
-    private void RefreshExportAvailability()
+    private void RefreshStopAvailability()
     {
         if (stopSimulation != null)
         {
@@ -192,9 +172,6 @@ public class MainPanel : MonoBehaviour
             stopSimulation.interactable = !stopping;
             stopSimulation.GetComponentInChildren<Text>().text = stopping ? "正在停止..." : "停止仿真";
         }
-        if (exportPhysical != null && visibleCar != null && actionToolbar.gameObject.activeInHierarchy)
-            exportPhysical.interactable = visibleCar.GetComponent<Car0GarageVehicle>() != null
-                ? RosSimulationHandoffUi.CanExport : !physicalExportBusy && !RosSimulationHandoffUi.IsBusy;
     }
 
     private void SetSimulationSetupVisible(bool visible)
@@ -226,63 +203,6 @@ public class MainPanel : MonoBehaviour
                 throw new InvalidOperationException("请先安装雷达、RTK、相机和IMU，等待安装动画结束。");
     }
 
-    private IEnumerator ExportPhysicalDraft()
-    {
-        if (physicalExportBusy) yield break;
-        string jsonPath;
-        string outputDirectory;
-        try
-        {
-            if (Application.platform != RuntimePlatform.LinuxEditor &&
-                Application.platform != RuntimePlatform.LinuxPlayer)
-                throw new PlatformNotSupportedException("离线草案导出仅支持 Ubuntu 工作站。");
-            if (RosSimulationLauncher.ReadManagedStatus() != "stopped")
-                throw new InvalidOperationException("请先停止仿真，再导出真机配置草案。");
-            var farm = visibleCar != null ? visibleCar.GetComponent<FarmGarageVehicle>() : null;
-            string vehicleId;
-            if (farm != null)
-            {
-                jsonPath = ExportSelectedVehicle().JsonPath;
-                vehicleId = farm.SelectedPreset;
-            }
-            else
-            {
-                var authoring = BuildSelectedVehicle();
-                jsonPath = authoring.ExportJson();
-                vehicleId = authoring.VehicleId;
-            }
-            string exportRoot = Environment.GetEnvironmentVariable("AGRIBOT_PHYSICAL_EXPORT_ROOT");
-            if (string.IsNullOrWhiteSpace(exportRoot))
-                exportRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "unity_exports");
-            outputDirectory = Path.Combine(exportRoot, vehicleId + "_physical_draft");
-        }
-        catch (Exception error)
-        {
-            ShowSimulationMessage(error.Message);
-            yield break;
-        }
-        physicalExportBusy = true;
-        exportPhysical.interactable = false;
-        ShowSimulationMessage("正在导出当前车型的未标定配置草案");
-        Task<string> task = Task.Run(() => RosSimulationLauncher.ExportPhysicalDraft(jsonPath, outputDirectory));
-        while (!task.IsCompleted) yield return null;
-        if (task.IsFaulted || task.IsCanceled)
-        {
-            string message = task.Exception?.GetBaseException().Message ?? "草案导出已取消";
-            Debug.LogError(message);
-            ShowSimulationMessage("导出失败：" + message);
-        }
-        else
-        {
-            Debug.Log(task.Result);
-            ShowSimulationMessage("已导出未标定配置草案：" + outputDirectory);
-            if (!Application.isBatchMode)
-                Application.OpenURL(new Uri(outputDirectory).AbsoluteUri);
-        }
-        physicalExportBusy = false;
-        exportPhysical.interactable = true;
-    }
-
     private void ShowSimulationMessage(string message)
     {
         AssistantConversation.RecordUi("软件操作结果：" + message);
@@ -292,8 +212,8 @@ public class MainPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        HilSimulationUi.Changed -= RefreshExportAvailability;
-        RosSimulationHandoffUi.AvailabilityChanged -= RefreshExportAvailability;
+        HilSimulationUi.Changed -= RefreshStopAvailability;
+        RosSimulationHandoffUi.AvailabilityChanged -= RefreshStopAvailability;
         if (vehicleSelector != null) Destroy(vehicleSelector.gameObject);
         if (explodedView != null) Destroy(explodedView.gameObject);
         if (notificationPanel != null) Destroy(notificationPanel);
@@ -360,7 +280,6 @@ public class MainPanel : MonoBehaviour
         outputButton.GetComponentInChildren<Text>(true).text = "启动仿真";
         ConfigureActionButton(outputButton);
         stopSimulation = CreateActionButton("Stop_NewVehicle_Simulation", "停止仿真");
-        exportPhysical = CreateActionButton("Export_NewVehicle_Physical", "导出真机配置");
         openBagButton.transform.SetParent(actionToolbar, false);
         ConfigureActionButton(openBagButton);
         openBagButtonOriginalScale = Vector3.one;
@@ -537,8 +456,7 @@ public class MainPanel : MonoBehaviour
         if (actionToolbar != null) actionToolbar.gameObject.SetActive(true);
         if (explosionButton != null) explosionButton.gameObject.SetActive(true);
         if (stopSimulation != null) stopSimulation.gameObject.SetActive(true);
-        if (exportPhysical != null) exportPhysical.gameObject.SetActive(true);
-        RefreshExportAvailability();
+        RefreshStopAvailability();
         if (backButton == null)
             return;
 

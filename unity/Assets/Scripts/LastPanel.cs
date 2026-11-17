@@ -57,7 +57,6 @@ public partial class LastPanel : WheelChangePanel
     private Button ExportRos_btn;
     private Text ExportRos_label;
     private Button stopSimulationButton;
-    private Button exportPhysicalButton;
     private GameObject algorithmDialog;
     private readonly List<(FarmScenario scene, Button button)> sceneButtons = new();
     private readonly List<ComponentOptionVisual> componentOptions =
@@ -208,7 +207,7 @@ public partial class LastPanel : WheelChangePanel
             ExportRos_btn.onClick.RemoveListener(BeginExportRosConfiguration);
         }
 
-        RosSimulationHandoffUi.Unbind(stopSimulationButton, exportPhysicalButton);
+        RosSimulationHandoffUi.Unbind(stopSimulationButton, null);
         HilSimulationUi.Changed -= RefreshHilAvailability;
 
         RemoveEscClickListener(OpenLastPanel);
@@ -347,9 +346,8 @@ public partial class LastPanel : WheelChangePanel
             return;
 
         stopSimulationButton = CreateHandoffButton("Stop_Simulation_btn", "停止仿真");
-        exportPhysicalButton = CreateHandoffButton("Export_Physical_btn", "导出真机配置");
         Button[] actions = { Open_Bomb_btn, ExportRos_btn,
-            stopSimulationButton, exportPhysicalButton, OpenBag_btn };
+            stopSimulationButton, OpenBag_btn };
         var toolbar = VehicleActionToolbarLayout.Create(transform, GetComponentInParent<Canvas>());
         for (int index = 0; index < actions.Length; index++)
         {
@@ -363,7 +361,7 @@ public partial class LastPanel : WheelChangePanel
             element.minWidth = element.preferredWidth = 0;
             element.flexibleWidth = 1;
         }
-        RosSimulationHandoffUi.Bind(stopSimulationButton, exportPhysicalButton, ShowPop);
+        RosSimulationHandoffUi.Bind(stopSimulationButton, null, ShowPop);
     }
 
     private Button CreateHandoffButton(string objectName, string title)

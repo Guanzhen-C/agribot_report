@@ -60,7 +60,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 Click(car + "_Img");
                 yield return new WaitForSeconds(.8f);
                 Assert.That(Find(car).activeInHierarchy, Is.True, car);
-                Assert.That(Find("VehicleActionToolbar").GetComponentsInChildren<Button>().Length, Is.EqualTo(5));
+                Assert.That(Find("VehicleActionToolbar").GetComponentsInChildren<Button>().Length, Is.EqualTo(4));
                 Assert.That(Find("Back_btn").GetComponents<MonoBehaviour>().Any(item => item.GetType().Name == "BackBtn"), Is.False);
                 float started = Time.realtimeSinceStartup;
                 Click("Back_btn");
@@ -114,6 +114,73 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(Find("Car1").GetComponentsInChildren<MonoBehaviour>(true)
                 .Any(item => item != null && item.GetType().Name == "Car0GarageVehicle"), Is.False);
             Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator OpenBagReplacesRepairMenuAndEveryAdjustmentPage()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            Click("Car0_Img");
+            yield return new WaitForSeconds(.8f);
+            var car = Find("Car0");
+            var host = car.GetComponents<MonoBehaviour>().Single(item => item.GetType().Name == "Car0GarageVehicle");
+            var repair = car.GetComponentsInChildren<MonoBehaviour>(true).Single(item => item.GetType().Name == "FixPanel");
+            var bag = Find("BagPanel");
+
+            foreach (int slotId in new[] { 0, 1, 2, 3 })
+            {
+                Invoke(host, "RegisterBodyClick", Vector2.one, 10f);
+                Invoke(host, "RegisterBodyClick", Vector2.one, 10.1f);
+                yield return new WaitForSeconds(.6f);
+                Assert.That(repair.gameObject.activeInHierarchy, Is.True);
+                Assert.That(bag.activeInHierarchy, Is.False);
+                if (slotId > 0)
+                {
+                    var slot = car.GetComponentsInChildren<MonoBehaviour>(true).Single(item =>
+                        item.GetType().Name == "slotBtn" && (int)item.GetType().GetField("slotId",
+                            BindingFlags.Instance | BindingFlags.NonPublic).GetValue(item) == slotId);
+                    Invoke(slot, "OnClick");
+                    Invoke(slot, "OnClick");
+                    float fadeOut = (float)repair.GetType().GetField("fadeOutDuration",
+                        BindingFlags.Instance | BindingFlags.NonPublic).GetValue(repair);
+                    yield return new WaitForSecondsRealtime(fadeOut + .15f);
+                    Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+                    Assert.That(car.GetComponentsInChildren<MonoBehaviour>(true).Any(item => item != null &&
+                        new[] { "AxisPanel", "WheelDistancePanel", "bottonPanel" }.Contains(item.GetType().Name) &&
+                        item.gameObject.activeInHierarchy), Is.True);
+                }
+
+                Click("OpenBag_btn");
+                Assert.That(repair.gameObject.activeInHierarchy, Is.False,
+                    "The toolbar must close repair immediately, not open equipment beneath it");
+                foreach (var panel in car.GetComponentsInChildren<MonoBehaviour>(true).Where(item => item != null &&
+                             new[] { "AxisPanel", "WheelDistancePanel", "bottonPanel" }.Contains(item.GetType().Name)))
+                    Assert.That(panel.gameObject.activeInHierarchy, Is.False, panel.GetType().Name);
+                yield return new WaitForSeconds(.8f);
+                Assert.That(bag.activeInHierarchy, Is.True);
+                Assert.That(bag.GetComponent<CanvasGroup>().blocksRaycasts, Is.True);
+                Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+            }
+
+            Invoke(host, "OpenRepair");
+            yield return new WaitForSeconds(.6f);
+            Assert.That(bag.activeInHierarchy, Is.False);
+            repair.transform.Find("Header/CloseButton").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Click("OpenBag_btn");
+            yield return new WaitForSeconds(.8f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+            Assert.That(bag.activeInHierarchy, Is.True, "A pending repair-close animation must not hide equipment");
+            bag.transform.Find("Header/CloseButton").GetComponent<Button>().onClick.Invoke();
+            yield return new WaitForSeconds(.8f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 11f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 11.1f);
+            yield return new WaitForSeconds(.6f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.True,
+                "Switching to equipment must release the repair session so it can be opened again");
+            Assert.That(bag.activeInHierarchy, Is.False);
+            Invoke(host, "CloseRepair");
         }
 
         [UnityTest]

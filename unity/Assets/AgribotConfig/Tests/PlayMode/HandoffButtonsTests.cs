@@ -21,7 +21,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 Find(car + "_Img").GetComponent<Button>().onClick.Invoke();
                 yield return new WaitForSeconds(.8f);
                 var buttons = new[] { "Explode_NewVehicle_btn", "Output_btn", "Stop_NewVehicle_Simulation",
-                    "Export_NewVehicle_Physical", "OpenBag_btn" }.Select(name => Find(name).GetComponent<Button>()).ToArray();
+                    "OpenBag_btn" }.Select(name => Find(name).GetComponent<Button>()).ToArray();
                 if (controls == null) controls = buttons.Select(button => button.GetInstanceID()).ToArray();
                 Assert.That(buttons.Select(button => button.GetInstanceID()).ToArray(), Is.EqualTo(controls),
                     "All cars must use the same controls, not separate copies");
@@ -43,6 +43,28 @@ namespace Agribot.VehicleConfiguration.Tests
                 Find("Back_btn").GetComponent<Button>().onClick.Invoke();
                 yield return new WaitForSeconds(.8f);
                 Assert.That(buttons.All(button => !button.gameObject.activeInHierarchy), Is.True);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator IndependentPhysicalExportIsRemovedFromBothScenesButHilEntryRemains()
+        {
+            foreach (string scene in new[] { "scene1", "scene2" })
+            {
+                yield return SceneManager.LoadSceneAsync(scene);
+                yield return null;
+                Assert.That(Resources.FindObjectsOfTypeAll<Button>().Any(button => button.gameObject.scene.IsValid() &&
+                    (button.name == "Export_NewVehicle_Physical" || button.name == "Export_Physical_btn" ||
+                     button.GetComponentsInChildren<Text>(true).Any(label => label.text == "导出真机配置"))), Is.False, scene);
+                if (scene == "scene1")
+                {
+                    Find("Car0_Img").GetComponent<Button>().onClick.Invoke();
+                    yield return new WaitForSeconds(.8f);
+                    Find("Output_btn").GetComponent<Button>().onClick.Invoke();
+                    yield return null;
+                    Assert.That(Find("LaunchHil").activeInHierarchy, Is.True);
+                    Assert.That(Find("LaunchHil").GetComponentInChildren<Text>().text, Is.EqualTo("启动HIL仿真"));
+                }
             }
         }
 

@@ -61,7 +61,7 @@ namespace Agribot.VehicleConfiguration.Tests
                 yield return new WaitForSeconds(.8f);
                 Canvas.ForceUpdateCanvases();
                 foreach (string name in new[] { "Back_btn", "Output_btn", "Stop_NewVehicle_Simulation",
-                             "Export_NewVehicle_Physical", "Explode_NewVehicle_btn", "OpenBag_btn" })
+                             "Explode_NewVehicle_btn", "OpenBag_btn" })
                     Assert.That(Bounds(exit).Overlaps(Bounds(Find(name).GetComponent<RectTransform>())), Is.False, name);
                 Click("OpenBag_btn");
                 yield return new WaitForSeconds(.8f);

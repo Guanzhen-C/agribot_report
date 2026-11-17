@@ -51,7 +51,7 @@ namespace Agribot.VehicleConfiguration
             instance.exportButton = export;
             instance.showMessage = notification;
             stop.onClick.AddListener(instance.StopSimulation);
-            export.onClick.AddListener(instance.ExportConfiguration);
+            if (export != null) export.onClick.AddListener(instance.ExportConfiguration);
             instance.RefreshButtons();
         }
 

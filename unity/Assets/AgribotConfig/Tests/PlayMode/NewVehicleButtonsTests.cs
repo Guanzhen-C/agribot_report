@@ -14,7 +14,7 @@ namespace Agribot.VehicleConfiguration.Tests
             .First(t => t.gameObject.scene.IsValid() && t.name == name).gameObject;
 
         [UnityTest]
-        public IEnumerator EachNewVehicleShowsExportAndStopControls()
+        public IEnumerator EachNewVehicleShowsSimulationAndStopControlsWithoutPhysicalExport()
         {
             yield return SceneManager.LoadSceneAsync("scene1", LoadSceneMode.Single);
             yield return null;
@@ -28,11 +28,12 @@ namespace Agribot.VehicleConfiguration.Tests
                 Assert.That(output.GetComponentInChildren<Text>().text, Is.EqualTo("启动仿真"));
                 Assert.That(Find("Explode_NewVehicle_btn").activeInHierarchy, Is.True);
                 Assert.That(Find("Stop_NewVehicle_Simulation").activeInHierarchy, Is.True);
-                Assert.That(Find("Export_NewVehicle_Physical").activeInHierarchy, Is.True);
+                Assert.That(Resources.FindObjectsOfTypeAll<Button>().Any(button => button.gameObject.scene.IsValid() &&
+                    button.name == "Export_NewVehicle_Physical"), Is.False);
                 Assert.That(Find("Stop_NewVehicle_Simulation").GetComponentInChildren<Text>().text,
                     Is.EqualTo("停止仿真"));
                 var actions = new[] { "Explode_NewVehicle_btn", "Output_btn",
-                    "Stop_NewVehicle_Simulation", "Export_NewVehicle_Physical", "OpenBag_btn" }
+                    "Stop_NewVehicle_Simulation", "OpenBag_btn" }
                     .Select(name => Find(name).GetComponent<Button>()).ToArray();
                 Canvas.ForceUpdateCanvases();
                 Assert.That(actions.All(button => button.transform.parent == actions[0].transform.parent), Is.True);

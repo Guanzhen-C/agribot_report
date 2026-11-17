@@ -49,6 +49,7 @@ public class BagPanel : WheelChangePanel
     public void OpenBag()
     {
         ResolveCurrentCarCamera();
+        currentCar?.GetComponent<Car0GarageVehicle>()?.CloseRepair();
         if (currentCameraControl != null || legacyCameraController != null)
         {
             previousCameraTarget = GetTargetForCurrentCar(false);
