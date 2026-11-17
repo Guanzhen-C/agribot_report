@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-17",
+  "release": "v0.1.0-20261117-repair-cm",
+  "source_commit": "fccfa8e077f55d40b6fc41473eda4da7b7b122be",
+  "program_build_commit": "8154b0c5c10fb8ff4dca269a0fccd28dd9919dee",
+  "input_sha256": "fa77f51ac48dcbf053ac3ae9bf7fa34f20b2a4269e253441fa69c9871e737ff4",
+  "method": "Real shallow clone over HTTPS; anonymous attachment download; independent resource restore and program install",
+  "restored_resource_files": 2389,
+  "release_attachments_verified": 6,
+  "resource_sha256_check": "passed",
+  "program_sha256_check": "passed",
+  "program_source_fingerprint_check": "passed",
+  "doctor": {"vehicles": 10, "equipment_presets": 57, "builtin_scenes": 9, "vision_components": 3, "issues": []},
+  "ros_clean_build": {"command": "bash scripts/build_ros.sh simulation", "packages_finished": 35, "packages_failed": 0, "elapsed": "11min 39s", "warnings_present": true},
+  "source_tests_passed": 376,
+  "distribution_tests_passed": 38,
+  "native_ui": {"garage": "passed", "Car0_detail": "passed", "resolution": "1280x720", "renderer": "NVIDIA GeForce RTX 3070 Ti", "garage_ready_seconds": 3.277},
+  "scope_exclusions": ["No hardware actuation", "No autonomous route execution in this installation check", "No Ubuntu upgrade"]
+}

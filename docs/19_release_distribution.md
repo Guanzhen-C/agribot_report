@@ -46,3 +46,11 @@ python3 tools/fetch_assets.py --bundle-dir /path/to/downloaded-bundles
 发布者使用`tools/package_release_assets.py`从当前锁/迁移前LFS指针生成去重附件，先提交源码与新资源锁，再正常构建和`tools/package_app.py`打包。每个附件小于2GiB；附件上传到与清单一致的固定版本Tag，发布后不覆盖相同Tag的内容。[GitHub附件限制说明](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
 
 发布须先实际验证所有附件上传和新克隆安装，再将`main`推进到完整发行提交。GitHub授权只用于仓库发布，不开启付费预算。旧历史提交的LFS下载仍可能受原预算限制；本次只保证迁移后的版本使用新的安装流程，不宣称恢复了GitHub账号的历史LFS服务。
+
+## 2026-11-17 独立安装验证
+
+发行版`v0.1.0-20261117-repair-cm`已用真实GitHub浅克隆验证，而非复用开发目录。未提供GitHub凭据，按公开URL下载三个资源附件和Linux程序附件，完整SHA-256校验通过；恢复2389个资源文件，安装器源码指纹校验通过。`doctor.py --unity --hashes`识别10辆车辆、57种装备预设、9个内置场景和3类视觉组件，无缺失项。
+
+在该新目录执行`bash scripts/build_ros.sh simulation`，35个ROS包全部编译完成（11分39秒，存在第三方编译警告，无失败包）。从新安装的`dist/unity`实际打开车库、进入Car0详情，使用NVIDIA RTX 3070 Ti正常渲染后退出。此次安装验证不启动实车、硬件在环或车辆运动，不代替各场景的导航验收记录。完整源码测试376项通过，分发工具专项测试38项通过。
+
+详细验证范围见`verification/release_install_20261117.json`。依赖环境仍为Ubuntu 22.04 / ROS 2 Humble；不包含对Ubuntu 24.04或Windows完整仿真运行环境的承诺。
