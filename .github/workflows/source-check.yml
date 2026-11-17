@@ -7,23 +7,20 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
       - uses: ros-tooling/setup-ros@v0.7
       - name: Install Humble Python message dependencies for HIL readiness contracts
-        run: sudo apt-get install -y ros-humble-ros-base
+        run: sudo apt-get install -y ros-humble-ros-base python3-pip python3-pytest
       - name: Restore pinned release resources (no Git LFS)
         run: |
           sudo apt-get update
           sudo apt-get install -y zstd
           python3 tools/fetch_assets.py
-      - run: pip install pytest PyYAML 'numpy<2' scipy pillow 'vtk>=9.1,<10' 'opencv-python-headless<4.12'
+      - run: /usr/bin/python3 -m pip install --user PyYAML 'numpy<2' scipy pillow 'vtk>=9.1,<10' 'opencv-python-headless<4.12'
       - name: Pure source contracts (not a full simulation)
         run: |
           source /opt/ros/humble/setup.bash
           export PYTHONPATH="$PWD/ros2_ws/src/agribot_farm_sim:$PWD/ros2_ws/src/agribot_vehicle_config_tools:$PWD/ros2_ws/src/agribot_k2_sim${PYTHONPATH:+:$PYTHONPATH}"
-          python -m pytest -q tools/tests ros2_ws/src/agribot_farm_sim/test/test_full_detail_preview.py ros2_ws/src/agribot_farm_sim/test/test_natural_recommendation.py ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py ros2_ws/src/agribot_k2_sim/test/test_import_scene.py
+          /usr/bin/python3 -m pytest -q tools/tests ros2_ws/src/agribot_farm_sim/test/test_full_detail_preview.py ros2_ws/src/agribot_farm_sim/test/test_natural_recommendation.py ros2_ws/src/agribot_farm_sim/test/test_scene_tools.py ros2_ws/src/agribot_k2_sim/test/test_import_scene.py
       - name: Documentation consistency
         run: |
           python tools/generate_function_catalog.py --check
