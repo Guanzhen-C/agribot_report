@@ -21,7 +21,12 @@ public class FixPanel : MonoBehaviour
         foreach (Transform option in transform)
         {
             string title, description;
-            if (option.name == "note_1")
+            if (option.name == "note_none")
+            {
+                title = "选择修理模块";
+                description = "点击上方卡片查看说明\n再次点击同一卡片进入对应功能";
+            }
+            else if (option.name == "note_1")
             {
                 title = "调整左右轮距";
                 description = "左右车轮中心距离（cm）\n再次点击上方卡片进入调整";
@@ -52,6 +57,16 @@ public class FixPanel : MonoBehaviour
                 label.text = label.name == "content" ? description : title;
                 label.fontStyle = FontStyle.Normal;
                 label.fontSize = label.name == "content" ? 18 : 22;
+                if (option.name == "note_none")
+                {
+                    label.gameObject.SetActive(true);
+                    label.enabled = true;
+                    label.raycastTarget = false;
+                    label.alignment = TextAnchor.MiddleCenter;
+                    label.horizontalOverflow = HorizontalWrapMode.Wrap;
+                    GarageVisualStyle.Rect(label.transform, new Vector2(.06f, .08f), new Vector2(.94f, .92f));
+                    label.transform.SetAsLastSibling();
+                }
             }
             foreach (var image in option.GetComponentsInChildren<Image>(true))
             {

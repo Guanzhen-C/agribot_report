@@ -131,6 +131,14 @@ namespace Agribot.VehicleConfiguration.Tests
             Invoke(host, "RegisterBodyClick", Vector2.one, 10f);
             Invoke(host, "RegisterBodyClick", Vector2.one, 10.1f);
             yield return new WaitForSeconds(.3f);
+            var initial = repair.transform.Find("note_none");
+            var initialHint = initial.GetComponentInChildren<Text>();
+            Assert.That(initial.gameObject.activeInHierarchy, Is.True);
+            Assert.That(initialHint, Is.Not.Null);
+            Assert.That(initialHint.enabled, Is.True);
+            Assert.That(initialHint.text, Is.EqualTo("点击上方卡片查看说明\n再次点击同一卡片进入对应功能"));
+            Canvas.ForceUpdateCanvases();
+            Assert.That(initialHint.preferredHeight, Is.LessThanOrEqualTo(initialHint.rectTransform.rect.height));
             ColorBlock? selectedStyle = null;
             for (int id = 1; id <= 5; id++)
             {
