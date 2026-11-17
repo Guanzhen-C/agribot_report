@@ -111,6 +111,18 @@ public class slotBtn : MonoBehaviour
         diedie = transform.parent.parent.parent.parent;
         selected = false; // 初始时未选中
         selected_img = transform.GetChild(1).GetComponent<Image>().gameObject;
+        RefreshSelectionStyle();
+    }
+
+    private void OnEnable() => RefreshSelectionStyle();
+
+    private void RefreshSelectionStyle()
+    {
+        if (selected_img != null) selected_img.SetActive(false);
+        var button = GetComponent<Button>();
+        GarageVisualStyle.SelectionStyle(button, selected);
+        foreach (var text in GetComponentsInChildren<Text>(true))
+            text.color = selected ? GarageVisualStyle.Background : GarageVisualStyle.Text;
     }
 
     // 设置本脚本是否为选中状态
@@ -118,9 +130,8 @@ public class slotBtn : MonoBehaviour
     {
 
         // 选中时
-        Debug.Log(clickStep);
         selected = value;
-        selected_img.SetActive(selected);
+        RefreshSelectionStyle();
         diedie.GetChild(2).gameObject.SetActive(false); // 空白介绍关闭
         diedie.GetChild(slotId + 2).gameObject.SetActive(selected); // 选中按钮的介绍界面
    

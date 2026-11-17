@@ -115,7 +115,7 @@ public partial class LastPanel
         foreach (var entry in sceneButtons)
         {
             bool selected = entry.scene.id == FarmScenarioCatalog.SelectedId;
-            entry.button.GetComponent<Image>().color = selected ? new Color(.28f, .35f, .15f) : GarageVisualStyle.Surface;
+            SetScenarioButtonState(entry.button, selected);
             if (selected && currentScene != null) currentScene.text = "作业场景  /  " + entry.scene.name;
         }
         bool fixedRoute = fixedScene?.HasFixedRoute == true;

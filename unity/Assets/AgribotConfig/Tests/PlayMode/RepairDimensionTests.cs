@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -63,6 +64,119 @@ namespace Agribot.VehicleConfiguration.Tests
             yield return null;
             ScreenCapture.CaptureScreenshot(Path.Combine(directory, name + ".png"));
             yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator SceneSelectionIsVisibleImmediatelyAndSurvivesFocusAndReentry()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            GameObject.Find("Car0_Img").GetComponent<Button>().onClick.Invoke();
+            yield return new WaitForSeconds(.8f);
+            GameObject.Find("Output_btn").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            var first = GameObject.Find("Scenario_orchard").GetComponent<Button>();
+            var second = GameObject.Find("Scenario_vineyard").GetComponent<Button>();
+            var accent = new Color(.75f, .88f, .27f);
+            first.onClick.Invoke();
+            Assert.That(FarmScenarioCatalog.SelectedId, Is.EqualTo("orchard"));
+            Assert.That(first.colors.normalColor, Is.EqualTo(accent));
+            Assert.That(first.colors.highlightedColor, Is.EqualTo(accent));
+            Assert.That(first.colors.selectedColor, Is.EqualTo(accent));
+            EventSystem.current.SetSelectedGameObject(second.gameObject);
+            first.OnPointerExit(new PointerEventData(EventSystem.current));
+            yield return new WaitForSeconds(.2f);
+            Assert.That(first.targetGraphic.canvasRenderer.GetColor(), Is.EqualTo(accent));
+            second.onClick.Invoke();
+            Assert.That(FarmScenarioCatalog.SelectedId, Is.EqualTo("vineyard"));
+            Assert.That(second.colors.normalColor, Is.EqualTo(accent));
+            Assert.That(second.GetComponent<Outline>().enabled, Is.True);
+            Assert.That(first.colors.normalColor, Is.Not.EqualTo(accent));
+            Assert.That(first.GetComponent<Outline>().enabled, Is.False);
+            Assert.That(second.transform.Find("SceneName").GetComponent<Text>().color,
+                Is.EqualTo(new Color(.055f, .065f, .075f)));
+            yield return Capture("scene-selection-immediate");
+            var selector = GameObject.Find("VehicleSimulationSelector");
+            var panel = Component(selector, "LastPanel");
+            Invoke(panel, "CloseSetup");
+            GameObject.Find("Output_btn").GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Assert.That(second.colors.normalColor, Is.EqualTo(accent));
+            Assert.That(first.GetComponent<Outline>().enabled, Is.False);
+            Invoke(panel, "CloseSetup");
+        }
+
+        [UnityTest]
+        public IEnumerator RepairModulesUseOneSelectionStyleAndDoNotReopenFromBodyClicks()
+        {
+            yield return SceneManager.LoadSceneAsync("scene1");
+            yield return null;
+            GameObject.Find("Car0_Img").GetComponent<Button>().onClick.Invoke();
+            yield return new WaitForSeconds(.8f);
+            var car = GameObject.Find("Car0");
+            var host = Component(car, "Car0GarageVehicle");
+            var repair = Component(car, "FixPanel");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 10.1f);
+            yield return new WaitForSeconds(.3f);
+            ColorBlock? selectedStyle = null;
+            for (int id = 1; id <= 5; id++)
+            {
+                var slot = Slot(car, id);
+                Invoke(slot, "OnClick");
+                var button = slot.GetComponent<Button>();
+                if (selectedStyle.HasValue) Assert.That(button.colors, Is.EqualTo(selectedStyle.Value));
+                selectedStyle = button.colors;
+                Assert.That(button.GetComponent<Outline>().enabled, Is.True);
+                Assert.That(Field<GameObject>(slot, "selected_img").activeSelf, Is.False);
+                for (int other = 1; other <= 5; other++)
+                    Assert.That(Slot(car, other).GetComponent<Outline>().enabled, Is.EqualTo(other == id));
+            }
+            Invoke(Slot(car, 3), "OnClick");
+            Assert.That(Field<int>(Slot(car, 3), "clickStep"), Is.EqualTo(1));
+            yield return Capture("repair-selected-radius");
+            Invoke(Slot(car, 3), "OnClick");
+            Assert.That(Field<int>(Slot(car, 3), "clickStep"), Is.Zero);
+            Assert.That(repair.GetComponent<CanvasGroup>().blocksRaycasts, Is.False);
+            yield return new WaitForSecondsRealtime(Field<float>(repair, "fadeOutDuration") + .15f);
+            var radius = Component(car, "bottonPanel");
+            var input = Field<InputField>(radius, "txt_input");
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False,
+                "Repair alpha=" + repair.GetComponent<CanvasGroup>().alpha + " radius active=" + radius.gameObject.activeInHierarchy);
+            Assert.That(radius.gameObject.activeInHierarchy, Is.True);
+            AssertInputLayout(input, Field<Button>(radius, "Sure_btn"), "车轮半径");
+
+            // Double-clicking the visible body must not replace the active adjustment page.
+            Invoke(host, "RegisterBodyClick", Vector2.one, 11f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 11.1f);
+            yield return new WaitForSeconds(.3f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+            Assert.That(radius.gameObject.activeInHierarchy, Is.True);
+            var change = Component(car, "CarChange");
+            input.text = "14";
+            Field<Button>(radius, "Sure_btn").onClick.Invoke();
+            Assert.That(Property(change, "CurWheelRadius"), Is.EqualTo(.14f).Within(.00001f));
+            input.SetTextWithoutNotify("15.5");
+            input.onSubmit.Invoke("15.5");
+            Assert.That(Property(change, "CurWheelRadius"), Is.EqualTo(.155f).Within(.00001f));
+            input.SetTextWithoutNotify("99");
+            input.onSubmit.Invoke("99");
+            Assert.That(Property(change, "CurWheelRadius"), Is.EqualTo(.155f).Within(.00001f));
+            Field<Button>(radius, "MinRadius_btn").onClick.Invoke();
+            Assert.That(input.text, Is.EqualTo("7"));
+            Field<Button>(radius, "NormalRadius_btn").onClick.Invoke();
+            Assert.That(input.text, Is.EqualTo("12.75"));
+            yield return Capture("radius-input-unified");
+            Invoke(host, "CloseRepairAnimated");
+            Invoke(host, "RegisterBodyClick", Vector2.one, 12f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 12.1f);
+            yield return new WaitForSeconds(.4f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.False);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 13f);
+            Invoke(host, "RegisterBodyClick", Vector2.one, 13.1f);
+            yield return new WaitForSeconds(.3f);
+            Assert.That(repair.gameObject.activeInHierarchy, Is.True);
+            Invoke(host, "CloseRepair");
         }
 
         [UnityTest]

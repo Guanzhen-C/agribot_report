@@ -31,9 +31,35 @@ public class FixPanel : MonoBehaviour
                 title = "调整前后轴距";
                 description = "前、后车轴中心距离（cm）";
             }
+            else if (option.name.StartsWith("note_3"))
+            {
+                title = "调整车轮半径";
+                description = "车轮整体半径（cm）";
+            }
+            else if (option.name.StartsWith("note_4"))
+            {
+                title = "装备面板";
+                description = "再次点击进入装备面板";
+            }
+            else if (option.name == "note_5")
+            {
+                title = "爆炸图";
+                description = "再次点击进入爆炸图";
+            }
             else continue;
             foreach (Text label in option.GetComponentsInChildren<Text>(true))
+            {
                 label.text = label.name == "content" ? description : title;
+                label.fontStyle = FontStyle.Normal;
+                label.fontSize = label.name == "content" ? 18 : 22;
+            }
+            foreach (var image in option.GetComponentsInChildren<Image>(true))
+            {
+                if (!image.name.StartsWith("head_bg")) continue;
+                image.sprite = image.overrideSprite = null;
+                image.color = GarageVisualStyle.Raised;
+                GarageVisualStyle.Rect(image.transform, Vector2.zero, Vector2.one);
+            }
         }
         foreach (Transform child in transform)
         {

@@ -736,12 +736,11 @@ public partial class LastPanel : WheelChangePanel
 
     private static void SetScenarioButtonState(Button button, bool selected)
     {
-        button.GetComponent<Image>().color = Color.white;
-        ColorBlock colors = button.colors;
-        colors.normalColor = selected ? DialogAccent : DialogSurfaceRaised;
-        colors.highlightedColor = selected ? DialogAccent : new Color(0.22f, 0.25f, 0.26f, 1f);
-        colors.selectedColor = colors.normalColor;
-        button.colors = colors;
+        GarageVisualStyle.SelectionStyle(button, selected);
+        var title = button.transform.Find("SceneName")?.GetComponent<Text>();
+        var tasks = button.transform.Find("SceneTasks")?.GetComponent<Text>();
+        if (title != null) title.color = selected ? GarageVisualStyle.Background : GarageVisualStyle.Text;
+        if (tasks != null) tasks.color = selected ? GarageVisualStyle.Background : GarageVisualStyle.Muted;
     }
 
     private Button CreateFlatButton(

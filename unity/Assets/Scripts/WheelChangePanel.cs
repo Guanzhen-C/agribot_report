@@ -113,7 +113,8 @@ public class WheelChangePanel : MonoBehaviour
             {
                 bool isUnit = child.name == "xiahuaxian";
                 bool isTitle = !isUnit && label.text != null &&
-                    (label.text.Contains("手动输入") || label.text.Contains("轮距") || label.text.Contains("轴距"));
+                    (label.text.Contains("手动输入") || label.text.Contains("轮距") ||
+                     label.text.Contains("轴距") || label.text.Contains("半径") || label.text.Contains("轮毂"));
                 child.gameObject.SetActive(isUnit || isTitle);
                 if (!isUnit && !isTitle) continue;
                 label.text = isUnit ? "cm" : title;

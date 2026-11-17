@@ -18,21 +18,14 @@ public class bottonPanel : WheelChangePanel
     [SerializeField] private Slider wheelRadiusSlider;
     [SerializeField] private Text wheelRadiusValueText;
     private InputField txt_input;
-    private decimal oldInput;
-    private decimal currentInput;
     public UnityEngine.UI.Button Sure_btn;
 
-    //private CarChange carChange;
     private GameObject cameraTarget;
 
     protected override void Awake()
     {
         base.Awake();
         cameraTarget = GameObject.Find("CameraTarget");
-
-        GameObject car = GameObject.Find("Car0");
-        /*if (car != null)
-            carChange = car.GetComponent<CarChange>();*/
 
         if (carChange == null)
         {
@@ -44,41 +37,30 @@ public class bottonPanel : WheelChangePanel
         wheelRadiusSlider.minValue = MinWheelRadius;
         wheelRadiusSlider.maxValue = MaxWheelRadius;
         wheelRadiusSlider.wholeNumbers = false;
-        wheelRadiusSlider.SetValueWithoutNotify(NormalWheelRadius);
         wheelRadiusSlider.onValueChanged.AddListener(ApplyWheelRadius);
-        UpdateRadiusLabel(NormalWheelRadius);
 
         MinRadius_btn.onClick.AddListener(() => SetRadiusPreset(MinWheelRadius));
         NormalRadius_btn.onClick.AddListener(() => SetRadiusPreset(NormalWheelRadius));
         MaxRadius_btn.onClick.AddListener(() => SetRadiusPreset(MaxWheelRadius));
+        SetPresetLabel(MinRadius_btn, "最小半径", MinWheelRadius);
+        SetPresetLabel(NormalRadius_btn, "标准半径", NormalWheelRadius);
+        SetPresetLabel(MaxRadius_btn, "最大半径", MaxWheelRadius);
+        if (Sure_btn != null) Sure_btn.onClick.AddListener(SubmitRadiusInput);
 
-        Sure_btn.onClick.AddListener(() =>
-        {
-            if (oldInput != currentInput && EnSureRightNum(currentInput))
-            {
-                oldInput = currentInput;
-                SetRadiusPreset((float)currentInput);
-                Debug.Log("currenInput = " + currentInput);
-            }
-        });
-
-        
-
-
-        // 用户输入半径
-        txt_input = GameObject.Find("txt_input").GetComponent<InputField>();
+        txt_input = GetComponentInChildren<InputField>(true);
         if (txt_input != null)
         {
-            //只允许数字和小数点
             txt_input.contentType = InputField.ContentType.DecimalNumber;
-            txt_input.onValueChanged.AddListener(OnInputValueChanged);    // 赋值
-            txt_input.onEndEdit.AddListener(OnInputEndEdit);
+            if (txt_input.placeholder is Text placeholder) placeholder.text = "7 - 17 cm";
+            txt_input.onSubmit.AddListener(OnRadiusInputSubmitted);
+            ConfigureDimensionInput(txt_input, Sure_btn, "车轮半径");
         }
         else
         {
             Debug.LogError("bottonPanel: 未找到 txt_input 或 InputField 组件。", this);
         }
 
+        SyncRadius(carChange.CurWheelRadius);
         AddEscClickListener(Hide);
     }
 
@@ -87,82 +69,58 @@ public class bottonPanel : WheelChangePanel
         if (carChange == null || wheelRadiusSlider == null)
             return;
 
-        float radius = carChange.CurWheelRadius;
-        wheelRadiusSlider.SetValueWithoutNotify(radius);
-        UpdateRadiusLabel(radius);
-    }
-    
-    private void OnInputEndEdit(string txt)
-    {
-        bool pressEnter =
-             Input.GetKeyDown(KeyCode.Return) ||
-             Input.GetKeyDown(KeyCode.KeypadEnter);
-
-        if (!pressEnter)
-            return;
-
-        EnSureRightNum(currentInput);
-        oldInput = currentInput;
-        SetRadiusPreset((float)currentInput);
-    }
-    private void OnInputValueChanged(string value)
-    {
-        if (decimal.TryParse(value, out decimal number))
-        {
-            currentInput = number * (decimal)0.01f;  // 用户输入是cm,后端准换成m做判断
-            Debug.Log($"有效数值：{currentInput}");
-        }
-        else
-        {
-            Debug.Log($"当前内容不是完整数值：{value}");
-        }
+        SyncRadius(carChange.CurWheelRadius);
     }
 
-    /// <summary>
-    /// 判断InputField中的内容是否合法。
-    /// </summary>
-    private bool EnSureRightNum(decimal num)
+    private static void SetPresetLabel(Button button, string title, float meters)
     {
-        if (txt_input == null) return false;
+        var label = button != null ? button.GetComponentInChildren<Text>(true) : null;
+        if (label != null) label.text = $"{title}：{meters * 100f:0.##} cm";
+    }
+
+    private void OnRadiusInputSubmitted(string value) => SubmitRadiusInput();
+
+    private void SubmitRadiusInput()
+    {
+        if (txt_input == null) return;
         string text = txt_input.text.Trim();
         if (!Regex.IsMatch(text, @"^\d+(\.\d{1,5})?$"))
         {
-            ShowPop("最多输入5位小数！");
-            return false;
+            ShowPop("请输入最多 5 位小数的数值。");
+            return;
         }
-        // 转换为decimal
-        bool success = decimal.TryParse(
+        if (!decimal.TryParse(
             text,
             NumberStyles.AllowDecimalPoint,
             CultureInfo.InvariantCulture,
-            out num);
-        if (!success)
+            out decimal centimeters))
         {
-            ShowPop("转换成合法正数失败！");
-            return false;
+            ShowPop("输入内容无法转换为有效数值。");
+            return;
         }
 
-        // 只允许正数，不允许0和负数
-        if ((float)num >= NormalWheelRadius * 1.34f * 100 || (float)num <= NormalWheelRadius * 0.55f *100)  // 这里单位是 m
+        float meters = (float)(centimeters / 100m);
+        if (!IsRadiusInRange(meters))
         {
-            float minR = NormalWheelRadius * 0.55f * 100;
-            float maxR = NormalWheelRadius * 1.34f * 100;
-            ShowPop("请输入有效半径范围"+ minR.ToString("F1") +"cm~"+ maxR.ToString("F1") + "cm的半径！");
-            return false;
+            ShowPop("请输入 7 cm 至 17 cm 范围内的车轮半径。");
+            return;
         }
-        return true;
+        SetRadiusPreset(meters);
     }
+
+    private static bool IsRadiusInRange(float radius) => radius >= MinWheelRadius && radius <= MaxWheelRadius;
+
     private void SetRadiusPreset(float radius)
     {
-        // 按钮通过 Slider 进入同一个更新入口，避免两套状态不同步。
-        wheelRadiusSlider.value = radius;
+        ApplyWheelRadius(radius);
     }
 
     private void ApplyWheelRadius(float radius)
     {
+        if (!IsRadiusInRange(radius)) return;
         float wheelScale = radius / NormalWheelRadius;
         carChange.ChangeWheels(wheelScale, radius);
-        UpdateRadiusLabel(radius);
+        SyncRadius(radius);
 
         if (cameraTarget == null)
             return;
@@ -178,10 +136,20 @@ public class bottonPanel : WheelChangePanel
         cameraTarget.transform.localPosition = position;
     }
 
-    private void UpdateRadiusLabel(float radius)
+    private void SyncRadius(float radius)
     {
+        wheelRadiusSlider.SetValueWithoutNotify(radius);
         if (wheelRadiusValueText != null)
-            wheelRadiusValueText.text = $"轮胎半径：{radius * 100f:F2} cm";
+            wheelRadiusValueText.text = $"车轮半径：{radius * 100f:0.##} cm";
+        if (txt_input != null)
+            txt_input.SetTextWithoutNotify((radius * 100f).ToString("0.#####", CultureInfo.InvariantCulture));
+    }
+
+    private void OnDestroy()
+    {
+        if (txt_input != null) txt_input.onSubmit.RemoveListener(OnRadiusInputSubmitted);
+        if (Sure_btn != null) Sure_btn.onClick.RemoveListener(SubmitRadiusInput);
+        if (wheelRadiusSlider != null) wheelRadiusSlider.onValueChanged.RemoveListener(ApplyWheelRadius);
     }
 
     public GameObject EnsureRadiusSlider()
@@ -338,11 +306,4 @@ public class bottonPanel : WheelChangePanel
         return child;
     }
 
-    private void OnDestroy()
-    {
-        if (wheelRadiusSlider != null)
-            wheelRadiusSlider.onValueChanged.RemoveListener(ApplyWheelRadius);
-
-
-    }
 }

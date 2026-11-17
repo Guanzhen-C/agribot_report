@@ -62,6 +62,27 @@ public static class GarageVisualStyle
         ButtonStyle(button);
     }
 
+    public static void SelectionStyle(Button button, bool selected)
+    {
+        if (button == null) return;
+        // Store selection in every relevant Selectable state, not just Image.color.
+        button.image.color = Color.white;
+        button.transition = Selectable.Transition.ColorTint;
+        button.spriteState = default;
+        var colors = ColorBlock.defaultColorBlock;
+        colors.normalColor = selected ? Accent : Raised;
+        colors.highlightedColor = selected ? Accent : new Color(.22f, .25f, .26f);
+        colors.selectedColor = colors.normalColor;
+        colors.pressedColor = selected ? Accent : new Color(.28f, .32f, .33f);
+        colors.fadeDuration = .08f;
+        button.colors = colors;
+        var border = button.GetComponent<Outline>();
+        if (border == null) border = button.gameObject.AddComponent<Outline>();
+        border.effectColor = Accent;
+        border.effectDistance = new Vector2(2, -2);
+        border.enabled = selected;
+    }
+
     public static void SetButtonLabel(Button button, string value)
     {
         var label = button.GetComponentInChildren<Text>(true);

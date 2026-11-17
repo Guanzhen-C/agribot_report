@@ -90,7 +90,8 @@ public sealed class Car0GarageVehicle : MonoBehaviour, IPointerClickHandler
 
     private void ObservePointerPress(Vector2 position)
     {
-        if (IsOverUi(position) || !IsBodyAt(position)) CancelBodyClickSequence();
+        if (hasRepairView || closingRepair != null || IsOverUi(position) || !IsBodyAt(position))
+            CancelBodyClickSequence();
     }
 
     public void CancelBodyClickSequence() => previousClick = float.NegativeInfinity;
@@ -105,6 +106,7 @@ public sealed class Car0GarageVehicle : MonoBehaviour, IPointerClickHandler
 
     public void HandleBodyClick(Vector2 position, float now)
     {
+        if (hasRepairView || closingRepair != null) { CancelBodyClickSequence(); return; }
         if (IsOverUi(position)) { CancelBodyClickSequence(); return; }
         if (!IsBodyAt(position)) { CancelBodyClickSequence(); return; }
         RegisterBodyClick(position, now);
@@ -126,6 +128,7 @@ public sealed class Car0GarageVehicle : MonoBehaviour, IPointerClickHandler
 
     public void RegisterBodyClick(Vector2 position, float now)
     {
+        if (hasRepairView || closingRepair != null) { CancelBodyClickSequence(); return; }
         if (now - previousClick <= .35f && Vector2.Distance(position, previousPosition) <= 18)
         {
             previousClick = float.NegativeInfinity;

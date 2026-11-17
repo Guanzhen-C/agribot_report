@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--app', type=Path, default=ROOT / 'dist/unity')
+    parser.add_argument('--release-base-url', help='New immutable program Release URL; resources may use an older Release')
     args = parser.parse_args()
     inputs = fingerprint(ROOT)
     for name in ('AgribotConfigurator.x86_64', 'libagribot_linux_ime.so', 'start_agribot_configurator.sh'):
@@ -31,7 +32,11 @@ def main():
     manifest = dict(format='agribot.prebuilt-app', version=1, platform='ubuntu-22.04-x86_64',
                     archive=archive.name, sha256=digest(archive), bytes=archive.stat().st_size, runtime_inputs=inputs)
     resources = ROOT / 'resources/release_assets.json'
-    if resources.is_file():
+    if args.release_base_url:
+        if not args.release_base_url.startswith('https://github.com/') or '/releases/download/' not in args.release_base_url:
+            raise SystemExit('程序发行URL必须是GitHub Releases的HTTPS下载目录。')
+        manifest['url'] = args.release_base_url.rstrip('/') + '/' + archive.name
+    elif resources.is_file():
         manifest['url'] = json.loads(resources.read_text())['base_url'] + archive.name
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     print(json.dumps(manifest, indent=2))
