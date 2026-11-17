@@ -83,12 +83,8 @@ public partial class LastPanel
         var footer = GarageVisualStyle.Panel(panel.transform, "Footer", GarageVisualStyle.Surface);
         GarageVisualStyle.Rect(footer.transform, Vector2.zero, new Vector2(1, .105f));
         currentScene = GarageVisualStyle.Label(footer.transform, "CurrentScene", "", 18,
-            new Vector2(.04f, .1f), new Vector2(.30f, .9f), GarageVisualStyle.Muted);
+            new Vector2(.04f, .1f), new Vector2(.52f, .9f), GarageVisualStyle.Muted);
         currentScene.resizeTextForBestFit = true; currentScene.resizeTextMinSize = 12; currentScene.resizeTextMaxSize = 18;
-        var next = SetupButton(footer.transform, "SetupNext", "选择算法", .31f, .2f, .44f, .8f);
-        next.onClick.AddListener(() => ShowSetupTab(true));
-        var cancel = SetupButton(footer.transform, "Cancel", "取消", .45f, .2f, .53f, .8f);
-        cancel.onClick.AddListener(CloseSetup);
         launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .55f, .2f, .705f, .8f, true);
         launchSelectedAlgorithmButton.onClick.AddListener(() => { if (selectedAlgorithm != null) StartSelectedAlgorithm(selectedAlgorithm.Id); });
         launchHilButton = SetupButton(footer.transform, "LaunchHil", "启动HIL仿真", .725f, .2f, .88f, .8f, true);
