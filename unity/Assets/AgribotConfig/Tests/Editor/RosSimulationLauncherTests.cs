@@ -114,6 +114,23 @@ namespace Agribot.VehicleConfiguration.Tests
         }
 
         [Test]
+        public void ProfileNamesIncludeEverySelectedComponentAndIdentifyVisualOff()
+        {
+            foreach (var profile in RosSimulationLauncher.Algorithms)
+            {
+                string visual = profile.VisualPerceptionComponent.Id == "off"
+                    ? "视觉关闭" : profile.VisualPerceptionComponent.ShortName;
+                string expected = $"{profile.PerceptionComponent.ShortName} · {visual} · " +
+                    $"{profile.LocalizationComponent.DisplayName} · {profile.PlannerComponent.DisplayName} · " +
+                    profile.ControllerComponent.DisplayName;
+                Assert.That(profile.DisplayName, Is.EqualTo(expected), profile.Id);
+            }
+            var stvl = RosSimulationLauncher.Compose("stvl", "off", "navsat", "smac_hybrid", "mppi");
+            var voxel = RosSimulationLauncher.Compose("voxel", "off", "navsat", "smac_hybrid", "mppi");
+            Assert.That(stvl.DisplayName, Is.Not.EqualTo(voxel.DisplayName));
+        }
+
+        [Test]
         public void ComposesAnArbitraryStackFromFiveIndependentSelections()
         {
             RosSimulationAlgorithmProfile profile = RosSimulationLauncher.Compose(

@@ -73,8 +73,9 @@ namespace Agribot.VehicleConfiguration
             Id =
                 $"{perception.Id}_{visualPerception.Id}_{localization.Id}_" +
                 $"{planner.Id}_{controller.Id}";
+            string visualName = visualPerception.Id == "off" ? "视觉关闭" : visualPerception.ShortName;
             DisplayName =
-                $"{visualPerception.ShortName} · {localization.DisplayName} · " +
+                $"{perception.ShortName} · {visualName} · {localization.DisplayName} · " +
                 $"{planner.DisplayName} · {controller.DisplayName}";
             Description =
                 "几何感知、视觉感知、定位、规划和控制通过统一 ROS 接口连接；" +

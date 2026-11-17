@@ -126,6 +126,12 @@ public partial class LastPanel
                 currentScene.text = "伏羲农场 / 请选择Car3";
         }
         else if (selectedAlgorithm != null) RefreshSelectedAlgorithm(false);
+        if (selectedAlgorithm != null)
+        {
+            string geometryPrefix = selectedAlgorithm.PerceptionComponent.ShortName + " · ";
+            if (!algorithmDetailTitle.text.StartsWith(geometryPrefix, StringComparison.Ordinal))
+                algorithmDetailTitle.text = geometryPrefix + algorithmDetailTitle.text;
+        }
         RefreshLaunchAvailability();
     }
     private void ShowSetupTab(bool algorithms)
