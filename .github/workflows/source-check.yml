@@ -9,7 +9,7 @@ jobs:
           lfs: false
       - uses: ros-tooling/setup-ros@v0.7
       - name: Install Humble Python message dependencies for HIL readiness contracts
-        run: sudo apt-get install -y ros-humble-ros-base python3-pip python3-pytest
+        run: sudo apt-get install -y ros-humble-ros-base ros-humble-nav2-msgs ros-humble-cv-bridge python3-pip python3-pytest
       - name: Restore pinned release resources (no Git LFS)
         run: |
           sudo apt-get update
