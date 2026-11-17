@@ -16,6 +16,9 @@ def main():
     parser.add_argument('--app', type=Path, default=ROOT / 'dist/unity')
     parser.add_argument('--release-base-url', help='New immutable program Release URL; resources may use an older Release')
     args = parser.parse_args()
+    # Developer installations expose dist/unity as a symlink to .local/unity.
+    # Archive the actual directory, not a symlink-only package.
+    args.app = args.app.resolve()
     inputs = fingerprint(ROOT)
     for name in ('AgribotConfigurator.x86_64', 'libagribot_linux_ime.so', 'start_agribot_configurator.sh'):
         if not (args.app / name).is_file():
