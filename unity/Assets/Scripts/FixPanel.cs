@@ -24,27 +24,27 @@ public class FixPanel : MonoBehaviour
             if (option.name == "note_1")
             {
                 title = "调整左右轮距";
-                description = "左右车轮中心距离（cm）";
+                description = "左右车轮中心距离（cm）\n再次点击上方卡片进入调整";
             }
             else if (option.name.StartsWith("note_2"))
             {
                 title = "调整前后轴距";
-                description = "前、后车轴中心距离（cm）";
+                description = "前、后车轴中心距离（cm）\n再次点击上方卡片进入调整";
             }
             else if (option.name.StartsWith("note_3"))
             {
                 title = "调整车轮半径";
-                description = "车轮整体半径（cm）";
+                description = "车轮整体半径（cm）\n再次点击上方卡片进入调整";
             }
             else if (option.name.StartsWith("note_4"))
             {
                 title = "装备面板";
-                description = "再次点击进入装备面板";
+                description = "再次点击上方卡片进入装备面板";
             }
             else if (option.name == "note_5")
             {
                 title = "爆炸图";
-                description = "再次点击进入爆炸图";
+                description = "再次点击上方卡片进入爆炸图";
             }
             else continue;
             foreach (Text label in option.GetComponentsInChildren<Text>(true))

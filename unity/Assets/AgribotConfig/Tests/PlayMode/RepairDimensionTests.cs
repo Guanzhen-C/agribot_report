@@ -143,6 +143,16 @@ namespace Agribot.VehicleConfiguration.Tests
                 Assert.That(Field<GameObject>(slot, "selected_img").activeSelf, Is.False);
                 for (int other = 1; other <= 5; other++)
                     Assert.That(Slot(car, other).GetComponent<Outline>().enabled, Is.EqualTo(other == id));
+                var detail = repair.transform.Cast<Transform>().Single(item => item.name.StartsWith("note_" + id));
+                var description = detail.GetComponentsInChildren<Text>(true).Single(label => label.name == "content");
+                Assert.That(description.text, Does.Contain("再次点击上方卡片"));
+                if (id <= 3)
+                {
+                    Assert.That(description.text, Does.Contain("（cm）\n再次点击上方卡片进入调整"));
+                    Canvas.ForceUpdateCanvases();
+                    Assert.That(description.preferredHeight, Is.LessThanOrEqualTo(description.rectTransform.rect.height),
+                        "Both the dimension description and the action hint must fit without clipping");
+                }
             }
             Invoke(Slot(car, 3), "OnClick");
             Assert.That(Field<int>(Slot(car, 3), "clickStep"), Is.EqualTo(1));
