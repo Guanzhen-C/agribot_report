@@ -1,0 +1,293 @@
+{
+  "document_revision": "V1.6",
+  "requirements_version": "V2.1",
+  "cases": 30,
+  "historical_execution_date": "2026-11-16",
+  "rewritten_on": "2026-11-17",
+  "new_physical_execution": false,
+  "hardware_actions": false,
+  "criteria_unchanged": true,
+  "sources": {
+    "/home/cgz/agribot_report/docs/deliverables/20261116_hil_existing_conditions/scope_v21/requirements.json": "34a2c72178d88e67482687d58888c5d69c21915a6e456fe06926b20e848507d6",
+    "/home/cgz/Desktop/农机控制器测试计划与用例_两阶段重新实测V1.5_20261116/第二阶段_30条复测结果.json": "5ed5999c01995fda6ee0e08906a7d00768ac4a44db62b202ffdd685d16c417e3",
+    "/home/cgz/Desktop/农机控制器测试计划与用例_两阶段重新实测V1.5_20261116/本轮证据索引.json": "87788378dc05ecb962a09c7e9e9092a8c74e30f91428a8e138e104e1e95d836a",
+    "/home/cgz/Desktop/农机控制器测试计划与用例_两阶段重新实测V1.5_20261116/2026042-01 农机控制器测试用例_重新实测版V1.5.docx": "722bc0d28bd03c477687c7d5ecc421b9013022665961b38d494fe8004fc2895c"
+  },
+  "traceability": [
+    {
+      "number": "YL-FU-001",
+      "case_id": "TC-HIL-VCU-001-a",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 a)",
+      "title": "工况匹配与每次启动自动烧录",
+      "category": "整机控制器",
+      "acceptance": "受支持工况应绑定正确固件、波特率、模型、算法和任务。每次启动均应实际写入并收到Programming Finished及Verified OK后才允许进入任务授权；不支持的组合应在接触硬件前拒绝。烧录期间取消只提交取消请求，写入及校验结束后安全清理，不中断Flash写入。"
+    },
+    {
+      "number": "YL-FU-002",
+      "case_id": "TC-HIL-VCU-001-b",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 b)",
+      "title": "实体接口身份与双向链路初始化",
+      "category": "整机控制器",
+      "acceptance": "Car0两段应为1 Mbit/s，Car3/Car4两段应为250 kbit/s；绑定设备、帧类型及采样配置应与冻结工况相符。应取得实际反馈后才进入就绪；不得只以USB枚举、内部vcan或发送函数返回成功替代物理收发确认。身份或配置不符应保持零执行并明确失败。"
+    },
+    {
+      "number": "YL-FU-003",
+      "case_id": "TC-HIL-VCU-001-c",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 c)",
+      "title": "正常通信与代表性反馈一致性核对",
+      "category": "整机控制器",
+      "acceptance": "Car0保持0x181及0x101/0x102/0x103，Car3保持0x514及0x532/0x533/0x534，Car4沿用独立悬挂/动力协议。五工况应有实际收发及运动/机具反馈；已有代表性喷水、碎枝和动力反馈的收到负载应一致。记录适用协议和匹配数量，不外推零丢包；不以跨机ROS执行指令替代实体CAN。"
+    },
+    {
+      "number": "YL-FU-004",
+      "case_id": "TC-HIL-VCU-001-d",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 d)",
+      "title": "底盘授权、正常行驶与停机",
+      "category": "整机控制器",
+      "acceptance": "未授权时实际车辆不得执行非零运动；正常授权任务应有实际位置和朝向变化，结束后按车型原停车阈值停止。不得用控制目标冒充实际运动或直接改车辆位姿。只做功能级直行、转弯和停车检查，不要求逐车轮逐帧转角/轮速标定。"
+    },
+    {
+      "number": "YL-FU-005",
+      "case_id": "TC-HIL-VCU-001-e",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 e)",
+      "title": "动力换挡执行与离合器交接",
+      "category": "整机控制器",
+      "acceptance": "请求挡位、实际挡位及离合器A/B交接应形成一致状态变化，实际挡位应为支持的1至4挡，不应以瞬时修改显示值伪造换挡。换挡时间、两离合器状态和实际车速应可追踪；无故障的正常窗口不得出现非预期PT_OFF或保护制动。该项不声明真实变速箱耐久性或换挡冲击指标。"
+    },
+    {
+      "number": "YL-FU-006",
+      "case_id": "TC-HIL-VCU-001-f",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 f)",
+      "title": "CVT模式与连续传动比调节",
+      "category": "整机控制器",
+      "acceptance": "CVT模式应保持生效，传动比应按冻结控制规律连续调节并受200至900总传动比范围和配置变化率约束；实际状态应随负载及车速变化，不应只有界面数值变化。无故障的正常窗口不得非预期退出CVT或进入制动；停车后应退出驱动并制动。该总传动比不是单独变速箱的标定齿比。"
+    },
+    {
+      "number": "YL-FU-007",
+      "case_id": "TC-HIL-VCU-001-g",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 g)",
+      "title": "动力参数设置及非法值拒绝",
+      "category": "整机控制器",
+      "acceptance": "合法参数应正确传到控制器。发动机请求800至2200 r/min且按20递增、换挡时间200至2000 ms且按10递增、变化率10至300每秒等边界应按接口校验；非法请求应拒绝，不生成对应非零执行。模式切换及运行中设置限制应按冻结协议执行，不能静默切换模式或篡改真车参数。"
+    },
+    {
+      "number": "YL-FU-008",
+      "case_id": "TC-HIL-VCU-001-h",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 h)",
+      "title": "动力状态采集与ISOBUS反馈还原",
+      "category": "整机控制器",
+      "acceptance": "0x642、0x643、0x644、0x645四类原生反馈应分别与ISOBUS PGN 0xFF74至0xFF77有效负载对应；量纲、符号、序号及校验应正确，实际挡位/传动比/离合器/制动状态可还原。缺少任一类、校验不符或陈旧反馈应明确记录，不得由目标值补造反馈。"
+    },
+    {
+      "number": "YL-FU-009",
+      "case_id": "TC-HIL-VCU-001-i",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 i)",
+      "title": "受控断令及反馈暂停保护",
+      "category": "整机控制器",
+      "acceptance": "受控断令或反馈暂停后应按程序原有租约进入零执行/制动，实际车辆停止；恢复应依赖新鲜反馈及新的合法请求，不重放旧目标。Car4原0.30秒状态门限不变。专项保护成功与正常任务中意外停机分别记录。"
+    },
+    {
+      "number": "YL-FU-010",
+      "case_id": "TC-HIL-VCU-001-j",
+      "requirement_id": "R-HIL-VCU-001",
+      "clause": "3.1 j)",
+      "title": "整任务稳定性、结束清理及真车隔离",
+      "category": "整机控制器",
+      "acceptance": "完整流程、实际运动及作业应完成，无未解释通信故障或非预期动力停机；单纯任务成功不足以替代稳定性检查。结束后应撤销行走和机具授权，实际速度及机具输出归零，释放本任务端口和进程；下一工况不得串用旧任务。X5真车源码、安装项和服务配置应保持不变，不得升级操作系统或改动两类真车协议。"
+    },
+    {
+      "number": "YL-FU-011",
+      "case_id": "TC-HIL-IMP-001-a",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 a)",
+      "title": "冻结机具配置与正常装载",
+      "category": "智能机具控制器",
+      "acceptance": "五种工况的车型、机具类型和任务应与目录一致，模型资源可加载，实际作业通道与所挂机具相符。代表性Car3喷水/碎枝错通道应被拒绝，新合法请求可恢复。不进行安装孔位尺寸、全部姿态或任意未登记组合的机械适配验收。"
+    },
+    {
+      "number": "YL-FU-012",
+      "case_id": "TC-HIL-IMP-001-b",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 b)",
+      "title": "机械臂目标可达性与无碰撞规划",
+      "category": "智能机具控制器",
+      "acceptance": "应取得两个不同、可执行的目标，路径经有效碰撞检查并满足当前完成比例及关节跳变门限；规划超时、不可达、无效关节状态或不完整路径不得进入执行。不得删除树枝碰撞体、跳过检查或通过瞬移完成接近。"
+    },
+    {
+      "number": "YL-FU-013",
+      "case_id": "TC-HIL-IMP-001-c",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 c)",
+      "title": "行驶夹爪保持与停稳采摘互锁",
+      "category": "智能机具控制器",
+      "acceptance": "行驶期间应启用夹爪保持，实际移动关节相对8.9 mm目标的误差不大于0.25 mm。仅在实际线速度不超过0.035 m/s、角速度绝对值不超过0.05 rad/s并连续稳定0.3 s仿真时间后允许采摘；未确认约束切换或反馈陈旧时不得进入动作。夹持果实时不得因错误保持模式请求而张爪丢果。"
+    },
+    {
+      "number": "YL-FU-014",
+      "case_id": "TC-HIL-IMP-001-d",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 d)",
+      "title": "果梗夹取、双果放盘与收臂留果",
+      "category": "智能机具控制器",
+      "acceptance": "果实与树枝解除前应有两侧夹持垫接触同一果梗的证据，不能仅凭夹爪闭合判成功。两颗果实应各采一次，完成放盘后收臂，最终均留在原果盒内；夹爪运输保持及收拢状态成立。无双侧接触或执行反馈不收敛时不得继续摘离，不能用强制改果实位置代替物理过程。"
+    },
+    {
+      "number": "YL-FU-015",
+      "case_id": "TC-HIL-IMP-001-e",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 e)",
+      "title": "植保风机与水泵ISOBUS执行闭环",
+      "category": "智能机具控制器",
+      "acceptance": "ISOBUS输入应经6750在PC形成0x580字段(3,4,0)，并与0x514行走报文共存。风机、水泵应实际旋转，0x5B2和0x5B3与对应ISOBUS返回负载一致；停令后实际转子减速停止。不得只把目标挡位或喷水动画作为转速反馈。"
+    },
+    {
+      "number": "YL-FU-016",
+      "case_id": "TC-HIL-IMP-001-f",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 f)",
+      "title": "原喷头径向水雾、遮挡与停止显示",
+      "category": "智能机具控制器",
+      "acceptance": "水雾应从原有喷头沿风扇圆周径向发出，不从螺栓或新增装饰圆柱发出；明显障碍应截断对应可视喷雾，不应持续穿透。停泵后停止新增发射，允许已有粒子按寿命消散。此项只验收采样遮挡和显示联动，不承诺流量、风场、沉积或药效精度。"
+    },
+    {
+      "number": "YL-FU-017",
+      "case_id": "TC-HIL-IMP-001-g",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 g)",
+      "title": "碎枝机ISOBUS控制与实际刀轴反馈",
+      "category": "智能机具控制器",
+      "acceptance": "PC应收到0x580字段(0,0,3500)，刀轴实际旋转，0x5B4反馈与返回ISOBUS负载对应；风机及水泵不得被误启动。3500为0至10000范围内的控制量，不是3500 r/min转速命令。停令后刀轴应减速停止；本项不要求枝条破碎动画或真实粉碎粒径。"
+    },
+    {
+      "number": "YL-FU-018",
+      "case_id": "TC-HIL-IMP-001-h",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 h)",
+      "title": "悬挂ISOBUS升降与位置反馈",
+      "category": "智能机具控制器",
+      "acceptance": "ISOBUS升降请求应经6750形成独立0x630执行并由0x631实际反馈闭环。位置0至10000是归一化行程计数，不是毫米；默认阶段到位应满足位置误差小于150计数、速度绝对值小于150计数每秒。超时或反馈不足应保持/停止并报告，不能只修改模型显示位置声称控制成功。"
+    },
+    {
+      "number": "YL-FU-019",
+      "case_id": "TC-HIL-IMP-001-i",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 i)",
+      "title": "圆盘耙基础作业与痕迹显示",
+      "category": "智能机具控制器",
+      "acceptance": "代表工况下放前进时16片圆盘应有入土遥测，后滚筒实际旋转；作业过程应形成可见痕迹，停止作业后历史记录保留且不继续增加作业段。按基础功能显示验收，不考核全部连杆姿态、细微材质效果、土壤力学或农艺碎土指标。"
+    },
+    {
+      "number": "YL-FU-020",
+      "case_id": "TC-HIL-IMP-001-j",
+      "requirement_id": "R-HIL-IMP-001",
+      "clause": "3.2 j)",
+      "title": "正常任务停机与代表性机具断令",
+      "category": "智能机具控制器",
+      "acceptance": "正常任务结束应停止行走和机具输出，机械臂完成收臂放果，不能强行张爪丢果；喷水/碎枝断令应减速停止且不篡改合法行走，悬挂断令按既有策略保持。允许用已完成的代表性专项验证共享控制链，不要求各工况重复全部异常中断组合。"
+    },
+    {
+      "number": "YL-FU-021",
+      "case_id": "TC-HIL-NAV-001-a",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 a)",
+      "title": "正常依赖下的网口传感器接入",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "当前所需传感器应经配置网口到达X5，消息时间推进，外参文件与工况对应。Car0/Car3正常PNG压缩/解码记录应保留尺寸、时间戳和像素一致性；Car4按RTK/IMU输入验收。不在本版中人为移除压缩插件验证缺依赖分支。"
+    },
+    {
+      "number": "YL-FU-022",
+      "case_id": "TC-HIL-NAV-001-b",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 b)",
+      "title": "正常输入下的定位和启动就绪",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "Car0/Car3使用既定FAST-LIVO2+RTK，Car4使用NavSat ESKF；正常输入下应有定位输出，先完成就绪等待再提交任务和授权。正常路线应可完成，不以Gazebo真值替代X5定位。只验证正常启动，不开展缺输入、缺TF或定位中断的现场故障注入。"
+    },
+    {
+      "number": "YL-FU-023",
+      "case_id": "TC-HIL-NAV-001-c",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 c)",
+      "title": "地图、车辆参数及默认任务一致性",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "地图和目标应来自当前冻结工况，不能串用另一车辆、场景或用户历史任务。苹果园保留1、2、3号路线及原出生点，Car0插入清单规定的采摘停靠；Car4保留接近、第一作业行、地头、第二作业行和停车五阶段。不得临时改目标点或移动车辆来规避失败。"
+    },
+    {
+      "number": "YL-FU-024",
+      "case_id": "TC-HIL-NAV-001-d",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 d)",
+      "title": "Smac全局规划与非周期重规划",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "应由X5 Smac Hybrid-A*返回非空、有效坐标系的路径，目标顺序与冻结任务一致。每个正常导航阶段开始规划一次，不进行定时全局重规划；机具作业后新导航阶段不算无故重规划。失败处理产生的请求应单列，不能把缓存轨迹加载或人为给定速度写成Smac规划。"
+    },
+    {
+      "number": "YL-FU-025",
+      "case_id": "TC-HIL-NAV-001-e",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 e)",
+      "title": "车型运动学配置与正常路线跟踪",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "Car0/Car4配置Ackermann，Car3配置DiffDrive，阿克曼规划沿用前进搜索。实际车辆应沿默认路线运动并到点，不能用侧向瞬移或直接设车位姿代替控制。按模型选择、基本行驶和任务完成验收，记录实际运动但不做逐轮速度/转角、全程侧滑和加速度的定量标定。"
+    },
+    {
+      "number": "YL-FU-026",
+      "case_id": "TC-HIL-NAV-001-f",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 f)",
+      "title": "定位、路径跟踪及终点误差独立记录",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "应输出有效样本数量、覆盖率、匹配误差、P95/最大值及三类误差定义，保留异常样本。不得用终点误差替代全程精度，用RTK固定解标志代替定位正确性，或把不同主机墙钟差作为延迟。精度结论仅适用本轮车型、地图及冻结设置，不外推厘米级农艺作业能力。"
+    },
+    {
+      "number": "YL-FU-027",
+      "case_id": "TC-HIL-NAV-001-g",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 g)",
+      "title": "既有场景障碍与规划轮廓核查",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "原场景地图和代价图中应保留已有障碍，底盘规划轮廓与冻结配置对应，不把挂载机具扩大为底盘规划轮廓。代表工况默认路线应正常通行，已有只读记录不得显示车体内部持续致命栅格。不开展突发动态障碍、强制绕行或无路场景注入，不清除原有障碍、缩车或关闭避障。"
+    },
+    {
+      "number": "YL-FU-028",
+      "case_id": "TC-HIL-NAV-001-h",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 h)",
+      "title": "默认路线顺序、作业联动与行驶连续性",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "应按序完成规定任务，不跳过目标、重置车辆或重新提交任务伪造连续成功。Car0完成途中采摘后驶至3号点；Car3完成1、2、3顺序并在作业区执行正确农具；Car4两段作业、抬升转弯和停车顺序正确。排除计划停靠及机具动作后，不应存在未解释卡停；失败尝试和重规划须如实计入。"
+    },
+    {
+      "number": "YL-FU-029",
+      "case_id": "TC-HIL-NAV-001-i",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 i)",
+      "title": "代表性失败记录与有限恢复核查",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "既有代表性实板控制失败应被明确记录，后续规划应保留尚未通过目标的顺序；受控软件夹具应明确区分软件与实板范围，验证MPPI按原patience返回失败、零输出及新动作恢复。仅对实际取得的记录和软件夹具判定，不要求五工况重新强制触发首次Smac失败、重试上限及全部中断分支。"
+    },
+    {
+      "number": "YL-FU-030",
+      "case_id": "TC-HIL-NAV-001-j",
+      "requirement_id": "R-HIL-NAV-001",
+      "clause": "3.3 j)",
+      "title": "位置到达停车与禁止终点绕圈",
+      "category": "自动驾驶导航控制器",
+      "acceptance": "最终到点仅以位置判定，不因航向不一致继续绕圈或再规划；用独立实际位置复核，不隐含增加额外位置余量。终点稳定后至少观察5 s仿真时间，小车纵向速度绝对值不大于0.02 m/s、Car4不大于0.03 m/s，无新增无故全局规划。采摘停靠继续使用清单中的0.10 m及0.15 rad专用条件，不能用半轴距放宽。"
+    }
+  ],
+  "scripts": [
+    "inspect_results.py",
+    "review_images.py"
+  ],
+  "old_stvl_text_corrected_without_runtime_change": true
+}

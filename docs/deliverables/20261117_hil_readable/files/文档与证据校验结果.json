@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "cases": 30,
+  "categories": {
+    "整机控制器": 10,
+    "智能机具控制器": 10,
+    "自动驾驶导航控制器": 10
+  },
+  "criteria_match_original_v21": true,
+  "requirement_references_complete": true,
+  "historical_result_text_preserved": true,
+  "historical_sources_unchanged": true,
+  "evidence_hashes_verified": 233,
+  "command_blocks_syntax_checked": true,
+  "docx_duplicate_members": 0,
+  "pdf_layout": {
+    "2026042-01 农机控制器测试用例与实测报告_操作说明版V1.6.pdf": {
+      "pages": 74,
+      "blank_pages": 0,
+      "out_of_page_words": 0
+    },
+    "三类控制器硬件在环测试需求规格说明_V2.1_配套说明版.pdf": {
+      "pages": 18,
+      "blank_pages": 0,
+      "out_of_page_words": 0
+    }
+  },
+  "new_physical_execution": false,
+  "hardware_actions": false,
+  "supporting_tools_offline_tests": {
+    "tests": 15,
+    "failures": 0,
+    "hardware_outputs": false
+  },
+  "visually_reviewed_samples": [
+    "报告：公共命令说明、跨页用例、NAV-i范围及历史截图附录",
+    "需规：整机需求条款示例"
+  ],
+  "supporting_tools_sha256": {
+    "inspect_results.py": "d339b45daa5494ecfd8e28d3a542514c3b43f6431271663ec99a83816eced89d",
+    "review_images.py": "0393fe0309b7ba69cacf972198db2c34c01d27746f9cfca3cf5a39a18dd8bba7"
+  }
+}

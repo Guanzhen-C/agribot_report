@@ -1,0 +1,127 @@
+控制器硬件在环测试：新测试人员操作步骤
+编写日期：2026-11-17；对应V2.1的30条；不会因阅读本文件自动执行。
+
+重要说明
+
+本材料给不熟悉项目的测试人员使用。先由项目人员准备好台架、软件、权限和冻结版本，测试人员再按C0至C8执行一次整套复测，最后逐条核对30张用例表。不是每打开一张用例表就重新烧录一次。
+
+本套30条由终端脚本启动，不需要先在Unity里选择车辆、安装装备或点击启动仿真。脚本使用五种冻结工况并自行打开Gazebo。Unity逐键操作属于另一类界面验收，不在这里混测。
+
+本报告的“历史实测结果”来自2026年11月16日V2.1范围下已通过的30条开发方记录。本次只重写说明、补齐需规，没有重新启动仿真或烧录；第三方本次执行结果、执行人和日期需另填。
+
+仿真中的车和机具在电脑里，X5与6750是真实板卡。只接HIL台架，严禁接入真车行走、机械臂或机具执行器。不要拔线造故障、添加测试方块、删树、拖动车辆、改目标或放宽参数。
+
+命令建议从同文件夹《新测试人员操作步骤.txt》复制整段，不从PDF的折行中复制。不要复制步骤编号，不要在命令前加“$”。英文大小写、引号和空格保持原样。
+
+C0 打开终端并确认上一轮已经停止
+
+在已接台架的惠普笔记本图形桌面，按Ctrl+Alt+T打开终端。先执行下方命令；如果提示目录不存在，交给项目人员处理，不自行改系统。
+
+cd "$HOME/agribot_report"
+/usr/bin/python3 tools/hil/cli.py status
+
+输出中phase应为stopped。如果是running、completed、failed等其他状态，先确认这就是本台架的上一会话，再执行停止命令，然后反复执行status，直到phase为stopped。completed不代表场景进程已退出。
+
+/usr/bin/python3 tools/hil/cli.py stop
+/usr/bin/python3 tools/hil/cli.py status
+
+正在烧录时停止会等写入与校验结束。不要断电、拔烧录器或强杀进程。本步骤的stop命令确实会停止本应用管理的HIL，不能在他人的试验中误用。
+
+C1 设置本轮文件位置
+
+在同一终端复制下方整段。REF是已保存的版本与历史证据；OUT是本轮新数据文件夹。程序会打印OUT，记录这个完整路径。每次重新测试必须生成新的OUT，不能覆盖旧目录。
+
+REF="$PWD/.local/hil/repeat-reference-20261117"
+OUT="$PWD/.validation/hil_repeat_$(date +%Y%m%d_%H%M%S)"
+SCRIPT=docs/deliverables/20261117_hil_repeatable/repeat_suite.py
+VIEW=docs/deliverables/20261117_hil_readable/inspect_results.py
+REVIEW=docs/deliverables/20261117_hil_readable/review_images.py
+printf "本轮数据目录：%s\n" "$OUT"
+
+以上REF适用于已准备的惠普测试机。若在本机cgz电脑测试，仅把REF改成下面这一行；其他步骤不变。如果两处均没有baseline.json，交给项目人员准备，不自行创建或更新基线。
+
+REF="$HOME/Desktop/HIL30项可重复测试_20261117"
+
+从C1到C8始终使用同一终端。关闭终端后变量会丢失，应重新填写刚才记录的实际OUT，不得生成另一个目录后误读结果。
+
+C2 先预览并检查版本，不会烧录
+
+/usr/bin/python3 "$SCRIPT" plan --output "$OUT"
+/usr/bin/python3 "$SCRIPT" check --reference "$REF" --output "$OUT"
+
+plan应提示DRY RUN；check应有passed: true和hardware_outputs: false。冒号后true表示该检查满足，false表示否；这里只是检查准备版本，不是30条实测通过。
+
+若出现Frozen code/resource differs或Frozen model/map/parameter differs，说明版本或配置不一致，立即停在这里联系项目人员。不得重建baseline.json、修改哈希或删保护文件强行继续。
+
+C3 执行一次完整复测，会真实烧录
+
+再次确认只接隔离台架且上一HIL已停止，再执行这一条。它会自动切换工况、反复烧录及校验6750、启动Gazebo/X5、采集数据并执行控制专项，不需要人员再手动发送CAN或ROS控制命令。
+
+/usr/bin/python3 "$SCRIPT" run --reference "$REF" --output "$OUT" --execute --bench-only
+
+执行顺序为辅助检查，然后A正常任务/专项、B正常任务/专项、C正常任务/专项、D正常任务/专项、E正常任务/专项，最后核对原始记录。不同工况的Gazebo可能关闭后重新打开，这是正常切组。
+
+辅助检查包括烧录中取消和非法组合拒绝，专项包括计划断令和暂停反馈。因此这些窗口的取消、拒绝、停车是预期现象；正常任务中不明原因卡停仍是不通过，不能混为一谈。
+
+等待脚本返回终端提示符。期间可看Gazebo，但不要再点Unity启动/停止、换车、改参数或运行另一个复测命令。笔记本可能慢于实时，不以等了几分钟就自行判失败；也不承诺固定完成时长。
+
+C4 查看本轮进度，区分等待看图和失败
+
+/usr/bin/python3 "$VIEW" --output "$OUT"
+
+正常自动执行结束时显示“仍需查看七张截图”。此时尚未形成30条最终结论，查看工具返回非零退出码是提示待完成，不代表可以把结果手填为通过。
+
+若显示本轮中断/不通过，或C3异常退出，不执行C6批准和C7汇总来凑通过。保留整个OUT和终端错误，按C9正常停止，交给项目人员分析。修复后使用新OUT重测。
+
+如需在运行中查看进度，可另开终端运行同一查看工具，但--output必须填写C1记录的完整实际路径；不要把两轮目录混用。
+
+C5 转换并逐张查看七张真实截图
+
+/usr/bin/python3 "$SCRIPT" render --output "$OUT"
+xdg-open "$OUT/physical/b-sprayer-controls/spray-existing"
+xdg-open "$OUT/physical/b-cvt-controls/harrow-visual/visual-work"
+xdg-open "$OUT/physical/b-cvt-controls/harrow-visual/visual-raised"
+
+文件管理器打开后双击PNG图片。喷水看3张：original-nozzles.png应从原喷头径向出雾；existing-occlusion.png应被原有明显障碍挡住；pump-stopped.png结合遥测核对停泵后不再新增发射，已有粒子可消散。
+
+圆盘耙看4张：visual-work文件夹内rear-right.png、rear-left.png应显示下放作业及痕迹；visual-raised内同名两张应显示机具抬升，原痕迹保留。结合入土、滚筒和作业历史记录，不只凭一张静态图判断运动。
+
+若render提示缺ffmpeg或图片缺失，先交给项目人员处理。也可由其将完整本轮目录带回有工具的审阅电脑；不得拿旧图或生成图补齐。任一张不符合就不批准该组。
+
+C6 登记实际看图人员和观察，不预填通过
+
+仅在C5全部实际看过且符合判据后执行。以下read命令会暂停，等你输入姓名或观察内容后按回车；不得只写“通过”，应分别说明喷头、遮挡、停泵和下放/抬升的实际现象。不符合或看不清时停在这里，不用--approve。
+
+read -r -p "实际看图人员姓名：" REVIEWER
+read -r -p "三张喷雾图的实际观察：" SPRAY_NOTES
+/usr/bin/python3 "$REVIEW" --directory "$OUT/physical/b-sprayer-controls/spray-existing" --kind spray --reviewer "$REVIEWER" --notes "$SPRAY_NOTES" --approve
+read -r -p "四张圆盘耙图的实际观察：" HARROW_NOTES
+/usr/bin/python3 "$REVIEW" --directory "$OUT/physical/b-cvt-controls/harrow-visual" --kind harrow --reviewer "$REVIEWER" --notes "$HARROW_NOTES" --approve
+
+本版使用专门的人工登记工具，保存你填写的姓名，不沿用旧工具写死的AI审阅者身份。登记会绑定本轮运行编号和图片校验值，不覆盖已有登记；它不等于第三方签字或真实土壤/药液性能认证。
+
+C7 生成本轮30条最终结果
+
+/usr/bin/python3 "$SCRIPT" finalize --reference "$REF" --output "$OUT"
+/usr/bin/python3 "$VIEW" --output "$OUT"
+
+只有最终审计和本轮记录都满足时，才显示30条通过。OUT内应有cases.json、cases.csv、30项步骤与结果.txt及final-audit.log。少证据、版本不符、图片未审阅或用旧运行冒充新运行都不能算通过。
+
+NAV-i按已批准范围使用新执行的软件测试加指定历史实板失败/恢复记录核查，不是本轮新实板故障注入。该边界必须随最终结果保留。
+
+C8 逐条核对与填写本次报告
+
+/usr/bin/python3 "$VIEW" --output "$OUT" --case YL-FU-001
+
+将末尾编号依次替换为用例表中的YL-FU-001至YL-FU-030。工具会显示对应条款、执行方式、实际结果和原始证据路径。不是再执行一次控制动作。
+
+用本轮实际结果填写新的执行日期、执行人、OUT和结论；本报告已有的2026-11-16开发方结果只作历史对照，不直接当作第三方本次结果。遇到任一必需工况失败、未执行或证据缺失，按实际记录，不能整条写通过。
+
+C9 中断、失败与收尾
+
+/usr/bin/python3 tools/hil/cli.py stop
+/usr/bin/python3 tools/hil/cli.py status
+
+需要中断时另开终端进入同一项目目录后提交stop；等待phase为stopped。不要断电、拔CAN或强杀烧录器。自动流程正常结束也应确认stopped及无残留授权；不清楚进程状态交给项目人员检查。
+
+保留失败目录，不在同一OUT重跑、不删除失败记录、不改判据或直接给速度。五工况的原始数据和真车文件保护检查均要保留。
