@@ -18,6 +18,23 @@ public class FixPanel : MonoBehaviour
     private void Awake()
     {
         GarageVisualStyle.EquipmentPanel(transform);
+        foreach (Transform option in transform)
+        {
+            string title, description;
+            if (option.name == "note_1")
+            {
+                title = "调整左右轮距";
+                description = "左右车轮中心距离（cm）";
+            }
+            else if (option.name.StartsWith("note_2"))
+            {
+                title = "调整前后轴距";
+                description = "前、后车轴中心距离（cm）";
+            }
+            else continue;
+            foreach (Text label in option.GetComponentsInChildren<Text>(true))
+                label.text = label.name == "content" ? description : title;
+        }
         foreach (Transform child in transform)
         {
             var background = child.GetComponent<Image>();

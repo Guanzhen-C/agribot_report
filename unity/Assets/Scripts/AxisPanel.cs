@@ -113,6 +113,12 @@ public class AxisPanel : WheelChangePanel
         wheelRadiusSlider.minValue = CarChange.MinWheelTrack;
         wheelRadiusSlider.maxValue = CarChange.MaxWheelTrack;
         wheelRadiusSlider.wholeNumbers = false;
+        SetTrackPresetLabel(minAxisButton, "最小轮距", CarChange.MinWheelTrack);
+        SetTrackPresetLabel(maxAxisButton, "最大轮距", CarChange.MaxWheelTrack);
+        axisDistanceInput.contentType = InputField.ContentType.DecimalNumber;
+        if (axisDistanceInput.placeholder is Text placeholder)
+            placeholder.text = $"{CarChange.MinWheelTrack * 100f:0.##} - {CarChange.MaxWheelTrack * 100f:0.##} cm";
+        ConfigureDimensionInput(axisDistanceInput, sureButton, "左右轮距");
 
         minAxisButton.onClick.AddListener(SetMinimumAxisDistance);
         maxAxisButton.onClick.AddListener(SetMaximumAxisDistance);
@@ -130,7 +136,7 @@ public class AxisPanel : WheelChangePanel
     private void SubmitAxisDistanceInput()
     {
         string input = axisDistanceInput.text.Trim();
-        if (!TryParseAxisCentimeters(input, out float centimeters))
+        if (!TryParseAxisCentimeters(input, out float centimeters) || float.IsNaN(centimeters) || float.IsInfinity(centimeters))
         {
             ShowPop("请输入有效的数值！");
             return;
@@ -142,7 +148,7 @@ public class AxisPanel : WheelChangePanel
             centimeters > maximumCentimeters)
         {
             ShowPop(
-                $"请输入{minimumCentimeters:0.##}cm~{maximumCentimeters:0.##}cm范围内的轴距！");
+                $"请输入 {minimumCentimeters:0.##} cm 至 {maximumCentimeters:0.##} cm 范围内的左右轮距。");
             return;
         }
 
@@ -164,6 +170,13 @@ public class AxisPanel : WheelChangePanel
                    styles,
                    CultureInfo.CurrentCulture,
                    out centimeters);
+    }
+
+    private static void SetTrackPresetLabel(Button button, string title, float meters)
+    {
+        Text label = button != null ? button.GetComponentInChildren<Text>(true) : null;
+        if (label != null)
+            label.text = $"{title}：{meters * 100f:0.##} cm";
     }
 
     private void SetMinimumAxisDistance()
@@ -207,7 +220,10 @@ public class AxisPanel : WheelChangePanel
             return;
 
         float centimeters = distance * 100f;
-        axisDistanceValueText.text = $"当前轴距：{centimeters:0.##}cm";
+        axisDistanceValueText.supportRichText = false;
+        axisDistanceValueText.text = $"左右轮距：{centimeters:0.##} cm";
+        if (axisDistanceInput != null)
+            axisDistanceInput.SetTextWithoutNotify(centimeters.ToString("0.#####", CultureInfo.InvariantCulture));
     }
 
     public void ShowBounceIn()
