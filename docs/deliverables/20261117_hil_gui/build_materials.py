@@ -149,7 +149,7 @@ def main():
     for title, text in instructions(): guide.extend([title, text, ''])
     (args.output / '测试人员操作步骤_无需命令行.txt').write_text('\n'.join(guide), encoding='utf-8')
     with (args.output / '30条需规与记录项对照.csv').open('w', encoding='utf-8-sig', newline='') as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator='\n')
         writer.writerow(['用例编号','条款标识','名称','自动检查项','判据'])
         for index, case in enumerate(data['cases'],1): writer.writerow([f'YL-FU-{index:03d}',case['id'],case['title'],case['check'],case['acceptance']])
     (args.output / '需规V2.2_正常五工况判据.json').write_text(SPEC.read_text(), encoding='utf-8')
