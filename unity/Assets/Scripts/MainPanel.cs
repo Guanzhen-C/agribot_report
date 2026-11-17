@@ -63,6 +63,7 @@ public class MainPanel : MonoBehaviour
     private Camera overviewCamera;
     private Pose overviewPose;
     private LensSettings overviewLens;
+    private bool trackedPreviewLoaded;
 
     private void Awake()
     {
@@ -82,7 +83,7 @@ public class MainPanel : MonoBehaviour
         var cameraTemplate = car5;
         foreach (var preset in FarmVehicleLibrary.Presets.Where(p => !string.IsNullOrEmpty(p.garageName)))
         {
-            var car = FarmGarageVehicle.Create(cameraTemplate, preset);
+            var car = FarmGarageVehicle.Create(cameraTemplate, preset, deferGeometry: true);
             if (car == null) throw new InvalidOperationException("缺少米制车辆资源：" + preset.id);
             // Reuse the original card and workflow, retaining authored source
             // models inactive for editing instead of exporting their miniature scale.
@@ -95,7 +96,6 @@ public class MainPanel : MonoBehaviour
                 default: farmCars.Add(car); break;
             }
         }
-        SimulationAppearanceLibrary.ApplyToSceneVehicle(car3);
         if (farmCars.Count > 0) FarmGarageGrid.Extend(transform, farmCars, SelectCarFromImage);
         ConfigureActionToolbar();
         BindButton("Car0_Img", () => SelectCarFromImage(car0));
@@ -106,7 +106,8 @@ public class MainPanel : MonoBehaviour
         BindButton("Car5_Img", () => SelectCarFromImage(car5));
         BindButton("Back_btn", ShowMainPanel);
         vehicleSelector = LastPanel.CreatePresetSelector(GetComponentInParent<Canvas>().transform,
-            outputButton.GetComponent<Button>(), ExportSelectedVehicle, ShowSimulationMessage);
+            outputButton.GetComponent<Button>(), ExportSelectedVehicle, ShowSimulationMessage, SetSimulationSetupVisible);
+        HilSimulationUi.Changed += RefreshExportAvailability;
         NaturalRecommendationPanel.Ensure(null);
         stopSimulation.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(ShowSimulationMessage));
         explosionButton.onClick.AddListener(OpenExplodedView);
@@ -149,6 +150,14 @@ public class MainPanel : MonoBehaviour
             openBagButton.SetActive(false);
         if (actionToolbar != null)
             actionToolbar.gameObject.SetActive(false);
+        StartCoroutine(RecordStartupReady());
+    }
+
+    private IEnumerator RecordStartupReady()
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.Log($"AGRIBOT_GARAGE_READY seconds={Time.realtimeSinceStartup:F3} " +
+            $"loadedFarmVehicles={farmCars.Count(c => c.GetComponent<FarmGarageVehicle>().IsLoaded)}");
     }
 
     private VehicleConfigurationAuthoring BuildSelectedVehicle()
@@ -177,15 +186,36 @@ public class MainPanel : MonoBehaviour
 
     private void RefreshExportAvailability()
     {
+        if (stopSimulation != null)
+        {
+            bool stopping = RosSimulationHandoffUi.IsStopPending || HilSimulationUi.IsStopPending;
+            stopSimulation.interactable = !stopping;
+            stopSimulation.GetComponentInChildren<Text>().text = stopping ? "正在停止..." : "停止仿真";
+        }
         if (exportPhysical != null && visibleCar != null && actionToolbar.gameObject.activeInHierarchy)
             exportPhysical.interactable = visibleCar.GetComponent<Car0GarageVehicle>() != null
                 ? RosSimulationHandoffUi.CanExport : !physicalExportBusy && !RosSimulationHandoffUi.IsBusy;
+    }
+
+    private void SetSimulationSetupVisible(bool visible)
+    {
+        if (visible)
+        {
+            explodedView?.Close();
+            visibleCar?.GetComponent<Car0GarageVehicle>()?.CloseRepair();
+            bagPanel?.Hide();
+            if (notificationPanel != null) notificationPanel.GetComponent<GarageNotification>()?.Dismiss();
+        }
+        if (actionToolbar != null) actionToolbar.gameObject.SetActive(!visible && visibleCar != null);
+        if (backButton != null) backButton.SetActive(!visible && visibleCar != null);
     }
 
     private void ValidateSelectedEquipment()
     {
         explodedView?.Close();
         if (visibleCar == null) throw new InvalidOperationException("请先选择车辆。");
+        if (HilImplementLibrary.Supports(AssistantConversation.State.implement))
+            throw new InvalidOperationException("该机具当前只接入HIL，请使用启动HIL仿真。");
         if (Time.time - selectedAt < bounceDuration)
             throw new InvalidOperationException("请等待车辆展示动画结束后再导出。");
         var controller = bagPanel.GetComponentInChildren<EquipmentBagController>(true);
@@ -262,6 +292,7 @@ public class MainPanel : MonoBehaviour
 
     private void OnDestroy()
     {
+        HilSimulationUi.Changed -= RefreshExportAvailability;
         RosSimulationHandoffUi.AvailabilityChanged -= RefreshExportAvailability;
         if (vehicleSelector != null) Destroy(vehicleSelector.gameObject);
         if (explodedView != null) Destroy(explodedView.gameObject);
@@ -393,6 +424,8 @@ public class MainPanel : MonoBehaviour
     {
         if (car == null)
             return;
+        var farm = car.GetComponent<FarmGarageVehicle>();
+        if (farm != null && !farm.IsLoaded) return;
 
         originalScales[car] = car.transform.localScale;
         GarageVehicleGrounding.Attach(car);
@@ -414,6 +447,15 @@ public class MainPanel : MonoBehaviour
             Debug.LogWarning("MainPanel: The selected car reference is missing.", this);
             return;
         }
+
+        car.GetComponent<FarmGarageVehicle>()?.EnsureLoaded();
+        if (car == car3 && !trackedPreviewLoaded)
+        {
+            SimulationAppearanceLibrary.ApplyToSceneVehicle(car);
+            trackedPreviewLoaded = true;
+            CacheCarState(car);
+        }
+        if (!originalScales.ContainsKey(car)) CacheCarState(car);
 
         HideOtherCars(car);
         RestoreCarVisuals(car);

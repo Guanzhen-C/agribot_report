@@ -312,7 +312,7 @@
         "xyz": [
           1.6,
           0.325,
-          1.4455081254632947
+          1.0253076269534107
         ],
         "rpy": [
           0.0,
@@ -359,7 +359,7 @@
         "xyz": [
           1.6,
           -0.325,
-          1.4455081254632947
+          1.0253076269534107
         ],
         "rpy": [
           0.0,
@@ -688,6 +688,24 @@
     "implementWheelClearance": {
       "minimumSeparationLowerBoundM": 0.20397914794601513,
       "scope": "Conservative boxes versus wheel cylinders/steering spheres; not articulation or deformation simulation."
+    },
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          1.6,
+          0.325,
+          1.4455081254632947
+        ],
+        "rtk_secondary": [
+          1.6,
+          -0.325,
+          1.4455081254632947
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
     }
   },
   "implements": [

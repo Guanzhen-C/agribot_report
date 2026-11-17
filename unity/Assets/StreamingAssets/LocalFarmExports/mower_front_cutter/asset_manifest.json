@@ -1,6 +1,6 @@
 {
-  "meshGroups": 44,
-  "triangles": 281760,
+  "meshGroups": 47,
+  "triangles": 281324,
   "minimumRos": [
     -0.39215001463890076,
     -0.8149999976158142,
@@ -11,7 +11,7 @@
     0.9137570261955261,
     0.9304159879684448
   ],
-  "previewSha256": "00f519b56081bbdc904809d42703eca8120ee551a6dff616c3b8c624dfa30f82",
+  "previewSha256": "2f78c537fab3b8bae83263359cc27e8de875c77867c7df731db5043f2a59846c",
   "vehicleId": "mower_front_cutter",
   "schemaVersion": 1,
   "files": [
@@ -65,15 +65,15 @@
     },
     {
       "name": "sensor_rtk_master_visual.mtl",
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "name": "sensor_rtk_master_visual.obj",
-      "sha256": "035349eacd6bb12300904a11d4917f4b3ff8950f607f1956cb028ded579efb7f"
+      "sha256": "d84fad024b5276a7fbf9c2bf13727e92f804c0543675094213977b9313cb1c31"
     },
     {
       "name": "vehicle_config.json",
-      "sha256": "0ad31e2ab2fc632e863ca35ac8c3b80532838d5690924717125dec1c980564ac"
+      "sha256": "fa7c5d3a3828d46ed801e86764892877e898bd463d0094e9617cd911edb1d329"
     },
     {
       "name": "vehicle_visual.mtl",
@@ -85,5 +85,5 @@
     }
   ],
   "redistributionLicense": "unverified_user_supplied",
-  "sourceConfigSha256": "0ad31e2ab2fc632e863ca35ac8c3b80532838d5690924717125dec1c980564ac"
+  "sourceConfigSha256": "fa7c5d3a3828d46ed801e86764892877e898bd463d0094e9617cd911edb1d329"
 }

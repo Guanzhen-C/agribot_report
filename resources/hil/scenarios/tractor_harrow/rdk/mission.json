@@ -1,0 +1,44 @@
+{
+  "vehicle": "Car4",
+  "implement": "mounted_disc_harrow",
+  "protocol": "hitch-hil-0x21",
+  "algorithm": "STVL + NavSat ESKF + Smac Hybrid-A* + MPPI Ackermann",
+  "goals": [
+    {
+      "name": "approach",
+      "x": -16.0,
+      "y": 0.0,
+      "yaw": 0.0,
+      "height": 9000
+    },
+    {
+      "name": "work_row_1",
+      "x": 14.0,
+      "y": 0.0,
+      "yaw": 0.0,
+      "height": 0
+    },
+    {
+      "name": "headland_turn",
+      "x": 14.0,
+      "y": 8.0,
+      "yaw": 3.141592653589793,
+      "height": 9000
+    },
+    {
+      "name": "work_row_2",
+      "x": -16.0,
+      "y": 8.0,
+      "yaw": 3.141592653589793,
+      "height": 0
+    },
+    {
+      "name": "park",
+      "x": -20.0,
+      "y": 8.0,
+      "yaw": 3.141592653589793,
+      "height": 9000
+    }
+  ],
+  "final_tolerance_m": 1.0925620956374087
+}

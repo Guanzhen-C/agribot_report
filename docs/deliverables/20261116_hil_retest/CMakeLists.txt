@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(hil_mppi_contract_probe LANGUAGES CXX)
+find_package(ament_cmake REQUIRED)
+find_package(nav2_core REQUIRED)
+find_package(pluginlib REQUIRED)
+add_executable(hil_mppi_contract_probe mppi_contract_probe.cpp)
+target_compile_features(hil_mppi_contract_probe PRIVATE cxx_std_17)
+ament_target_dependencies(hil_mppi_contract_probe nav2_core pluginlib)

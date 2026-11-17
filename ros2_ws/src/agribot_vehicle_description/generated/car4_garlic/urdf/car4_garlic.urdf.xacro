@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <robot name="car4_garlic">
   <link name="base_link">
     <inertial>
@@ -69,14 +69,14 @@
     </visual>
   </link>
   <joint name="rtk_master_mount_joint" type="fixed">
-    <origin xyz="1.6 0.325 1.44550812546" rpy="0 0 0" />
+    <origin xyz="1.6 0.325 1.0253076269534107" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_link" />
   </joint>
   <link name="rtk_secondary_link">
   </link>
   <joint name="rtk_secondary_mount_joint" type="fixed">
-    <origin xyz="1.6 -0.325 1.44550812546" rpy="0 0 0" />
+    <origin xyz="1.6 -0.325 1.0253076269534107" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_secondary_link" />
   </joint>

@@ -1,0 +1,257 @@
+{
+  "scope": "Notebook relocation: actual X5 + flashed HPM6750 + both physical USB-CAN links + Gazebo; shared CLI launch, not full Unity click-through acceptance",
+  "all_profiles_accepted": false,
+  "profiles_tested": 5,
+  "missions_completed": 4,
+  "strictly_accepted_profiles": [
+    "ackermann_apple",
+    "tracked_sprayer"
+  ],
+  "apple": {
+    "run_id": "20261112T113326_d3eff41d",
+    "mission_completed": true,
+    "independent_checks_passed": 18,
+    "fluency_checks_passed": 10,
+    "gripper_checks_passed": 7,
+    "fruit_picked_and_retained": [
+      7,
+      5
+    ],
+    "can_errors": 0,
+    "transport_recoveries": 0
+  },
+  "sprayer": {
+    "mission_status": "succeeded",
+    "independent_endpoint_error_m": 0.39033737190455114,
+    "navigation_attempts": [
+      {
+        "attempt": 0,
+        "executed": true,
+        "error": null
+      }
+    ],
+    "route_passage_events": [
+      {
+        "source": "native_nav2_remaining_path_feedback",
+        "sim_time": 149.1,
+        "from_index": 0,
+        "to_index": 1,
+        "remaining_path_m": 40.8602294921875
+      },
+      {
+        "source": "native_nav2_remaining_path_feedback",
+        "sim_time": 155.3,
+        "from_index": 1,
+        "to_index": 2,
+        "remaining_path_m": 37.568424224853516
+      }
+    ],
+    "native_frame_counts": {
+      "0x580": 7912,
+      "0x514": 3847,
+      "0x5b0": 1521,
+      "0x5b2": 1521,
+      "0x5b3": 1521,
+      "0x532": 7269,
+      "0x533": 7269,
+      "0x534": 7269
+    },
+    "checksum_errors": 0,
+    "native_work_commands": [
+      {
+        "fan_pump_shredder": [
+          0,
+          0,
+          0
+        ],
+        "count": 1632
+      },
+      {
+        "fan_pump_shredder": [
+          3,
+          4,
+          0
+        ],
+        "count": 6280
+      }
+    ],
+    "can_errors": 0,
+    "transport_recoveries": 0,
+    "fan_rpm_max": 907.0877916967115,
+    "pump_rpm_max": 807.5852510259489,
+    "final_work_rpm": [
+      0.006014236484398013,
+      0.006014236485491983
+    ],
+    "native_work_command_id": "0x580"
+  },
+  "shredder": {
+    "mission_status": "failed",
+    "error": "Smac planning failed, action status=6",
+    "navigation_attempts": [
+      {
+        "attempt": 0,
+        "executed": false,
+        "error": "MPPI path execution failed, action status=6"
+      }
+    ],
+    "last_true_xyz": [
+      36.04249194047409,
+      32.65434893550003,
+      0.18839574658565478
+    ],
+    "last_fused_xyz": [
+      36.02724160794671,
+      32.65488718826173,
+      -0.10253116741397067
+    ],
+    "native_frame_counts": {
+      "0x580": 4757,
+      "0x514": 2274,
+      "0x5b0": 891,
+      "0x5b4": 891,
+      "0x532": 4262,
+      "0x533": 4262,
+      "0x534": 4262
+    },
+    "checksum_errors": 0,
+    "native_work_commands": [
+      {
+        "fan_pump_shredder": [
+          0,
+          0,
+          0
+        ],
+        "count": 1367
+      },
+      {
+        "fan_pump_shredder": [
+          0,
+          0,
+          3500
+        ],
+        "count": 3390
+      }
+    ],
+    "can_errors": 0,
+    "transport_recoveries": 0,
+    "maximum_shredder_rpm": 1255.7190432899479,
+    "final_shredder_rpm": 0.014951042330205926,
+    "accepted": false,
+    "failure_layer": "MPPI abort followed by Smac start-footprint collision; dynamic costmap has inscribed cells inside footprint, static map is free"
+  },
+  "tractors": [
+    {
+      "profile": "tractor_powershift",
+      "run_id": "20261112T122204_aaa0f9cc",
+      "mission_completed": true,
+      "strict_acceptance_passed": false,
+      "unplanned_off_samples": 2,
+      "actual_travel_m": 78.06575492119464,
+      "feedback_payload_matching": {
+        "642": {
+          "received": 14838,
+          "matched": 14838
+        },
+        "643": {
+          "received": 14838,
+          "matched": 14838
+        },
+        "644": {
+          "received": 14838,
+          "matched": 14838
+        },
+        "645": {
+          "received": 14837,
+          "matched": 14837
+        }
+      },
+      "final_speed_mps": -4.733235004808101e-05,
+      "final_power_disabled": true,
+      "final_braking": true,
+      "all_discs_in_soil": true,
+      "harrow_audit_passed": true,
+      "largest_status_gap_wall_s": 0.3210889070005578,
+      "active_status_lapses": 1
+    },
+    {
+      "profile": "tractor_cvt",
+      "run_id": "20261112T122746_5b86bf17",
+      "mission_completed": true,
+      "strict_acceptance_passed": false,
+      "unplanned_off_samples": 4,
+      "actual_travel_m": 77.91616434846337,
+      "feedback_payload_matching": {
+        "642": {
+          "received": 14127,
+          "matched": 14127
+        },
+        "643": {
+          "received": 14127,
+          "matched": 14127
+        },
+        "644": {
+          "received": 14127,
+          "matched": 14127
+        },
+        "645": {
+          "received": 14126,
+          "matched": 14126
+        }
+      },
+      "final_speed_mps": 0.00013686005317129575,
+      "final_power_disabled": true,
+      "final_braking": true,
+      "all_discs_in_soil": true,
+      "harrow_audit_passed": true,
+      "largest_status_gap_wall_s": 1.7969643830001587,
+      "active_status_lapses": 1
+    }
+  ],
+  "real_code_protection": {
+    "files_checked": 7064,
+    "code_changes": {},
+    "runtime_output_changes": {
+      "agribot_ws/ros2_ws/src/FAST-LIVO2/Log/mat_out.txt": {
+        "before": {
+          "sha256": "3229e4463591e465407910cd5ecf911d01c56f1ab02b85701b9aafebb754a033"
+        },
+        "after": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "agribot_ws/ros2_ws/src/FAST-LIVO2/Log/mat_pre.txt": {
+        "before": {
+          "sha256": "294db3a7720922643a4af60500144a8307c60f0447543c30fbdfe96e4be218a8"
+        },
+        "after": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "unchanged": true
+  },
+  "user_config_protection": {
+    "files_checked": 21,
+    "changes": []
+  },
+  "os": "Ubuntu 22.04.5 / ROS 2 Humble; no distribution or driver upgrade",
+  "performance_note": "Older notebook is slower than real time for camera/FAST-LIVO scenarios; no 1x realtime claim",
+  "regression_notes": {
+    "main_pc_focused_suite_passed": 298,
+    "notebook_broad_suite": {
+      "passed": 260,
+      "failed": 4,
+      "skipped": 12,
+      "failures": "four generators use user-owned mutable ackermann_current export without arm; not overwritten"
+    },
+    "notebook_codec_preflight_passed": 34,
+    "notebook_heartbeat_focused_passed": 68,
+    "notebook_heartbeat_focused_skipped": 9
+  },
+  "notebook_git_head_is_old_deployment_not_source_version": "8807917be763e9ffb4c2c0c90bbc0e3d3bf8c4ef",
+  "source_pc_commit": "aded02ecbee3e32f295eb3f3a424b3b1785f132e",
+  "source_pc_pending_patches_included": true,
+  "all_hil_stopped": true,
+  "ui_left_open": true
+}

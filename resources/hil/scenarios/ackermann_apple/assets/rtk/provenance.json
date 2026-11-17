@@ -1,0 +1,22 @@
+{
+  "source": "@HIL_ROOT@/shared_assets/6006bf6ce28f/sensor_rtk_master_visual.obj",
+  "source_sha256": "76c861302646eedce69096de65e4be698c65905923f7bcbe060c15fb19edb039",
+  "result_sha256": "fa99fa44e78f785a53e6bd03d6284eaedb5925bd1c0b458fb27926c3f1160e6a",
+  "mounting": {
+    "layout": "upper_deck_forward_of_cargo",
+    "supportSurfaceZ": 0.1348,
+    "surfaceOffsetM": 0.1,
+    "master": [
+      0.12,
+      0.15,
+      0.2348
+    ],
+    "secondary": [
+      0.12,
+      -0.15,
+      0.2348
+    ],
+    "leftIsMaster": true
+  },
+  "scope": "Two original housings and short stems on upper deck ahead of unchanged cargo tray; no rails or tall posts"
+}

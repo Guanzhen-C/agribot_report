@@ -311,7 +311,7 @@
         "xyz": [
           0.8,
           0.32500070333480835,
-          1.2151625881195067
+          0.7949620896096229
         ],
         "rpy": [
           0.0,
@@ -358,7 +358,7 @@
         "xyz": [
           0.8,
           -0.32500070333480835,
-          1.2151625881195067
+          0.7949620896096229
         ],
         "rpy": [
           0.0,
@@ -401,7 +401,25 @@
     "profileVersion": "1.0.0",
     "calibrationState": "unity_nominal_simulation_only",
     "simulationVelocityFromPose": true,
-    "notes": "Geometry is derived from the supplied CAD; no real-vehicle calibration is claimed. CAD +Y is up and -X is forward. base_link is the rear axle midpoint. Front wheel centres are levelled vertically to match front/rear tyre contact heights. Mass, sensor positions and steering limit are nominal simulation settings. Paint colours are presentation choices; they are not supplied manufacturer textures. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood."
+    "notes": "Geometry is derived from the supplied CAD; no real-vehicle calibration is claimed. CAD +Y is up and -X is forward. base_link is the rear axle midpoint. Front wheel centres are levelled vertically to match front/rear tyre contact heights. Mass, sensor positions and steering limit are nominal simulation settings. Paint colours are presentation choices; they are not supplied manufacturer textures. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood.",
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          0.8,
+          0.32500070333480835,
+          1.2151625881195067
+        ],
+        "rtk_secondary": [
+          0.8,
+          -0.32500070333480835,
+          1.2151625881195067
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
+    }
   },
   "implements": []
 }

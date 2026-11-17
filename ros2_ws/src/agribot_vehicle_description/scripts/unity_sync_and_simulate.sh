@@ -29,6 +29,8 @@ LIST_ALGORITHMS=false
 LIST_COMPONENTS=false
 VALIDATE_ALGORITHMS=false
 RESOLVE_ONLY=false
+LAUNCH_FENCE_FILE=""
+LAUNCH_FENCE_TOKEN=""
 ALGORITHM_EXPLICIT=false
 COMPONENTS_EXPLICIT=false
 
@@ -370,6 +372,14 @@ while (($#)); do
       PREPARE_ONLY=true
       shift
       ;;
+    --launch-fence-file)
+      LAUNCH_FENCE_FILE="$2"
+      shift 2
+      ;;
+    --launch-fence-token)
+      LAUNCH_FENCE_TOKEN="$2"
+      shift 2
+      ;;
     --stop)
       STOP_ONLY=true
       shift
@@ -443,6 +453,11 @@ STATUS_FILE="$STATE_DIR/status"
 LOG_FILE="$STATE_DIR/latest.log"
 STOP_REQUEST="$STATE_DIR/stop.request"
 mkdir -p "$STATE_DIR"
+
+launch_fence_changed() {
+  [[ -n "$LAUNCH_FENCE_FILE" ]] &&
+    { [[ ! -r "$LAUNCH_FENCE_FILE" ]] || [[ "$(cat "$LAUNCH_FENCE_FILE")" != "$LAUNCH_FENCE_TOKEN" ]]; }
+}
 
 log() {
   printf '[%(%F %T)T] %s\n' -1 "$*"
@@ -583,6 +598,11 @@ if [[ -n "$PHYSICAL_DRAFT_OUTPUT" ]]; then
   exit $?
 fi
 
+if launch_fence_changed; then
+  set_status "stopped: launch cancelled"
+  log "启动请求已取消，不再准备或启动仿真。"
+  exit 0
+fi
 rm -f "$STOP_REQUEST"
 : >"$LOG_FILE"
 exec > >(tee -a "$LOG_FILE") 2>&1
@@ -685,7 +705,7 @@ if [[ "$PREPARE_ONLY" == "true" ]]; then
 fi
 
 # The old simulation is stopped only after validation and build succeed.
-if [[ -f "$STOP_REQUEST" ]]; then
+if [[ -f "$STOP_REQUEST" ]] || launch_fence_changed; then
   set_status "stopped: launch cancelled"
   log "已收到停止请求；编译完成，但不再启动仿真。"
   exit 0

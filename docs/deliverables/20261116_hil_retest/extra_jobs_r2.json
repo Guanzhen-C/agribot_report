@@ -1,0 +1,9 @@
+[
+  {"name": "harrow-powershift-render-r2", "kind": "controller", "profile": "tractor_powershift", "checks": ["harrow"]},
+  {"name": "harrow-cvt-render-r1", "kind": "controller", "profile": "tractor_cvt", "checks": ["harrow"]},
+  {"name": "apple-obstacle-r1", "kind": "controller", "profile": "ackermann_apple", "checks": ["navigation"]},
+  {"name": "sprayer-obstacle-r1", "kind": "controller", "profile": "tracked_sprayer", "checks": ["navigation"]},
+  {"name": "shredder-obstacle-r1", "kind": "controller", "profile": "tracked_shredder", "checks": ["navigation"]},
+  {"name": "powershift-obstacle-r1", "kind": "controller", "profile": "tractor_powershift", "checks": ["navigation"]},
+  {"name": "cvt-obstacle-r1", "kind": "controller", "profile": "tractor_cvt", "checks": ["navigation"]}
+]

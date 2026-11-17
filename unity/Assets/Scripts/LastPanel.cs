@@ -13,6 +13,7 @@ public partial class LastPanel : WheelChangePanel
     private Func<VehicleConfigurationAuthoring> externalVehicle;
     private Func<VehicleConfigurationExportResult> externalExport;
     private Action<string> externalNotification;
+    private Action<bool> externalSetupVisibility;
 
     public static LastPanel CreateVehicleSelector(Transform canvas, Button output,
         Func<VehicleConfigurationAuthoring> buildVehicle, Action<string> notification)
@@ -21,9 +22,11 @@ public partial class LastPanel : WheelChangePanel
     }
 
     public static LastPanel CreatePresetSelector(Transform canvas, Button output,
-        Func<VehicleConfigurationExportResult> export, Action<string> notification)
+        Func<VehicleConfigurationExportResult> export, Action<string> notification, Action<bool> setupVisibility = null)
     {
-        return CreateSelector(canvas, output, null, export, notification);
+        var selector = CreateSelector(canvas, output, null, export, notification);
+        selector.externalSetupVisibility = setupVisibility;
+        return selector;
     }
 
     private static LastPanel CreateSelector(Transform canvas, Button output,
@@ -82,6 +85,7 @@ public partial class LastPanel : WheelChangePanel
     private EquipmentSelectionController equipmentSelectionController;
     private EquipmentSelectionController_copy equipmentSelectionControllerCopy;
     private TweenHandle bombOpenTween;
+    private float nextReadinessRefresh;
     private Vector3 bombPanelOriginalScale = Vector3.one;
 
     private sealed class ComponentOptionVisual
@@ -168,6 +172,13 @@ public partial class LastPanel : WheelChangePanel
         ConfigureAlgorithmDialog();
     }
 
+    private void Update()
+    {
+        if (algorithmDialog == null || !algorithmDialog.activeInHierarchy || Time.unscaledTime < nextReadinessRefresh) return;
+        nextReadinessRefresh = Time.unscaledTime + .2f;
+        RefreshLaunchAvailability();
+    }
+
     private void OnDestroy()
     {
         sceneImportRequest?.Cancel();
@@ -198,6 +209,7 @@ public partial class LastPanel : WheelChangePanel
         }
 
         RosSimulationHandoffUi.Unbind(stopSimulationButton, exportPhysicalButton);
+        HilSimulationUi.Changed -= RefreshHilAvailability;
 
         RemoveEscClickListener(OpenLastPanel);
     }
@@ -259,7 +271,8 @@ public partial class LastPanel : WheelChangePanel
 
     public void OpenLastPanel()
     {
-        Show();
+        if (externalVehicle != null || externalExport != null) ShowImmediately();
+        else Show();
         HideEscButton();
     }
 
@@ -307,9 +320,11 @@ public partial class LastPanel : WheelChangePanel
 
         if (algorithmDialog != null)
         {
+            if (externalVehicle != null || externalExport != null) ShowImmediately();
             foreach (var entry in sceneButtons)
                 SetScenarioButtonState(entry.button, entry.scene.id == FarmScenarioCatalog.SelectedId);
             algorithmDialog.SetActive(true);
+            externalSetupVisibility?.Invoke(true);
             AssistantConversation.RecordUi("打开仿真配置", state => state.page = "simulation_setup");
             algorithmDialog.transform.SetAsLastSibling();
         }
@@ -618,7 +633,10 @@ public partial class LastPanel : WheelChangePanel
         bool fixedVehicleMatches = FarmScenarioCatalog.Selected?.HasFixedRoute != true ||
             AssistantConversation.State.car == "Car3";
         if (launchSelectedAlgorithmButton != null)
-            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy;
+            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy &&
+                SimulationLaunchRequirements.Validate(out _) && !HilSimulationLauncher.HasSession && !RosSimulationHandoffUi.IsBusy &&
+                !HilImplementLibrary.Supports(AssistantConversation.State.implement);
+        RefreshHilAvailability();
     }
 
     private bool IsSelectedComponent(RosSimulationComponentOption component)
@@ -775,8 +793,10 @@ public partial class LastPanel : WheelChangePanel
 
     private void StartSelectedAlgorithm(string algorithmId)
     {
-        if (algorithmDialog != null)
-            algorithmDialog.SetActive(false);
+        if (selectedAlgorithm == null || selectedAlgorithm.Id != algorithmId)
+        { Notify("请先选择完整的算法方案。"); return; }
+        if (!SimulationLaunchRequirements.Validate(out string message)) { Notify(message); return; }
+        if (algorithmDialog != null) CloseSetup();
         StartCoroutine(ExportRosConfiguration(algorithmId));
     }
 
@@ -792,6 +812,12 @@ public partial class LastPanel : WheelChangePanel
 
         try
         {
+            if (HilSimulationLauncher.HasSession)
+                throw new InvalidOperationException("请先停止HIL仿真，再启动普通仿真。");
+            if (selectedAlgorithm == null || selectedAlgorithm.Id != algorithmId)
+                throw new InvalidOperationException("请先选择完整的算法方案。");
+            if (!SimulationLaunchRequirements.Validate(out string readinessError))
+                throw new InvalidOperationException(readinessError);
             if (externalVehicle == null && externalExport == null && !ValidateInstalledEquipment(out string installationError))
                 throw new InvalidOperationException(installationError);
 

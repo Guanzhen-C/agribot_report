@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2204,
-      "sha256": "a7f1120dd268f720088c6a45eeb646aa22efeffdde27bea1039ee4b114276574"
+      "sizeBytes": 2138,
+      "sha256": "de40fe34b2bfe0ba8043e5ac0570de0a6c66e71c28816e51e53b95a142fe07e7"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1294,
-      "sha256": "12701b619632e07fb8e68fd93bb29532757dcfecc89fa0c48ea45834901af8cf"
+      "sizeBytes": 1228,
+      "sha256": "72f57a6ea046d5c409ebf1483cdaf206592975c5ade1a3ba01ae9e1a45ee1fdd"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1155,
-      "sha256": "ba3f323db94148e41fb1b55aeb14e6478acd861ce1d243e813200a45323bb434"
+      "sizeBytes": 1089,
+      "sha256": "20a542b67a9b0cdb997bb52b9d2c075d6467bbf3d7b7057a804df4806fa9f4e5"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1155,
-      "sha256": "ba3f323db94148e41fb1b55aeb14e6478acd861ce1d243e813200a45323bb434"
+      "sizeBytes": 1089,
+      "sha256": "20a542b67a9b0cdb997bb52b9d2c075d6467bbf3d7b7057a804df4806fa9f4e5"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -220,18 +220,18 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 648582,
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sizeBytes": 942599,
+      "sha256": "33278b304414c59d4619cfd5cb631bbcdba82e258c33a82162e72271c6d7ddcf"
     },
     {
       "path": "models/tractor_chisel.sdf",
-      "sizeBytes": 19557,
-      "sha256": "116bb1cfd57323954fbf14a2121feb4fdc02f36d742b8619aac3ae3680931ca9"
+      "sizeBytes": 19595,
+      "sha256": "02b23ca8cb052c4b3762c6fb1b3672e0fb9295c92dac37abefb02232fdd475c5"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -245,13 +245,13 @@
     },
     {
       "path": "urdf/tractor_chisel.urdf.xacro",
-      "sizeBytes": 8183,
-      "sha256": "fc4de8317442eb6bc8f9f6dfa34f522131ded6dc6cd38d68dbbf14442bd39f99"
+      "sizeBytes": 8219,
+      "sha256": "15217280a843d954ba8f0e3df62ed0e1c6b678aca19ef4d349a575bd4b2b1d02"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 13546,
-      "sha256": "26252fec5693b3910e00670f2c777f53f927e9dabdb3ca2e6bfe4db6dcbcd07d"
+      "sizeBytes": 14044,
+      "sha256": "f308b751a0e32fb60409eec4ec6ed8d914cc20d90867794e1eaced1c1e8badbc"
     }
   ]
 }

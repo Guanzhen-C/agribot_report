@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "rtk_antenna",
+  "meshGroups": 4,
+  "triangles": 3208,
+  "minimumRos": [
+    -0.05500000715255737,
+    -0.05499996244907379,
+    -0.10000000149011612
+  ],
+  "maximumRos": [
+    0.054999977350234985,
+    0.055000029504299164,
+    0.022800099104642868
+  ],
+  "previewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7",
+  "sourceMeshSha256": "23cb89eedf650e21a034f6dbce2726df736f441bcd173cdc5884ecdb9945f084"
+}

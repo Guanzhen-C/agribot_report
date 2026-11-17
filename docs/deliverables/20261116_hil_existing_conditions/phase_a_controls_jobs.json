@@ -1,0 +1,7 @@
+[
+  {"name":"a-apple-controls","kind":"controller","profile":"ackermann_apple","checks":["authority","watchdog"]},
+  {"name":"a-sprayer-controls","kind":"controller","profile":"tracked_sprayer","checks":["authority","sprayer","watchdog"]},
+  {"name":"a-shredder-controls","kind":"controller","profile":"tracked_shredder","checks":["authority","shredder","watchdog"]},
+  {"name":"a-powershift-controls","kind":"controller","profile":"tractor_powershift","checks":["authority","powertrain"]},
+  {"name":"a-cvt-controls","kind":"controller","profile":"tractor_cvt","checks":["authority","hitch","powertrain","harrow"]}
+]

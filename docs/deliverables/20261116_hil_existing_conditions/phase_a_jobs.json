@@ -1,0 +1,12 @@
+[
+  {"name":"a-apple-normal","kind":"mission","profile":"ackermann_apple"},
+  {"name":"a-sprayer-normal","kind":"mission","profile":"tracked_sprayer"},
+  {"name":"a-shredder-normal","kind":"mission","profile":"tracked_shredder"},
+  {"name":"a-powershift-normal","kind":"mission","profile":"tractor_powershift"},
+  {"name":"a-cvt-normal","kind":"mission","profile":"tractor_cvt"},
+  {"name":"a-apple-controls","kind":"controller","profile":"ackermann_apple","checks":["authority","watchdog"]},
+  {"name":"a-sprayer-controls","kind":"controller","profile":"tracked_sprayer","checks":["authority","sprayer","watchdog"]},
+  {"name":"a-shredder-controls","kind":"controller","profile":"tracked_shredder","checks":["authority","shredder","watchdog"]},
+  {"name":"a-powershift-controls","kind":"controller","profile":"tractor_powershift","checks":["authority","powertrain"]},
+  {"name":"a-cvt-controls","kind":"controller","profile":"tractor_cvt","checks":["authority","powertrain","harrow"]}
+]

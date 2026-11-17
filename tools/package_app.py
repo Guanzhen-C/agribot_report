@@ -30,6 +30,9 @@ def main():
     subprocess.run(['tar', '-I', 'zstd -T4 -10', '-cf', str(archive), '-C', str(args.app.parent), 'unity'], check=True)
     manifest = dict(format='agribot.prebuilt-app', version=1, platform='ubuntu-22.04-x86_64',
                     archive=archive.name, sha256=digest(archive), bytes=archive.stat().st_size, runtime_inputs=inputs)
+    resources = ROOT / 'resources/release_assets.json'
+    if resources.is_file():
+        manifest['url'] = json.loads(resources.read_text())['base_url'] + archive.name
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     print(json.dumps(manifest, indent=2))
 

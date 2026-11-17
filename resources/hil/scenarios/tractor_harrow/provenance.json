@@ -1,0 +1,29 @@
+{
+  "source": "/home/cgz/agribot_ws/ros2_ws/src/agribot_vehicle_description/generated/car4_harrow/models/car4_harrow.sdf",
+  "source_sha256": "8e2ea26a433b04d34c49d6dbb1f3d6ef87da5f05dd96b2c8c9d1ea9600e3ceac",
+  "vehicle": "Car4",
+  "implement": "mounted_disc_harrow",
+  "scene": "wide_headland original soil, local tillage swaths",
+  "disc_count": 16,
+  "lift_min_rad": -0.035,
+  "lift_max_rad": 0.4,
+  "lift_span_rad": 0.43500000000000005,
+  "implement_level_pitch_rad": 0.035,
+  "implement_mount_drop_m": 0.085,
+  "rotating_original_cage_roller": true,
+  "soil_effect_stages": [
+    "disc_clod_throw",
+    "cage_roller_crumbling"
+  ],
+  "source_unchanged": true,
+  "implement_collision": false,
+  "native_protocol": "hitch-hil-0x21",
+  "full_plot_overlay": false,
+  "tillage_texture": "Original soil texture, shallow crumbled harrow bed",
+  "powertrain_force_plant": true,
+  "velocity_drive_bypass": false,
+  "limitations": [
+    "Equivalent single-coordinate lift, not calibrated hydraulic linkage",
+    "Animated soil disturbance, not DEM or agronomic depth/force validation"
+  ]
+}

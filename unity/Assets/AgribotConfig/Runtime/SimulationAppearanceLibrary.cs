@@ -113,6 +113,7 @@ namespace Agribot.VehicleConfiguration
             }
             preview.name = PreviewName;
             preview.transform.SetParent(reference, false);
+            SensorMountLibrary.ApplyTracked(car.transform, reference);
         }
     }
 }

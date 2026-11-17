@@ -1,0 +1,7 @@
+[
+  {"name": "shredder-controls-r2", "kind": "controller", "profile": "tracked_shredder", "checks": ["authority", "shredder", "watchdog"]},
+  {"name": "sprayer-visual-r1", "kind": "controller", "profile": "tracked_sprayer", "checks": ["visual", "watchdog"]},
+  {"name": "tractor-authority-r1", "kind": "controller", "profile": "tractor_powershift", "checks": ["authority"]},
+  {"name": "powershift-native-r1", "kind": "mission", "profile": "tractor_powershift"},
+  {"name": "cvt-native-r1", "kind": "mission", "profile": "tractor_cvt"}
+]

@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2189,
-      "sha256": "2f4441bfb360323bddf218d61a04007de677699ff81e935cb273357744db1062"
+      "sizeBytes": 2123,
+      "sha256": "a090e1af5b5e03886823c487eccca2e5445c91103129cacfbd941788bc8374df"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1279,
-      "sha256": "27168aa528d984549ffbf8204b6b56e0310501d99f9f199458a3659d61d99e03"
+      "sizeBytes": 1213,
+      "sha256": "901858c3a973135c3ebddc488891917e3616b8be030e2ba2f76c6e28d4a3684e"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1120,
-      "sha256": "ce6747456ac3933fc8082445d8ae9a215fcbcdca45777fb39d935082fb96b4f8"
+      "sizeBytes": 1054,
+      "sha256": "11926ea2369e9b7cc025355a9c03330ac090de0a8945c3f523fd3e39e3bcc5ef"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1120,
-      "sha256": "ce6747456ac3933fc8082445d8ae9a215fcbcdca45777fb39d935082fb96b4f8"
+      "sizeBytes": 1054,
+      "sha256": "11926ea2369e9b7cc025355a9c03330ac090de0a8945c3f523fd3e39e3bcc5ef"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -210,18 +210,18 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 648582,
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sizeBytes": 942595,
+      "sha256": "a4fe997d85a28304decb0949da21beac4587ebcbc33062735deafbd3264ef2d8"
     },
     {
       "path": "models/unity_car1.sdf",
-      "sizeBytes": 17622,
-      "sha256": "8b84e499cff02b7088c1f118b87d92449a8d683cd483897f7fca760f1c7afcc8"
+      "sizeBytes": 17660,
+      "sha256": "75cdf58248ec9364f066730f39ad4a4e195861a9197312ef256102d6d74529ad"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -235,13 +235,13 @@
     },
     {
       "path": "urdf/unity_car1.urdf.xacro",
-      "sizeBytes": 5805,
-      "sha256": "087e978b68ba5a1d8074e19466d315c1d1cbd3cb31f4cb2e5e15f9e43f817702"
+      "sizeBytes": 5782,
+      "sha256": "021c0ff3a2a343fdcf503316b5e92b5487b153c2a4439df2fb09c12fca38a5ae"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 10126,
-      "sha256": "ae0b222b5d066c7da0d0cb2aa124e17ec4ac0b4829b34dc798017e746e4452b4"
+      "sizeBytes": 10594,
+      "sha256": "948e94e34041c3fcd32a64a7b0172fc6d58454fe00f3849a70e143fe737d45a0"
     }
   ]
 }

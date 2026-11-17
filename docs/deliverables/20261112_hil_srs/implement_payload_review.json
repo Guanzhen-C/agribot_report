@@ -1,0 +1,54 @@
+{
+  "20261112T115629_2e6203ef": {
+    "scope": "Read-only retrospective payload multiset correlation, not synchronized per-frame latency or zero-loss certification",
+    "feedback": {
+      "5B0": {
+        "observed_native_frames": 1521,
+        "received_isobus_frames": 1509,
+        "payload_multiset_matches": 1509,
+        "unmatched_received": 0
+      },
+      "5B2": {
+        "observed_native_frames": 1521,
+        "received_isobus_frames": 1509,
+        "payload_multiset_matches": 1509,
+        "unmatched_received": 0
+      },
+      "5B3": {
+        "observed_native_frames": 1521,
+        "received_isobus_frames": 1509,
+        "payload_multiset_matches": 1509,
+        "unmatched_received": 0
+      }
+    },
+    "usb_decoder_invalid": 0,
+    "usb_errors": [],
+    "sha256": {
+      ".validation/hil_other_profiles_20261112_r1/20261112T115629_2e6203ef/native-can.jsonl": "7729d2feff7222bff78cf3c41fbe6678269042e06915c4a6f6f93aaffde82fa4",
+      ".validation/hil_notebook_20261112/20261112T115629_2e6203ef/x5/usb-can.jsonl": "e37f4c21ab0dc149ce6501dd7f51c03f69957314c470a4593282cceeb6b3a48d"
+    }
+  },
+  "20261112T121003_535a1379": {
+    "scope": "Read-only retrospective payload multiset correlation, not synchronized per-frame latency or zero-loss certification",
+    "feedback": {
+      "5B0": {
+        "observed_native_frames": 891,
+        "received_isobus_frames": 880,
+        "payload_multiset_matches": 880,
+        "unmatched_received": 0
+      },
+      "5B4": {
+        "observed_native_frames": 891,
+        "received_isobus_frames": 880,
+        "payload_multiset_matches": 880,
+        "unmatched_received": 0
+      }
+    },
+    "usb_decoder_invalid": 0,
+    "usb_errors": [],
+    "sha256": {
+      ".validation/hil_other_profiles_20261112_r1/20261112T121003_535a1379/native-can.jsonl": "4b6c1959217ff93f3a0190f559b83d1e06f3276daae96069268f0f625123e7ed",
+      ".validation/hil_notebook_20261112/20261112T121003_535a1379/x5/usb-can.jsonl": "b500174704e1dac4870208c52806fd1d68aae0cb8913c6e0826b922c1e5665c1"
+    }
+  }
+}

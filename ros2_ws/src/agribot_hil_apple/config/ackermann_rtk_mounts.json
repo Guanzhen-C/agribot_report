@@ -1,0 +1,8 @@
+{
+  "layout": "upper_deck_forward_of_cargo",
+  "supportSurfaceZ": 0.1348,
+  "surfaceOffsetM": 0.1,
+  "master": [0.12, 0.15, 0.2348],
+  "secondary": [0.12, -0.15, 0.2348],
+  "leftIsMaster": true
+}

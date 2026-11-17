@@ -1,0 +1,2302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6">
+  <world name="hitch_farmland">
+    <physics name="ode" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.55 0.55 0.55 1</ambient>
+      <background>0.65 0.78 0.9 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <gui>
+      <camera name="overview">
+        <pose>-28 -10 8 0 .40 .65</pose>
+      </camera>
+    </gui>
+    <model name="agricultural_environment">
+      <static>true</static>
+      <link name="environment">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/a029ccac5461/scene.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="obstacles_collision">
+          <geometry>
+            <mesh>
+              <uri>file://@HIL_ROOT@/shared_assets/f6141cc0756b/obstacles_collision.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="drivable_ground_0">
+          <pose>0.0 12.0 -0.2520000000949949 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>86.0 68.0 0.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1000000000</kp>
+                <kd>1</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+      </link>
+    </model>
+    <light name="hitch_sun" type="directional">
+      <pose>0 0 20 0 0 0</pose>
+      <direction>-.3 -.4 -1</direction>
+      <diffuse>.9 .9 .85 1</diffuse>
+      <specular>.15 .15 .15 1</specular>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <model name="hil_hitch_tractor">
+      <allow_auto_disable>false</allow_auto_disable>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0.983305886074 0 0.15 0 0 0</pose>
+          <mass>2500</mass>
+          <inertia>
+            <ixx>1689.54889862</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3654.81444006</iyy>
+            <iyz>0</iyz>
+            <izz>3434.73445856</izz>
+          </inertia>
+        </inertial>
+        <collision name="vehicle_body_collision">
+          <pose>0.792445141963 -0.000142551923975 0.714486632087 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.6 1.87795777404 2.14081977576</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="vehicle_body_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/tractor_body.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="imu_cad_visual">
+          <pose>1.72 0 0.920368656051 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/sensor_imu_visual.obj</uri>
+            </mesh>
+          </geometry>
+          <plugin name="imu_visual_only" filename="libagribot_simulation_sensor_visual.so" />
+        </visual>
+        <visual name="lidar_cad_visual">
+          <pose>1.95 0 1.35939866405 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/sensor_lidar_visual.obj</uri>
+            </mesh>
+          </geometry>
+          <plugin name="lidar_visual_only" filename="libagribot_simulation_sensor_visual.so" />
+        </visual>
+        <visual name="right_camera_cad_visual">
+          <pose>1.9753 0 1.47798566405 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/sensor_right_camera_visual.obj</uri>
+            </mesh>
+          </geometry>
+          <plugin name="right_camera_visual_only" filename="libagribot_simulation_sensor_visual.so" />
+        </visual>
+        <visual name="rtk_master_cad_visual">
+          <pose>1.6 0.325 1.44550812546 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/sensor_rtk_master_visual.obj</uri>
+            </mesh>
+          </geometry>
+          <plugin name="rtk_master_visual_only" filename="libagribot_simulation_sensor_visual.so" />
+        </visual>
+        <sensor name="n300pro_imu" type="imu">
+          <pose>1.72 0 0.920368656051 0 0 0</pose>
+          <always_on>true</always_on>
+          <update_rate>100</update_rate>
+          <visualize>false</visualize>
+          <imu>
+            <angular_velocity>
+              <x>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.0008023</stddev>
+                </noise>
+              </x>
+              <y>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.0008023</stddev>
+                </noise>
+              </y>
+              <z>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.0008023</stddev>
+                </noise>
+              </z>
+            </angular_velocity>
+            <linear_acceleration>
+              <x>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.01091</stddev>
+                </noise>
+              </x>
+              <y>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.01091</stddev>
+                </noise>
+              </y>
+              <z>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0.01091</stddev>
+                </noise>
+              </z>
+            </linear_acceleration>
+          </imu>
+          <plugin name="n300pro_imu_controller" filename="libgazebo_ros_imu_sensor.so">
+            <ros>
+              <namespace>/</namespace>
+              <remapping>~/out:=imu/data</remapping>
+            </ros>
+            <frame_name>imu_link</frame_name>
+          </plugin>
+        </sensor>
+        <sensor name="lslidar_c16_points" type="ray">
+          <pose>1.95 0 1.35939866405 0 0 0</pose>
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <visualize>false</visualize>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>720</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.141592653589793</min_angle>
+                <max_angle>3.141592653589793</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.2792526803190927</min_angle>
+                <max_angle>0.24434609527920614</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.3</min>
+              <max>30</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name="c16_controller" filename="libgazebo_ros_velodyne_laser.so">
+            <ros>
+              <namespace>/</namespace>
+              <remapping>~/out:=lidar/points</remapping>
+            </ros>
+            <frame_name>lidar_link</frame_name>
+            <organize_cloud>false</organize_cloud>
+            <min_range>0.3</min_range>
+            <max_range>30</max_range>
+            <gaussian_noise>0.01</gaussian_noise>
+          </plugin>
+        </sensor>
+        <sensor name="hikrobot_right_camera" type="camera">
+          <pose>1.9753 0 1.47798566405 0 0 0</pose>
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <visualize>false</visualize>
+          <camera name="right_camera">
+            <horizontal_fov>0.9362410911749182</horizontal_fov>
+            <vertical_fov>0.7692094306470061</vertical_fov>
+            <image>
+              <width>640</width>
+              <height>512</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.05</near>
+              <far>100.0</far>
+            </clip>
+            <distortion>
+              <k1>-0.06420938</k1>
+              <k2>0.07455611</k2>
+              <p1>-0.00096336</p1>
+              <p2>0.00001838</p2>
+              <k3>0.0</k3>
+              <center>0.50993772734375 0.49129508185546875</center>
+            </distortion>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.003</stddev>
+            </noise>
+          </camera>
+          <plugin name="hikrobot_camera_controller" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/</namespace>
+              <remapping>camera/image_raw:=camera/rgb/image_raw</remapping>
+              <remapping>camera/camera_info:=camera/rgb/camera_info</remapping>
+            </ros>
+            <camera_name>camera</camera_name>
+            <frame_name>right_camera_optical_frame</frame_name>
+            <camera_info_url>package://agribot_ackermann_mppi/config/hikrobot_camera_640_sim.yaml</camera_info_url>
+          </plugin>
+        </sensor>
+        <visual name="hitch_adapter_top_link">
+          <geometry>
+            <sphere>
+              <radius>0.001</radius>
+            </sphere>
+          </geometry>
+          <plugin name="telescopic_linkage" filename="libagribot_hil_hitch_linkage.so">
+            <host>-0.26 0 0.36</host>
+            <tool_eye>-1.33339614011 -0.0002 0.33133595683</tool_eye>
+            <radius>0.025</radius>
+            <initial_tool_pose>0 0 -0.13 0 0 0</initial_tool_pose>
+          </plugin>
+        </visual>
+        <visual name="hitch_adapter_cylinder_left">
+          <geometry>
+            <sphere>
+              <radius>0.001</radius>
+            </sphere>
+          </geometry>
+          <plugin name="telescopic_linkage" filename="libagribot_hil_hitch_linkage.so">
+            <host>-0.48 0.34 0.46</host>
+            <tool_eye>-0.4361696694 0.36 -0.115127316361</tool_eye>
+            <radius>0.035</radius>
+            <initial_tool_pose>0 0 -0.13 0 0 0</initial_tool_pose>
+          </plugin>
+        </visual>
+        <visual name="hitch_adapter_cylinder_right">
+          <geometry>
+            <sphere>
+              <radius>0.001</radius>
+            </sphere>
+          </geometry>
+          <plugin name="telescopic_linkage" filename="libagribot_hil_hitch_linkage.so">
+            <host>-0.48 -0.34 0.46</host>
+            <tool_eye>-0.4361696694 -0.36 -0.115127316361</tool_eye>
+            <radius>0.035</radius>
+            <initial_tool_pose>0 0 -0.13 0 0 0</initial_tool_pose>
+          </plugin>
+        </visual>
+      </link>
+      <link name="front_left_steering_link">
+        <pose relative_to="__model__">2.18423784074 0.784406377413 -0.313106738531 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0216437809686</ixx>
+            <iyy>0.0216437809686</iyy>
+            <izz>0.0216437809686</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="front_right_steering_link">
+        <pose relative_to="__model__">2.18601040802 -0.784406109835 -0.3132023306 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.0216335117767</ixx>
+            <iyy>0.0216335117767</iyy>
+            <izz>0.0216335117767</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="front_left_wheel_link">
+        <pose relative_to="__model__">2.18423784074 0.784406377413 -0.313106738531 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <collision name="wheel_collision">
+          <pose>0 0 0 1.5707963267948966 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.402899934555</radius>
+              <length>0.151246320345</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1000000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.8</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="wheel_visual">
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/front_left_wheel_visual.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>62.5</mass>
+          <inertia>
+            <ixx>2.65552354797</ixx>
+            <iyy>5.07276116451</iyy>
+            <izz>2.65552354797</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="front_right_wheel_link">
+        <pose relative_to="__model__">2.18601040802 -0.784406109835 -0.3132023306 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <collision name="wheel_collision">
+          <pose>0 0 0 1.5707963267948966 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.402804342486</radius>
+              <length>0.151246320345</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1000000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.8</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="wheel_visual">
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/front_right_wheel_visual.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>62.5</mass>
+          <inertia>
+            <ixx>2.65432012705</ixx>
+            <iyy>5.07035432267</iyy>
+            <izz>2.65432012705</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="rear_left_wheel_link">
+        <pose relative_to="__model__">-0.00100688748051 0.89256602754 7.29148742995e-06 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <collision name="wheel_collision">
+          <pose>0 0 0 1.5707963267948966 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.716013964573</radius>
+              <length>0.324794959434</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1000000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.8</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="wheel_visual">
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/rear_left_wheel_visual.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>62.5</mass>
+          <inertia>
+            <ixx>8.55999873993</ixx>
+            <iyy>16.0211249208</iyy>
+            <izz>8.55999873993</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="rear_right_wheel_link">
+        <pose relative_to="__model__">0.0010068736966 -0.89256555928 -7.29148743006e-06 0 0 0</pose>
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+        <collision name="wheel_collision">
+          <pose>0 0 0 1.5707963267948966 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.715999381599</radius>
+              <length>0.324795227012</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1000000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.8</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="wheel_visual">
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/739c7a92567a/rear_right_wheel_visual.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>62.5</mass>
+          <inertia>
+            <ixx>8.55967334812</ixx>
+            <iyy>16.0204723266</iyy>
+            <izz>8.55967334812</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="front_left_steering_joint" type="revolute">
+        <pose relative_to="__model__">2.18423784074 0.784406377413 -0.313106738531 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>front_left_steering_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.751980612199</lower>
+            <upper>0.751980612199</upper>
+            <effort>200</effort>
+            <velocity>1.5</velocity>
+          </limit>
+          <dynamics>
+            <damping>2.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <joint name="front_right_steering_joint" type="revolute">
+        <pose relative_to="__model__">2.18601040802 -0.784406109835 -0.3132023306 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>front_right_steering_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.751980612199</lower>
+            <upper>0.751980612199</upper>
+            <effort>200</effort>
+            <velocity>1.5</velocity>
+          </limit>
+          <dynamics>
+            <damping>2.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <joint name="front_left_wheel_joint" type="revolute">
+        <pose relative_to="__model__">2.18423784074 0.784406377413 -0.313106738531 0 0 0</pose>
+        <parent>front_left_steering_link</parent>
+        <child>front_left_wheel_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e16</lower>
+            <upper>1e16</upper>
+            <effort>895.008341358</effort>
+            <velocity>100</velocity>
+          </limit>
+        </axis>
+      </joint>
+      <joint name="front_right_wheel_joint" type="revolute">
+        <pose relative_to="__model__">2.18601040802 -0.784406109835 -0.3132023306 0 0 0</pose>
+        <parent>front_right_steering_link</parent>
+        <child>front_right_wheel_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e16</lower>
+            <upper>1e16</upper>
+            <effort>895.008341358</effort>
+            <velocity>100</velocity>
+          </limit>
+        </axis>
+      </joint>
+      <joint name="rear_left_wheel_joint" type="revolute">
+        <pose relative_to="__model__">-0.00100688748051 0.89256602754 7.29148742995e-06 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>rear_left_wheel_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e16</lower>
+            <upper>1e16</upper>
+            <effort>895.008341358</effort>
+            <velocity>100</velocity>
+          </limit>
+        </axis>
+      </joint>
+      <joint name="rear_right_wheel_joint" type="revolute">
+        <pose relative_to="__model__">0.0010068736966 -0.89256555928 -7.29148743006e-06 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>rear_right_wheel_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e16</lower>
+            <upper>1e16</upper>
+            <effort>895.008341358</effort>
+            <velocity>100</velocity>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name="ackermann_drive" filename="libagribot_ackermann_mppi_drive.so">
+        <ros>
+          <namespace>/</namespace>
+        </ros>
+        <cmd_vel_topic>/hil_hitch/actuator/cmd_vel</cmd_vel_topic>
+        <odom_topic>/hil_hitch/sim_wheel_odom</odom_topic>
+        <joint_state_topic>/joint_states</joint_state_topic>
+        <odom_frame>odom</odom_frame>
+        <base_frame>base_link</base_frame>
+        <wheelbase>2.18512419127</wheelbase>
+        <front_track_width>1.56881248725</front_track_width>
+        <rear_track_width>1.78513165371</rear_track_width>
+        <wheel_radius>0.716006673086</wheel_radius>
+        <max_steering_angle>0.610865235329</max_steering_angle>
+        <max_steering_rate>1.20000004768</max_steering_rate>
+        <max_speed>0.5</max_speed>
+        <max_accel>0.5</max_accel>
+        <min_speed_for_curvature>0.02</min_speed_for_curvature>
+        <command_timeout>0.5</command_timeout>
+        <publish_rate>30.0</publish_rate>
+        <publish_tf>false</publish_tf>
+        <wheel_torque>0</wheel_torque>
+      </plugin>
+      <plugin name="configured_sensor_collision_filter" filename="libagribot_simulation_sensor_collision_filter.so" />
+      <plugin name="hil_powertrain_plant" filename="libagribot_hil_powertrain_plant.so" />
+      <plugin name="hil_hitch_ground_truth" filename="libgazebo_ros_p3d.so">
+        <ros>
+          <remapping>odom:=/hil_hitch/ground_truth</remapping>
+        </ros>
+        <body_name>base_link</body_name>
+        <frame_name>world</frame_name>
+        <update_rate>30</update_rate>
+      </plugin>
+      <link name="hitch_tool_frame">
+        <pose>0 0 -0.13 0 0 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>-1.5 0 0 0 0 0</pose>
+          <mass>92.0</mass>
+          <inertia>
+            <ixx>55.0</ixx>
+            <iyy>105.0</iyy>
+            <izz>140.0</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="harrow_frame">
+          <pose>-1.30755485804 0 -0.711006673086 0 0.035 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/harrow_frame.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.072 0.15 0.09 1</ambient>
+            <diffuse>0.12 0.25 0.15 1</diffuse>
+          </material>
+        </visual>
+        <visual name="original_lift_arms">
+          <pose>-0 0 0.13 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/tractor_lift_parts.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="soil_effect_anchor">
+          <geometry>
+            <sphere>
+              <radius>0.001</radius>
+            </sphere>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="soil_tillage" filename="libagribot_hil_hitch_tillage.so">
+            <soil_texture>@HIL_ROOT@/shared_assets/eb1f37208958/09fa174109_668785e108_brown_mud_diff_2k.png</soil_texture>
+            <ground_z>-0.002</ground_z>
+            <disc_origin>-1.70381007235 0.927886962891 -0.373153154705</disc_origin>
+            <disc_origin>-1.69790647915 0.615934982896 -0.362794394116</disc_origin>
+            <disc_origin>-1.70667906229 0.318475492299 -0.375474693451</disc_origin>
+            <disc_origin>-1.72993631224 0.0103740021586 -0.360399623791</disc_origin>
+            <disc_origin>-1.70317780542 -0.294222004712 -0.377514452956</disc_origin>
+            <disc_origin>-1.7197948569 -0.590313494205 -0.35570661645</disc_origin>
+            <disc_origin>-1.70287945019 -0.884589523077 -0.369679092392</disc_origin>
+            <disc_origin>-1.7287960035 -1.17055797577 -0.371913565449</disc_origin>
+            <disc_origin>-2.70044220182 1.17807203531 -0.327522218716</disc_origin>
+            <disc_origin>-2.73529818749 0.88431802392 -0.338257087078</disc_origin>
+            <disc_origin>-2.71720690601 0.584272995591 -0.348224253449</disc_origin>
+            <disc_origin>-2.71542672357 0.29360999912 -0.326589798146</disc_origin>
+            <disc_origin>-2.71184516393 -0.00573300197721 -0.348183351066</disc_origin>
+            <disc_origin>-2.7158217543 -0.321038991213 -0.348044113543</disc_origin>
+            <disc_origin>-2.71484463509 -0.605585500598 -0.345670853032</disc_origin>
+            <disc_origin>-2.6989781242 -0.916427522898 -0.333246960611</disc_origin>
+            <roller_origin>-3.45847654482 -0.000248968601227 -0.36754742985</roller_origin>
+            <roller_radius>0.26798200607299805</roller_radius>
+            <working_width>2.5387879610061646</working_width>
+            <settled_bed_offset>-1.3945582184009253</settled_bed_offset>
+          </plugin>
+        </visual>
+        <visual name="hitch_adapter_lower_left">
+          <pose>-1.15587357447 0.37195 -0.064626564492 0 1.93618974102 -2.74368515075</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.025</radius>
+              <length>0.4456917358539825</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>.22 .24 .23 1</ambient>
+            <diffuse>.4 .43 .4 1</diffuse>
+          </material>
+        </visual>
+        <visual name="hitch_adapter_lower_right">
+          <pose>-1.15587357447 -0.37325 -0.066626564492 0 1.92723025331 2.73970553675</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.025</radius>
+              <length>0.44493484733909516</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>.22 .24 .23 1</ambient>
+            <diffuse>.4 .43 .4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_lift_joint" type="revolute">
+        <parent>base_link</parent>
+        <child>hitch_tool_frame</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.035</lower>
+            <upper>0.4</upper>
+            <effort>6000</effort>
+            <velocity>0.16</velocity>
+          </limit>
+          <dynamics>
+            <damping>20.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin name="hitch_physical_plant" filename="libagribot_hil_hitch_plant.so">
+        <lift_min>-0.035</lift_min>
+        <lift_span>0.43500000000000005</lift_span>
+        <zone_min>-28 -10 0</zone_min>
+        <zone_max>28 10 0</zone_max>
+        <roller>
+          <joint>hitch_cage_roller_joint</joint>
+          <link>hitch_cage_roller</link>
+          <radius>0.26798200607299805</radius>
+        </roller>
+        <disc>
+          <joint>hitch_disc_00_joint</joint>
+          <link>hitch_disc_00</link>
+          <radius>0.27</radius>
+          <probe>-0.0342690199614 -0.089202940464 0.195534501225</probe>
+          <probe>0.142002001405 -0.146202981472 0.147771511227</probe>
+          <probe>0.065156981349 -0.114009976387 0.25541350618</probe>
+          <probe>-0.138332024217 -0.0233399868011 0.230403516442</probe>
+          <probe>-0.0548130124807 -0.065720975399 0.222038481385</probe>
+          <probe>-0.020717009902 -0.0895989537239 -0.0111445151269</probe>
+          <probe>-0.00587101280689 -0.0955739617348 0.0014385022223</probe>
+          <probe>0.0020359903574 -0.109403967857 0.0115315057337</probe>
+          <probe>-0.0502730160952 -0.0802689790726 0.0232645012438</probe>
+          <probe>-0.0431170016527 -0.0833249688148 0.0423604883254</probe>
+          <probe>-0.170332029462 0.0535780191422 -0.105790507048</probe>
+          <probe>-0.224228993058 0.0791910886765 0.0392004884779</probe>
+          <probe>-0.233439996839 0.150624990463 -0.0815665088594</probe>
+          <probe>-0.0942469984293 -0.0472409725189 0.0202705003321</probe>
+          <probe>-0.0866769999266 -0.0512039661407 0.00974849238992</probe>
+          <probe>-0.0747540146112 -0.0555889606476 -0.021112497896</probe>
+          <probe>-0.104767993093 -0.046846985817 0.0102255083621</probe>
+          <probe>-0.0870810002089 -0.0371409654617 -0.0395255051553</probe>
+          <probe>-0.0837790220976 -0.0357459783554 -0.0524645112455</probe>
+          <probe>-0.0453809946775 -0.0636739730835 -0.0543925128877</probe>
+          <probe>-0.0467580109835 -0.0500709414482 -0.0824374966323</probe>
+          <probe>-0.0405880063772 -0.056067943573 -0.0710355006158</probe>
+          <probe>-0.0348870009184 -0.0551869869232 -0.0820794962347</probe>
+          <probe>0.00112600624561 -0.083034992218 -0.0581304989755</probe>
+          <probe>-0.00165300071239 -0.0857809782028 -0.0451885126531</probe>
+          <probe>0.00970397889614 -0.0889379382133 -0.0508995018899</probe>
+          <probe>0.00474099814892 -0.10240393877 0.00418851152062</probe>
+          <probe>0.169167995453 -0.150624990463 0.0335444845259</probe>
+          <probe>-0.0555550009012 -0.0770459771156 0.0428445078433</probe>
+          <probe>-0.171199992299 0.0102640390396 0.168260488659</probe>
+          <probe>-0.0537430197001 0.0509450435638 -0.232398506254</probe>
+          <probe>-0.117521002889 0.121944069862 -0.230299506336</probe>
+          <probe>-0.094738021493 -0.0304899811745 -0.0461605153978</probe>
+          <probe>0.149572983384 -0.0899939537048 -0.163753505796</probe>
+          <probe>0.233439996839 -0.129349946976 -0.0796354971826</probe>
+          <probe>-0.0168759971857 -0.0854879617691 -0.00845449790359</probe>
+          <probe>0.000493988394737 -0.101878941059 0.0156574882567</probe>
+          <probe>-0.0457730144262 -0.0774809718132 0.0325954891741</probe>
+          <probe>-0.0587860196829 -0.065573990345 0.00848648324609</probe>
+          <probe>-0.18242199719 0.0870170593262 -0.124417509884</probe>
+          <probe>-0.0724260061979 -0.0491159558296 -0.0244424901903</probe>
+          <probe>-0.0395279973745 -0.0610349774361 -0.050937499851</probe>
+          <probe>0.0294809788465 0.00839704275131 -0.25541350618</probe>
+          <probe>0.0957019776106 -0.0352209806442 -0.225583504885</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_01_joint</joint>
+          <link>hitch_disc_01</link>
+          <radius>0.27</radius>
+          <probe>-0.0661365091801 -0.0716830044985 0.163595493883</probe>
+          <probe>0.136558502913 -0.134508982301 0.137013491243</probe>
+          <probe>0.0596194863319 -0.102058961987 0.244854506105</probe>
+          <probe>-0.153010487556 0.0120810121298 0.193526502699</probe>
+          <probe>-0.0603505074978 -0.0537690073252 0.21147948131</probe>
+          <probe>-0.0262545049191 -0.0776469856501 -0.0217035152018</probe>
+          <probe>-0.0114085078239 -0.0836219936609 -0.00912049785256</probe>
+          <probe>-0.00704750418663 -0.0906369835138 0.00365948304534</probe>
+          <probe>-0.0663805007935 -0.0597340017557 -0.00188950076699</probe>
+          <probe>-0.0482274889946 -0.0706510096788 0.0248115025461</probe>
+          <probe>-0.0577875077724 -0.065363958478 0.0217514894903</probe>
+          <probe>-0.0587354898453 -0.0676579624414 0.0357595048845</probe>
+          <probe>-0.13671952486 0.125954017043 -0.234903503209</probe>
+          <probe>-0.229520499706 0.0821690410376 0.0255075059831</probe>
+          <probe>-0.226759493351 0.141143009067 -0.0884145088494</probe>
+          <probe>-0.101024508476 -0.0355829745531 0.00906949862838</probe>
+          <probe>-0.0914165079594 -0.0395909696817 0.00103351101279</probe>
+          <probe>-0.0802915096283 -0.0436369925737 -0.0316714979708</probe>
+          <probe>-0.101344525814 -0.0326169878244 -0.00393149629235</probe>
+          <probe>-0.0968545079231 -0.0226040035486 -0.0499945022166</probe>
+          <probe>-0.0897105038166 -0.027492955327 -0.0624535121024</probe>
+          <probe>-0.0509184896946 -0.0517220050097 -0.0649515129626</probe>
+          <probe>0.18179449439 -0.101892009377 -0.11919650808</probe>
+          <probe>0.0676625072956 0.00366203486919 -0.242222506553</probe>
+          <probe>0.160942494869 -0.0687019973993 -0.195649508387</probe>
+          <probe>-0.0525295138359 -0.0386819988489 -0.0976055003703</probe>
+          <probe>-0.0461255013943 -0.0441159754992 -0.0815945006907</probe>
+          <probe>-0.040701508522 -0.0437759906054 -0.0927775092423</probe>
+          <probe>-0.00666451454163 -0.0701700001955 -0.0675874985754</probe>
+          <probe>-0.00786548852921 -0.0736159831285 -0.0562005080283</probe>
+          <probe>-0.000662505626678 -0.0967610031366 -0.00355151668191</probe>
+          <probe>0.156897500157 -0.141621991992 0.0248475037515</probe>
+          <probe>-0.221918523312 0.0528620332479 0.153270509094</probe>
+          <probe>-0.130477488041 0.00922600924969 -0.079504493624</probe>
+          <probe>-0.0975804924965 -0.0177349597216 -0.0616345144808</probe>
+          <probe>0.0186404883862 -0.0281989723444 -0.201778504997</probe>
+          <probe>-0.056699514389 0.0681960433722 -0.244854506105</probe>
+          <probe>0.00414848327637 -0.0763189941645 -0.0634055174887</probe>
+          <probe>0.229520499706 -0.128421977162 -0.0298914946616</probe>
+          <probe>-0.0224134922028 -0.0735359936953 -0.0190134979784</probe>
+          <probe>-0.0725395083427 -0.0480349808931 -0.00600150600076</probe>
+          <probe>-0.0750575065613 -0.0315799862146 -0.0589505173266</probe>
+          <probe>0.000344485044479 -0.0881179720163 -0.00387850776315</probe>
+          <probe>-0.183441519737 0.141621991992 -0.16924450174</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_02_joint</joint>
+          <link>hitch_disc_02</link>
+          <radius>0.27</radius>
+          <probe>-0.0352780222893 -0.0746434852481 0.0086629986763</probe>
+          <probe>-0.0154190063477 -0.0703724995255 -0.0345859825611</probe>
+          <probe>-0.00519901514053 -0.0870954915881 0.00617900490761</probe>
+          <probe>0.000573992729187 -0.0947484895587 0.0162070095539</probe>
+          <probe>-0.202096998692 0.0606965050101 -0.0137490034103</probe>
+          <probe>-0.166007041931 0.0218824967742 0.184612989426</probe>
+          <probe>-0.22146499157 0.0894495174289 0.041681021452</probe>
+          <probe>-0.0421960055828 -0.0746804997325 0.0470540225506</probe>
+          <probe>-0.0442750155926 -0.0698774978518 0.0347010195255</probe>
+          <probe>-0.0527420043945 -0.0666894987226 0.0433849990368</probe>
+          <probe>-0.0643430054188 -0.0572795048356 0.00607299804688</probe>
+          <probe>-0.156843006611 0.142409496009 -0.201342992485</probe>
+          <probe>-0.204397022724 0.122178517282 -0.0894729942083</probe>
+          <probe>-0.0892409980297 -0.0403624847531 0.0226989984512</probe>
+          <probe>-0.0851310193539 -0.0407414808869 0.0100720226765</probe>
+          <probe>-0.0953170061111 -0.0375064983964 0.00874599814415</probe>
+          <probe>-0.0695010125637 -0.0421264842153 -0.0212889909744</probe>
+          <probe>-0.0579810142517 -0.0453264787793 -0.0413610041142</probe>
+          <probe>-0.0837300121784 -0.0319804921746 -0.0392149984837</probe>
+          <probe>-0.0584959983826 -0.0419704988599 -0.0614619851112</probe>
+          <probe>-0.0342810153961 -0.0601244941354 -0.0482859909534</probe>
+          <probe>-0.038901001215 -0.0461725071073 -0.0689260065556</probe>
+          <probe>-0.0320620238781 -0.044824488461 -0.0808299928904</probe>
+          <probe>0.00552299618721 -0.0732124969363 -0.0560929775238</probe>
+          <probe>-0.000859022140503 -0.0786504969001 -0.0435819923878</probe>
+          <probe>0.03370398283 -0.123950488865 0.0358740091324</probe>
+          <probe>0.0117509961128 -0.0962044969201 0.244518995285</probe>
+          <probe>0.16865798831 -0.142409496009 0.0366970002651</probe>
+          <probe>0.119034975767 -0.127411492169 0.175615996122</probe>
+          <probe>-0.0651620030403 -0.0618294849992 0.21461802721</probe>
+          <probe>-0.0915870070457 -0.0206954851747 -0.046638995409</probe>
+          <probe>-0.050783008337 0.0584134981036 -0.229186989367</probe>
+          <probe>0.0390419960022 0.0061265155673 -0.244518995285</probe>
+          <probe>0.169146984816 -0.0314675047994 -0.231881991029</probe>
+          <probe>0.22146499157 -0.11731749028 -0.0803209990263</probe>
+          <probe>0.0123199820518 -0.0787024870515 -0.0474849939346</probe>
+          <probe>-0.0444460213184 -0.0648374930024 0.01783400774</probe>
+          <probe>0.00108897686005 -0.0886824950576 0.0173639953136</probe>
+          <probe>-0.0978270173073 -0.0330504849553 0.0114810168743</probe>
+          <probe>-0.0885170102119 -0.0212474837899 -0.0377449989319</probe>
+          <probe>-0.0776310265064 -0.0276464894414 -0.0422269999981</probe>
+          <probe>-0.0426160097122 -0.0377515032887 -0.075531989336</probe>
+          <probe>0.000129997730255 -0.0718674883246 -0.0445309877396</probe>
+          <probe>0.00820198655128 -0.0882134959102 0.0042240023613</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_03_joint</joint>
+          <link>hitch_disc_03</link>
+          <radius>0.27</radius>
+          <probe>-0.0325004905462 -0.0668790005147 0.162539996207</probe>
+          <probe>0.168652519584 -0.128948003054 0.135741002858</probe>
+          <probe>0.0917135030031 -0.0964980050921 0.243579991162</probe>
+          <probe>-0.121035501361 0.0161989983171 0.191452987492</probe>
+          <probe>-0.0300704985857 -0.0535620003939 0.205245025456</probe>
+          <probe>0.00367651879787 -0.0706600025296 -0.0156640037894</probe>
+          <probe>0.0176355093718 -0.0806419998407 -0.00876098126173</probe>
+          <probe>0.0254095047712 -0.088927000761 0.00189200788736</probe>
+          <probe>-0.0184254795313 -0.066579002887 0.0328020229936</probe>
+          <probe>-0.0205044895411 -0.0617760010064 0.0204490199685</probe>
+          <probe>-0.0299804955721 -0.0612160004675 0.0240730121732</probe>
+          <probe>-0.035285487771 -0.0503570027649 -0.00552400201559</probe>
+          <probe>-0.104625508189 0.131515003741 -0.236175991595</probe>
+          <probe>-0.200909480453 0.0931049957871 0.00345400720835</probe>
+          <probe>-0.167614504695 0.117771990597 -0.125933997333</probe>
+          <probe>-0.0684954971075 -0.0337550025433 0.00825501233339</probe>
+          <probe>-0.0608924776316 -0.0330510027707 -0.00326200574636</probe>
+          <probe>-0.0534574836493 -0.0289270021021 -0.0512469932437</probe>
+          <probe>-0.0709925144911 -0.0252120019868 -0.00310700386763</probe>
+          <probe>0.13944350183 -0.0850370004773 -0.141138993204</probe>
+          <probe>0.0924835056067 0.00239199772477 -0.242391988635</probe>
+          <probe>0.201799511909 -0.0796689987183 -0.146924994886</probe>
+          <probe>0.0111825019121 -0.0646600015461 -0.0604270026088</probe>
+          <probe>-0.021683499217 -0.0337360017002 -0.0935029909015</probe>
+          <probe>-0.0151304751635 -0.0380710028112 -0.0831780061126</probe>
+          <probe>0.207617506385 -0.131515003741 0.00827399641275</probe>
+          <probe>-0.009516492486 -0.0405810028315 -0.0944879874587</probe>
+          <probe>0.0298675149679 -0.0870620012283 -0.00875099748373</probe>
+          <probe>-0.207617506385 0.0859920009971 0.133915998042</probe>
+          <probe>-0.0682924836874 -0.0134220020846 -0.0613090023398</probe>
+          <probe>-0.0272844880819 0.0682870000601 -0.243579991162</probe>
+          <probe>-0.0579074770212 -0.0178850023076 -0.064151994884</probe>
+          <probe>0.0219565182924 -0.0648690015078 -0.062983982265</probe>
+          <probe>0.0345375090837 -0.0676580034196 -0.0691369995475</probe>
+          <probe>-0.0101224929094 -0.060941003263 -0.00314199179411</probe>
+          <probe>0.0200204998255 -0.0756930038333 -0.00502397865057</probe>
+          <probe>0.0248595029116 -0.0805810019374 0.00311199575663</probe>
+          <probe>-0.0272254794836 -0.0569420009851 0.0321640148759</probe>
+          <probe>-0.0459004789591 -0.0344610027969 -0.0250700041652</probe>
+          <probe>-0.0619484931231 -0.0307730026543 0.00762099772692</probe>
+          <probe>-0.0131784826517 -0.0425710007548 -0.0665039941669</probe>
+          <probe>-0.061410471797 -0.0164980022237 -0.0494089946151</probe>
+          <probe>-0.00733847916126 -0.0343340020627 -0.0950129851699</probe>
+          <probe>0.0260135084391 -0.0744680017233 -0.0247879847884</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_04_joint</joint>
+          <link>hitch_disc_04</link>
+          <radius>0.27</radius>
+          <probe>-0.0647495016456 -0.0349639877677 0.237251996994</probe>
+          <probe>0.129578508437 -0.130663000047 0.146403998137</probe>
+          <probe>0.0518624857068 -0.102468989789 0.249529004097</probe>
+          <probe>-0.0551294907928 -0.0543279871345 0.0167079865932</probe>
+          <probe>-0.00804751366377 -0.0749950036407 0.0164900124073</probe>
+          <probe>0.00258750468493 -0.0802049860358 0.0161469876766</probe>
+          <probe>-0.0183494910598 -0.059438996017 -0.0320889949799</probe>
+          <probe>-0.0457664951682 -0.0619829818606 0.0489700138569</probe>
+          <probe>-0.047845505178 -0.0571800097823 0.0366170108318</probe>
+          <probe>-0.0563124939799 -0.0539919957519 0.0453009903431</probe>
+          <probe>-0.182387523353 0.0949540063739 -0.100020006299</probe>
+          <probe>-0.224345497787 0.0935320034623 0.0413109958172</probe>
+          <probe>-0.193801514804 0.130663000047 -0.112790003419</probe>
+          <probe>-0.0945755168796 -0.0271609947085 0.0243520140648</probe>
+          <probe>-0.0898845121264 -0.0309460088611 0.0125750005245</probe>
+          <probe>-0.0745375081897 -0.0287659987807 -0.029206007719</probe>
+          <probe>-0.0988874956965 -0.0248089954257 0.0106619894505</probe>
+          <probe>-0.0873005017638 -0.0192829892039 -0.0372990071774</probe>
+          <probe>-0.0902284905314 -0.00939699262381 -0.0491639971733</probe>
+          <probe>-0.0482745096087 -0.0280559882522 -0.0711179971695</probe>
+          <probe>-0.0429825112224 -0.0364729985595 -0.0683510005474</probe>
+          <probe>0.1643274948 -0.129950992763 0.0347520112991</probe>
+          <probe>0.162397496402 -0.0216309949756 -0.227549001575</probe>
+          <probe>0.224345497787 -0.103197984397 -0.0766949951649</probe>
+          <probe>-0.037590496242 -0.0345919951797 -0.0807760059834</probe>
+          <probe>0.00068349391222 -0.0645449981093 -0.0557659864426</probe>
+          <probe>-0.0044295117259 -0.0659530088305 -0.0416660010815</probe>
+          <probe>-0.00105150789022 -0.0790660008788 0.00333699584007</probe>
+          <probe>-0.206457488239 0.0488760098815 0.170388013124</probe>
+          <probe>-0.147116474807 0.012707002461 0.204861998558</probe>
+          <probe>-0.0968534871936 -0.0098909959197 -0.0405789911747</probe>
+          <probe>-0.0729784891009 0.0920060053468 -0.22176899761</probe>
+          <probe>0.0321844890714 0.0320290103555 -0.249529004097</probe>
+          <probe>0.00618950277567 -0.0707179829478 -0.0470040142536</probe>
+          <probe>-0.033151499927 -0.0577599927783 0.00963199138641</probe>
+          <probe>-0.00573151558638 -0.0709289833903 0.00620698928833</probe>
+          <probe>-0.0827385112643 -0.0278910025954 0.00941300392151</probe>
+          <probe>-0.0972704812884 -0.0188310071826 0.0155709981918</probe>
+          <probe>-0.0759724900126 -0.0197199806571 -0.0361880064011</probe>
+          <probe>-0.0344844982028 -0.03303899616 -0.070858001709</probe>
+          <probe>0.00640849024057 -0.0622399970889 -0.0561429858208</probe>
+          <probe>-0.00344049185514 -0.0591700002551 -0.0426149964333</probe>
+          <probe>0.00990549474955 -0.0677280053496 -0.0458210110664</probe>
+          <probe>-0.0407664999366 -0.0308069810271 -0.0864199995995</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_05_joint</joint>
+          <link>hitch_disc_05</link>
+          <radius>0.27</radius>
+          <probe>-0.0185745209455 -0.0676575303078 0.184997014701</probe>
+          <probe>0.158587500453 -0.128002524376 0.130895011127</probe>
+          <probe>0.0817424803972 -0.0958095192909 0.23853700608</probe>
+          <probe>-0.171878501773 0.0534374713898 0.149386994541</probe>
+          <probe>-0.0980105251074 0.00589346885681 0.250683002174</probe>
+          <probe>-0.0442575067282 -0.0534855127335 -0.00820700079203</probe>
+          <probe>-0.0274025052786 -0.0704445242882 0.0228289887309</probe>
+          <probe>-0.0356575101614 -0.0583205223083 0.0158300027251</probe>
+          <probe>-0.0154595226049 -0.0680205225945 -0.0158259943128</probe>
+          <probe>-0.0406135171652 -0.0640355348587 0.0282419845462</probe>
+          <probe>-0.114596530795 0.132202506065 -0.241221003234</probe>
+          <probe>-0.20764349401 0.0973905026913 0.0223230049014</probe>
+          <probe>-0.178035482764 0.119946479797 -0.130111001432</probe>
+          <probe>-0.0779124945402 -0.0303385257721 0.00294800847769</probe>
+          <probe>-0.0698135048151 -0.0322505235672 -0.00837201625109</probe>
+          <probe>-0.0805495232344 -0.0382325053215 -0.0149059966207</probe>
+          <probe>-0.0704955011606 -0.0189405083656 -0.0564020052552</probe>
+          <probe>-0.0666465014219 -0.0192195177078 -0.0679760053754</probe>
+          <probe>-0.0413725227118 -0.0400865077972 -0.0642440095544</probe>
+          <probe>0.20764349401 -0.0942915081978 -0.125179000199</probe>
+          <probe>0.0897855013609 0.00991052389145 -0.248540006578</probe>
+          <probe>0.178827494383 -0.0704784989357 -0.193457998335</probe>
+          <probe>-0.0300454944372 -0.0301275253296 -0.0969090089202</probe>
+          <probe>-0.0234455019236 -0.0378264784813 -0.0880639925599</probe>
+          <probe>-0.00392951071262 -0.0638625025749 -0.0559989884496</probe>
+          <probe>-0.0191835016012 -0.0361714959145 -0.100707001984</probe>
+          <probe>0.0136355012655 -0.0632665157318 -0.0718770101666</probe>
+          <probe>0.0178035050631 -0.069173514843 -0.0612160041928</probe>
+          <probe>0.0142834931612 -0.078452527523 -0.0173980072141</probe>
+          <probe>0.0100904852152 -0.0799565315247 -0.00382298976183</probe>
+          <probe>0.194628491998 -0.132202506065 0.00317599624395</probe>
+          <probe>0.0206664949656 -0.0838634967804 -0.00699601322412</probe>
+          <probe>0.00400449335575 -0.0162345170975 -0.197242997587</probe>
+          <probe>-0.0776955336332 -0.0112085342407 -0.0643799975514</probe>
+          <probe>-0.0349175184965 0.0720404982567 -0.250683002174</probe>
+          <probe>0.0254894942045 -0.0695225000381 -0.0720090046525</probe>
+          <probe>-0.0260685235262 -0.0585554838181 -0.0023869946599</probe>
+          <probe>-0.0558415204287 -0.0309154987335 -0.0413189902902</probe>
+          <probe>-0.0803605169058 -0.0231584906578 -0.00548199564219</probe>
+          <probe>-0.0229424983263 -0.04283452034 -0.0678139999509</probe>
+          <probe>-0.00126950442791 -0.0613415241241 -0.04512501508</probe>
+          <probe>-0.019316509366 -0.0581225156784 0.199770025909</probe>
+          <probe>0.0793045014143 -0.113211512566 0.0520889982581</probe>
+          <probe>-0.0627015084028 -0.0458465218544 0.0836409851909</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_06_joint</joint>
+          <link>hitch_disc_06</link>
+          <radius>0.27</radius>
+          <probe>-0.0598635002971 -0.0719164907932 0.170867998153</probe>
+          <probe>0.141287513077 -0.133983522654 0.144067991525</probe>
+          <probe>0.0643495097756 -0.10153350234 0.251909006387</probe>
+          <probe>-0.203612469137 0.0595635473728 0.17042599991</probe>
+          <probe>-0.0557824894786 -0.0539534986019 0.217971015722</probe>
+          <probe>-0.147997520864 0.0143055021763 0.201731014997</probe>
+          <probe>-0.0215254947543 -0.0771224796772 -0.01464901492</probe>
+          <probe>-0.00879349559546 -0.0840304791927 0.000253994017839</probe>
+          <probe>-0.000226490199566 -0.090209454298 0.0105849988759</probe>
+          <probe>-0.0616514906287 -0.0592094957829 0.00516499951482</probe>
+          <probe>-0.043925486505 -0.0708484947681 0.0388559885323</probe>
+          <probe>-0.0503624901175 -0.06967446208 0.0281180031598</probe>
+          <probe>-0.0567004904151 -0.0647355020046 0.0400000102818</probe>
+          <probe>-0.180331490934 0.0567065179348 -0.0786099992692</probe>
+          <probe>-0.224321506917 0.0824625194073 0.0328990109265</probe>
+          <probe>-0.222030483186 0.141667515039 -0.0813600085676</probe>
+          <probe>-0.0968985185027 -0.0343354642391 0.0157369859517</probe>
+          <probe>-0.0872854813933 -0.0398304760456 0.00863699987531</probe>
+          <probe>-0.0764364823699 -0.0366834700108 -0.0443000011146</probe>
+          <probe>-0.0934304818511 -0.0333214700222 0.00140898302197</probe>
+          <probe>-0.0461894795299 -0.0511974990368 -0.0578970126808</probe>
+          <probe>-0.0834585055709 -0.0254494845867 -0.0537540130317</probe>
+          <probe>-0.0475664958358 -0.0375944674015 -0.0859419964254</probe>
+          <probe>-0.0413964912295 -0.0435914695263 -0.0745400004089</probe>
+          <probe>0.133003510535 -0.138559490442 0.0176499970257</probe>
+          <probe>0.177358500659 -0.057399481535 -0.189522009343</probe>
+          <probe>0.224321506917 -0.112830489874 -0.0845359973609</probe>
+          <probe>-0.0359724983573 -0.0432514846325 -0.0857230089605</probe>
+          <probe>0.00408650189638 -0.0730064809322 -0.0640580169857</probe>
+          <probe>-0.0046074911952 -0.0714364945889 -0.0513329915702</probe>
+          <probe>0.0084435120225 -0.0761514604092 -0.0523980073631</probe>
+          <probe>0.000831492245197 -0.0886154472828 -0.00324599072337</probe>
+          <probe>0.159673504531 -0.141991525888 0.0304050035775</probe>
+          <probe>-0.179596506059 0.141991525888 -0.165324997157</probe>
+          <probe>-0.117328487337 0.134865552187 -0.233673002571</probe>
+          <probe>-0.0588245019317 0.0597675144672 -0.231837000698</probe>
+          <probe>-0.0945174917579 -0.0171684920788 -0.0526760034263</probe>
+          <probe>0.0346615090966 0.0121594965458 -0.251909006387</probe>
+          <probe>0.113796509802 -0.0123274624348 -0.237201999873</probe>
+          <probe>-0.0434625074267 -0.0642794668674 0.0109850056469</probe>
+          <probe>-0.0465814992785 -0.0650044977665 0.0290909893811</probe>
+          <probe>-0.0642014965415 -0.0361934602261 -0.0507120005786</probe>
+          <probe>-0.0908584818244 -0.0196674764156 -0.0420079939067</probe>
+          <probe>-0.0186634883285 -0.0670654475689 -0.0317530147731</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_07_joint</joint>
+          <link>hitch_disc_07</link>
+          <radius>0.27</radius>
+          <probe>-0.00829600542784 -0.0869890451431 0.00913898646832</probe>
+          <probe>-0.0221919938922 -0.0850700139999 0.0311100035906</probe>
+          <probe>-0.0329260155559 -0.0834159851074 0.0436470061541</probe>
+          <probe>-0.144868008792 0.050400018692 -0.103348001838</probe>
+          <probe>-0.199214987457 0.0776349306107 0.0388359874487</probe>
+          <probe>-0.208425991237 0.14907002449 -0.0819310098886</probe>
+          <probe>-0.068993024528 -0.0488879680634 0.0199149996042</probe>
+          <probe>-0.0616159960628 -0.0523570775986 0.00861398875713</probe>
+          <probe>-0.0495099946856 -0.0570690631866 -0.0223030000925</probe>
+          <probe>-0.0739089772105 -0.045961022377 0.00792898237705</probe>
+          <probe>-0.0655200108886 -0.0403790473938 -0.0408089905977</probe>
+          <probe>-0.0591590031981 -0.0410000085831 -0.0522590130568</probe>
+          <probe>-0.0325510129333 -0.0568640232086 -0.0464420169592</probe>
+          <probe>-0.0226550027728 -0.0564720630646 -0.074211999774</probe>
+          <probe>-0.00941099971533 -0.0588120222092 -0.0777440071106</probe>
+          <probe>-0.00588601082563 -0.0755389928818 -0.047449991107</probe>
+          <probe>0.0291419997811 -0.0879759788513 -0.060127004981</probe>
+          <probe>0.0209780111909 -0.0853999853134 -0.04848100245</probe>
+          <probe>0.0339419916272 -0.0922800302505 -0.0496339946985</probe>
+          <probe>0.0234910026193 -0.102172017097 -0.00132800638676</probe>
+          <probe>0.0160380080342 -0.101184010506 0.0107320100069</probe>
+          <probe>0.059533007443 -0.13134598732 0.0944610089064</probe>
+          <probe>0.208425991237 -0.14907002449 0.0213329941034</probe>
+          <probe>0.140234984457 -0.138841986656 0.172438010573</probe>
+          <probe>0.00612501055002 -0.0884740352631 0.218535020947</probe>
+          <probe>0.028184004128 -0.109616994858 0.0102780014277</probe>
+          <probe>-0.022422991693 -0.0823149681091 0.0460209995508</probe>
+          <probe>-0.0931749865413 -0.0286070108414 0.230635002255</probe>
+          <probe>-0.186897985637 0.0390499830246 0.167583987117</probe>
+          <probe>-0.152631990612 0.0813649892807 -0.135964006186</probe>
+          <probe>-0.0471799895167 0.0683419704437 -0.226470001042</probe>
+          <probe>-0.0671849772334 -0.0309920310974 -0.0512760132551</probe>
+          <probe>0.090907998383 -0.0176290273666 -0.230635002255</probe>
+          <probe>-0.0172350034118 -0.0532519817352 -0.0859830081463</probe>
+          <probe>0.196456991136 -0.10090303421 -0.135458007455</probe>
+          <probe>0.0220039859414 -0.0962520837784 -0.000444009900093</probe>
+          <probe>0.0216539874673 -0.098895072937 0.0139529854059</probe>
+          <probe>-0.0158919915557 -0.0827250480652 0.0392419844866</probe>
+          <probe>-0.0276589915156 -0.0753580331802 0.0339329987764</probe>
+          <probe>-0.0474840030074 -0.0557149648666 -0.00527401268482</probe>
+          <probe>-0.0639820024371 -0.034481048584 -0.0388290137053</probe>
+          <probe>-0.0562429949641 -0.0379010438919 -0.0451069921255</probe>
+          <probe>-0.0198230072856 -0.054123044014 -0.0670389980078</probe>
+          <probe>0.0322130098939 -0.0876979827881 -0.0460229963064</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_08_joint</joint>
+          <link>hitch_disc_08</link>
+          <radius>0.27</radius>
+          <probe>-0.105581462383 0.0524049401283 0.155605513602</probe>
+          <probe>-0.209800541401 -0.0619930624962 0.137043524534</probe>
+          <probe>-0.143497526646 -0.0115410685539 0.24468748644</probe>
+          <probe>0.0484204888344 0.124014914036 0.200336504728</probe>
+          <probe>-0.045838534832 0.0766009688377 0.202603507787</probe>
+          <probe>-0.0573955178261 0.0697409510612 0.00227450206876</probe>
+          <probe>-0.0941085219383 0.0432569384575 -0.0094224922359</probe>
+          <probe>-0.0941634774208 0.0420849919319 0.00265051797032</probe>
+          <probe>-0.0628655552864 0.0674869418144 0.0326235182583</probe>
+          <probe>-0.0582224726677 0.0686779618263 0.0217465050519</probe>
+          <probe>-0.0500585436821 0.0742499232292 0.0298225171864</probe>
+          <probe>0.152135550976 0.044488966465 -0.235072489828</probe>
+          <probe>0.168326556683 0.142656981945 0.0283545143902</probe>
+          <probe>0.234981477261 0.114736020565 -0.0922954939306</probe>
+          <probe>-0.0210254788399 0.0744100213051 -0.0479344837368</probe>
+          <probe>-0.0148745179176 0.0894560217857 0.00213151052594</probe>
+          <probe>-0.000406444072723 0.0933169722557 -0.00235448405147</probe>
+          <probe>0.00802654027939 0.0920339226723 -0.0561514906585</probe>
+          <probe>-0.00511449575424 0.0827159285545 -0.0542594902217</probe>
+          <probe>0.000668466091156 0.0825229287148 -0.0652164928615</probe>
+          <probe>-0.0353725552559 0.0589889883995 -0.0797524861991</probe>
+          <probe>-0.0812614560127 0.03117197752 -0.0657284967601</probe>
+          <probe>-0.0888485312462 0.0336440205574 -0.0561064891517</probe>
+          <probe>-0.0788565278053 0.043644964695 -0.0293244831264</probe>
+          <probe>-0.104321539402 0.0356909632683 -0.00501949712634</probe>
+          <probe>-0.226785480976 -0.0795890688896 0.0234955139458</probe>
+          <probe>0.115808546543 0.133832991123 0.155148524791</probe>
+          <probe>-0.00313955545425 0.097707927227 0.00506450608373</probe>
+          <probe>-0.0105774998665 0.00462192296982 -0.223385486752</probe>
+          <probe>0.0617645382881 0.00469499826431 -0.24468748644</probe>
+          <probe>-0.154114544392 -0.0653830170631 -0.158814486116</probe>
+          <probe>-0.0559654831886 -0.0713639855385 -0.242390487343</probe>
+          <probe>-0.032323539257 0.0493569970131 -0.0946624837816</probe>
+          <probe>-0.0457184910774 0.0471139550209 -0.0936124883592</probe>
+          <probe>-0.0926055312157 0.0240349173546 -0.065860491246</probe>
+          <probe>-0.234981477261 -0.142656981945 -0.0909114889801</probe>
+          <probe>-0.00561147928238 0.080403983593 -0.040069501847</probe>
+          <probe>0.155817449093 0.100977957249 -0.135874491185</probe>
+          <probe>-0.00813752412796 0.0895230174065 0.0092605240643</probe>
+          <probe>0.00400453805923 0.077753007412 -0.06387649104</probe>
+          <probe>-0.0392765402794 0.0489400029182 -0.0807874910533</probe>
+          <probe>-0.0882495045662 0.0269770026207 -0.054400485009</probe>
+          <probe>-0.0954465270042 0.0345459580421 -0.0103024952114</probe>
+          <probe>-0.159745514393 -0.138122975826 -0.199279483408</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_09_joint</joint>
+          <link>hitch_disc_09</link>
+          <radius>0.27</radius>
+          <probe>-0.175341546535 -0.0682390034199 0.148991528898</probe>
+          <probe>-0.13190048933 -0.0415399968624 0.230430487543</probe>
+          <probe>-0.0281755328178 0.0543679893017 0.219420496374</probe>
+          <probe>-0.0138095021248 0.0649310052395 0.022551510483</probe>
+          <probe>-0.0602214932442 0.0323889553547 0.000989500433207</probe>
+          <probe>-0.0568554997444 0.0364190042019 0.0111715234816</probe>
+          <probe>0.00541645288467 0.0774839818478 0.00410950556397</probe>
+          <probe>-0.0284344553947 0.0605239570141 0.0429705120623</probe>
+          <probe>-0.0206995606422 0.0676479637623 0.0326635278761</probe>
+          <probe>0.144203484058 0.0927939713001 -0.123426478356</probe>
+          <probe>0.200476467609 0.137721031904 0.0401095189154</probe>
+          <probe>0.213767468929 0.0937499701977 -0.11591648683</probe>
+          <probe>0.0197594761848 0.0825599730015 0.0146815218031</probe>
+          <probe>0.0323575139046 0.0863979756832 0.0082245208323</probe>
+          <probe>0.0409315228462 0.080913990736 -0.0403474830091</probe>
+          <probe>0.0297715067863 0.0724679529667 -0.0442974828184</probe>
+          <probe>-0.0102724432945 0.0528909862041 -0.0527164898813</probe>
+          <probe>0.0369334816933 0.0740209519863 -0.0524434708059</probe>
+          <probe>0.00364655256271 0.0459260046482 -0.0794774852693</probe>
+          <probe>-0.00633245706558 0.044576972723 -0.0699224732816</probe>
+          <probe>-0.213767468929 -0.124950021505 -0.0273904763162</probe>
+          <probe>-0.127322494984 -0.137721031904 -0.184796478599</probe>
+          <probe>-0.172850549221 -0.132675021887 -0.105778481811</probe>
+          <probe>-0.00987046957016 0.042761951685 -0.0840974859893</probe>
+          <probe>-0.0420615077019 0.0421330034733 -0.0238584838808</probe>
+          <probe>-0.0468024611473 0.0246249735355 -0.0541614852846</probe>
+          <probe>-0.0540015101433 0.0242699682713 -0.0431194864213</probe>
+          <probe>-0.0690684914589 0.0288839638233 0.0107655264437</probe>
+          <probe>-0.0860654711723 0.0321319997311 0.087085518986</probe>
+          <probe>-0.192282497883 -0.0866740047932 0.0352355279028</probe>
+          <probe>0.0364175438881 0.102407962084 0.0840725041926</probe>
+          <probe>0.0970694422722 0.107237964869 0.207461539656</probe>
+          <probe>-0.0172755122185 0.068039983511 0.0447665192187</probe>
+          <probe>0.183729469776 0.128614991903 0.184747520834</probe>
+          <probe>0.0310965180397 0.093062967062 0.0198355056345</probe>
+          <probe>0.18652755022 0.0213519632816 -0.228948485106</probe>
+          <probe>0.0816984772682 0.00830498337746 -0.227780487388</probe>
+          <probe>-0.0224594473839 -0.0738110244274 -0.230430487543</probe>
+          <probe>-0.0583035349846 0.0179679691792 -0.0537974797189</probe>
+          <probe>0.0112355351448 0.061742991209 -0.0399514995515</probe>
+          <probe>-0.0234155058861 0.0403169691563 -0.044513490051</probe>
+          <probe>-0.0410105586052 0.039068967104 -0.0115204714239</probe>
+          <probe>-0.0283295512199 0.0541709959507 0.216101530939</probe>
+          <probe>0.107836544514 0.106593996286 -0.0209334753454</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_10_joint</joint>
+          <link>hitch_disc_10</link>
+          <radius>0.27</radius>
+          <probe>-0.0564554929733 0.0582359880209 0.200933508575</probe>
+          <probe>-0.19377052784 -0.0681939870119 0.158319525421</probe>
+          <probe>-0.149914503098 -0.0348590165377 0.24342148751</probe>
+          <probe>0.078640460968 0.107282981277 0.216789536178</probe>
+          <probe>-0.0441144704819 0.0598680227995 0.223074488342</probe>
+          <probe>-0.0578835010529 0.0462279766798 0.00543152540922</probe>
+          <probe>-0.0780785083771 0.0370560139418 0.0118535086513</probe>
+          <probe>-0.0859265327454 0.0366819947958 0.0253724977374</probe>
+          <probe>0.129956483841 0.0964010208845 -0.106340490282</probe>
+          <probe>0.192043542862 0.141575977206 0.0241874977946</probe>
+          <probe>0.226339459419 0.108670994639 -0.0673074945807</probe>
+          <probe>-0.00722050666809 0.0682940334082 -0.0350724831223</probe>
+          <probe>-0.0410424470901 0.0646509975195 0.0331955179572</probe>
+          <probe>0.00133156776428 0.0830079764128 0.0234045013785</probe>
+          <probe>0.0124914646149 0.086094006896 0.016858510673</probe>
+          <probe>0.0205135345459 0.0805030316114 -0.0299414768815</probe>
+          <probe>0.0112195014954 0.0726730078459 -0.0351144745946</probe>
+          <probe>0.0218914747238 0.0758269876242 -0.0424964800477</probe>
+          <probe>-0.196236491203 -0.123991981149 -0.0926404818892</probe>
+          <probe>-0.0732244253159 -0.0794490128756 -0.213436491787</probe>
+          <probe>-0.144223451614 -0.143405005336 -0.179607488215</probe>
+          <probe>-0.0154144763947 0.0478460043669 -0.0659824833274</probe>
+          <probe>-0.0258294343948 0.0447439998388 -0.0613894835114</probe>
+          <probe>-0.0252834558487 0.0410690158606 -0.0744014903903</probe>
+          <probe>-0.0853924751282 0.0324770063162 0.0162765011191</probe>
+          <probe>-0.0650284290314 0.0258890241385 -0.0439664795995</probe>
+          <probe>-0.0743005275726 0.0223799794912 -0.0341844931245</probe>
+          <probe>-0.226339459419 -0.110405996442 0.0781565234065</probe>
+          <probe>-0.0449244976044 0.0624499768019 0.0563265010715</probe>
+          <probe>-0.0368994474411 0.068064019084 0.0497015044093</probe>
+          <probe>0.180585503578 0.143405005336 0.0895195230842</probe>
+          <probe>0.165300488472 0.128660008311 0.194075517356</probe>
+          <probe>0.0119144916534 0.0896780341864 0.0289454981685</probe>
+          <probe>0.0735365152359 0.00838099420071 -0.217790491879</probe>
+          <probe>0.208864569664 0.0506940335035 -0.196129485965</probe>
+          <probe>-0.00559544563293 -0.0568490177393 -0.24342148751</probe>
+          <probe>-0.0771495103836 0.0205330103636 -0.0467944815755</probe>
+          <probe>-0.0612714290619 0.0445490330458 0.0253425166011</probe>
+          <probe>-0.0254434347153 0.0655270069838 0.022635512054</probe>
+          <probe>-0.00482952594757 0.0639880150557 -0.0270044878125</probe>
+          <probe>-0.0501195192337 0.0367020219564 -0.0315314903855</probe>
+          <probe>-0.0806934833527 0.0287880152464 0.0107934996486</probe>
+          <probe>-0.225418448448 -0.122870996594 -0.00652847439051</probe>
+          <probe>-0.074693441391 0.0155100077391 -0.0427194908261</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_11_joint</joint>
+          <link>hitch_disc_11</link>
+          <radius>0.27</radius>
+          <probe>-0.0776764750481 0.0534470155835 0.0443260148168</probe>
+          <probe>-0.194792568684 -0.0775310024619 0.136636026204</probe>
+          <probe>-0.128489553928 -0.0270790085196 0.24427998811</probe>
+          <probe>-0.0475015044212 0.0499770119786 0.00454000383615</probe>
+          <probe>-0.0796725153923 0.023096986115 -0.0113660022616</probe>
+          <probe>-0.025942504406 0.0616569891572 -0.00502698868513</probe>
+          <probe>-0.0398665070534 0.0563109889627 0.0202789977193</probe>
+          <probe>-0.00720447301865 0.0652029886842 -0.0331699773669</probe>
+          <probe>0.00125342607498 0.0742160156369 0.00510800629854</probe>
+          <probe>0.00865548849106 0.0754959955812 -0.00603597611189</probe>
+          <probe>0.0217944979668 0.0735040083528 -0.0547819957137</probe>
+          <probe>0.0108484625816 0.063479013741 -0.0538739785552</probe>
+          <probe>0.0174824595451 0.0647290125489 -0.0647989735007</probe>
+          <probe>-0.019803583622 0.0478420034051 -0.0593789741397</probe>
+          <probe>-0.0207754969597 0.0412490144372 -0.0847769901156</probe>
+          <probe>-0.0305234789848 0.0341020002961 -0.0886399820447</probe>
+          <probe>-0.0414075255394 0.0343009904027 -0.0585589930415</probe>
+          <probe>-0.0615804791451 0.033046014607 -0.0353819951415</probe>
+          <probe>-0.0675454735756 0.0197100117803 -0.0645909830928</probe>
+          <probe>-0.0753225684166 0.0130429938436 -0.0558679923415</probe>
+          <probe>-0.0908464789391 0.0207130089402 -0.00231697410345</probe>
+          <probe>-0.216646492481 -0.116379000247 0.0134840086102</probe>
+          <probe>0.141037523746 0.135129995644 0.158015020192</probe>
+          <probe>0.0241224169731 0.0851390138268 0.214053995907</probe>
+          <probe>0.0147984623909 0.0787859931588 0.0028670206666</probe>
+          <probe>0.216646492481 0.104334004223 -0.0913959816098</probe>
+          <probe>0.181100428104 0.128232993186 0.0277929976583</probe>
+          <probe>0.0598464608192 -0.00174998492002 -0.24427998811</probe>
+          <probe>0.207843482494 0.0413569882512 -0.217812985182</probe>
+          <probe>-0.0224404931068 0.0312889888883 -0.0965219810605</probe>
+          <probe>-0.0600325465202 -0.0983579978347 -0.24372998625</probe>
+          <probe>-0.196863472462 -0.135129995644 -0.114453993738</probe>
+          <probe>-0.0781715512276 0.0111959949136 -0.0684779807925</probe>
+          <probe>-0.0464535355568 0.0491069927812 0.0315090194345</probe>
+          <probe>-0.0119364857674 0.0628289952874 -0.00626798719168</probe>
+          <probe>-0.0336784720421 0.056447006762 0.0304370000958</probe>
+          <probe>-0.0160874724388 0.0366109982133 -0.0846719965339</probe>
+          <probe>-0.0270195603371 0.0304609909654 -0.084500990808</probe>
+          <probe>-0.0694934725761 0.0272669866681 -0.0101399943233</probe>
+          <probe>-0.06452947855 0.0138779953122 -0.0652999803424</probe>
+          <probe>-0.168007552624 -0.0812230035663 -0.108338989317</probe>
+          <probe>0.0244044661522 0.0675200000405 -0.0553409978747</probe>
+          <probe>0.0423354506493 0.0296120122075 -0.170269988477</probe>
+          <probe>-0.0752695202827 0.00607398897409 -0.0655669793487</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_12_joint</joint>
+          <link>hitch_disc_12</link>
+          <radius>0.27</radius>
+          <probe>-0.0582854747772 0.0450670011342 0.212193029001</probe>
+          <probe>-0.199127554893 -0.0781879983842 0.158091025427</probe>
+          <probe>-0.132824540138 -0.0277359969914 0.265734987333</probe>
+          <probe>0.0655335187912 0.102563004941 0.210915999487</probe>
+          <probe>-0.032061457634 0.0528450012207 0.231358008459</probe>
+          <probe>-0.0318324565887 0.0586210004985 0.0206230152398</probe>
+          <probe>-0.0521645545959 0.0505270026624 0.0519640017301</probe>
+          <probe>-0.0442014932632 0.0556540004909 0.0417339969426</probe>
+          <probe>0.116143465042 0.08273300156 -0.11529998295</probe>
+          <probe>0.17337846756 0.129021998495 0.048442022875</probe>
+          <probe>0.220981478691 0.0986770056188 -0.0675369929522</probe>
+          <probe>-0.00761449337006 0.0728660039604 0.0138950217515</probe>
+          <probe>0.017485499382 0.070207003504 -0.0309699904174</probe>
+          <probe>0.00598549842834 0.0625190027058 -0.0351979862899</probe>
+          <probe>0.0123535394669 0.0657790005207 -0.0440749954432</probe>
+          <probe>-0.0694555044174 0.02216800116 -0.0408550035208</probe>
+          <probe>-0.022700548172 0.0383240021765 -0.063251985237</probe>
+          <probe>-0.0334534645081 0.0315810013562 -0.0653919856995</probe>
+          <probe>-0.17106449604 -0.129021998495 -0.147679982707</probe>
+          <probe>-0.194485545158 -0.127258997411 -0.0981759857386</probe>
+          <probe>-0.220981478691 -0.117035996169 0.0349390078336</probe>
+          <probe>-0.0552995204926 0.0301410015672 -0.0331480037421</probe>
+          <probe>-0.0796575546265 0.0123860021122 -0.0344129931182</probe>
+          <probe>-0.10985147953 0.0221820026636 0.0961859989911</probe>
+          <probe>-0.0750935077667 0.0320160016418 0.01034601219</probe>
+          <probe>-0.0936405658722 0.0250630024821 0.0247360039502</probe>
+          <probe>0.0069944858551 0.088249001652 0.028169022873</probe>
+          <probe>-0.0414844751358 0.0587800033391 0.0537790227681</probe>
+          <probe>0.159943461418 0.11866600439 0.193847017363</probe>
+          <probe>0.00713443756104 0.0761000029743 0.0166300106794</probe>
+          <probe>0.169796466827 0.0799730010331 -0.136018989608</probe>
+          <probe>0.0951194763184 -0.000737998168916 -0.215785985813</probe>
+          <probe>-0.0468945503235 -0.0386159978807 -0.190075991675</probe>
+          <probe>-0.0267754793167 0.0306320022792 -0.0750669818372</probe>
+          <probe>-0.0651165246964 -0.0759299956262 -0.207565991208</probe>
+          <probe>-0.0928294658661 0.0154450023547 -0.0092429947108</probe>
+          <probe>-0.041566491127 0.049077000469 0.0215509999543</probe>
+          <probe>-0.00190949440002 0.0696719996631 0.0213470030576</probe>
+          <probe>0.00731647014618 0.0755210034549 0.0301890242845</probe>
+          <probe>-0.0101865530014 0.0539940036833 -0.0272329878062</probe>
+          <probe>0.00389444828033 -0.0950899980962 -0.265734987333</probe>
+          <probe>-0.0658065080643 0.0274560023099 -0.00706200115383</probe>
+          <probe>-0.0692064762115 0.012408001814 -0.045455975458</probe>
+          <probe>-0.0798335075378 0.0255940016359 0.0200710166246</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_13_joint</joint>
+          <link>hitch_disc_13</link>
+          <radius>0.27</radius>
+          <probe>-0.0482035279274 0.0741319954395 0.1894009877</probe>
+          <probe>-0.195148527622 -0.0628820061684 0.158091025427</probe>
+          <probe>-0.128845512867 -0.0124300122261 0.265734987333</probe>
+          <probe>0.0708025097847 0.119402989745 0.208616988733</probe>
+          <probe>-0.031197488308 0.0756419897079 0.223647015169</probe>
+          <probe>-0.0619204640388 0.0447520017624 -0.0262439977378</probe>
+          <probe>-0.0796174407005 0.0382300019264 0.0103089977056</probe>
+          <probe>-0.0792475342751 0.0408039987087 0.0238520074636</probe>
+          <probe>-0.0449895262718 0.0666369795799 0.0194920171052</probe>
+          <probe>0.158540546894 0.143420994282 0.0394680071622</probe>
+          <probe>0.163922488689 0.133971989155 0.193847017363</probe>
+          <probe>0.177100479603 0.145319998264 0.0471159983426</probe>
+          <probe>-0.0482774376869 0.0669339895248 0.053675012663</probe>
+          <probe>-0.0421374440193 0.069267988205 0.0420200098306</probe>
+          <probe>-0.0355624556541 0.0728309899569 0.0516590047628</probe>
+          <probe>-0.0148804783821 0.0807069838047 0.00700502283871</probe>
+          <probe>-4.7504901886e-05 0.0879169851542 0.0237810183316</probe>
+          <probe>0.0111134648323 0.0914059877396 0.0166300106794</probe>
+          <probe>0.00175350904465 0.078787997365 -0.0296689998358</probe>
+          <probe>-0.0167924761772 0.0531579852104 -0.0662109833211</probe>
+          <probe>-0.0272074341774 0.0500559806824 -0.0616179835051</probe>
+          <probe>-0.184661448002 -0.0337460041046 0.0394810009748</probe>
+          <probe>-0.14712947607 -0.13236400485 -0.175696982071</probe>
+          <probe>-0.218614518642 -0.145319998264 -0.0707119833678</probe>
+          <probe>-0.0261954665184 0.0455559790134 -0.0743169914931</probe>
+          <probe>-0.0667495131493 0.0294329822063 -0.0457610022277</probe>
+          <probe>-0.07380849123 0.0296269953251 -0.0340199898928</probe>
+          <probe>-0.0933604836464 0.0355120003223 0.0187890101224</probe>
+          <probe>-0.212436497211 -0.0873000025749 0.0474009979516</probe>
+          <probe>0.0122575163841 0.0940299928188 0.0272630024701</probe>
+          <probe>0.0219965577126 0.0886899977922 -0.0348279904574</probe>
+          <probe>0.218614518642 0.114262998104 -0.0717039834708</probe>
+          <probe>0.0767585635185 0.00317999720573 -0.223976990208</probe>
+          <probe>0.166835486889 0.0277989804745 -0.219979992136</probe>
+          <probe>-0.0191314816475 -0.0027240216732 -0.19052199088</probe>
+          <probe>0.0178905129433 0.0809969902039 -0.0449189972132</probe>
+          <probe>-0.0611894726753 -0.0608769953251 -0.20756999217</probe>
+          <probe>-0.0789725184441 0.024540990591 -0.0451629888266</probe>
+          <probe>-0.0651004910469 0.0404979884624 -0.00902898423374</probe>
+          <probe>-0.0181844830513 0.0741469860077 0.0165020097047</probe>
+          <probe>0.00787347555161 -0.0797840058804 -0.265734987333</probe>
+          <probe>0.0126635432243 0.0776549875736 -0.0292529892176</probe>
+          <probe>-0.00972348451614 0.0658499896526 -0.033406002447</probe>
+          <probe>0.203717529774 0.0762289911509 -0.148365987465</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_14_joint</joint>
+          <link>hitch_disc_14</link>
+          <radius>0.27</radius>
+          <probe>-0.0616359114647 0.0382194966078 0.00235100463033</probe>
+          <probe>-0.077144920826 0.0262244790792 0.0129240043461</probe>
+          <probe>-0.0852909684181 0.0219855159521 0.0226040072739</probe>
+          <probe>0.16238206625 0.127699509263 0.0364340133965</probe>
+          <probe>0.104084074497 0.106400504708 0.19476999715</probe>
+          <probe>0.17612105608 0.129934504628 0.0446430034935</probe>
+          <probe>-0.0366819500923 0.0566745251417 0.0179610140622</probe>
+          <probe>-0.0486679673195 0.0495065301657 0.0435629971325</probe>
+          <probe>-0.0414000153542 0.0575514882803 0.0393570251763</probe>
+          <probe>-0.00675290822983 0.0647514909506 -0.0170339755714</probe>
+          <probe>-0.000940978527069 0.0724634975195 0.0213750191033</probe>
+          <probe>0.0116570591927 0.0763015002012 0.0149180181324</probe>
+          <probe>0.0202310681343 0.070817515254 -0.033653985709</probe>
+          <probe>0.00864404439926 0.0663735121489 -0.0356179885566</probe>
+          <probe>0.0162330269814 0.0639244765043 -0.0457499735057</probe>
+          <probe>-0.0351449847221 0.0383325070143 -0.0429139845073</probe>
+          <probe>-0.0190219283104 0.0378184765577 -0.0791769884527</probe>
+          <probe>-0.0281679034233 0.037435516715 -0.0645109824836</probe>
+          <probe>-0.0297769904137 0.0322275012732 -0.0766149871051</probe>
+          <probe>-0.0586900115013 0.0292504876852 -0.0230459980667</probe>
+          <probe>-0.0692149996758 0.0179384797812 -0.0472809784114</probe>
+          <probe>-0.0780619978905 0.0151874870062 -0.0373609773815</probe>
+          <probe>-0.0862709879875 0.0186124891043 0.00902299955487</probe>
+          <probe>-0.175785005093 -0.0488734990358 0.17495002225</probe>
+          <probe>0.0108479857445 0.0831785053015 0.0244810171425</probe>
+          <probe>-0.0467929244041 0.0437624901533 0.226382989436</probe>
+          <probe>-0.0431399941444 0.0569395273924 0.054166007787</probe>
+          <probe>0.0579439997673 0.0621995180845 -0.107318993658</probe>
+          <probe>0.217721998692 0.0988095253706 -0.0741099826992</probe>
+          <probe>0.0758650898933 -0.0122735053301 -0.226382989436</probe>
+          <probe>0.206591069698 0.0398744791746 -0.198982987553</probe>
+          <probe>-0.0443249344826 -0.081071510911 -0.223124984652</probe>
+          <probe>-0.217721998692 -0.106002524495 0.0264400132</probe>
+          <probe>-0.170340001583 -0.129934504628 -0.126828994602</probe>
+          <probe>-0.0788369774818 0.00907151401043 -0.0484700016677</probe>
+          <probe>-0.03945094347 0.0499874800444 0.0244000144303</probe>
+          <probe>-0.035384953022 0.0548084825277 0.04539700225</probe>
+          <probe>0.00193709135056 0.057668492198 -0.0302089862525</probe>
+          <probe>-0.0194379687309 0.0352545231581 -0.0640739910305</probe>
+          <probe>-0.0332189202309 0.0293235033751 -0.0737929902971</probe>
+          <probe>-0.0658509135246 0.0128034800291 -0.0468789748847</probe>
+          <probe>-0.0744909644127 0.0106345266104 -0.0357589833438</probe>
+          <probe>-0.0151728987694 0.0739924758673 0.128072012216</probe>
+          <probe>-0.15974098444 -0.0379824787378 0.0349380262196</probe>
+        </disc>
+        <disc>
+          <joint>hitch_disc_15_joint</joint>
+          <link>hitch_disc_15</link>
+          <radius>0.27</radius>
+          <probe>-0.064808011055 0.0834535062313 0.084687512368</probe>
+          <probe>-0.172844052315 -0.0207335054874 0.171757500619</probe>
+          <probe>-0.079638004303 0.0408925116062 0.214938502759</probe>
+          <probe>0.111091017723 0.127853542566 0.161320518702</probe>
+          <probe>0.0327939987183 0.0877785384655 0.262503486127</probe>
+          <probe>-0.0770579576492 0.0490615069866 -0.0106204934418</probe>
+          <probe>-0.0925669670105 0.0370665490627 -4.74937260151e-05</probe>
+          <probe>-0.101094961166 0.0333795249462 0.0094575099647</probe>
+          <probe>-0.051295042038 0.0653165280819 0.00507752224803</probe>
+          <probe>-0.0645290613174 0.0619865357876 0.0382935218513</probe>
+          <probe>-0.0612280368805 0.0658394992352 0.0270274989307</probe>
+          <probe>0.144258975983 0.109459549189 -0.0962044931948</probe>
+          <probe>0.16684794426 0.136975497007 0.0341425053775</probe>
+          <probe>0.23331797123 0.109235495329 -0.0866244919598</probe>
+          <probe>-0.0141839981079 0.0753995478153 -0.0431294925511</probe>
+          <probe>-0.0162279605865 0.0842135250568 0.00919551774859</probe>
+          <probe>-0.0071610212326 0.0849445164204 -8.74884426594e-05</probe>
+          <probe>-0.150850057602 -0.0128214657307 -0.065857488662</probe>
+          <probe>-0.204514026642 -0.110100477934 -0.115442488343</probe>
+          <probe>-0.23331797123 -0.106341451406 0.0195615105331</probe>
+          <probe>-0.16344499588 -0.136975497007 -0.191074479371</probe>
+          <probe>-0.0507440567017 0.0518735349178 -0.0567504949868</probe>
+          <probe>-0.0414719581604 0.0498025119305 -0.0768374986947</probe>
+          <probe>-0.0462180376053 0.0408505499363 -0.0850444920361</probe>
+          <probe>-0.0810990333557 0.0398885309696 -0.0169725008309</probe>
+          <probe>-0.0842169523239 0.0297475159168 -0.0585134811699</probe>
+          <probe>-0.101693034172 0.0294544994831 -0.00394849851727</probe>
+          <probe>-0.00493204593658 0.0963835418224 0.0117165260017</probe>
+          <probe>0.00480902194977 0.0816595256329 -0.0466254837811</probe>
+          <probe>0.152616024017 0.0957145392895 -0.133234489709</probe>
+          <probe>0.077504992485 0.0175684988499 -0.228039484471</probe>
+          <probe>0.000810980796814 0.0747665464878 -0.0587214715779</probe>
+          <probe>-0.0342260599136 0.0447685420513 -0.0885894931853</probe>
+          <probe>-0.0867420434952 -0.082626491785 -0.23047548905</probe>
+          <probe>-0.0943900346756 0.0201055109501 -0.061516482383</probe>
+          <probe>-0.0585429668427 0.0605165064335 0.0278165154159</probe>
+          <probe>-0.0503499507904 0.0664845407009 0.0365145020187</probe>
+          <probe>-0.0232889652252 0.071766525507 -0.0146134980023</probe>
+          <probe>-0.0629750490189 0.0358475148678 -0.0613104887307</probe>
+          <probe>-0.00478398799896 0.0701495110989 -0.0522074885666</probe>
+          <probe>-0.0899130105972 0.0214765369892 -0.048730481416</probe>
+          <probe>-0.22906601429 -0.0861345231533 0.154638510197</probe>
+          <probe>-0.038370013237 0.0806615054607 0.0993425063789</probe>
+          <probe>-0.0144790410995 -0.0672604739666 -0.262503486127</probe>
+        </disc>
+      </plugin>
+      <link name="hitch_cage_roller">
+        <pose>-3.45847654482 -0.000248968601227 -0.49754742985 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>4.0</mass>
+          <inertia>
+            <ixx>2.2</ixx>
+            <iyy>0.16</iyy>
+            <izz>2.2</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="original_cage_roller">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/harrow_roller.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.072 0.15 0.09 1</ambient>
+            <diffuse>0.12 0.25 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_cage_roller_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_cage_roller</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_00">
+        <pose>-1.70381007235 0.927886962891 -0.503153154705 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_00_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_00.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_00_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_00</child>
+        <axis>
+          <xyz>0.491050055284 0.840387181625 0.22938881439</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_01">
+        <pose>-1.69790647915 0.615934982896 -0.492794394116 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_01_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_01.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_01_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_01</child>
+        <axis>
+          <xyz>0.477439575401 0.847278410434 0.232746099976</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_02">
+        <pose>-1.70667906229 0.318475492299 -0.505474693451 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_02_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_02.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_02_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_02</child>
+        <axis>
+          <xyz>0.476724822715 0.840170143719 0.258548976039</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_03">
+        <pose>-1.72993631224 0.0103740021586 -0.490399623791 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_03_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_03.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_03_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_03</child>
+        <axis>
+          <xyz>0.495283258795 0.84468644615 0.202976110042</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_04">
+        <pose>-1.70317780542 -0.294222004712 -0.507514452956 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_04_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_04.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_04_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_04</child>
+        <axis>
+          <xyz>0.466962956423 0.856520224546 0.219815154782</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_05">
+        <pose>-1.7197948569 -0.590313494205 -0.48570661645 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_05_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_05.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_05_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_05</child>
+        <axis>
+          <xyz>0.479035088494 0.856652978583 0.191496888426</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_06">
+        <pose>-1.70287945019 -0.884589523077 -0.499679092392 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_06_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_06.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_06_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_06</child>
+        <axis>
+          <xyz>0.486394948868 0.838397830711 0.245985835312</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_07">
+        <pose>-1.7287960035 -1.17055797577 -0.501913565449 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_07_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_07.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_07_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_07</child>
+        <axis>
+          <xyz>0.526313666739 0.824519598162 0.207753114178</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_08">
+        <pose>-2.70044220182 1.17807203531 -0.457522218716 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_08_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_08.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_08_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_08</child>
+        <axis>
+          <xyz>-0.490029655613 0.838841917529 -0.237097393526</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_09">
+        <pose>-2.73529818749 0.88431802392 -0.468257087078 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_09_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_09.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_09_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_09</child>
+        <axis>
+          <xyz>-0.509779404928 0.834309544387 -0.20988697543</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_10">
+        <pose>-2.71720690601 0.584272995591 -0.478224253449 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_10_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_10.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_10_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_10</child>
+        <axis>
+          <xyz>-0.48945236453 0.844476082125 -0.217477653049</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_11">
+        <pose>-2.71542672357 0.29360999912 -0.456589798146 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_11_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_11.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_11_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_11</child>
+        <axis>
+          <xyz>-0.485625043983 0.848119993615 -0.21180366637</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_12">
+        <pose>-2.71184516393 -0.00573300197721 -0.478183351066 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_12_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_12.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_12_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_12</child>
+        <axis>
+          <xyz>-0.488251990237 0.845100663163 -0.217749542254</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_13">
+        <pose>-2.7158217543 -0.321038991213 -0.478044113543 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_13_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_13.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_13_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_13</child>
+        <axis>
+          <xyz>-0.47219551629 0.843798439257 -0.255020760533</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_14">
+        <pose>-2.71484463509 -0.605585500598 -0.475670853032 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_14_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_14.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_14_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_14</child>
+        <axis>
+          <xyz>-0.441725450254 0.861859641675 -0.249151730174</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="hitch_disc_15">
+        <pose>-2.6989781242 -0.916427522898 -0.463246960611 0 0.035 0</pose>
+        <self_collide>false</self_collide>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <iyy>0.012</iyy>
+            <izz>0.008</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="hitch_disc_15_cad">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_15.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.138 0.156 0.168 1</ambient>
+            <diffuse>0.23 0.26 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="hitch_disc_15_joint" type="revolute">
+        <parent>hitch_tool_frame</parent>
+        <child>hitch_disc_15</child>
+        <axis>
+          <xyz>-0.485783995727 0.843674413876 -0.228533132972</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+            <effort>20</effort>
+            <velocity>30</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.02</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <pose>-20 0 .74 0 0 0</pose>
+    </model>
+  </world>
+</sdf>

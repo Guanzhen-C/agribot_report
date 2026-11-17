@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2204,
-      "sha256": "a7f1120dd268f720088c6a45eeb646aa22efeffdde27bea1039ee4b114276574"
+      "sizeBytes": 2138,
+      "sha256": "de40fe34b2bfe0ba8043e5ac0570de0a6c66e71c28816e51e53b95a142fe07e7"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1294,
-      "sha256": "12701b619632e07fb8e68fd93bb29532757dcfecc89fa0c48ea45834901af8cf"
+      "sizeBytes": 1228,
+      "sha256": "72f57a6ea046d5c409ebf1483cdaf206592975c5ade1a3ba01ae9e1a45ee1fdd"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1154,
-      "sha256": "78bfe906ea2253672278d157f1e5191876f290093f998a5f261eaf8b8175fd1b"
+      "sizeBytes": 1088,
+      "sha256": "f885c207e74e17b1fb902522fd5b4a2a514a9101350c6a4f1b4fa70cadaaf1b7"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1154,
-      "sha256": "78bfe906ea2253672278d157f1e5191876f290093f998a5f261eaf8b8175fd1b"
+      "sizeBytes": 1088,
+      "sha256": "f885c207e74e17b1fb902522fd5b4a2a514a9101350c6a4f1b4fa70cadaaf1b7"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -220,18 +220,18 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 648582,
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sizeBytes": 942599,
+      "sha256": "33278b304414c59d4619cfd5cb631bbcdba82e258c33a82162e72271c6d7ddcf"
     },
     {
       "path": "models/tractor_mulch.sdf",
-      "sizeBytes": 19738,
-      "sha256": "1e4a24091b012553850c66b99fefb7c4e03b0d45e3d4319c9fc26cf8169e2af9"
+      "sizeBytes": 19776,
+      "sha256": "fc55375e703afacb76b56d66d0c017c1daf224950eba8d44d7518c3e2c455ff9"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -245,13 +245,13 @@
     },
     {
       "path": "urdf/tractor_mulch.urdf.xacro",
-      "sizeBytes": 8306,
-      "sha256": "afce3b94b781a606d57f56787680b6993995e415d2060903cd66cbb1a1816e5c"
+      "sizeBytes": 8342,
+      "sha256": "53db7b921ed7db137dcb7912fcde3572ca2288e9f57291a5acc4ae561c833a74"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 15973,
-      "sha256": "f8e962a8e0a6d07b31bb184af86b8a80f4f869a7f6d98a960b26038601b96341"
+      "sizeBytes": 16471,
+      "sha256": "baf35903af7920e3513d1d7db590e96f634df57af53b95ba6996ffe77e7a6ec8"
     }
   ]
 }

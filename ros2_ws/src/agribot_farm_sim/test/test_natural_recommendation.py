@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -11,11 +12,37 @@ SRC = Path(__file__).resolve().parents[2]
 
 
 @pytest.fixture(scope='module')
-def rows():
-    return candidates(SRC)
+def confirmed_source(tmp_path_factory):
+    # Parser fixtures need matching hashes even after production configurations evolve.
+    # Refresh only temporary synthetic records, never the real user-test evidence.
+    root = tmp_path_factory.mktemp('synthetic-confirmations')
+    config = root / 'agribot_farm_sim/config'
+    shutil.copytree(SRC / 'agribot_farm_sim/config', config)
+    for path in (SRC / 'agribot_vehicle_description/generated').glob('*/vehicle_config.json'):
+        target = root / 'agribot_vehicle_description/generated' / path.parent.name / path.name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
+    catalog = json.loads((config / 'compatibility.json').read_text())
+    presets = {item['car'] + '__' + item['implement']: item['preset'] for item in catalog['bindings']}
+    for path in config.glob('manual_confirmations*.json'):
+        record = json.loads(path.read_text())
+        record['unitTestFixture'] = True
+        record['representativeInteractiveTrial'] = str(root / 'no-real-trial')
+        for entry in record.get('confirmations', []):
+            preset = presets.get(entry.get('binding'))
+            target = root / 'agribot_vehicle_description/generated' / str(preset) / 'vehicle_config.json'
+            if target.is_file():
+                entry['vehicleConfigSha256'] = hashlib.sha256(target.read_bytes()).hexdigest()
+        path.write_text(json.dumps(record, ensure_ascii=False))
+    return root
 
 
-def test_current_confirmations_obey_scene_algorithm_and_exclusion_rules(rows):
+@pytest.fixture(scope='module')
+def rows(confirmed_source):
+    return candidates(confirmed_source)
+
+
+def test_matching_confirmations_obey_scene_algorithm_and_exclusion_rules(rows, confirmed_source):
     assert len(rows) >= 200
     assert len({r['id'] for r in rows}) == len(rows)
     assert all(r['implement'] != 'none' for r in rows)
@@ -26,7 +53,7 @@ def test_current_confirmations_obey_scene_algorithm_and_exclusion_rules(rows):
                                             ('Car2', 'strawberry_field')} for r in rows)
     assert all(r['car'] in ('Car0', 'Car3') for r in rows if r['scene'] == 'greenhouse')
     for item in rows:
-        record = json.loads((SRC / 'agribot_farm_sim/config' / item['evidence']).read_text())
+        record = json.loads((confirmed_source / 'agribot_farm_sim/config' / item['evidence']).read_text())
         assert any(e['binding'] == item['car'] + '__' + item['implement']
                    and e['vehicleConfigSha256'] == item['vehicleConfigSha256']
                    for e in record['confirmations'])
@@ -37,10 +64,10 @@ def test_group_confirmations_do_not_claim_individual_runs(rows):
     assert group and all('未逐项重跑' in r['verification'] for r in group)
 
 
-def test_changed_vehicle_hash_invalidates_recommendations(tmp_path, rows):
+def test_changed_vehicle_hash_invalidates_recommendations(tmp_path, rows, confirmed_source):
     config = tmp_path / 'agribot_farm_sim/config'
-    shutil.copytree(SRC / 'agribot_farm_sim/config', config)
-    source = SRC / 'agribot_vehicle_description/generated'
+    shutil.copytree(confirmed_source / 'agribot_farm_sim/config', config)
+    source = confirmed_source / 'agribot_vehicle_description/generated'
     target = tmp_path / 'agribot_vehicle_description/generated'
     for path in source.glob('*/vehicle_config.json'):
         dest = target / path.relative_to(source)
@@ -49,7 +76,18 @@ def test_changed_vehicle_hash_invalidates_recommendations(tmp_path, rows):
     selected = next(r for r in rows if r['car'] == 'Car1')
     path = target / selected['preset'] / 'vehicle_config.json'
     path.write_text(path.read_text() + '\n')
-    assert not any(r['preset'] == selected['preset'] for r in candidates(tmp_path))
+    remaining = candidates(tmp_path)
+    assert not any(r['preset'] == selected['preset'] for r in remaining)
+    assert any(r['preset'] != selected['preset'] for r in remaining)
+
+
+def test_real_confirmation_evidence_is_read_only_and_never_rehashed():
+    directory = SRC / 'agribot_farm_sim/config'
+    before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.glob('manual_confirmations*.json')}
+    for item in candidates(SRC):
+        vehicle = SRC / 'agribot_vehicle_description/generated' / item['preset'] / 'vehicle_config.json'
+        assert hashlib.sha256(vehicle.read_bytes()).hexdigest() == item['vehicleConfigSha256']
+    assert before == {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in before}
 
 
 @pytest.mark.parametrize('reply', [

@@ -47,6 +47,7 @@ public sealed class Car0GarageVehicle : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
+        SensorMountLibrary.ApplyAckermann(transform, BuildConfiguration().BaseLink);
         repairGroup = repairCanvas.GetComponent<CanvasGroup>();
         if (repairGroup == null) repairGroup = repairCanvas.gameObject.AddComponent<CanvasGroup>();
         var escape = repairCanvas.transform.Find("Esc_btn")?.GetComponent<Button>();

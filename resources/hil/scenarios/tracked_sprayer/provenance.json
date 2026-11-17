@@ -1,0 +1,119 @@
+{
+  "vehicle": "Car3",
+  "purpose": "Scaled Car3 orchard spraying HIL presentation",
+  "source_sha256": "36219ca5a27d362441221c3395dad91e24c3e48ffe800a097831e46cf9944679",
+  "plant": {
+    "source": "/home/cgz/Documents/xwechat_files/wxid_ndparen4xa7s29_716f/temp/RWTemp/2026-11/9cf3e645fa74f66776f6a8151de0a36e/\u690d\u4fdd\uff082024.5.1\uff09.STEP",
+    "source_sha256": "ac64c741f2632b55685e45411ce0e1b32da644f7099cdb46670c4e95cab79bac",
+    "visual_sha256": "bb34ed46f32505e147170061ac8705d2698cbb9f5a15a8520c9984d3a26bae48",
+    "linear_deflection_source_mm": 0.6,
+    "output_unit": "m",
+    "source_bbox_mm": [
+      -178.83851275154993,
+      -585.9847986511902,
+      -463.87632204641795,
+      1039.3734309604426,
+      873.6938974216118,
+      410.00000000000057
+    ],
+    "visual_size_m": [
+      1.2182119437119925,
+      1.459678696072802,
+      0.8738763220464185
+    ],
+    "triangles": 969378,
+    "solids": 123,
+    "transform_note": "CAD XY bounding-box centre and lowest Z normalized; no orientation or mount inferred",
+    "limitation": "Geometry visual only, no original paint colours or internal motor axes inferred"
+  },
+  "visual_lod": {
+    "source_triangles": 969328,
+    "visual_triangles": 150000,
+    "output_sha256": "10eb0bb1f2af6d979b9538e4564dea38df7f451fc21203effee9a535d6b07a65",
+    "scale": 1.0,
+    "note": "Visual-only LOD, metre dimensions unchanged; neutral finish not original paint"
+  },
+  "mount_xyz_m": [
+    -0.09746387491394502,
+    -0.2412169785355218,
+    0.6146795413254812
+  ],
+  "mount_yaw_rad": 3.141592653589793,
+  "implement_collision": false,
+  "limitations": [
+    "Illustrative 10 kg inertia and motor curves, not calibrated",
+    "Scaled simulation mounting only; original STEP unchanged",
+    "Motor feedback from integrated shaft physics; no fluid dynamics claim",
+    "Complete orchard navigation route not yet accepted"
+  ],
+  "mount_rpy_rad": [
+    1.5707963267948966,
+    1.076047338636778,
+    3.141592653589793
+  ],
+  "visual_scale": 0.55,
+  "presentation": {
+    "sprayer_pose": [
+      -0.09746387491394502,
+      -0.2412169785355218,
+      0.6146795413254812,
+      1.5707963267948966,
+      1.076047338636778,
+      3.141592653589793
+    ],
+    "sprayer_scale": 0.55,
+    "deck_z_m": 0.42665,
+    "rtk_master": [
+      0.44,
+      0.29,
+      0.52665
+    ],
+    "imu_xyz": [
+      0.31,
+      0.0,
+      0.436081
+    ],
+    "imu_support_z_m": 0.426081,
+    "imu_mount_owner": "vehicle_chassis",
+    "rtk_secondary": [
+      0.44,
+      -0.29,
+      0.52665
+    ],
+    "fan_direction": "rear (-X)",
+    "layout": "tank_front_fan_rear",
+    "mounting_plate_removed": true,
+    "mount_normal_base": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "mounting_contact_z_m": 0.42665,
+    "rtk_short_stems_retained": true,
+    "rtk_stem_height_m": 0.062,
+    "water_mist": "soft particles driven by actual pump shaft speed",
+    "spray_nozzles": 8,
+    "spray_outlets_source": "STEP solids 66/68/70/72/74/76/78/80, outer 0.4 mm bore edges",
+    "spray_direction": "Radially outward, perpendicular to fan axis",
+    "spray_visual_parameters": {
+      "cone_angle": 0.18,
+      "total_emission_rate": 2400,
+      "velocity_min": 2.0,
+      "velocity_max": 2.8,
+      "lifetime_min": 0.9,
+      "lifetime_max": 1.3,
+      "growth_rate": 0.1,
+      "colour": [
+        0.36,
+        0.6,
+        0.78,
+        0.6
+      ]
+    },
+    "chassis_finish": "grey powder-coated shell, scenario-local materials",
+    "implement_textures": true,
+    "implement_visual": "@HIL_ROOT@/shared_assets/f02ee77321a5/visual_textured.dae",
+    "additional_nozzle_geometry": false,
+    "limitation": "Scaled simulation mount, not a calibrated real installation"
+  }
+}

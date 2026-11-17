@@ -87,6 +87,94 @@ public class WheelChangePanel : MonoBehaviour
         //AddEscClickListener(Hide);
     }
 
+    protected void ConfigureDimensionInput(InputField input, Button confirm, string title)
+    {
+        if (input == null || confirm == null) return;
+        var window = input.transform.parent as RectTransform;
+        if (window == null) return;
+
+        // Replace the legacy underline/image layout with explicit, non-overlapping bounds.
+        float width = Mathf.Min(420f, ((RectTransform)window.parent).rect.width - 48f);
+        window.anchorMin = window.anchorMax = window.pivot = Vector2.one;
+        window.anchoredPosition = new Vector2(-24, -112);
+        window.sizeDelta = new Vector2(width, 132);
+        window.localScale = Vector3.one;
+        var background = window.GetComponent<Image>();
+        if (background != null)
+        {
+            background.sprite = background.overrideSprite = null;
+            background.color = GarageVisualStyle.Surface;
+        }
+
+        foreach (Transform child in window)
+        {
+            var label = child.GetComponent<Text>();
+            if (label != null)
+            {
+                bool isUnit = child.name == "xiahuaxian";
+                bool isTitle = !isUnit && label.text != null &&
+                    (label.text.Contains("手动输入") || label.text.Contains("轮距") || label.text.Contains("轴距"));
+                child.gameObject.SetActive(isUnit || isTitle);
+                if (!isUnit && !isTitle) continue;
+                label.text = isUnit ? "cm" : title;
+                StyleDimensionText(label, isUnit ? 18 : 20);
+                PlaceDimensionControl((RectTransform)child, isUnit ? width - 152 : 20,
+                    isUnit ? 62 : 16, isUnit ? 44 : width - 40, isUnit ? 48 : 36);
+            }
+            else if (child != input.transform && child != confirm.transform)
+                child.gameObject.SetActive(false);
+        }
+
+        PlaceDimensionControl(input.GetComponent<RectTransform>(), 20, 62, width - 178, 48);
+        var inputImage = input.GetComponent<Image>();
+        if (inputImage != null)
+        {
+            inputImage.sprite = inputImage.overrideSprite = null;
+            inputImage.color = GarageVisualStyle.Raised;
+        }
+        StyleDimensionText(input.textComponent, 22);
+        InsetDimensionText(input.textComponent.rectTransform);
+        if (input.placeholder is Text placeholder)
+        {
+            StyleDimensionText(placeholder, 16);
+            placeholder.color = GarageVisualStyle.Muted;
+            InsetDimensionText(placeholder.rectTransform);
+        }
+        GarageVisualStyle.SetButtonLabel(confirm, "确认");
+        GarageVisualStyle.ButtonStyle(confirm, true);
+        PlaceDimensionControl(confirm.GetComponent<RectTransform>(), width - 96, 62, 76, 48);
+    }
+
+    private static void PlaceDimensionControl(RectTransform rect, float x, float y, float width, float height)
+    {
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
+        rect.anchoredPosition = new Vector2(x, -y);
+        rect.sizeDelta = new Vector2(width, height);
+        rect.localScale = Vector3.one;
+    }
+
+    private static void StyleDimensionText(Text label, int size)
+    {
+        ChineseUiFont.Apply(label);
+        label.fontSize = size;
+        label.resizeTextForBestFit = false;
+        label.horizontalOverflow = HorizontalWrapMode.Overflow;
+        label.verticalOverflow = VerticalWrapMode.Truncate;
+        label.alignment = TextAnchor.MiddleLeft;
+        label.color = GarageVisualStyle.Text;
+        label.raycastTarget = false;
+        label.supportRichText = false;
+    }
+
+    private static void InsetDimensionText(RectTransform rect)
+    {
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = new Vector2(12, 4);
+        rect.offsetMax = new Vector2(-12, -4);
+        rect.localScale = Vector3.one;
+    }
+
     protected void ShowPop(String text)
     {
         ShowPop(text, 2f);

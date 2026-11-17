@@ -1,6 +1,6 @@
 {
-  "meshGroups": 61,
-  "triangles": 712121,
+  "meshGroups": 64,
+  "triangles": 711685,
   "minimumRos": [
     -2.646165370941162,
     -2.7557549476623535,
@@ -9,9 +9,9 @@
   "maximumRos": [
     3.652387857437134,
     2.7557549476623535,
-    2.8408308029174805
+    2.3798635005950928
   ],
-  "previewSha256": "0f07c1c088777c01b610c8fcd9b225eeb602cfcd07f289d8b1cd5f19d012ae3b",
+  "previewSha256": "8e06cdf119069fbfe02ac36a81c374d993c7391a5a565743ac2097fd583822a9",
   "vehicleId": "car1_groove",
   "schemaVersion": 1,
   "files": [
@@ -49,15 +49,15 @@
     },
     {
       "name": "sensor_rtk_master_visual.mtl",
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "name": "sensor_rtk_master_visual.obj",
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sha256": "a4fe997d85a28304decb0949da21beac4587ebcbc33062735deafbd3264ef2d8"
     },
     {
       "name": "vehicle_config.json",
-      "sha256": "327151d7629a6fb5b9b2d4ea6b1eaf65bf724215939a9c94adcbff6ab67b9e57"
+      "sha256": "6c88afe4e5f360c58825b64eb79f0f6224c0284809e1f35ae2a4f27366725252"
     },
     {
       "name": "vehicle_visual.mtl",
@@ -69,5 +69,5 @@
     }
   ],
   "redistributionLicense": "unverified_user_supplied",
-  "sourceConfigSha256": "327151d7629a6fb5b9b2d4ea6b1eaf65bf724215939a9c94adcbff6ab67b9e57"
+  "sourceConfigSha256": "6c88afe4e5f360c58825b64eb79f0f6224c0284809e1f35ae2a4f27366725252"
 }

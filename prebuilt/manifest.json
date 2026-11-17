@@ -3,12 +3,13 @@
   "version": 1,
   "platform": "ubuntu-22.04-x86_64",
   "archive": "agribot-configurator-linux-x86_64.tar.zst",
-  "sha256": "e6b2ad1c0377012e1ddd180b7f2e12b38ddc1e1eb5e0f443444a1635891c907e",
-  "bytes": 1887590990,
+  "sha256": "ce02f05933095e1beff342e1fb31c70e9de24aa6ab96d0041b6a1005b8dec152",
+  "bytes": 1892185646,
   "runtime_inputs": {
     "method": "git-runtime-input-blobs-v1",
-    "sha256": "bfb9fd64b22bfe78bb72a129c599e086947da062de4dfb0b9cfbfb56ba1b6ef0",
-    "files": 10324,
-    "source_commit": "ea0823f0baa522b31ca4c47e4ffb0354b4bf4f18"
-  }
+    "sha256": "fa77f51ac48dcbf053ac3ae9bf7fa34f20b2a4269e253441fa69c9871e737ff4",
+    "files": 8828,
+    "source_commit": "e16c98ba42e13add0951784ac27d4a90d7c64eab"
+  },
+  "url": "https://github.com/Guanzhen-C/agribot_report/releases/download/v0.1.0-20261117-repair-cm/agribot-configurator-linux-x86_64.tar.zst"
 }

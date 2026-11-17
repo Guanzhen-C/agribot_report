@@ -1,0 +1,232 @@
+{
+  "record_date": "2026年11月12日",
+  "scope": "对当日笔记本实体HIL运行及原始日志的逐条复核；本次编制不重新烧录、启动车辆或注入故障。",
+  "cases": [
+    {
+      "id": "TC-HIL-VCU-001-a", "verdict": "未执行", "coverage": "五种工况正常烧录已实测，完整专项待补测",
+      "actual_steps": ["通过matrix-r2串行提交采摘、喷水和碎枝工况；碎枝失败后按工具策略停止后继任务。", "通过matrix-r3-tractors另行提交动力换挡和CVT，逐轮检查固件登记、Flash写入、Verified OK及授权阶段。"],
+      "finding": "五种工况均有各自的真实烧录日志，固件与目录匹配后才进入执行；不是仅识别到烧录器。",
+      "remaining": ["本版要求的同工况连续两次启动、错误组合实际拒绝、烧录期间取消尚未在本轮完整执行。不能用五个不同工况的成功烧录代替这三项。"],
+      "evidence": ["E02", "E03", "E91", "F00", "F01", "F02", "F03", "F04"],
+      "metrics": [{"label": "五组固件及写入校验一致", "evidence": "E91", "pointer": "/all_five_flash_verified"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-b", "verdict": "未执行", "coverage": "正常物理初始化有记录，错误设备/配置拒绝待补测",
+      "actual_steps": ["在笔记本检查绑定CAN盒，执行5帧有限零反馈发送探测，读取内核实际TX变化。", "正常启动五个工况，由零指令及真实反馈进入就绪后放行任务。"],
+      "finding": "有限探测5帧实际发送完成；Car0固件登记为1 Mbit/s，Car3及Car4为250 kbit/s，各任务取得实际反馈。该探测为零运动检查，不是整段往返控制试验。",
+      "remaining": ["未主动接入错误身份设备或错误波特率，不能签署本条全部拒绝分支通过。"],
+      "evidence": ["E04", "E91"],
+      "metrics": [{"label": "探测实际发送完成帧数", "evidence": "E04", "pointer": "/physically_completed", "unit": "帧"}, {"label": "探测发送异常列表", "evidence": "E04", "pointer": "/errors"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-c", "verdict": "未执行", "coverage": "正常报文已核对，非法值与反方向专项待补测",
+      "actual_steps": ["在五组默认任务中记录原生CAN及ISOBUS，离线按标识符、字段、校验和负载关联收发。", "对Car4运行原有summarize_evidence.py及summarize_powertrain.py；对喷水和碎枝另作保存报文的只读负载复核。"],
+      "finding": "正常链路有实际透传和转换证据。Car4驱动转发及四类动力反馈可关联，喷水、碎枝的返回负载均在PC侧已观察负载中找到。多重集匹配不等于逐帧同步时延或全量零丢包认证。",
+      "remaining": ["本版要求的错误校验、非法字段、未许可方向受控注入未在本轮全部执行。"],
+      "evidence": ["E12", "E16", "E18", "E21", "E22", "E26", "E27", "E30"],
+      "metrics": [{"label": "动力换挡原生驱动匹配数", "evidence": "E22", "pointer": "/drive_matching_across_6750", "unit": "帧"}, {"label": "CVT原生驱动匹配数", "evidence": "E27", "pointer": "/drive_matching_across_6750", "unit": "帧"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-d", "verdict": "未执行", "coverage": "正常授权、行走与结束归零已实测",
+      "actual_steps": ["五组任务均等待定位和实体反馈就绪，再由同一工作流授权。", "记录实际运动及任务完成或失败后的撤销授权、零执行和停止。"],
+      "finding": "采摘及喷水完成，两个拖拉机完成约78 m运动，碎枝实际行驶后发生导航失败；终止后均进入清理。",
+      "remaining": ["尚未在禁止授权窗口主动发送本条要求的合法非零控制并连续观测，不能仅以启动前静止代替拒绝运动验证。"],
+      "evidence": ["E12", "E16", "E18", "E22", "E27", "E91"],
+      "metrics": [{"label": "动力换挡实际行程", "evidence": "E22", "pointer": "/actual_travel_distance_m", "unit": "m"}, {"label": "CVT实际行程", "evidence": "E27", "pointer": "/actual_travel_distance_m", "unit": "m"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-e", "verdict": "不通过", "coverage": "已执行动力换挡全程并严格审计",
+      "actual_steps": ["选择tractor_powershift，实际烧录匹配固件后执行接近、两段作业、地头转弯和停车。", "读取实际挡位、离合器及轴速曲线，运行原有动力审计并复核状态接收间隔。"],
+      "finding": "五阶段完成并观察到1至4挡，但实际正常运行区间出现2个非预期PT_OFF样本；最大一次状态接收间隔约0.321 s，严格审计为false。挡位列表中的0也保留，不将其删去后宣称全程稳定。",
+      "remaining": ["通信抖动整改后，应重做本条正常全程及受控挡位转换，不能只重复计算同一失败记录。"],
+      "evidence": ["E20", "E21", "E24", "P01"],
+      "metrics": [{"label": "实际挡位列表", "evidence": "E21", "pointer": "/actual_gear_values"}, {"label": "非预期停机样本", "evidence": "E21", "pointer": "/unplanned_off_samples", "unit": "个"}, {"label": "严格动力审计", "evidence": "E21", "pointer": "/audit_passed"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-f", "verdict": "不通过", "coverage": "已执行CVT全程并严格审计",
+      "actual_steps": ["选择tractor_cvt，重新烧录、校验并按五阶段默认任务运行。", "记录实际总传动比、发动机与轴速，检查PT_OFF、制动及最终停止状态。"],
+      "finding": "五阶段完成，实际总传动比覆盖200至900，最终驱动关闭、制动启用；正常窗口仍出现4个非预期PT_OFF样本，X5侧一次状态接收间隔约1.797 s，严格审计未通过。",
+      "remaining": ["通信抖动解决后复测正常CVT连续控制，不放宽看门狗或剔除保护样本。"],
+      "evidence": ["E25", "E26", "E29", "P02"],
+      "metrics": [{"label": "实际总传动比范围", "evidence": "E26", "pointer": "/cvt_actual_ratio_range"}, {"label": "非预期停机样本", "evidence": "E26", "pointer": "/unplanned_off_samples", "unit": "个"}, {"label": "严格动力审计", "evidence": "E26", "pointer": "/audit_passed"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-g", "verdict": "未执行", "coverage": "默认参数在全程使用，非法值实板专项未执行",
+      "actual_steps": ["正常任务按当前代码发送1600 r/min请求、600 ms换挡时间及150每秒传动比变化率。", "保留现有软件回归结果，但未将软件解析器的拒绝断言写成实板报文测试。"],
+      "finding": "默认参数参与了两次真实HIL运行；本轮没有逐项向实板提交上限、下限、越界及错误类型配置。",
+      "remaining": ["停车并禁止授权后，按V2.0条款使用受控接口开展合法边界与非法值试验，记录控制器应答和无非零执行证据。"],
+      "evidence": ["E20", "E25", "E21", "E26"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-VCU-001-h", "verdict": "通过", "coverage": "两种动力模式的正常反馈还原已完成",
+      "actual_steps": ["从PC原始CAN记录提取0x642至0x645，从X5记录提取PGN 0xFF74至0xFF77。", "逐字节关联四类返回负载，保留原有计数、非法帧与最终状态，分别运行审计程序。"],
+      "finding": "两种模式四类反馈全部取得对应负载，匹配数等于各自收到数，原生拒绝帧为0；状态来自物理仿真模型。动力综合审计因其他条款的PT_OFF失败，不否定本条正常负载还原结果，也不将本条通过外推为动力稳定性通过。",
+      "remaining": [], "evidence": ["E21", "E26"],
+      "metrics": [{"label": "动力换挡四类匹配", "evidence": "E21", "pointer": "/feedback_payload_matching"}, {"label": "CVT四类匹配", "evidence": "E26", "pointer": "/feedback_payload_matching"}, {"label": "动力换挡原生拒绝帧", "evidence": "E21", "pointer": "/rejected_native_frames"}, {"label": "CVT原生拒绝帧", "evidence": "E26", "pointer": "/rejected_native_frames"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-i", "verdict": "未执行", "coverage": "有真实保护事件，完整受控故障矩阵未执行",
+      "actual_steps": ["在两组正常运行中实际观察到状态接收超时、门控失去就绪、动力归零及后续恢复。", "按同一X5单调时钟复核接收间隔和门控，不用两台主机墙钟相减。"],
+      "finding": "两次是正常运行中意外发生的通信保护，不是人为安排的断链试验。可证明实际触发过保护，但不能替代五种工况的停令、断USB、非法协议、重试超限等专项。",
+      "remaining": ["按工况冻结安全门限后逐项受控注入，并核对零执行、旧目标丢弃、恢复条件及次数。"],
+      "evidence": ["E24", "E29"],
+      "metrics": [{"label": "动力换挡最大状态间隔", "evidence": "E24", "pointer": "/largest_isobus_status_receive_gaps/0/gap_wall_seconds", "unit": "s（X5墙钟）"}, {"label": "CVT最大状态间隔", "evidence": "E29", "pointer": "/largest_isobus_status_receive_gaps/0/gap_wall_seconds", "unit": "s（X5墙钟）"}]
+    },
+    {
+      "id": "TC-HIL-VCU-001-j", "verdict": "不通过", "coverage": "五组全流程及清理均有记录，但整任务稳定性未达标",
+      "actual_steps": ["先执行matrix-r2，保留其碎枝失败并停止后继任务；再执行matrix-r3-tractors。", "任务结束后核对停止状态、真车7064项文件及笔记本21份用户配置。"],
+      "finding": "五组均已尝试，四组完成，仅采摘和喷水通过原有完整严格检查。碎枝导航失败，两个拖拉机有非预期动力停机；安全清理及真车代码隔离成立仍不能据此签署整任务稳定性通过。",
+      "remaining": ["解决碎枝返程及两组动力通信问题后复测；完整Unity界面点击和全部异常退出分支仍需另行执行。"],
+      "evidence": ["E01", "E02", "E03", "E05", "E06", "E91"],
+      "metrics": [{"label": "实际测试工况数", "evidence": "E01", "pointer": "/profiles_tested"}, {"label": "任务完成数", "evidence": "E01", "pointer": "/missions_completed"}, {"label": "全部工况严格通过", "evidence": "E01", "pointer": "/all_profiles_accepted"}, {"label": "真车受保护项数", "evidence": "E05", "pointer": "/files_checked"}, {"label": "真车代码未变", "evidence": "E05", "pointer": "/unchanged"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-a", "verdict": "未执行", "coverage": "正确装配的五工况已运行，错配拒绝与完整外观专项待补",
+      "actual_steps": ["分别装载Car0/Lite6、Car3喷水、Car3碎枝及Car4圆盘耙的冻结工况。", "核对任务中的机具类型、实际关节及对应报文，保留源码和配置一致性检查。"],
+      "finding": "实际执行对象与正常工况匹配；未在本轮逐项提交未安装或错误机具组合，也未把全部安装外观截图作为本轮证据采齐。",
+      "remaining": ["在禁止授权下补齐不匹配组合拒绝及各机具安装关系的实际界面观察。"],
+      "evidence": ["E10", "E15", "E17", "E20", "E25", "E07", "E08"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-IMP-001-b", "verdict": "未执行", "coverage": "实际可达与不完整候选拒绝已记录，超时等分支待补",
+      "actual_steps": ["在实际采摘停靠后由X5对果实7、5进行IK、预抓取和接近路径搜索。", "查看候选尝试：两果均出现完成比例0.889的候选被拒绝，搜索替代姿态后执行有效路径。"],
+      "finding": "两果实际被选为reachable；各自有非空预抓取和接近轨迹。不可用候选没有被直接执行，但未专门造成规划服务超时、关节反馈失效或所有候选均不可达。",
+      "remaining": ["补齐规定的超时、失效输入及不可达目标完整拒绝试验后，再签署整条通过。"],
+      "evidence": ["E11", "E12"],
+      "metrics": [{"label": "实际采到的目标", "evidence": "E11", "pointer": "/harvested"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-c", "verdict": "未执行", "coverage": "两段行驶夹爪保持通过，移动中请求等互锁专项未补齐",
+      "actual_steps": ["正常去程及采摘后行驶启用保持，独立记录两段实际夹爪反馈。", "按原有transit-gripper-audit检查约束确认、稳定性以及采摘前解除保持。"],
+      "finding": "原有7项夹爪审计通过。两段最大开口误差分别约0.011465 mm和0.001474 mm；这不是在运动中主动请求采摘的拒绝验证。",
+      "remaining": ["补做底盘未停稳请求采摘、未确认模式切换以及夹持果实时错误保持请求三类受控试验。"],
+      "evidence": ["E11", "E14"],
+      "metrics": [{"label": "夹爪审计状态", "evidence": "E14", "pointer": "/status"}, {"label": "去程最大开口误差", "evidence": "E14", "pointer": "/legs/0/maximum_opening_error_m", "factor": 1000, "unit": "mm"}, {"label": "后程最大开口误差", "evidence": "E14", "pointer": "/legs/1/maximum_opening_error_m", "factor": 1000, "unit": "mm"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-d", "verdict": "通过", "coverage": "同一次正常任务的双果物理采摘、放盘及运输终态",
+      "actual_steps": ["沿默认路线停靠，分别夹住果实7和5的果梗，记录双侧接触后摘离、退让和放盘。", "完成批次收臂，按剩余路线行驶到3号点，用独立记录复核两果留盘及收臂终态。"],
+      "finding": "两颗不同果实均完成真实仿真接触、摘离和放盘，最终仍在原果盒内。独立18项完整性审计通过；记录不把目标已知位姿表述成视觉识别。无双侧接触的故障注入不在本次正常双果运行结论中。",
+      "remaining": [], "evidence": ["E10", "E11", "E12", "E14"],
+      "metrics": [{"label": "独立审计状态", "evidence": "E12", "pointer": "/status"}, {"label": "两次接触TCP位置误差", "evidence": "E12", "pointer": "/metrics/contact_tcp_errors_m", "unit": "m"}, {"label": "实际采摘果实", "evidence": "E11", "pointer": "/harvested"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-e", "verdict": "通过", "coverage": "正常行走与喷水机具物理控制/反馈闭环",
+      "actual_steps": ["运行tracked_sprayer默认任务，在作业区由X5发送风机3挡、水泵4挡。", "核对0x580字段与实际关节，离线关联PC风机/水泵原生反馈及X5 ISOBUS返回，观察停令终态。"],
+      "finding": "实际0x580出现(3,4,0)，风机和水泵转动后停止，0x514与作业报文共存。X5每类收到1509个风机/水泵返回负载，均可在PC观察负载中匹配；两端总计数观察窗口不同，不声明全量零丢包或逐帧时延。",
+      "remaining": [], "evidence": ["E15", "E16", "E30"],
+      "metrics": [{"label": "风机峰值", "evidence": "E16", "pointer": "/fan_rpm_max", "unit": "r/min"}, {"label": "水泵峰值", "evidence": "E16", "pointer": "/pump_rpm_max", "unit": "r/min"}, {"label": "最终风机/水泵转速", "evidence": "E16", "pointer": "/final_work_rpm", "unit": "r/min"}, {"label": "风机返回负载匹配", "evidence": "E30", "pointer": "/20261112T115629_2e6203ef/feedback/5B2"}, {"label": "水泵返回负载匹配", "evidence": "E30", "pointer": "/20261112T115629_2e6203ef/feedback/5B3"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-f", "verdict": "未执行", "coverage": "实际水泵运动有证据，本版喷雾显示专项未完整采集",
+      "actual_steps": ["正常喷水运行期间记录实际水泵转速，任务末记录水泵归零。", "核对冻结模型沿用原8喷头配置；没有把配置项本身当成实际遮挡画面。"],
+      "finding": "当前证据足以支撑水泵控制，不能代替多视角原喷头出口、障碍前后和停泵后粒子消散的完整观察。",
+      "remaining": ["重新运行有限喷水专项，采集原喷头径向发射、障碍遮挡及停泵消散的真实录像或同轮截图。"],
+      "evidence": ["E15", "E16"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-IMP-001-g", "verdict": "未执行", "coverage": "刀轴及正确碎枝通道实测，误通道拒绝待补",
+      "actual_steps": ["运行tracked_shredder，作业区发送(0,0,3500)，记录实际刀轴和0x5B4反馈。", "任务失败清理后检查刀轴减速，离线关联已保存的返回负载。"],
+      "finding": "刀轴峰值约1255.719 r/min，最终约0.014951 r/min；0x580有3390个3500输入记录，风机/水泵未被此指令启动，X5收到的880个0x5B4返回负载均可匹配。导航失败不等于刀轴未工作，也不能由刀轴工作判定全流程通过。",
+      "remaining": ["尚未实际发送错误喷水通道请求验证拒绝；补齐该专项，并在导航修复后复测完整作业。"],
+      "evidence": ["E17", "E18", "E30"],
+      "metrics": [{"label": "刀轴峰值", "evidence": "E18", "pointer": "/maximum_shredder_rpm", "unit": "r/min"}, {"label": "最终刀轴转速", "evidence": "E18", "pointer": "/final_shredder_rpm", "unit": "r/min"}, {"label": "刀轴返回负载匹配", "evidence": "E30", "pointer": "/20261112T121003_535a1379/feedback/5B4"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-h", "verdict": "通过", "coverage": "两种动力工况下的正常悬挂升降到位及结束保持",
+      "actual_steps": ["两组拖拉机分别按清单在接近和转弯时请求9000，作业行请求0，结束请求保持并撤销授权。", "正常任务等待实际位置/速度到位后才进入导航；离线核对0x631到ISOBUS的负载和最终实际悬挂位置。"],
+      "finding": "两组五阶段均完成正常升降到位，实际悬挂反馈可关联，最终位置接近9000且未作业。本条通过限正常升降/保持操作，不外推为超时故障注入或真实液压标定通过。",
+      "remaining": [], "evidence": ["E20", "E22", "E23", "E25", "E27", "E28"],
+      "metrics": [{"label": "动力换挡悬挂反馈匹配", "evidence": "E22", "pointer": "/native_sensor_matching_isobus_samples", "unit": "帧"}, {"label": "CVT悬挂反馈匹配", "evidence": "E27", "pointer": "/native_sensor_matching_isobus_samples", "unit": "帧"}, {"label": "动力换挡最终悬挂位置", "evidence": "E22", "pointer": "/final_hitch_position", "unit": "归一化计数"}, {"label": "CVT最终悬挂位置", "evidence": "E27", "pointer": "/final_hitch_position", "unit": "归一化计数"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-i", "verdict": "未执行", "coverage": "入土、滚筒与历史轨迹读数已验证，完整显示专项待补",
+      "actual_steps": ["在两个拖拉机运行中启动只读verify_harrow_work.py，记录20个作业样本、16个盘底高度、滚筒和历史作业轨迹。", "保留原始检查输出，不用动画目标或地表颜色代替实际关节状态。"],
+      "finding": "两组读数检查均通过：16片入土、滚筒实际运动、历史轨迹存在。尚未在本轮完整收集离开后痕迹保持、抬升不新增痕迹、连杆套筒连接及无整片覆盖板的逐视角证据。",
+      "remaining": ["补齐上述外观及抬升/离开后的显示观察，不能用只读状态脚本代替全部视觉条件。"],
+      "evidence": ["E23", "E28"],
+      "metrics": [{"label": "动力换挡16片全部入土", "evidence": "E23", "pointer": "/all_discs_in_soil"}, {"label": "动力换挡滚筒峰值", "evidence": "E23", "pointer": "/roller_peak_speed_rad_s", "unit": "rad/s"}, {"label": "CVT16片全部入土", "evidence": "E28", "pointer": "/all_discs_in_soil"}, {"label": "CVT滚筒峰值", "evidence": "E28", "pointer": "/roller_peak_speed_rad_s", "unit": "rad/s"}]
+    },
+    {
+      "id": "TC-HIL-IMP-001-j", "verdict": "未执行", "coverage": "实际总停机终态已记录，机具单独断令专项待补",
+      "actual_steps": ["正常任务完成或失败时由同一工作流撤销运动与机具授权。", "复核喷水/碎枝末转速、悬挂保持及采摘收臂留果。"],
+      "finding": "各机具正常结束或失败清理的终态有记录；没有在五组当前版本中逐项保持合法行走且只停止机具输入。",
+      "remaining": ["在有限隔离窗口补做单独机具断令、行走通道独立及新鲜目标恢复试验；机械臂夹持时的异常终止另行受控。"],
+      "evidence": ["E12", "E16", "E18", "E22", "E27"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-NAV-001-a", "verdict": "未执行", "coverage": "真实接收支撑运行，逐字段图像一致性等专项未补齐",
+      "actual_steps": ["五组启动时经登记网口传入必要传感器及/clock，Car0/Car3使用PNG传输和解码。", "保留首次采摘因缺少压缩插件而未就绪的真实失败，补依赖后再运行正式采摘。"],
+      "finding": "正式采摘和喷水具备相机/点云/IMU/GNSS输入并成功运行，首次失败没有被改成成功。当前未完整归档PNG前后逐像素比较、所有必要消息的频率及时间戳专项。",
+      "remaining": ["按同一轮数据补齐接收率、时间戳、图像尺寸和像素一致性核验，并在当前预检版本受控缺依赖验证。"],
+      "evidence": ["E10", "E15", "E17", "E20", "E25", "E80"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-NAV-001-b", "verdict": "未执行", "coverage": "两种正常定位链路均已使用，必要输入缺失专项未补齐",
+      "actual_steps": ["Car0/Car3等待FAST-LIVO2+RTK就绪，Car4等待NavSat ESKF及Nav2激活后授权。", "读取实际定位结果和就绪阶段，保留初次缺插件失败的历史记录。"],
+      "finding": "实际运行使用了对应定位链路，不是把真值直接当定位；当前版本未逐项受控撤掉必要传感器或TF来验证全部启动拒绝。",
+      "remaining": ["补齐当前版本必要输入缺失与无有效TF的停车门控；历史缺插件失败不等于新预检已全部实板验收。"],
+      "evidence": ["E10", "E15", "E17", "E20", "E25", "E91", "E80"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-NAV-001-c", "verdict": "通过", "coverage": "五工况冻结输入、实际任务与旧任务退出均已核对",
+      "actual_steps": ["更新笔记本源码及冻结场景时进行哈希核验，保留原21份用户配置。", "逐轮读取实际mission中的出生点、车型、外参、地图哈希和目标，按停止前一任务后再启动下一工况的工作流执行。"],
+      "finding": "五组使用各自冻结输入，苹果园保持1/2/3及采摘停靠，Car4保持五阶段；未在失败后临时改目标或直接移动车辆。本条是输入和调度一致性，不是五组导航全通过。",
+      "remaining": [], "evidence": ["E07", "E08", "E10", "E15", "E17", "E20", "E25", "E91"],
+      "metrics": [{"label": "最终用户配置检查项", "evidence": "E06", "pointer": "/files_checked"}, {"label": "用户配置变化", "evidence": "E06", "pointer": "/changes"}]
+    },
+    {
+      "id": "TC-HIL-NAV-001-d", "verdict": "通过", "coverage": "实际Smac调用、正常阶段规划及失败另计已复核",
+      "actual_steps": ["读取Car0两段导航请求、Car3一次正常整段路径、Car4逐阶段Smac路径及任务状态。", "将碎枝第一次FollowPath失败后请求的Smac失败与正常阶段分开，不把它作为周期规划。"],
+      "finding": "路径由实际X5 Smac返回并交由MPPI；正常阶段没有定时刷新路径。碎枝后继失败保留，不因规划接口使用正确便认定整段路线成功。",
+      "remaining": [], "evidence": ["E10", "E13", "E15", "E16", "E17", "E18", "E20", "E25"],
+      "metrics": [{"label": "采摘失败导航尝试数", "evidence": "E13", "pointer": "/failed_navigation_attempts"}, {"label": "喷水正常路径执行", "evidence": "E16", "pointer": "/navigation_attempts"}, {"label": "碎枝实际失败记录", "evidence": "E18", "pointer": "/navigation_attempts"}]
+    },
+    {
+      "id": "TC-HIL-NAV-001-e", "verdict": "未执行", "coverage": "实际配置和运动有记录，完整车型约束核验待补",
+      "actual_steps": ["Car0/Car4以Ackermann、Car3以DiffDrive配置执行，记录实际车辆运动和CAN速度。", "采摘原有流畅性审计检查前进路径和无反向反馈，两种拖拉机保留动力曲线。"],
+      "finding": "原有采摘前进性检查通过；本轮未为五工况全部计算实际转向、加速度、侧滑及倒行约束，碎枝全程又未完成。",
+      "remaining": ["补齐实际运动学约束统计和受控直行/转弯试验，不以模型参数配置正确代替全部实际表现。"],
+      "evidence": ["E13", "E16", "E18", "E21", "E26", "P01", "P02"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-NAV-001-f", "verdict": "未执行", "coverage": "独立记录和部分误差已得到，全口径统计待补",
+      "actual_steps": ["在PC只读记录实际位置，采摘同时记录定位、路径和运动；Car4审计提取实际与估计位置差。", "分别保留采摘独立终点误差、喷水终点误差和Car4采样位置差，不将其混为全程跟踪精度。"],
+      "finding": "已有终点及采样位置差，但没有按本版为五组完整输出统一匹配规则下的定位/跟踪/终点三类统计、P95与覆盖率。Car4的maximum_sampled_xy_estimation_difference_m不是全程P95。",
+      "remaining": ["基于同轮原始时间戳补齐三类误差、匹配容差、有效覆盖及异常样本统计，不能补造缺失数据。"],
+      "evidence": ["E12", "E16", "E22", "E27"],
+      "metrics": [{"label": "采摘独立终点误差", "evidence": "E12", "pointer": "/metrics/independent_finish_error_m", "unit": "m"}, {"label": "喷水独立终点误差", "evidence": "E16", "pointer": "/independent_endpoint_error_m", "unit": "m"}, {"label": "动力换挡采样XY最大差", "evidence": "E22", "pointer": "/maximum_sampled_xy_estimation_difference_m", "unit": "m"}, {"label": "CVT采样XY最大差", "evidence": "E27", "pointer": "/maximum_sampled_xy_estimation_difference_m", "unit": "m"}]
+    },
+    {
+      "id": "TC-HIL-NAV-001-g", "verdict": "未执行", "coverage": "实际卡停已诊断，受控可绕行障碍试验未执行",
+      "actual_steps": ["碎枝返程卡停时用只读探针记录点云、静态底图与动态代价地图。", "保留MPPI失败及后继Smac起始轮廓占障，未清图、改小车体或删除障碍来取得通过。"],
+      "finding": "约(36.04,32.65)处出现实际卡停；动态图与静态底图不同，但尚未证明是自车回波，也未证明该时刻存在安全可执行绕行空间。因此不能直接断言自车过滤失败或受控避障通过。",
+      "remaining": ["补做有已知绕行空间、受控障碍位置的五工况试验，记录真实最小间距、点云及轮廓；先解决碎枝返程问题。"],
+      "evidence": ["E17", "E18"],
+      "metrics": [{"label": "失败前最终实际位置", "evidence": "E18", "pointer": "/last_true_xyz", "unit": "m"}, {"label": "任务失败原因", "evidence": "E18", "pointer": "/error"}]
+    },
+    {
+      "id": "TC-HIL-NAV-001-h", "verdict": "不通过", "coverage": "五组默认任务均实际尝试，完整联动及连续性未全达标",
+      "actual_steps": ["按默认路线依次执行采摘、喷水、碎枝，失败后保留结果。", "另执行两组拖拉机五阶段，分别核对实际运动、机具联动和意外停机。"],
+      "finding": "采摘和喷水完成，采摘原有连续性10项通过；碎枝未走完全程；两组拖拉机虽完成任务仍有通信保护引起的非预期停机。五工况整体不通过。",
+      "remaining": ["问题整改后按同一冻结路线重新实测失败工况，不通过跳点、重置车辆或多轮拼接补成成功。"],
+      "evidence": ["E01", "E13", "E16", "E18", "E20", "E21", "E25", "E26"],
+      "metrics": [{"label": "采摘连续性审计", "evidence": "E13", "pointer": "/status"}, {"label": "采摘长时间非计划停止", "evidence": "E13", "pointer": "/long_navigation_stops"}, {"label": "碎枝任务状态", "evidence": "E18", "pointer": "/mission_status"}]
+    },
+    {
+      "id": "TC-HIL-NAV-001-i", "verdict": "未执行", "coverage": "有真实控制失败及后续停止，完整受限处理专项待补",
+      "actual_steps": ["碎枝运行中实际MPPI失败，随后以剩余目标请求Smac。", "Smac报告起点轮廓占障，任务按失败退出并停止，未无限重试或更改目标。"],
+      "finding": "该次真实异常的失败处理及停止有依据，但未受控制造首次规划不可达、取消未确认和重试达到上限等所有本版分支。",
+      "remaining": ["在隔离场景补齐首次规划失败、控制失败后允许的重试、取消确认及超限停止；保留全部原剩余目标。"],
+      "evidence": ["E17", "E18", "E02", "E91"], "metrics": []
+    },
+    {
+      "id": "TC-HIL-NAV-001-j", "verdict": "未执行", "coverage": "四组到点及停止有记录，碎枝终点试验受前置失败阻塞",
+      "actual_steps": ["采摘与喷水以当前半轴距到点，两个拖拉机完成最终park阶段并关闭动力、启用制动。", "使用独立位置及最终实际速度复核，不将成功标志当作全部停车证据。"],
+      "finding": "采摘和喷水的独立终点误差在对应半轴距内；两个拖拉机最终实际速度接近零。碎枝没有到最终点，本版要求的五工况到点后连续5 s速度与新增规划计数也未全部独立补齐。",
+      "remaining": ["导航修复后先使碎枝到点，再对五组统一采集终点后5 s仿真窗口、位置、航向无关停止及新增规划计数；不额外放宽位置容差。"],
+      "evidence": ["E10", "E12", "E16", "E18", "E22", "E27"],
+      "metrics": [{"label": "采摘独立终点误差", "evidence": "E12", "pointer": "/metrics/independent_finish_error_m", "unit": "m"}, {"label": "喷水独立终点误差", "evidence": "E16", "pointer": "/independent_endpoint_error_m", "unit": "m"}, {"label": "动力换挡最终实际速度", "evidence": "E22", "pointer": "/final_actual_speed_m_s", "unit": "m/s"}, {"label": "CVT最终实际速度", "evidence": "E27", "pointer": "/final_actual_speed_m_s", "unit": "m/s"}]
+    }
+  ]
+}

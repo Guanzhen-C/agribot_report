@@ -4,22 +4,21 @@
 
 Ubuntu 22.04 amd64、ROS 2 Humble、Gazebo Classic 11、系统 Python 3.10。建议32GB内存和充足SSD。源码构建使用Unity6000.0.26f1、Linux Build Support (Mono)和有效许可证；安装匹配的预编译程序不需要Unity Editor。
 
-本仓库不需要 Node、Android SDK、手机控制台或6750固件工具链。
+普通仿真不需要Node、Android SDK、手机控制台或6750固件工具链。可选HIL功能需要X5、6750、烧录器和USB-CAN，另需HPM OpenOCD进行每次启动时的自动烧录；使用已校验ELF不要求每次重编译固件。详见[HIL集成](18_hil_integration.md)。
 
 ## 克隆
 
 ```bash
-sudo apt-get install git git-lfs
-git clone https://github.com/Guanzhen-C/agribot_report.git
+sudo apt-get install git zstd
+git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
 cd agribot_report
-git lfs install --local
-git lfs pull
+python3 tools/fetch_assets.py
 python3 tools/doctor.py
 ```
 
-完整车库执行 `python3 tools/doctor.py --unity --hashes`；当前已包含全部授权运行资源，但仍应校验LFS下载和文件指纹，不要把LFS指针当成模型。
+完整车库执行 `python3 tools/doctor.py --unity --hashes`。当前授权运行资源通过本仓库GitHub Releases提供，由`resources/release_assets.json`锁定版本、大小和SHA-256；不再依赖Git LFS预算。
 
-普通Git下载正常但LFS大文件长期缓慢时，可先用 GIT_LFS_SKIP_SMUDGE=1 完成新克隆，再执行 python3 tools/fetch_lfs_media.py。恢复工具从GitHub官方media地址下载，逐个核对当前提交的LFS SHA256，再执行checkout；不提供未授权资源，也不保证任意网络均可下载。
+下载中断后重新执行`python3 tools/fetch_assets.py`，会续传`.part`并校验完整文件。下载好的资源附件可通过`--bundle-dir /path/to/bundles`离线恢复。工具保留本地修改的模型，除非显式指定`--repair`。详见[发布资源说明](19_release_distribution.md)。旧版本的`fetch_lfs_media.py`只用于历史LFS提交，不是当前安装入口。
 
 ## ROS
 
@@ -35,7 +34,7 @@ source scripts/env.sh
 
 脚本排除Conda污染，使用系统Python/CMake并限制并发。可用 AGRIBOT_BUILD_PACKAGE_WORKERS 和 AGRIBOT_BUILD_JOBS_PER_PACKAGE 调整编译资源。
 
-GTSAM使用ROS源的 ros-humble-gtsam，包含GTSAM_UNSTABLE。Dockerfile仅提供ROS依赖环境，不含Unity许可证或桌面/GPU转发；模型随Git LFS工作区提供。
+GTSAM使用ROS源的 ros-humble-gtsam，包含GTSAM_UNSTABLE。Dockerfile仅提供ROS依赖环境，不含Unity许可证或桌面/GPU转发；模型由Release资源恢复步骤提供。
 
 ## 基础仿真
 
@@ -51,7 +50,7 @@ gui=false只关闭Gazebo窗口，服务端和虚拟传感器仍运行。相机�
 
 ## Unity
 
-普通使用者在取得完整Git LFS工作区后执行`bash scripts/bootstrap.sh`，会构建ROS并优先安装仓库中与源码匹配的预编译程序；然后运行`bash scripts/run_unity.sh`。分阶段安装可用`bash scripts/install_app.sh`，但仍需先安装ROS运行依赖和构建配套仿真。
+普通使用者执行`bash scripts/bootstrap.sh`，会先下载并校验Release资源，再构建ROS并安装与源码匹配的预编译程序；然后运行`bash scripts/run_unity.sh`。分阶段安装可用`bash scripts/install_app.sh`，也会自动补齐资源和程序包，但仍需先安装ROS运行依赖和构建配套仿真。
 
 激活使用者自己的Unity许可证后：
 

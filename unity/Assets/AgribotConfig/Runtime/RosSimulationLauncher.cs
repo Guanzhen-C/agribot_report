@@ -114,6 +114,9 @@ namespace Agribot.VehicleConfiguration
     /// </summary>
     public static class RosSimulationLauncher
     {
+        private static readonly object LaunchFenceLock = new();
+        private static readonly string LaunchFencePath = Path.Combine(Path.GetTempPath(), "agribot-launch-"+Guid.NewGuid().ToString("N"));
+        private static string launchFenceToken = Guid.NewGuid().ToString("N");
         public const string DefaultPerceptionId = "stvl";
         public const string DefaultVisualPerceptionId = "off";
         public const string DefaultLocalizationId = "fastlivo_rtk";
@@ -521,6 +524,12 @@ namespace Agribot.VehicleConfiguration
                 arguments += " --scene-manifest " + QuoteProcessArgument(FarmScenarioCatalog.Selected.sceneManifest);
             if (useFixedRoute)
                 arguments += " --simulation-profile " + QuoteProcessArgument(scene.simulationProfile);
+            lock (LaunchFenceLock)
+            {
+                if (!File.Exists(LaunchFencePath)) File.WriteAllText(LaunchFencePath, launchFenceToken);
+                arguments += " --launch-fence-file " + QuoteProcessArgument(LaunchFencePath) +
+                    " --launch-fence-token " + QuoteProcessArgument(launchFenceToken);
+            }
             const string terminal = "/usr/bin/gnome-terminal";
 
             ProcessStartInfo result;
@@ -556,6 +565,12 @@ namespace Agribot.VehicleConfiguration
 
         public static string RunManagedCommand(bool exportPhysical, string outputPath = null)
         {
+            if (!exportPhysical)
+                lock (LaunchFenceLock)
+                {
+                    launchFenceToken = Guid.NewGuid().ToString("N");
+                    File.WriteAllText(LaunchFencePath, launchFenceToken);
+                }
             string script = Environment.GetEnvironmentVariable(ScriptEnvironmentVariable);
             if (string.IsNullOrWhiteSpace(script)) script = DefaultScriptPath;
             if (!File.Exists(script)) throw new FileNotFoundException("没有找到 ROS 同步脚本。", script);

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "right_camera",
+  "meshGroups": 15,
+  "triangles": 172358,
+  "minimumRos": [
+    -0.05692501738667488,
+    -0.029499953612685204,
+    -0.02174999751150608
+  ],
+  "maximumRos": [
+    0.08160006999969482,
+    0.02175004594027996,
+    0.02174999751150608
+  ],
+  "previewSha256": "80f098257a993e9e7d3a7af5563b9c4a4677d2a67fba97ed2a6af95476d2c87b",
+  "sourceMeshSha256": "767f37e500783793e40d0ecbd35efce7b56a5e9f3f1e34607c11c7a01ed91b81"
+}

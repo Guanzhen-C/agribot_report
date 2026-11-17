@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "imu",
+  "meshGroups": 1,
+  "triangles": 12,
+  "minimumRos": [
+    -0.014999977312982082,
+    -0.015000014565885067,
+    -0.009999998845160007
+  ],
+  "maximumRos": [
+    0.015000028535723686,
+    0.014999998733401299,
+    0.009999998845160007
+  ],
+  "previewSha256": "246356a9eabd5f22180a65a44e84be09ba98f37cf75d5c482076bbd89dcd3706",
+  "sourceMeshSha256": "d2d153e7adf512eb8c44616ab454bb321f83b7a0b21b30c4c0df1dd8ebcda488"
+}

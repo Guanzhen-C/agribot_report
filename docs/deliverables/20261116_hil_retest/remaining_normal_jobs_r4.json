@@ -1,0 +1,7 @@
+[
+  {"name": "sprayer-visual-r3", "kind": "controller", "profile": "tracked_sprayer", "checks": ["visual"]},
+  {"name": "tractor-cvt-authority-r1", "kind": "controller", "profile": "tractor_cvt", "checks": ["authority"]},
+  {"name": "tractor-powershift-parameters-r1", "kind": "controller", "profile": "tractor_powershift", "checks": ["parameters"]},
+  {"name": "tractor-cvt-watchdog-r1", "kind": "controller", "profile": "tractor_cvt", "checks": ["powertrain"]},
+  {"name": "tractor-powershift-watchdog-r1", "kind": "controller", "profile": "tractor_powershift", "checks": ["powertrain"]}
+]

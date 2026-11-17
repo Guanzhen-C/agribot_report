@@ -21,6 +21,8 @@ public sealed class FarmGarageVehicle : MonoBehaviour
     private Vector3 garagePosition, garageScale, garageAnchor;
     private Vector3 originalViewTarget, originalEquipmentTarget;
     private float mountedPreviewRadius;
+    private GameObject cameraTemplate;
+    public bool IsLoaded { get; private set; }
     public FarmVehiclePreset Preset { get; private set; }
     public Transform ViewTarget { get; private set; }
     public Transform EquipmentTarget { get; private set; }
@@ -184,13 +186,25 @@ public sealed class FarmGarageVehicle : MonoBehaviour
                     yield return new Vector3(x, y, z);
     }
 
-    public static GameObject Create(GameObject cameraTemplate, FarmVehiclePreset preset)
+    public static GameObject Create(GameObject cameraTemplate, FarmVehiclePreset preset, bool deferGeometry = false)
     {
-        if (!FarmVehicleLibrary.IsInstalled(preset.id)) return null;
+        if (!(deferGeometry ? FarmVehicleLibrary.HasAssetFiles(preset.id) : FarmVehicleLibrary.IsInstalled(preset.id)))
+            return null;
         var car = new GameObject(preset.garageName);
         car.SetActive(false);
         var instance = car.AddComponent<FarmGarageVehicle>();
         instance.Preset = preset;
+        instance.cameraTemplate = cameraTemplate;
+        if (!deferGeometry) instance.EnsureLoaded();
+        return car;
+    }
+
+    public void EnsureLoaded()
+    {
+        if (IsLoaded) return;
+        var car = gameObject;
+        var instance = this;
+        var preset = Preset;
         instance.garage = GameObject.Find("Garage1").transform;
         instance.garagePosition = instance.garage.position;
         instance.garageScale = instance.garage.localScale;
@@ -254,7 +268,7 @@ public sealed class FarmGarageVehicle : MonoBehaviour
         camera.GetComponent<CinemachineCamera>().Lens = lens;
         camera.ChangeCameraTarget(target);
         instance.ConfineCameraToGarage(camera);
-        return car;
+        IsLoaded = true;
     }
 
     private void ConfineCameraToGarage(cameraControl camera)

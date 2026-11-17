@@ -1,0 +1,12 @@
+[
+  {"profile":"ackermann_apple","kind":"mission","directory":".validation/hil_acceptance_20261116/fresh-30-r1/b-apple-normal"},
+  {"profile":"ackermann_apple","kind":"controller","directory":".validation/hil_acceptance_20261116/fresh-30-r1/b-apple-controls"},
+  {"profile":"tracked_sprayer","kind":"mission","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-sprayer-normal"},
+  {"profile":"tracked_sprayer","kind":"controller","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-sprayer-controls"},
+  {"profile":"tracked_shredder","kind":"mission","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-shredder-normal"},
+  {"profile":"tracked_shredder","kind":"controller","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-shredder-controls"},
+  {"profile":"tractor_powershift","kind":"mission","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-powershift-normal"},
+  {"profile":"tractor_powershift","kind":"controller","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-powershift-controls"},
+  {"profile":"tractor_cvt","kind":"mission","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-cvt-normal"},
+  {"profile":"tractor_cvt","kind":"controller","directory":".validation/hil_acceptance_20261116/fresh-30-rest-r1/b-cvt-controls"}
+]

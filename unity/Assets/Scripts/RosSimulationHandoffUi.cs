@@ -15,10 +15,12 @@ namespace Agribot.VehicleConfiguration
         private Action<string> showMessage;
         private string exportPath;
         private bool busy;
+        private bool stopPending;
         private bool canExport;
         public static event Action AvailabilityChanged;
-        public static bool IsBusy => instance != null && instance.busy;
-        public static bool CanExport => instance != null && !instance.busy && instance.canExport &&
+        public static bool IsBusy => instance != null && (instance.busy || instance.stopPending);
+        public static bool IsStopPending => instance != null && instance.stopPending;
+        public static bool CanExport => instance != null && !IsBusy && instance.canExport && !HilSimulationLauncher.HasSession &&
             !string.IsNullOrEmpty(instance.exportPath);
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -67,7 +69,32 @@ namespace Agribot.VehicleConfiguration
             if (exportButton != null) exportButton.onClick.RemoveListener(ExportConfiguration);
         }
 
-        private void StopSimulation() => StartCoroutine(Execute(false));
+        private void StopSimulation()
+        {
+            if (stopPending) return;
+            stopPending = true;
+            RefreshButtons();
+            StartCoroutine(StopWhenReady());
+        }
+
+        private IEnumerator StopWhenReady()
+        {
+            try
+            {
+                while (busy) yield return null;
+                if (HilSimulationLauncher.HasSession || HilSimulationUi.IsBusy)
+                {
+                    HilSimulationUi.Stop(showMessage);
+                    while (HilSimulationUi.IsStopPending) yield return null;
+                }
+                else yield return Execute(false);
+            }
+            finally
+            {
+                stopPending = false;
+                RefreshButtons();
+            }
+        }
         public static void RequestStop(Action<string> notification)
         {
             Create(); instance.showMessage = notification; instance.StopSimulation();
@@ -81,7 +108,7 @@ namespace Agribot.VehicleConfiguration
         public static void RequestDraftExport(IEnumerator routine)
         {
             Create();
-            if (!instance.busy) instance.StartCoroutine(instance.ExecuteDraftRoutine(routine));
+            if (!IsBusy) instance.StartCoroutine(instance.ExecuteDraftRoutine(routine));
         }
 
         private IEnumerator ExecuteDraftRoutine(IEnumerator routine)
@@ -99,8 +126,8 @@ namespace Agribot.VehicleConfiguration
 
         private void RefreshButtons()
         {
-            if (stopButton != null) stopButton.interactable = !busy;
-            if (exportButton != null) exportButton.interactable = !busy && canExport && !string.IsNullOrEmpty(exportPath);
+            if (stopButton != null) stopButton.interactable = !busy && !stopPending;
+            if (exportButton != null) exportButton.interactable = !busy && !stopPending && canExport && !string.IsNullOrEmpty(exportPath);
             AvailabilityChanged?.Invoke();
         }
 

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;
+using System.IO;
 using System.Diagnostics;
 using System.Reflection;
 using Agribot.VehicleConfiguration;
@@ -8,6 +10,41 @@ namespace Agribot.VehicleConfiguration.Tests
 {
     public sealed class RosSimulationLauncherTests
     {
+        [Test]
+        public void StopInvalidatesAlreadyDispatchedLaunchesButNewLaunchesUseTheNewFence()
+        {
+            string previous = FarmScenarioCatalog.SelectedId;
+            string previousScript = Environment.GetEnvironmentVariable("AGRIBOT_ROS_SYNC_SCRIPT");
+            string script = Path.Combine(Path.GetTempPath(), "agribot-fence-test-"+Guid.NewGuid().ToString("N")+".sh");
+            File.WriteAllText(script, "#!/bin/bash\nexit 0\n");
+            FarmScenarioCatalog.SelectedId = "orchard";
+            Environment.SetEnvironmentVariable("AGRIBOT_ROS_SYNC_SCRIPT", script);
+            try
+            {
+                var flags = BindingFlags.NonPublic | BindingFlags.Static;
+                var build = typeof(RosSimulationLauncher).GetMethod("BuildStartInfo", flags);
+                var first = (ProcessStartInfo)build.Invoke(null, new object[] {script, "/tmp/export",
+                    RosSimulationLauncher.FindAlgorithm("navsat_mppi")});
+                string path = (string)typeof(RosSimulationLauncher).GetField("LaunchFencePath", flags).GetValue(null);
+                string oldToken = File.ReadAllText(path);
+                Assert.That(first.Arguments, Does.Contain(" --launch-fence-file "));
+                Assert.That(first.Arguments, Does.Contain(oldToken));
+                RosSimulationLauncher.RunManagedCommand(false);
+                string current = File.ReadAllText(path);
+                Assert.That(current, Is.Not.EqualTo(oldToken));
+                var next = (ProcessStartInfo)build.Invoke(null, new object[] {script, "/tmp/export",
+                    RosSimulationLauncher.FindAlgorithm("navsat_mppi")});
+                Assert.That(next.Arguments, Does.Contain(current));
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable("AGRIBOT_ROS_SYNC_SCRIPT", previousScript);
+                if (string.IsNullOrEmpty(previous)) FarmScenarioCatalog.ResetSelection();
+                else FarmScenarioCatalog.SelectedId = previous;
+                File.Delete(script);
+            }
+        }
+
         [Test]
         public void GameLaunchWaitsForUserSelectedNavigationPoses()
         {

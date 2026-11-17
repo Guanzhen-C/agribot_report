@@ -16,3 +16,4 @@ def test_jammy_package_name_and_driver_headers_are_declared():
     assert 'libasio-dev' in packages
     assert 'libpcap-dev' in packages
     assert 'python3-pyproj' in packages
+    assert 'ros-humble-compressed-image-transport' in packages

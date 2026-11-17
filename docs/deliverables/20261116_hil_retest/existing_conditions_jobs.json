@@ -1,0 +1,3 @@
+[
+  {"name": "harrow-cvt-basic-r1", "kind": "controller", "profile": "tractor_cvt", "checks": ["harrow"]}
+]

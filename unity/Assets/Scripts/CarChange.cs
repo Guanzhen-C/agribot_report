@@ -569,7 +569,7 @@ public class CarChange : MonoBehaviour
         if (newDistance <= 0f)
         {
             Debug.LogError(
-                $"轮距必须大于 0，当前输入：{newDistance}",
+                $"前后轴距必须大于 0，当前输入：{newDistance * 100f:0.##} cm",
                 this
             );
 
@@ -581,7 +581,7 @@ public class CarChange : MonoBehaviour
             carRigidbody == null)
         {
             Debug.LogError(
-                "车辆引用不完整，无法调整轮距。",
+                "车辆引用不完整，无法调整前后轴距。",
                 this
             );
 
@@ -596,7 +596,7 @@ public class CarChange : MonoBehaviour
         if (wheelTrack < MinWheelTrack || wheelTrack > MaxWheelTrack)
         {
             Debug.LogError(
-                $"左右轮距必须在 {MinWheelTrack:F2}m 到 {MaxWheelTrack:F2}m 之间，当前输入：{wheelTrack:F3}m",
+                $"左右轮距必须在 {MinWheelTrack * 100f:0.##} cm 到 {MaxWheelTrack * 100f:0.##} cm 之间，当前输入：{wheelTrack * 100f:0.##} cm",
                 this);
             return false;
         }
@@ -610,7 +610,7 @@ public class CarChange : MonoBehaviour
         return true;
     }
 
-    // 可以执行多次，只更新最终轮距
+    // 可以执行多次，只更新最终前后轴距。
     private IEnumerator ChangeWheelsDistanceRoutine()
     {
         wheelDistanceAdjustmentRunning = true;
@@ -636,7 +636,7 @@ public class CarChange : MonoBehaviour
         wheelDistanceAdjustmentRunning = false;
 
         Debug.Log(
-            $"轮距调整完成，当前轮距：{cur_wheelDis:F6}",
+            $"轴距调整完成，当前前后轴距：{cur_wheelDis * 100f:0.##} cm",
             this
         );
     }
@@ -812,7 +812,7 @@ public class CarChange : MonoBehaviour
 
         wheelTrackAdjustmentRunning = false;
         Debug.Log(
-            $"左右轮距调整完成，当前左右轮距：{curWheelTrack:F6}",
+            $"左右轮距调整完成，当前左右轮距：{curWheelTrack * 100f:0.##} cm",
             this);
     }
 
@@ -871,7 +871,7 @@ public class CarChange : MonoBehaviour
         }
     }
 
-    // WheelDistancePanel：改变前后轮距。
+    // WheelDistancePanel：改变前后轴距。
     private void ApplyWheelDistance(float targetDis)
     {
         if (targetDis >= 0.42f && targetDis <= 0.60f)
@@ -898,7 +898,7 @@ public class CarChange : MonoBehaviour
                 FR_renderer.bounds.center.z);
 
             cur_wheelDis = targetDis;
-            Agribot.VehicleConfiguration.AssistantConversation.RecordUi("调整前后轴距，模型参数值：" + targetDis);
+            Agribot.VehicleConfiguration.AssistantConversation.RecordUi($"调整前后轴距：{targetDis * 100f:0.##} cm");
             WheelDistanceChanged?.Invoke(cur_wheelDis);
         }
     }
@@ -918,7 +918,7 @@ public class CarChange : MonoBehaviour
           );
 
         curWheelTrack = targetTrack;
-        Agribot.VehicleConfiguration.AssistantConversation.RecordUi("调整左右轮距，模型参数值：" + targetTrack);
+        Agribot.VehicleConfiguration.AssistantConversation.RecordUi($"调整左右轮距：{targetTrack * 100f:0.##} cm");
         WheelTrackChanged?.Invoke(curWheelTrack);
     }
 

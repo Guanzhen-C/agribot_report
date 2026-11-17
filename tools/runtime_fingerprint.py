@@ -10,6 +10,16 @@ ROOTS = ('unity', 'ros2_ws/src', 'ros2_ws/build_ros2_humble.sh', 'scripts', 'too
          '.gitattributes', '.gitignore')
 
 
+def runtime_input(name):
+    path = Path(name)
+    # Vendor PDF manuals and their Unity metadata are not player build inputs.
+    manual = path.suffix.lower() == '.pdf' or path.name.lower().endswith('.pdf.meta')
+    standalone_manual = path.name.lower() in ('documentation.pdf', 'documentation.pdf.meta',
+                                             'documentaion.pdf', 'documentaion.pdf.meta')
+    return not (path.parts[0] == 'unity' and manual and
+                (standalone_manual or any(part in ('Documentation', 'Documentaion') for part in path.parts)))
+
+
 def fingerprint(root, require_clean=True):
     root = Path(root)
     def git(*args):
@@ -17,10 +27,15 @@ def fingerprint(root, require_clean=True):
     dirty = git('diff', '--name-only', '-z', '--', *ROOTS).decode().strip('\0').split('\0')
     staged = git('diff', '--cached', '--name-only', '-z', '--', *ROOTS).decode().strip('\0').split('\0')
     untracked = git('ls-files', '--others', '--exclude-standard', '-z', '--', *ROOTS).decode().strip('\0').split('\0')
-    changes = set(dirty + staged + untracked) - {''}
+    changes = {name for name in dirty + staged + untracked if name and runtime_input(name)}
     if require_clean:
         if changes:
             raise ValueError('运行源码或资源有未提交修改，请先完成构建版本提交；不会把旧程序当作新版本。')
+        if (root / 'resources/release_assets.json').is_file():
+            from release_assets import inspect
+            issues = inspect(root, hashes=True)
+            if issues:
+                raise ValueError('发布资源未就绪或存在未登记修改：' + issues[0])
     records = []
     for value in git('ls-files', '-s', '-z', '--', *ROOTS).split(b'\0'):
         if not value:
@@ -30,6 +45,8 @@ def fingerprint(root, require_clean=True):
         if stage != '0':
             raise ValueError('运行输入存在Git冲突')
         name = path.decode()
+        if not runtime_input(name):
+            continue
         if require_clean or name not in changes:
             records.append(dict(path=name, mode=mode, git_blob=blob))
     if not require_clean:

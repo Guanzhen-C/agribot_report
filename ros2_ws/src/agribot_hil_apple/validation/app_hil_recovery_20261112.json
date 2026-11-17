@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-12",
+  "profile": "ackermann_apple",
+  "status": "functional_runs_completed_hardware_zero_error_not_passed",
+  "scope": "Actual X5, HPM6750 and USB-CAN with Gazebo known-object-pose manipulation; not real-arm visual or force-control acceptance",
+  "diagnosis": {
+    "can_observed_failure": "Native commands continued arriving while PC kernel TX completions stopped; queues accumulated. Successful socket enqueue was incorrectly treated as physical recovery.",
+    "picking_observed_failure": "Vehicle stopped within approved navigation tolerance but fruit7 approach was unreachable from that actual pose; 44 unreported approach options caused an apparent freeze and only one fruit was returned.",
+    "hardware_cause": "Underlying adapter/driver TX-completion freeze remains unresolved; neither firmware cause nor cable cause is proven. No USB adapter firmware was changed."
+  },
+  "fixes": {
+    "physical_tx_stall_threshold_wall_sec": 0.3,
+    "tx_counter_poll_wall_sec": 0.1,
+    "release_stall_only_after_actual_tx_progress": true,
+    "controlled_bound_interface_reopen_with_zero_output": true,
+    "maximum_transport_recoveries_per_task": 3,
+    "candidate_search_budget_wall_sec": 20.0,
+    "candidate_progress_events": true,
+    "pickup_park": [30.7, 31.77, 3.141592653589793],
+    "pickup_position_tolerance_m": 0.1,
+    "pickup_yaw_tolerance_rad": 0.15,
+    "unchanged": ["route order 1-2-3", "fruit tray and deposit slots", "RTK mounts", "native vehicle CAN protocol", "collision and bilateral stem contact checks", "real vehicle workspace"]
+  },
+  "runs": [
+    {
+      "run_id": "20261112T075152_ed181d60",
+      "revision": "reach-margin and early TX watchdog before completion-latch correction",
+      "mission_status": "succeeded",
+      "harvested": ["harvest_apple_7", "harvest_apple_5"],
+      "finish_position_error_m": 0.22511476001680264,
+      "all_fruit_inside_original_tray": true,
+      "transport_recoveries": 1,
+      "transient_error_samples": 64
+    },
+    {
+      "run_id": "20261112T080541_5d4b1cc3",
+      "revision": "final physical-TX-completion latch",
+      "mission_status": "succeeded",
+      "harvested": ["harvest_apple_7", "harvest_apple_5"],
+      "finish_position_error_m": 0.2502212432923055,
+      "all_fruit_inside_original_tray": true,
+      "transport_recoveries": 2,
+      "transient_error_samples": 197,
+      "error_count_note": "Repeated timer samples of two stalls, not 197 distinct adapter outages",
+      "detected_stall_to_feedback_recovery_wall_sec": [1.188, 1.146],
+      "candidate_search_wall_sec": [2.1819745719985804, 1.9781065510032931],
+      "failed_navigation_attempts": 0,
+      "unplanned_navigation_stops_over_2_sim_sec": [],
+      "arm_stowed": true,
+      "motion_authorized_at_end": false,
+      "strict_independent_audit": {
+        "status": "failed",
+        "satisfied": 17,
+        "total": 18,
+        "unsatisfied": ["native_can_motion_and_feedback_without_errors"]
+      },
+      "strict_fluency_audit": {
+        "status": "failed",
+        "satisfied": 9,
+        "total": 10,
+        "unsatisfied": ["complete_hil_acceptance_passed"]
+      },
+      "transit_gripper_audit": "passed",
+      "input_sha256": {
+        "mission.json": "ea7be1136048b77570003cf01340968b4f5b5a9051e668f4f295a5c9c35e0f23",
+        "harvest.json": "7b32a9cb550888fe7c8962c962aa9fe3c70346d5bac6e2e77ef4a43f6c71445d",
+        "independent-pc.json": "409c6be6dc832bf703d5933170a92d12faf7ea11c57294bcd91ae14599545075"
+      }
+    }
+  ],
+  "regression_tests_passed": 221,
+  "protected_real_workspace_files_checked": 7064,
+  "protected_real_workspace_unchanged": true,
+  "qualification_thresholds_changed": false,
+  "local_raw_evidence_root": ".validation/hil_can_stalled_transport_20261112"
+}

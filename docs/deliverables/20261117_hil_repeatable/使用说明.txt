@@ -1,0 +1,143 @@
+三类控制器30项可重复测试说明
+版本：2026-11-17；需规冻结为V2.1；参考结果为2026-11-16最终实测。
+
+一、保存内容与边界
+
+1. “30项测试步骤过程与结果.txt”逐条列出三类各10条的前置条件、步骤、
+   判据、实际过程、结论、适用工况、不覆盖范围及证据路径。
+2. reports中为原格式测试计划、测试用例、PDF、CSV、两阶段结果和校验。
+3. records中为本轮新成功任务的原始CAN/USB/任务/定位/关节/代价图记录，
+   完整控制专项、烧录、实际库核验、独立审计、原始XWD及PNG，并保留失败轮。
+   archive-index.json记录每个文件的SHA-256。闭合验证数据尽量使用硬链接，
+   不重复占用大块空间，删除原临时目录不会删除已保存的数据。
+   不要编辑任何一份闭合日志；编辑硬链接文件会同时改变原记录。
+   可编辑Word及运行中可能改动的配置另作独立保存，避免相互覆盖。
+4. baseline.json锁定本次实际源码、固件、场景资源和部署配置的哈希；
+   记录的是实际工作树，含未提交文件，不冒充干净Git发行版本。
+   此包不是独立系统镜像，重跑需要完整项目、原工具链与已部署的隔离台架。
+   源码改变时校验会拒绝继续，不得重新建锁来掩盖版本差异。
+5. “复测入口”指向仓库中的正式复测程序；没有再复制整个项目。
+   迁移到别的目录后，从完整仓库调用下述脚本，并指定本保存包路径。
+6. 原V2.0未覆盖分支不因V2.1通过而自动通过。NAV-i仅为重新执行的原生MPPI
+   软件夹具＋指定历史实板故障/恢复记录核查，不是本轮新实板故障注入。
+   不宣称AEF认证、全动态避障、真实农艺精度或第三方已经签署。
+
+二、台架和冻结工况
+
+仅连接硬件在环台架，禁止接真车行走、机械臂或机具执行器。
+PC运行Gazebo；X5运行算法；HPM6750实际中继两段实体CAN。
+接线：X5 USB-CAN→6750 CAN1；6750 CAN0→PC USB-CAN。
+确认公共地及总线两端终端匹配；PC↔X5的ROS 2数据走网口，Wi-Fi仅作维护。
+PC CAN绑定序列号003000224856511520343739；X5侧966960660237。
+原烧录器序列号1d4a21d76150fec8；以已核实connection.json为准，变更需重新确认。
+不得仅凭动态can0/ttyACM编号判断设备，也不得向真车工作区部署。
+X5专用目录必须为/home/sunrise/agribot_app_hil_ws。
+
+A：Car0＋Lite6／苹果园，FAST-LIVO2＋RTK，Smac，原生MPPI；1 Mbit/s。
+B：Car3＋植保喷水／苹果园，同定位、规划及控制；250 kbit/s。
+C：Car3＋碎枝机／苹果园，同定位、规划及控制；250 kbit/s。
+D：Car4＋悬挂圆盘耙／宽地头，NavSat ESKF，Smac，MPPI，动力换挡；250 kbit/s。
+E：同Car4工况，CVT；250 kbit/s。五种工况STVL均关闭。
+机械臂仍走网口；底盘不得用ROS速度旁路实体CAN。
+Car0/Car3 ROS域73，Car4域74。原出生点、默认任务顺序和已有障碍保持。
+不加测试方块，不修改车体轮廓、不把机具加入规划碰撞轮廓。
+最终停车仅看位置，容差Car0=0.2632937431m、Car3=0.4185015549m、
+Car4=1.0925620956m，不用该容差替代采摘位0.10m/0.15rad条件。
+Car4状态超时仍为0.30s；MPPI连续失败patience仍为2s。
+以各机单调墙钟判断租约，以仿真时钟判断运动，不相减未同步跨机墙钟。
+
+三、准备工作
+
+使用原Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11、已安装独立HIL叠加包。
+不要升级到24.04。保持原X5真车保护清单，不能用重新建清单掩盖差异。
+在PC图形桌面终端运行，确保Gazebo可以显示；需要xdotool、xwd、protoc、gz。
+PNG转换需要ffmpeg：测试笔记本没有时，可将完整新运行目录传回审阅PC转换。
+Python需现有ROS环境、numpy、Pillow、PyYAML等。上述依赖按项目既有安装流程准备。
+SSH密钥、密码和本机连接配置不放进交付包，也不在复测脚本中硬编码。
+先通过tools/hil/deploy.py按原流程部署最新版隔离HIL代码，不操作真车目录。
+检查固件和目录见unity/Assets/AgribotConfig/Resources/hil_profiles.json。
+不同PC编译产物可能因路径/编译环境不同而哈希不同，不能假装逐字节相同；
+每轮另保存实际加载库、源码/安装一致性和固件核验。
+
+四、统一入口（在实际连接台架的PC上运行）
+
+进入完整仓库根目录。设置以下变量，REF为本保存包的实际路径，OUT必须全新：
+
+  REF="$HOME/Desktop/HIL30项可重复测试_20261117"
+  OUT="$PWD/.validation/hil_repeat_$(date +%Y%m%d_%H%M%S)"
+  SCRIPT=docs/deliverables/20261117_hil_repeatable/repeat_suite.py
+
+先预览，无SSH、烧录、CAN写入或任务启动：
+
+  /usr/bin/python3 "$SCRIPT" plan --output "$OUT"
+  /usr/bin/python3 "$SCRIPT" check --reference "$REF" --output "$OUT"
+
+检查会核对冻结源码/资源、地图/目标/参数和历史证据；遇差异先查原因。
+它不等同于检查所有现场接线。确认台架安全、无其他HIL任务后才执行：
+
+  /usr/bin/python3 "$SCRIPT" run --reference "$REF" --output "$OUT" --execute --bench-only
+
+此命令才会实际烧录和控制仿真；每次启动均烧录、校验，不跳过同工况。
+执行顺序：辅助检查→A正常/专项→B正常/专项→C正常/专项→D正常/专项→E正常/专项。
+辅助检查含两速率固件匹配、烧录中取消、非法组合/接口拒绝、场景核验及软件夹具。
+每工况先前检、停上一轮、核对真车保护、烧录、配置总线、等就绪、再授权。
+正常全程采集传感器、独立状态、实体CAN和终点后窗口，再关闭并归档。
+专项使用既有控制器验证工具，不直接修改车位姿或绕过CAN。
+最后自动做接触/夹爪保持、三方收到负载等独立审计。
+
+运行期间不要操作Unity启动/停止、手工改参数、切车型或启动另一轮。
+可在另一终端读取OUT/execution.json、auxiliary.log、physical.log等观察进度。
+正常记录器已纳入正式源码，不再依赖旧.validation中的临时Python文件。
+
+五、截图审阅和最终判定（不可省略）
+
+实板流程结束只标awaiting_visual_review，不自动给30条通过。
+用原始XWD转换PNG，不能贴入旧图或生成图：
+
+  /usr/bin/python3 "$SCRIPT" render --output "$OUT"
+
+逐张打开并检查7张图：
+- physical/b-sprayer-controls/spray-existing：original-nozzles、existing-occlusion、pump-stopped。
+  核对原喷头出雾、原场景遮挡、停泵消散；同时看该目录result.json和深度射线。
+- physical/b-cvt-controls/harrow-visual：visual-work、visual-raised各rear-right和rear-left。
+  核对入土和作业带、抬升离地及历史保留；同时核对实际盘底高度和history结果。
+
+确实查看且满足后，分别登记人工/审阅者观察，不能未看图先批准：
+
+  /usr/bin/python3 docs/deliverables/20261116_hil_existing_conditions/record_visual_review.py \
+    --directory "$OUT/physical/b-sprayer-controls/spray-existing" --kind spray \
+    --approve --notes "填写本轮逐图实际观察"
+  /usr/bin/python3 docs/deliverables/20261116_hil_existing_conditions/record_visual_review.py \
+    --directory "$OUT/physical/b-cvt-controls/harrow-visual" --kind harrow \
+    --approve --notes "填写本轮逐图实际观察"
+
+然后汇总，缺证据、哈希不符、旧运行编号和不合格分支不会标通过：
+
+  /usr/bin/python3 "$SCRIPT" finalize --reference "$REF" --output "$OUT"
+
+输出cases.json、cases.csv、30项步骤与结果.txt及final-audit.log。
+execution.json只有最终审计通过后才passed=true；软件检查和历史核查单列。
+如果在主机审阅从笔记本复制的新OUT，需保留完整目录结构，主机源码/配置也须通过基线校验。
+
+六、失败、复测与收尾
+
+任一失败立即停止后续工况，保留完整目录和失败JSON/原日志。
+不要删掉失败后在同一目录重跑，不改阈值为通过，不用旧成功记录替代新执行。
+若无新输入或等待就绪，先查execution.json及对应job日志，不直接强制给速度。
+正常停止入口：/usr/bin/python3 tools/hil/cli.py stop。
+烧录中取消必须等写入、校验完成后清理，不强杀烧录器。
+控制专项失败时，可从controller-checks.json读真实run_id，确认服务已停止后运行：
+
+  /usr/bin/python3 docs/deliverables/20261116_hil_retest/collect_run.py \
+    --root "$PWD" --run "实际run_id" --output "新的失败归档目录"
+
+修复后按影响范围重新执行；需要一次完整重复验证时，用全新OUT从头run。
+不能把第一次失败目录改名成成功。人工解释和缺陷修复另记，不覆盖原记录。
+最后确认PC与X5的agribot*hil*用户服务无运行项、执行授权撤销、机具停机、
+端口释放且真车保护文件未变。CLI测试不替代Unity逐键界面验收。
+
+七、本次保存动作的验证说明
+
+本包保存的是11月16日已经完成的真实30项结果，不宣称11月17日又跑了实板。
+此次只补全复测入口、版本锁及记录器的正式存放位置，并进行离线回归和预览检查。
+保存结果与以后新运行结果分目录；后者必须重新执行、重新观测并判定。

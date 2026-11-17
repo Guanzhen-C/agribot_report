@@ -312,7 +312,7 @@
         "xyz": [
           0.1,
           0.32500070333480835,
-          2.847832036972046
+          2.427631538462162
         ],
         "rpy": [
           0.0,
@@ -359,7 +359,7 @@
         "xyz": [
           0.1,
           -0.32500070333480835,
-          2.847832036972046
+          2.427631538462162
         ],
         "rpy": [
           0.0,
@@ -402,7 +402,25 @@
     "profileVersion": "1.0.0",
     "calibrationState": "unity_nominal_simulation_only",
     "simulationVelocityFromPose": true,
-    "notes": "Geometry is from supplied CAD, at original metric scale; redistribution permission is unverified. Source +Z is up and -Y is forward; base_link is the rear axle midpoint. The two front tyre axes were measured by PCA and rotated to neutral steering; axle x and tyre ground contacts are levelled. The simulation uses front steering and rear drive; mass, limits and collision boxes are nominal, not manufacturer calibration. Presentation colours are assigned locally. Existing garage sensor CAD is mounted at fixed roof positions. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood."
+    "notes": "Geometry is from supplied CAD, at original metric scale; redistribution permission is unverified. Source +Z is up and -Y is forward; base_link is the rear axle midpoint. The two front tyre axes were measured by PCA and rotated to neutral steering; axle x and tyre ground contacts are levelled. The simulation uses front steering and rear drive; mass, limits and collision boxes are nominal, not manufacturer calibration. Presentation colours are assigned locally. Existing garage sensor CAD is mounted at fixed roof positions. Fixed sensor CAD reused from the existing garage; mounting bases supported by the hood.",
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          0.1,
+          0.32500070333480835,
+          2.847832036972046
+        ],
+        "rtk_secondary": [
+          0.1,
+          -0.32500070333480835,
+          2.847832036972046
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
+    }
   },
   "implements": []
 }

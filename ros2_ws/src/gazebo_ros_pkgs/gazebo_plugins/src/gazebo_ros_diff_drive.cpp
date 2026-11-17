@@ -56,6 +56,7 @@
 #include <gazebo/physics/Model.hh>
 #include <gazebo/physics/World.hh>
 #include <gazebo_plugins/gazebo_ros_diff_drive.hpp>
+#include <gazebo_plugins/wheel_velocity_limit.hpp>
 #include <gazebo_ros/conversions/builtin_interfaces.hpp>
 #include <gazebo_ros/conversions/geometry_msgs.hpp>
 #include <gazebo_ros/node.hpp>
@@ -422,8 +423,12 @@ void GazeboRosDiffDrive::Reset()
         "fmax", 0, impl_->max_wheel_torque_);
       impl_->joints_[2 * i + GazeboRosDiffDrivePrivate::RIGHT]->SetParam(
         "fmax", 0, impl_->max_wheel_torque_);
+      impl_->joints_[2 * i + GazeboRosDiffDrivePrivate::LEFT]->SetParam("vel", 0, 0.0);
+      impl_->joints_[2 * i + GazeboRosDiffDrivePrivate::RIGHT]->SetParam("vel", 0, 0.0);
     }
   }
+  std::fill(impl_->wheel_speed_instr_.begin(), impl_->wheel_speed_instr_.end(), 0.0);
+  std::fill(impl_->desired_wheel_speed_.begin(), impl_->desired_wheel_speed_.end(), 0.0);
   impl_->pose_encoder_.x = 0;
   impl_->pose_encoder_.y = 0;
   impl_->pose_encoder_.theta = 0;
@@ -484,50 +489,16 @@ void GazeboRosDiffDrivePrivate::OnUpdate(const gazebo::common::UpdateInfo & _inf
 #ifdef IGN_PROFILER_ENABLE
   IGN_PROFILE_END();
 #endif
-  // Current speed
-  std::vector<double> current_speed(2 * num_wheel_pairs_);
+  // Slew the previous setpoint, not tracking error: stalled wheels must not
+  // integrate an unbounded velocity request while contact prevents motion.
   for (unsigned int i = 0; i < num_wheel_pairs_; ++i) {
-    current_speed[2 * i + LEFT] =
-      joints_[2 * i + LEFT]->GetVelocity(0) * (wheel_diameter_[i] / 2.0);
-    current_speed[2 * i + RIGHT] =
-      joints_[2 * i + RIGHT]->GetVelocity(0) * (wheel_diameter_[i] / 2.0);
-  }
-
-  // If max_accel == 0, or target speed is reached
-  for (unsigned int i = 0; i < num_wheel_pairs_; ++i) {
-    if (max_wheel_accel_ == 0 ||
-      ((fabs(desired_wheel_speed_[2 * i + LEFT] - current_speed[2 * i + LEFT]) < 0.01) &&
-      (fabs(desired_wheel_speed_[2 * i + RIGHT] - current_speed[2 * i + RIGHT]) < 0.01)))
-    {
-      joints_[2 * i + LEFT]->SetParam(
-        "vel", 0, desired_wheel_speed_[2 * i + LEFT] / (wheel_diameter_[i] / 2.0));
-      joints_[2 * i + RIGHT]->SetParam(
-        "vel", 0, desired_wheel_speed_[2 * i + RIGHT] / (wheel_diameter_[i] / 2.0));
-    } else {
-      if (desired_wheel_speed_[2 * i + LEFT] >= current_speed[2 * i + LEFT]) {
-        wheel_speed_instr_[2 * i + LEFT] += fmin(
-          desired_wheel_speed_[2 * i + LEFT] -
-          current_speed[2 * i + LEFT], max_wheel_accel_ * seconds_since_last_update);
-      } else {
-        wheel_speed_instr_[2 * i + LEFT] += fmax(
-          desired_wheel_speed_[2 * i + LEFT] -
-          current_speed[2 * i + LEFT], -max_wheel_accel_ * seconds_since_last_update);
-      }
-
-      if (desired_wheel_speed_[2 * i + RIGHT] > current_speed[2 * i + RIGHT]) {
-        wheel_speed_instr_[2 * i + RIGHT] += fmin(
-          desired_wheel_speed_[2 * i + RIGHT] -
-          current_speed[2 * i + RIGHT], max_wheel_accel_ * seconds_since_last_update);
-      } else {
-        wheel_speed_instr_[2 * i + RIGHT] += fmax(
-          desired_wheel_speed_[2 * i + RIGHT] -
-          current_speed[2 * i + RIGHT], -max_wheel_accel_ * seconds_since_last_update);
-      }
-
-      joints_[2 * i + LEFT]->SetParam(
-        "vel", 0, wheel_speed_instr_[2 * i + LEFT] / (wheel_diameter_[i] / 2.0));
-      joints_[2 * i + RIGHT]->SetParam(
-        "vel", 0, wheel_speed_instr_[2 * i + RIGHT] / (wheel_diameter_[i] / 2.0));
+    for (const auto side : {LEFT, RIGHT}) {
+      const auto index = 2 * i + side;
+      wheel_speed_instr_[index] = limit_wheel_velocity(
+        wheel_speed_instr_[index], desired_wheel_speed_[index],
+        max_wheel_accel_, seconds_since_last_update);
+      joints_[index]->SetParam(
+        "vel", 0, wheel_speed_instr_[index] / (wheel_diameter_[i] / 2.0));
     }
   }
 

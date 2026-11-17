@@ -46,13 +46,16 @@ namespace Agribot.VehicleConfiguration.Tests
             var unavailable = ui.GetMethod("UnavailableReason", BindingFlags.Public | BindingFlags.Static);
             var types = Enum.GetValues(equipment).Cast<object>()
                 .Where(t => t.ToString() == "Hand" || (bool)mounted.Invoke(null, new[] { t })).ToArray();
-            Assert.That(types.Length, Is.EqualTo(12));
+            var declaredTypes = catalog.bindings.Select(b => b.unityType).Where(t => !string.IsNullOrEmpty(t))
+                .Concat(HilSimulationLauncher.Profiles.Select(p => p.unityType)).Distinct().ToArray();
+            Assert.That(types.Select(t => t.ToString()), Is.EquivalentTo(declaredTypes));
             for (int index = 0; index < 10; index++)
             {
                 string car = "Car" + index;
                 foreach (var type in types)
                 {
-                    bool declared = catalog.bindings.Any(b => b.car == car && b.unityType == type.ToString());
+                    bool declared = catalog.bindings.Any(b => b.car == car && b.unityType == type.ToString()) ||
+                        HilSimulationLauncher.Profiles.Any(p => p.car == car && p.unityType == type.ToString());
                     Assert.That(unavailable.Invoke(null, new object[] { type, car }) == null,
                         Is.EqualTo(declared), car + "/" + type);
                 }

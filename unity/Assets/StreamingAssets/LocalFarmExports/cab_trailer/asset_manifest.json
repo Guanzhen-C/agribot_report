@@ -1,6 +1,6 @@
 {
-  "meshGroups": 42,
-  "triangles": 382020,
+  "meshGroups": 45,
+  "triangles": 381584,
   "minimumRos": [
     -7.274092197418213,
     -1.5870628356933594,
@@ -9,9 +9,9 @@
   "maximumRos": [
     4.4977707862854,
     1.6004236936569214,
-    2.9706320762634277
+    2.508995771408081
   ],
-  "previewSha256": "47c8c1976484d4d841dae8a3561829d2bc305a2983f308e40be855e6c45d9d09",
+  "previewSha256": "ba7bb3a03548676f2a172750e7775c0ab3b6f72fc681b283c79a7945fcd61660",
   "vehicleId": "cab_trailer",
   "schemaVersion": 1,
   "files": [
@@ -49,11 +49,11 @@
     },
     {
       "name": "sensor_rtk_master_visual.mtl",
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "name": "sensor_rtk_master_visual.obj",
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sha256": "33278b304414c59d4619cfd5cb631bbcdba82e258c33a82162e72271c6d7ddcf"
     },
     {
       "name": "trailer_front_left.mtl",
@@ -89,7 +89,7 @@
     },
     {
       "name": "vehicle_config.json",
-      "sha256": "271a6ec041df4f79db3e1287cec1385dd7621a23d76d0264695438143f9dd906"
+      "sha256": "b4a5ee6fc54fb55129fad1e2b9733f368460958d8acf61a46f1e4e61ed919279"
     },
     {
       "name": "vehicle_visual.mtl",
@@ -101,5 +101,5 @@
     }
   ],
   "redistributionLicense": "unverified_user_supplied",
-  "sourceConfigSha256": "271a6ec041df4f79db3e1287cec1385dd7621a23d76d0264695438143f9dd906"
+  "sourceConfigSha256": "b4a5ee6fc54fb55129fad1e2b9733f368460958d8acf61a46f1e4e61ed919279"
 }

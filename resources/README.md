@@ -1,6 +1,6 @@
 # 离线运行资源
 
-完整车库资源位于 `unity/Assets/` 及 `ros2_ws/src/agribot_vehicle_description/generated/`，使用 Git LFS。模型提供者已明确确认分发权限；不包含购买压缩包、原始STEP工程或用户扫描的自动化所园区。
+完整车库资源恢复后位于 `unity/Assets/` 及 `ros2_ws/src/agribot_vehicle_description/generated/`。当前通过同仓库GitHub Releases分发，版本和逐文件SHA-256由`release_assets.json`锁定；运行`python3 tools/fetch_assets.py`即可恢复，不依赖Git LFS额度。模型提供者已明确确认分发权限；不包含购买压缩包、原始STEP工程或用户扫描的自动化所园区。
 
 本目录补齐原应用运行时所需的另外两类输入：
 

@@ -65,8 +65,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2203,
-      "sha256": "3eadfa3e41d1d3d1188079f31af32a3d341ff1759f0ce7579a79668009ea9d19"
+      "sizeBytes": 2137,
+      "sha256": "87eaff009286a134787a63419f8993a8e8c434411e3e7211fd45d85d63492a61"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -105,18 +105,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1293,
-      "sha256": "88e64e899076850805263275d616ee41ad3c69b41a29d74922ff8f4b08fd667f"
+      "sizeBytes": 1227,
+      "sha256": "2a63ca10eb92adc02a60797b6b97d961468193a334c4ab08edeb083794c55880"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1165,
-      "sha256": "1133819058b1d9626ce35b2f852524ff99365786dbeaced7c4c5f6b2ee3c7254"
+      "sizeBytes": 1099,
+      "sha256": "a5be268f6968ef2720fa62c97193246172ce9c77277d0d31fb04cb27fb32f1f2"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1165,
-      "sha256": "1133819058b1d9626ce35b2f852524ff99365786dbeaced7c4c5f6b2ee3c7254"
+      "sizeBytes": 1099,
+      "sha256": "a5be268f6968ef2720fa62c97193246172ce9c77277d0d31fb04cb27fb32f1f2"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -890,18 +890,18 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 649294,
-      "sha256": "a3b9d196140fd8dbaaba4b3ca9dfa9b964fce1405f3ebde47ccdc37ecb4eb568"
+      "sizeBytes": 942657,
+      "sha256": "6c43aa7866ff54d5303b35a8b2d7e79ccaa3f218e9975d1b6e9131ee2dc9bac8"
     },
     {
       "path": "models/tracked_harvester.sdf",
-      "sizeBytes": 1458808,
-      "sha256": "74888a728a9914b7e5dd0b0c9d3c99351f67741c6973e7e4631b5238ac01c6a1"
+      "sizeBytes": 1458846,
+      "sha256": "908647bdfe64c7c3da8b683fc457d74a3a57483c2bb36aeb185b8bbc08d03922"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -915,13 +915,13 @@
     },
     {
       "path": "urdf/tracked_harvester.urdf.xacro",
-      "sizeBytes": 14186,
-      "sha256": "2dae6c0e49ad565a71700a5157c577c4d3b2a9ffdd96c4cc1eaae5ab61645feb"
+      "sizeBytes": 14222,
+      "sha256": "59e2810174f567da4c29369f78b433787f91d11d4acd06abbb11b3b7caf513bb"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 80076,
-      "sha256": "631dee094052eed06c1162ffb397f8e008c4aa4b3126148aa76201ac862de2bc"
+      "sizeBytes": 80572,
+      "sha256": "28b3fbf44f41863bce8daa4dfb338f75c455e3eb7b0d207bae6df1a6a18518d2"
     }
   ]
 }

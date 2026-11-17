@@ -312,7 +312,7 @@
         "xyz": [
           1.1,
           0.325,
-          1.0600262053
+          0.6398257067901162
         ],
         "rpy": [
           0.0,
@@ -359,7 +359,7 @@
         "xyz": [
           1.1,
           -0.325,
-          1.0600262053
+          0.6398257067901162
         ],
         "rpy": [
           0.0,
@@ -562,6 +562,24 @@
       "centerOfMassXM": 0.666047265858702,
       "frontAxleLoadFraction": 0.39986494025833635,
       "scope": "Nominal level-ground static check only; not a dynamic stability or real lifting-capacity rating."
+    },
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          1.1,
+          0.325,
+          1.0600262053
+        ],
+        "rtk_secondary": [
+          1.1,
+          -0.325,
+          1.0600262053
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
     }
   },
   "implements": [

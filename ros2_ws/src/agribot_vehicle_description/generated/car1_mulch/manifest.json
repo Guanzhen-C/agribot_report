@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2189,
-      "sha256": "2f4441bfb360323bddf218d61a04007de677699ff81e935cb273357744db1062"
+      "sizeBytes": 2123,
+      "sha256": "a090e1af5b5e03886823c487eccca2e5445c91103129cacfbd941788bc8374df"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1279,
-      "sha256": "27168aa528d984549ffbf8204b6b56e0310501d99f9f199458a3659d61d99e03"
+      "sizeBytes": 1213,
+      "sha256": "901858c3a973135c3ebddc488891917e3616b8be030e2ba2f76c6e28d4a3684e"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1120,
-      "sha256": "fc4add94215ab5fc968e6a7ceb0be07b6786bf030a30519b8665d854d5a2f2c3"
+      "sizeBytes": 1054,
+      "sha256": "2230d86bec05413f76b3f8f9c33a43a6d5e4ee7124122694cf72f956321dec55"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1120,
-      "sha256": "fc4add94215ab5fc968e6a7ceb0be07b6786bf030a30519b8665d854d5a2f2c3"
+      "sizeBytes": 1054,
+      "sha256": "2230d86bec05413f76b3f8f9c33a43a6d5e4ee7124122694cf72f956321dec55"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -160,8 +160,8 @@
     },
     {
       "path": "models/car1_mulch.sdf",
-      "sizeBytes": 19692,
-      "sha256": "4bf9f5b7507f258b89df643ad33b84951503dbf221de75a65b7931412c8093ca"
+      "sizeBytes": 19730,
+      "sha256": "5bd6319f642e644f41f2372b6a9fc9e70b364815ed9ff1209a19cc5616d463ed"
     },
     {
       "path": "models/front_left_wheel_visual.obj",
@@ -225,13 +225,13 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 648582,
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sizeBytes": 942595,
+      "sha256": "a4fe997d85a28304decb0949da21beac4587ebcbc33062735deafbd3264ef2d8"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -245,13 +245,13 @@
     },
     {
       "path": "urdf/car1_mulch.urdf.xacro",
-      "sizeBytes": 8231,
-      "sha256": "eff05da77154d3b1a83f57cfa1e5e4961264d8345193d76a1af5a00fbe248bc5"
+      "sizeBytes": 8255,
+      "sha256": "7611ff8f893466af0bf08084b264bd1d495930ffe8923dea7378ea73e03af05b"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 17434,
-      "sha256": "f6538ddb1da321aabb2cda22c8080a93d0704014d18af45539feeb8ee2d19ced"
+      "sizeBytes": 17902,
+      "sha256": "1b4c366e24bfe57d94afa7ab60464e8a36e371e27c1330ac1bd2e6d7e5a1b9a8"
     }
   ]
 }

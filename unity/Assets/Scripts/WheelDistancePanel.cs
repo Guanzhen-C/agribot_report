@@ -10,8 +10,6 @@ public class WheelDistancePanel : WheelChangePanel
     private const float MaxWheelDistance = 0.60f;
 
     private InputField distanceInput;
-    private decimal previousInput;
-    private decimal currentInput;
 
     public Button Sure_btn;
 
@@ -46,6 +44,9 @@ public class WheelDistancePanel : WheelChangePanel
         }
 
         ChineseUiFont.Apply(wheelDistanceValueText);
+        SetPresetLabel(minDistanceButton, "最小轴距", MinWheelDistance);
+        SetPresetLabel(normalDistanceButton, "标准轴距", NormalWheelDistance);
+        SetPresetLabel(maxDistanceButton, "最大轴距", MaxWheelDistance);
         wheelDistanceSlider.minValue = MinWheelDistance;
         wheelDistanceSlider.maxValue = MaxWheelDistance;
         wheelDistanceSlider.wholeNumbers = false;
@@ -68,21 +69,18 @@ public class WheelDistancePanel : WheelChangePanel
             SyncWheelDistance(MaxWheelDistance);
         });
 
-        GameObject inputObject = GameObject.Find("txt_input");
-        distanceInput = inputObject != null
-            ? inputObject.GetComponent<InputField>()
-            : null;
+        distanceInput = GetComponentInChildren<InputField>(true);
         if (distanceInput != null)
         {
             distanceInput.contentType = InputField.ContentType.DecimalNumber;
             ChineseUiFont.Apply(distanceInput.textComponent);
             if (distanceInput.placeholder is Text placeholder)
             {
-                placeholder.text = "请输入 0.42 - 0.60";
+                placeholder.text = "42 - 60 cm";
                 ChineseUiFont.Apply(placeholder);
             }
-            distanceInput.onValueChanged.AddListener(OnInputDistanceChanged);
-            distanceInput.onEndEdit.AddListener(OnInputDistanceEndEdit);
+            distanceInput.onSubmit.AddListener(OnDistanceInputSubmitted);
+            ConfigureDimensionInput(distanceInput, Sure_btn, "前后轴距");
         }
         else
         {
@@ -93,18 +91,10 @@ public class WheelDistancePanel : WheelChangePanel
 
         if (Sure_btn != null)
         {
-            Sure_btn.onClick.AddListener(() =>
-            {
-                if (EnsureValidInput(currentInput) &&
-                    previousInput != currentInput)
-                {
-                    previousInput = currentInput;
-                    OnWheelDistanceSliderChanged((float)currentInput);
-                    SyncWheelDistance((float)currentInput);
-                }
-            });
+            Sure_btn.onClick.AddListener(SubmitDistanceInput);
         }
 
+        carChange.WheelDistanceChanged += SyncWheelDistance;
         AddEscClickListener(Hide);
     }
 
@@ -119,68 +109,51 @@ public class WheelDistancePanel : WheelChangePanel
             SyncWheelDistance(carChange.Cur_wheelDis);
     }
 
-    private void OnInputDistanceEndEdit(string value)
+    private void OnDistanceInputSubmitted(string value)
     {
-        bool pressedEnter =
-            Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetKeyDown(KeyCode.KeypadEnter);
-        if (!pressedEnter || !EnsureValidInput(currentInput))
-            return;
-
-        previousInput = currentInput;
-        OnWheelDistanceSliderChanged((float)currentInput);
-        SyncWheelDistance((float)currentInput);
+        SubmitDistanceInput();
     }
 
-    private void OnInputDistanceChanged(string value)
+    private static void SetPresetLabel(Button button, string title, float meters)
     {
-        if (decimal.TryParse(
-                value,
-                NumberStyles.AllowDecimalPoint,
-                CultureInfo.InvariantCulture,
-                out decimal number))
-        {
-            currentInput = number;
-            Debug.Log($"有效轴距输入：{currentInput}");
-        }
-        else if (!string.IsNullOrWhiteSpace(value))
-        {
-            Debug.Log($"当前内容不是有效数值：{value}");
-        }
+        Text label = button != null ? button.GetComponentInChildren<Text>(true) : null;
+        if (label != null)
+            label.text = $"{title}：{meters * 100f:0.##} cm";
     }
 
-    private bool EnsureValidInput(decimal value)
+    private void SubmitDistanceInput()
     {
         if (distanceInput == null)
-            return false;
+            return;
 
         string text = distanceInput.text.Trim();
         if (!Regex.IsMatch(text, @"^\d+(\.\d{1,5})?$"))
         {
             ShowPop("请输入最多 5 位小数的数值。");
-            return false;
+            return;
         }
 
         if (!decimal.TryParse(
                 text,
                 NumberStyles.AllowDecimalPoint,
                 CultureInfo.InvariantCulture,
-                out value))
+                out decimal centimeters))
         {
             ShowPop("输入内容无法转换为有效数值。");
-            return false;
+            return;
         }
 
-        if (!IsWheelDistanceInRange((float)value))
+        float meters = (float)(centimeters / 100m);
+        if (!IsWheelDistanceInRange(meters))
         {
             ShowPop(
-                $"请输入 {MinWheelDistance:F2} m 至 " +
-                $"{MaxWheelDistance:F2} m 范围内的轴距。");
-            return false;
+                $"请输入 {MinWheelDistance * 100f:0.##} cm 至 " +
+                $"{MaxWheelDistance * 100f:0.##} cm 范围内的前后轴距。");
+            return;
         }
 
-        currentInput = value;
-        return true;
+        OnWheelDistanceSliderChanged(meters);
+        SyncWheelDistance(meters);
     }
 
     private static bool IsWheelDistanceInRange(float distance)
@@ -216,8 +189,10 @@ public class WheelDistancePanel : WheelChangePanel
             return;
 
         ChineseUiFont.Apply(wheelDistanceValueText);
-        wheelDistanceValueText.text =
-            $"前后轴距 <size=18>（以四轮中心为测量基准）</size>：{distance:F2} m";
+        wheelDistanceValueText.supportRichText = false;
+        wheelDistanceValueText.text = $"前后轴距：{distance * 100f:0.##} cm";
+        if (distanceInput != null)
+            distanceInput.SetTextWithoutNotify((distance * 100f).ToString("0.#####", CultureInfo.InvariantCulture));
     }
 
     private void OnDestroy()
@@ -229,9 +204,10 @@ public class WheelDistancePanel : WheelChangePanel
         }
         if (distanceInput != null)
         {
-            distanceInput.onValueChanged.RemoveListener(OnInputDistanceChanged);
-            distanceInput.onEndEdit.RemoveListener(OnInputDistanceEndEdit);
+            distanceInput.onSubmit.RemoveListener(OnDistanceInputSubmitted);
         }
+        if (Sure_btn != null)
+            Sure_btn.onClick.RemoveListener(SubmitDistanceInput);
         if (carChange != null)
             carChange.WheelDistanceChanged -= SyncWheelDistance;
     }

@@ -312,7 +312,7 @@
         "xyz": [
           0.6,
           0.325,
-          2.718030690367852
+          2.297830191857968
         ],
         "rpy": [
           0.0,
@@ -359,7 +359,7 @@
         "xyz": [
           0.6,
           -0.325,
-          2.718030690367852
+          2.297830191857968
         ],
         "rpy": [
           0.0,
@@ -464,6 +464,24 @@
         "sourcePart": "SM2_John_Deere_6195M_Cab"
       }
     ],
-    "sensorMountBasis": "Nominal CAD surface intersections, not measured hardware calibration."
+    "sensorMountBasis": "Nominal CAD surface intersections, not measured hardware calibration.",
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          0.6,
+          0.325,
+          2.718030690367852
+        ],
+        "rtk_secondary": [
+          0.6,
+          -0.325,
+          2.718030690367852
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
+    }
   }
 }

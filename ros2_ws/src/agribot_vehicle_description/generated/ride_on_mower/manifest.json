@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2204,
-      "sha256": "cd80dd9bf5ba22910f5e1738cf3cc328ff70b72368b9f0d5927fb6128a878907"
+      "sizeBytes": 2138,
+      "sha256": "a76afd83d0f37b4ea9fb98fe6ea8cabb34ec942324c413def40f56974087a933"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1294,
-      "sha256": "f02f30210da443c10a9ab8d9dd5fa194ae60c5ea257d7b741a9f05f707795d22"
+      "sizeBytes": 1228,
+      "sha256": "f9938d2fff2923bc82622e28a0d05c3b2020d94e8060f3ce8c4a44c06de58258"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1167,
-      "sha256": "16f49efc9ed12d365775bd8db1441110d66d6866dbee3cc896e1d91edf03da37"
+      "sizeBytes": 1101,
+      "sha256": "1da19ebe0c1de266f38c980a8c889c1ca74b068b77f783c9ad9f752c432cbb4f"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1167,
-      "sha256": "16f49efc9ed12d365775bd8db1441110d66d6866dbee3cc896e1d91edf03da37"
+      "sizeBytes": 1101,
+      "sha256": "1da19ebe0c1de266f38c980a8c889c1ca74b068b77f783c9ad9f752c432cbb4f"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -200,8 +200,8 @@
     },
     {
       "path": "models/ride_on_mower.sdf",
-      "sizeBytes": 18156,
-      "sha256": "6b49cf140f7117178b889aeddf7f61e7eda11d3bef1fa0f3d6a026731a0a09bc"
+      "sizeBytes": 18194,
+      "sha256": "5a1c782a7e86a048dab89d0317cc31256f72263136480f2e2b870fe9a4ea42dc"
     },
     {
       "path": "models/sensor_imu_visual.mtl",
@@ -235,13 +235,13 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 645305,
-      "sha256": "035349eacd6bb12300904a11d4917f4b3ff8950f607f1956cb028ded579efb7f"
+      "sizeBytes": 942519,
+      "sha256": "d84fad024b5276a7fbf9c2bf13727e92f804c0543675094213977b9313cb1c31"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -255,13 +255,13 @@
     },
     {
       "path": "urdf/ride_on_mower.urdf.xacro",
-      "sizeBytes": 6649,
-      "sha256": "03b381c351e26d16ba34b4f28b491cb23ac2edcf0df56c50224a77fc119ad636"
+      "sizeBytes": 6683,
+      "sha256": "63ab70202d28180042cc910c1fa9e15b8faa12c6e936d801cf22018c033fb260"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 9748,
-      "sha256": "fa4b02f5028f4e30a2e171225d1ea704a8e367261a77a0269561dd31c3cb7671"
+      "sizeBytes": 10246,
+      "sha256": "53d27169d41250dc1a5850a758101094924e543ebc4f77929291986a180970ea"
     }
   ]
 }

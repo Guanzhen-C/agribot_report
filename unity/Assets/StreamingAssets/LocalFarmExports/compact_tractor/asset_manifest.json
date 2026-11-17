@@ -1,6 +1,6 @@
 {
-  "meshGroups": 39,
-  "triangles": 2108164,
+  "meshGroups": 42,
+  "triangles": 2107728,
   "minimumRos": [
     -0.5881438255310059,
     -0.9484676718711853,
@@ -11,7 +11,7 @@
     0.9484009146690369,
     1.4226230382919312
   ],
-  "previewSha256": "0ed6c73fe36c76e87a3d26c348bf8f32fa0d39a85e8f7366ebbff0715c2b6c1c",
+  "previewSha256": "193a4d385750219b2b84842c99afd156c1af4415f203fb39e225ded8f7c1fcc4",
   "vehicleId": "compact_tractor",
   "schemaVersion": 1,
   "files": [
@@ -41,15 +41,15 @@
     },
     {
       "name": "sensor_rtk_master_visual.mtl",
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "name": "sensor_rtk_master_visual.obj",
-      "sha256": "f781b6d7513a346dbf7ee4adbbc8373538b94c9338e19f45a97edd7eea3e781e"
+      "sha256": "33278b304414c59d4619cfd5cb631bbcdba82e258c33a82162e72271c6d7ddcf"
     },
     {
       "name": "vehicle_config.json",
-      "sha256": "b3e5a1c4544812c39c9776113947d3d4e576dbc8c5a96f168f29bdb5a78c541e"
+      "sha256": "6ca8888c11b93f410c2b6d0bd29592f9de72f91e1b6fbbe8797c69f6c7f707f5"
     },
     {
       "name": "vehicle_visual.mtl",
@@ -61,7 +61,7 @@
     }
   ],
   "redistributionLicense": "unverified_user_supplied",
-  "sourceConfigSha256": "b3e5a1c4544812c39c9776113947d3d4e576dbc8c5a96f168f29bdb5a78c541e",
+  "sourceConfigSha256": "6ca8888c11b93f410c2b6d0bd29592f9de72f91e1b6fbbe8797c69f6c7f707f5",
   "previewGeometry": {
     "method": "original_cad_no_decimation",
     "sourceStepSha256": "cad518651d7b2ae4d1f9fbb0cc6fdf6714321fc3feb0d8925b63adb2d5900495",
@@ -71,6 +71,6 @@
     "displaySourceFaces": 1867718,
     "decimationApplied": false,
     "simulationAssetsUnchanged": true,
-    "canonicalConfigSha256": "b3e5a1c4544812c39c9776113947d3d4e576dbc8c5a96f168f29bdb5a78c541e"
+    "canonicalConfigSha256": "6ca8888c11b93f410c2b6d0bd29592f9de72f91e1b6fbbe8797c69f6c7f707f5"
   }
 }

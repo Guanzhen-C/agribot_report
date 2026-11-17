@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sys
 from delivery_assets import check as check_assets
+from release_assets import inspect as inspect_release_assets
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +43,7 @@ def inspect(unity=False):
         if {'.git', 'Library'} & set(path.parts): continue
         with path.open('rb') as stream:
             if stream.read(80).startswith(b'version https://git-lfs.github.com/spec/v1'):
-                problems.append('未下载 LFS 对象，请 git lfs pull：' + str(path.relative_to(ROOT)))
+                problems.append('模型未下载，请运行 python3 tools/fetch_assets.py：' + str(path.relative_to(ROOT)))
     return problems
 
 
@@ -52,6 +53,7 @@ def main():
     parser.add_argument('--hashes', action='store_true', help='Verify full garage/export file SHA-256 values')
     args = parser.parse_args()
     issues = inspect(args.unity)
+    issues += inspect_release_assets(ROOT, hashes=args.hashes)
     counts = {}
     if args.unity:
         counts, assets_issues = check_assets(ROOT, args.hashes)

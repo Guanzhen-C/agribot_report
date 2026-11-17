@@ -397,6 +397,7 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         "inter_row_milling_cutter" => EquipmentSlotType.InterrowMill, "front_sickle_bar" => EquipmentSlotType.FrontCutter,
         "garlic_planter" => EquipmentSlotType.GarlicPlanter, "mulch_planter" => EquipmentSlotType.MulchPlanter,
         "farm_trailer" => EquipmentSlotType.FarmTrailer, "combine_header" => EquipmentSlotType.CombineHeader,
+        "hil_sprayer" => EquipmentSlotType.HilSprayer, "hil_shredder" => EquipmentSlotType.HilShredder,
         _ => throw new InvalidOperationException("未知机具配置：" + id)
     };
 
@@ -454,6 +455,8 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         {
             var bag = FindObjectsByType<EquipmentBagController>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault();
             if (bag != null && bag.IsInstalled(bag.GetEquipment(EquipmentSlotType.Hand))) tool = "lite6";
+            if (bag != null && bag.IsInstalled(bag.GetEquipment(EquipmentSlotType.HilSprayer))) tool = "hil_sprayer";
+            if (bag != null && bag.IsInstalled(bag.GetEquipment(EquipmentSlotType.HilShredder))) tool = "hil_shredder";
         }
         var context = AssistantConversation.Snapshot();
         context.car = car; context.scene = FarmScenarioCatalog.SelectedId; context.implement = tool;
@@ -462,7 +465,12 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         var controller = FindObjectsByType<EquipmentBagController>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault();
         context.sensors = new[] { EquipmentSlotType.Radar, EquipmentSlotType.Camera, EquipmentSlotType.Imu, EquipmentSlotType.RTK }
             .Where(s => controller != null && controller.IsInstalled(controller.GetEquipment(s))).Select(s => s.ToString()).ToArray();
-        context.simulation = RosSimulationLauncher.ReadManagedStatus();
+        var hil = HilSimulationLauncher.ReadStatus();
+        context.simulation = hil.session_alive || hil.Active ? "hil_"+hil.phase : RosSimulationLauncher.ReadManagedStatus();
+        context.hilProfile = hil.profile ?? "";
+        context.hilStatus = hil.phase ?? "stopped";
+        context.hilAvailableProfiles = HilSimulationLauncher.Profiles.Select(p =>
+            p.name+" | "+p.car+" | "+p.implement+" | "+p.scene+" | "+p.transmission).ToArray();
         return context;
     }
 
@@ -473,6 +481,8 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
         state.car = actual.car; state.scene = actual.scene; state.implement = actual.implement;
         state.sceneName = actual.sceneName; state.sceneImported = actual.sceneImported;
         state.sensors = actual.sensors; state.simulation = actual.simulation;
+        state.hilProfile = actual.hilProfile; state.hilStatus = actual.hilStatus;
+        // Keep the static directory in current_state, not in every UI history entry.
     }
 
     private static bool MatchesCurrentAssembly(NaturalRecommendation item)

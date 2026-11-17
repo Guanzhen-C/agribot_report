@@ -160,9 +160,9 @@ namespace AgriculturalMachinery.BagSystem
                 ? installedItemIds.Add(equipment.ItemId)
                 : installedItemIds.Remove(equipment.ItemId);
 
-            if (installed && FarmEquipmentUi.IsMountedImplement(equipment.EquipmentType))
+            if (installed && FarmEquipmentUi.IsImplement(equipment.EquipmentType))
                 foreach (var other in equipmentCatalog.EquipmentList)
-                    if (other != equipment && FarmEquipmentUi.IsMountedImplement(other.EquipmentType) && IsInstalled(other))
+                    if (other != equipment && FarmEquipmentUi.IsImplement(other.EquipmentType) && IsInstalled(other))
                         UninstallEquipment(other);
 
             if (changed)
@@ -458,6 +458,8 @@ namespace AgriculturalMachinery.BagSystem
                 return;
             }
 
+            HilImplementLibrary.EnsureMounts(currentCar);
+
             // Always resolve from the current visible car. Never retain a target
             // from another car, even when that other car is inactive.
             radar = Resolve(currentCar, "RADAR");
@@ -483,6 +485,8 @@ namespace AgriculturalMachinery.BagSystem
             Register(EquipmentType.MulchPlanter, Resolve(currentCar, "MulchPlanter"));
             Register(EquipmentType.FarmTrailer, Resolve(currentCar, "FarmTrailer"));
             Register(EquipmentType.CombineHeader, Resolve(currentCar, "CombineHeader"));
+            Register(EquipmentType.HilSprayer, Resolve(currentCar, "HilSprayer"));
+            Register(EquipmentType.HilShredder, Resolve(currentCar, "HilShredder"));
         }
 
         private void EnsureMap()

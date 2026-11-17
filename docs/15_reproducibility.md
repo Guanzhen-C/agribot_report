@@ -2,7 +2,7 @@
 
 ## 目标与范围
 
-从本仓库获取代码和Git LFS资源，在另一台受支持的电脑上重建与当前来源应用一致的Unity农机配置软件和配套ROS/Gazebo仿真，不依赖开发者的原工作区、模型缓存、私有服务器或用户目录。
+从本仓库获取代码和同仓库GitHub Releases资源，在另一台受支持的电脑上重建与当前来源应用一致的Unity农机配置软件和配套ROS/Gazebo仿真，不依赖开发者的原工作区、模型缓存、私有服务器或用户目录。当前安装流程不使用Git LFS；旧提交仍保留原来的LFS历史。
 
 范围包含10辆农机、57个装配预设、传感器/农具安装、爆炸图、车库与配置交互、五组算法选项、9个内置场景、仿真启动/停止、RViz目标/经停点、离线真机配置导出、连续AI助手、中文输入与快捷键、用户扫描场景导入/删除。
 
@@ -13,7 +13,7 @@
 ## 环境前提
 
 - Ubuntu 22.04 x86_64、ROS 2 Humble、Gazebo Classic 11、可用桌面和OpenGL图形驱动。
-- 建议32GB内存及充足SSD空间；源代码、LFS资源、Unity导入缓存、ROS和应用构建会同时占用空间。
+- 建议32GB内存及充足SSD空间；源码、恢复后的模型资源、Unity导入缓存、ROS和应用构建会同时占用空间。
 - 源码构建使用Unity6000.0.26f1、Linux Build Support (Mono)和使用者自己的有效许可证。Unity Editor不是本仓库可重新分发的组件。
 - AI助手调用官方DeepSeek HTTPS接口，需要使用者自己的Key和网络。Key不编入应用，缺少Key不影响手动装配与仿真。
 - 视觉AI权重已提供，CPU和CUDA运行环境在本机安装。硬件不同会影响帧率和仿真速度；不会因此换成不同的定位、规划或控制算法。
@@ -21,10 +21,9 @@
 ## 完整性与安装
 
 ```bash
-git clone https://github.com/Guanzhen-C/agribot_report.git
+git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
 cd agribot_report
-git lfs install --local
-git lfs pull
+python3 tools/fetch_assets.py
 python3 tools/doctor.py --unity --hashes
 bash scripts/bootstrap.sh
 python3 tools/configure_llm.py
@@ -49,7 +48,7 @@ Car0随仓库提供当前已审核的完整车库Prefab，普通构建直接使�
 
 ## 必须验证的内容
 
-1. GitHub远端的新克隆与LFS校验，而非从开发机复制一份资源后假称远端完整。
+1. GitHub远端的新克隆、Release附件下载与完整SHA校验，而非从开发机复制一份资源后假称远端完整。
 2. 所有车型/机具资源和缩略图的指纹；Car6高精度显示、履带车和收割机外观与来源一致。
 3. 干净工作区中的ROS构建、Unity构建、中文输入原生桥接库和全部运行依赖。
 4. 车库、装备、场景、算法、AI会话、导入/删除与导出回归。

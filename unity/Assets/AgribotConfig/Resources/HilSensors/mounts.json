@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "rtkSurfaceOffsetM": 0.10000000149011612,
+  "ackermannRtkMounting": {
+    "layout": "upper_deck_forward_of_cargo",
+    "mountX": 0.12,
+    "edgeInsetM": 0.025,
+    "rearEdgeX": -0.118367843,
+    "leftEdgeY": 0.175,
+    "rightEdgeY": -0.175,
+    "supportSurfaceZ": 0.1348,
+    "leftIsMaster": true
+  },
+  "tracked": [
+    {
+      "id": "imu",
+      "frameId": "imu_link",
+      "pose": {
+        "xyz": [
+          0.31,
+          0.0,
+          0.436081
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "lidar",
+      "frameId": "lidar_link",
+      "pose": {
+        "xyz": [
+          0.480195939541,
+          -0.00778169976547,
+          0.697454452515
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "right_camera",
+      "frameId": "right_camera_link",
+      "pose": {
+        "xyz": [
+          0.495695948601,
+          -0.00708170095459,
+          0.799753189087
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "rtk_master",
+      "frameId": "rtk_link",
+      "pose": {
+        "xyz": [
+          0.44,
+          0.29,
+          0.52665
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "rtk_secondary",
+      "frameId": "rtk_secondary_link",
+      "pose": {
+        "xyz": [
+          0.44,
+          -0.29,
+          0.52665
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "ackermannRtk": [
+    {
+      "id": "rtk_master",
+      "frameId": "rtk_link",
+      "pose": {
+        "xyz": [
+          0.12,
+          0.15,
+          0.2348
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "rtk_secondary",
+      "frameId": "rtk_secondary_link",
+      "pose": {
+        "xyz": [
+          0.12,
+          -0.15,
+          0.2348
+        ],
+        "rpy": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ]
+}

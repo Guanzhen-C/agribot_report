@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <robot name="tractor_chisel">
   <link name="base_link">
     <inertial>
@@ -69,14 +69,14 @@
     </visual>
   </link>
   <joint name="rtk_master_mount_joint" type="fixed">
-    <origin xyz="0.8 0.325000703335 1.21516258812" rpy="0 0 0" />
+    <origin xyz="0.8 0.32500070333480835 0.7949620896096229" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_link" />
   </joint>
   <link name="rtk_secondary_link">
   </link>
   <joint name="rtk_secondary_mount_joint" type="fixed">
-    <origin xyz="0.8 -0.325000703335 1.21516258812" rpy="0 0 0" />
+    <origin xyz="0.8 -0.32500070333480835 0.7949620896096229" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_secondary_link" />
   </joint>

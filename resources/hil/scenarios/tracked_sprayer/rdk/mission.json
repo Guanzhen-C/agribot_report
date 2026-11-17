@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "scenario": "hil_tracked_sprayer_orchard",
+  "vehicle": "Car3",
+  "spawn": [
+    2.0,
+    36.0,
+    0.24,
+    0.0
+  ],
+  "base_to_antenna": [
+    0.44,
+    0.29,
+    0.52665
+  ],
+  "fixed_route_order": [
+    1,
+    2,
+    3
+  ],
+  "fixed_route_points": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "outbound_via": [
+    [
+      41.0,
+      36.0,
+      0.0
+    ],
+    [
+      41.0,
+      32.5,
+      3.14159
+    ],
+    [
+      3.0,
+      32.5,
+      3.14159
+    ]
+  ],
+  "finish": [
+    3.0,
+    32.5,
+    3.14159
+  ],
+  "finish_is_spawn": false,
+  "goal_tolerance_m": 0.4185015549046406,
+  "world_source_sha256": "320c92280381a2fda64a899dbff3ef8eff8b6a4fbfabebf1150d55fb5b8fff8e",
+  "map_image_sha256": "82d9495b00e370eaeac85914df101bcd40340551e6f62eff978ee4209616ea81",
+  "can_topology": "x5_mixed_isobus_hpm6750_native_pc",
+  "work_control": "ISOBUS commands converted by implement ECU HPM6750",
+  "algorithms": [
+    "FAST-LIVO2 + RTK",
+    "Smac Hybrid-A*",
+    "MPPI DiffDrive"
+  ],
+  "spraying": {
+    "fan_gear": 3,
+    "pump_gear": 4,
+    "minimum_speed_mps": 0.03,
+    "row_y": [
+      36.0,
+      32.5
+    ],
+    "row_half_width_m": 0.65,
+    "x_range": [
+      3.0,
+      39.5
+    ]
+  },
+  "implement_collision": false,
+  "presentation": {
+    "sprayer_pose": [
+      -0.09746387491394502,
+      -0.2412169785355218,
+      0.6146795413254812,
+      1.5707963267948966,
+      1.076047338636778,
+      3.141592653589793
+    ],
+    "sprayer_scale": 0.55,
+    "deck_z_m": 0.42665,
+    "rtk_master": [
+      0.44,
+      0.29,
+      0.52665
+    ],
+    "imu_xyz": [
+      0.31,
+      0.0,
+      0.436081
+    ],
+    "imu_support_z_m": 0.426081,
+    "imu_mount_owner": "vehicle_chassis",
+    "rtk_secondary": [
+      0.44,
+      -0.29,
+      0.52665
+    ],
+    "fan_direction": "rear (-X)",
+    "layout": "tank_front_fan_rear",
+    "mounting_plate_removed": true,
+    "mount_normal_base": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "mounting_contact_z_m": 0.42665,
+    "rtk_short_stems_retained": true,
+    "rtk_stem_height_m": 0.062,
+    "water_mist": "soft particles driven by actual pump shaft speed",
+    "spray_nozzles": 8,
+    "spray_outlets_source": "STEP solids 66/68/70/72/74/76/78/80, outer 0.4 mm bore edges",
+    "spray_direction": "Radially outward, perpendicular to fan axis",
+    "spray_visual_parameters": {
+      "cone_angle": 0.18,
+      "total_emission_rate": 2400,
+      "velocity_min": 2.0,
+      "velocity_max": 2.8,
+      "lifetime_min": 0.9,
+      "lifetime_max": 1.3,
+      "growth_rate": 0.1,
+      "colour": [
+        0.36,
+        0.6,
+        0.78,
+        0.6
+      ]
+    },
+    "chassis_finish": "grey powder-coated shell, scenario-local materials",
+    "implement_textures": true,
+    "implement_visual": "@HIL_ROOT@/shared_assets/f02ee77321a5/visual_textured.dae",
+    "additional_nozzle_geometry": false,
+    "limitation": "Scaled simulation mount, not a calibrated real installation"
+  }
+}

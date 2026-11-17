@@ -83,13 +83,11 @@ namespace Agribot.VehicleConfiguration
             Transform rtkMaster = CreatePoseAnchor(
                 sensorRoot,
                 "rtk_link",
-                new Vector3(0.1425f, 0.2952585f, 0.78476f),
-                Vector3.zero);
+                SensorMountLibrary.AckermannRtk[0].pose);
             Transform rtkSecondary = CreatePoseAnchor(
                 sensorRoot,
                 "rtk_secondary_link",
-                new Vector3(0.1425f, -0.2952585f, 0.78476f),
-                Vector3.zero);
+                SensorMountLibrary.AckermannRtk[1].pose);
 
             VehicleConfigurationAuthoring authoring =
                 vehicleRoot.GetComponent<VehicleConfigurationAuthoring>();
@@ -138,7 +136,7 @@ namespace Agribot.VehicleConfiguration
                 { "rtk_master", "RTK" },
                 { "rtk_secondary", "RTK" }
             };
-            Transform[] children = authoring.VehicleVisualRoot.GetComponentsInChildren<Transform>(true);
+            Transform[] children = authoring.GetComponentsInChildren<Transform>(true);
             foreach (SensorAnchorDefinition sensor in authoring.Sensors)
             {
                 if (!roots.TryGetValue(sensor.id, out string rootName))
@@ -173,6 +171,11 @@ namespace Agribot.VehicleConfiguration
                 updateRateHz = updateRateHz
             };
         }
+
+        private static Transform CreatePoseAnchor(Transform parent, string name, PoseData pose) =>
+            CreatePoseAnchor(parent, name,
+                new Vector3((float)pose.xyz[0], (float)pose.xyz[1], (float)pose.xyz[2]),
+                new Vector3((float)pose.rpy[0], (float)pose.rpy[1], (float)pose.rpy[2]));
 
         private static Transform CreatePoseAnchor(
             Transform parent,

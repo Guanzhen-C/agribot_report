@@ -90,8 +90,8 @@
     },
     {
       "path": "config/physical/fastlivo_rtk_fusion.yaml",
-      "sizeBytes": 2204,
-      "sha256": "cd80dd9bf5ba22910f5e1738cf3cc328ff70b72368b9f0d5927fb6128a878907"
+      "sizeBytes": 2138,
+      "sha256": "a76afd83d0f37b4ea9fb98fe6ea8cabb34ec942324c413def40f56974087a933"
     },
     {
       "path": "config/physical/joint_state_publisher.yaml",
@@ -130,18 +130,18 @@
     },
     {
       "path": "config/physical/rtk_map_initializer.yaml",
-      "sizeBytes": 1294,
-      "sha256": "f02f30210da443c10a9ab8d9dd5fa194ae60c5ea257d7b741a9f05f707795d22"
+      "sizeBytes": 1228,
+      "sha256": "f9938d2fff2923bc82622e28a0d05c3b2020d94e8060f3ce8c4a44c06de58258"
     },
     {
       "path": "config/physical/sensor_mounts.yaml",
-      "sizeBytes": 1172,
-      "sha256": "85ad8e46964282327c70c7accbef10597f173f388f328dfb427a9172a7c16155"
+      "sizeBytes": 1106,
+      "sha256": "b15d3f822118085a816f9ca3de6300dc09d75e489baeba6f398e6f1691234a7b"
     },
     {
       "path": "config/sensor_mounts.yaml",
-      "sizeBytes": 1172,
-      "sha256": "85ad8e46964282327c70c7accbef10597f173f388f328dfb427a9172a7c16155"
+      "sizeBytes": 1106,
+      "sha256": "b15d3f822118085a816f9ca3de6300dc09d75e489baeba6f398e6f1691234a7b"
     },
     {
       "path": "config/simulation/nav2_params_ackermann.yaml",
@@ -200,8 +200,8 @@
     },
     {
       "path": "models/mower_front_cutter.sdf",
-      "sizeBytes": 20382,
-      "sha256": "7d776b956b27a8215c64e34b20b818b289796b261a56f8c6470f6e1a4d679b70"
+      "sizeBytes": 20420,
+      "sha256": "11d8573f073d6fb2a9274f5edfec1dbfe576540b2b8cd0ef2e98101858f22565"
     },
     {
       "path": "models/rear_left_wheel_visual.obj",
@@ -245,13 +245,13 @@
     },
     {
       "path": "models/sensor_rtk_master_visual.mtl",
-      "sizeBytes": 300,
-      "sha256": "6bc8c6f9eda6a36728aa9142d4e36465d1680147c6545a651cda2428c40ec212"
+      "sizeBytes": 772,
+      "sha256": "2e44481419522cb4135db93fb530a6fa1ac1b597d249ff94e16268d91cf9cdf9"
     },
     {
       "path": "models/sensor_rtk_master_visual.obj",
-      "sizeBytes": 645305,
-      "sha256": "035349eacd6bb12300904a11d4917f4b3ff8950f607f1956cb028ded579efb7f"
+      "sizeBytes": 942519,
+      "sha256": "d84fad024b5276a7fbf9c2bf13727e92f804c0543675094213977b9313cb1c31"
     },
     {
       "path": "models/vehicle_visual.mtl",
@@ -265,13 +265,13 @@
     },
     {
       "path": "urdf/mower_front_cutter.urdf.xacro",
-      "sizeBytes": 8773,
-      "sha256": "2f286ea7c74aecf9b6c037b8652a317956ffa0f243ffc73b2cb1f78ad2cd0485"
+      "sizeBytes": 8807,
+      "sha256": "8d09ac926e29563aa548c9fd936cc933e3ed55a8155cb6be33476ddece57c94d"
     },
     {
       "path": "vehicle_config.json",
-      "sizeBytes": 12601,
-      "sha256": "0ad31e2ab2fc632e863ca35ac8c3b80532838d5690924717125dec1c980564ac"
+      "sizeBytes": 13099,
+      "sha256": "fa7c5d3a3828d46ed801e86764892877e898bd463d0094e9617cd911edb1d329"
     }
   ]
 }

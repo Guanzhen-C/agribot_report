@@ -9,6 +9,7 @@ import tempfile
 
 from delivery_assets import digest
 from runtime_fingerprint import fingerprint
+from release_assets import download
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -21,8 +22,10 @@ def main():
     current = fingerprint(ROOT)
     if current['sha256'] != metadata['runtime_inputs']['sha256']:
         raise SystemExit('预编译程序与当前运行源码不一致，请使用匹配版本或从源码重新构建。')
-    if archive.stat().st_size != metadata['bytes'] or digest(archive) != metadata['sha256']:
-        raise SystemExit('程序包不完整，请执行git lfs pull。')
+    if metadata.get('url'):
+        download(metadata['url'], archive, metadata['bytes'], metadata['sha256'])
+    if not archive.is_file() or archive.stat().st_size != metadata['bytes'] or digest(archive) != metadata['sha256']:
+        raise SystemExit('程序包不完整，请重新下载对应版本的GitHub Release附件。')
     destination = ROOT / 'dist'
     destination.mkdir(exist_ok=True)
     if (destination / 'unity').exists():

@@ -330,7 +330,7 @@
         "xyz": [
           0.8,
           0.32500068843364716,
-          0.6493487486839294
+          0.2291482501740456
         ],
         "rpy": [
           0.0,
@@ -377,7 +377,7 @@
         "xyz": [
           0.8,
           -0.32500068843364716,
-          0.6493487486839294
+          0.2291482501740456
         ],
         "rpy": [
           0.0,
@@ -431,7 +431,25 @@
       "frontAxleLoadFraction": 0.4667422103576053,
       "scope": "Nominal level-ground static check only; not a dynamic stability or real lifting-capacity rating."
     },
-    "steeringConversion": "rear_drive_controlled_front_ackermann"
+    "steeringConversion": "rear_drive_controlled_front_ackermann",
+    "simulationRtkMount": {
+      "revision": 1,
+      "style": "hil_short_stems_no_rack",
+      "originalAntennaPoses": {
+        "rtk_master": [
+          0.8,
+          0.32500068843364716,
+          0.6493487486839294
+        ],
+        "rtk_secondary": [
+          0.8,
+          -0.32500068843364716,
+          0.6493487486839294
+        ]
+      },
+      "supportSurfacePreserved": true,
+      "antennaPreviewSha256": "57ece7bd0e7e518e4f95d3543d2ed119dd6441239fa59eee041fca9adba259b7"
+    }
   },
   "implements": [
     {

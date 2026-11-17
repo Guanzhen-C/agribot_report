@@ -12,7 +12,7 @@ namespace Agribot.VehicleConfiguration.Tests
     public sealed class SimulationAppearanceTests
     {
         [Test]
-        public void CompactTracksKeepSceneAnchorsAndExportAnimationAssets()
+        public void CompactTracksKeepContactGeometryAndHilSensorAnchorsAndExportAnimationAssets()
         {
             var scene = EditorSceneManager.OpenScene("Assets/Scenes/scene1.unity", OpenSceneMode.Single);
             var car = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Transform>(true))
@@ -22,6 +22,15 @@ namespace Agribot.VehicleConfiguration.Tests
                 if (new[] { "RADAR", "RTK", "Imu_box", "CarCamera" }.Contains(child.name)) child.gameObject.SetActive(true);
             var authoring = SceneVehicleConfiguration.Build(car);
             var original = authoring.BuildConfiguration();
+            SimulationAppearanceLibrary.ApplyToSceneVehicle(car);
+            authoring = SceneVehicleConfiguration.Build(car);
+            var aligned = authoring.BuildConfiguration();
+            foreach (var expected in SensorMountLibrary.Tracked)
+            {
+                var actual = aligned.sensors.Single(sensor => sensor.id == expected.id);
+                for (int axis = 0; axis < 3; axis++)
+                    Assert.That(actual.pose.xyz[axis], Is.EqualTo(expected.pose.xyz[axis]).Within(.00002), expected.id);
+            }
             var sensorPositions = authoring.Sensors.Select(sensor => sensor.anchor.position).ToArray();
             var sensorRenderers = authoring.Sensors.SelectMany(sensor => sensor.visualRoot.GetComponentsInChildren<MeshRenderer>(true)).ToArray();
             var enabled = sensorRenderers.Select(renderer => renderer.enabled).ToArray();
@@ -32,9 +41,11 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(preview.GetComponentsInChildren<MeshFilter>().Count(filter => filter.name.StartsWith("display_")), Is.GreaterThanOrEqualTo(14));
             CollectionAssert.AreEqual(enabled, sensorRenderers.Select(renderer => renderer.enabled));
             var current = SceneVehicleConfiguration.Build(car).BuildConfiguration();
-            foreach (var field in new[] { "geometry", "sensors", "navigation", "dynamics", "collision", "manipulators" })
+            foreach (var field in new[] { "geometry", "navigation", "dynamics", "collision", "manipulators" })
                 Assert.That(JToken.DeepEquals(JObject.Parse(JsonUtility.ToJson(original))[field],
                     JObject.Parse(JsonUtility.ToJson(current))[field]), Is.True, field);
+            Assert.That(JToken.DeepEquals(JObject.Parse(JsonUtility.ToJson(aligned))["sensors"],
+                JObject.Parse(JsonUtility.ToJson(current))["sensors"]), Is.True, "Aligned sensor poses must remain stable");
             CollectionAssert.AreEqual(sensorPositions, authoring.Sensors.Select(sensor => sensor.anchor.position));
             var result = authoring.ExportConfigurationBundle();
             var exported = JObject.Parse(File.ReadAllText(result.JsonPath));

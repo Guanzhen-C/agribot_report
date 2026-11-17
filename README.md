@@ -2,7 +2,11 @@
 
 本仓库交付 **Unity 农机配置软件及其配套 ROS 2/Gazebo 仿真**，包含完整车库和运行资源，用于独立构建、运行、阅读源码及编写设计说明和用户手册。
 
-不包含农机控制台、网页/Android 控车应用、控制台 HTTP 网关、6750 独立固件工程或上位机，也不包含独立离线建图/真机语义导航服务器。仅保留现有“导出真机配置”按钮所需的小型离线输入文件，不包含在线烧录功能。
+不包含农机控制台、网页/Android 控车应用、控制台 HTTP 网关或独立上位机，也不包含独立离线建图/真机语义导航服务器。新增的可选硬件在环模块只集成已验证工况使用的6750固件、网口ROS通信及CAN闭环，不向X5真车工作区部署代码。
+
+2026-11-17起，当前版本的完整模型资源和Linux运行包改用本仓库的GitHub Releases附件分发，不再要求Git LFS额度。源码、资源版本与逐文件SHA-256清单仍保存在`main`；安装入口自动下载匹配附件，拒绝损坏文件或不匹配的旧程序。旧提交历史不重写。[发布资源说明](docs/19_release_distribution.md)
+
+HIL集成说明和当前验证边界见[硬件在环集成](docs/18_hil_integration.md)。普通仿真不需要连接这些硬件。HIL每次启动都烧录对应固件，不复用“上次已烧录”的判断。
 
 ## 完整功能与手册
 
@@ -44,6 +48,7 @@ AI 助手贯穿本次应用会话，可问答并生成可点击装配/算法方�
 | [运行与排障](docs/08_operations.md) | 日志、模型、传感器、导航和 AI |
 | [资源与许可证](docs/09_resources_and_licenses.md) | 授权模型和外部依赖 |
 | [验证记录](docs/10_validation.md) | 本次验证结果与未覆盖范围 |
+| [硬件在环集成](docs/18_hil_integration.md) | 可选HIL工况、独立部署、自动烧录、保护和测试状态 |
 | [代码导航](docs/11_code_map.md) | 功能与源码路径对应 |
 
 ## 克隆和基础仿真
@@ -53,11 +58,9 @@ AI 助手贯穿本次应用会话，可问答并生成可点击装配/算法方�
 完整软件推荐使用下面的安装入口，会构建ROS并安装与源码匹配的Linux程序，无需在运行电脑安装Unity Editor：
 
 ```bash
-sudo apt-get install git git-lfs
-git clone https://github.com/Guanzhen-C/agribot_report.git
+sudo apt-get install git zstd
+git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
 cd agribot_report
-git lfs install --local
-git lfs pull
 bash scripts/bootstrap.sh
 python3 tools/configure_llm.py
 bash scripts/run_unity.sh
@@ -66,11 +69,10 @@ bash scripts/run_unity.sh
 AI配置使用个人Key，可暂时不配置；手动装配和仿真不受影响。下面是只启动基础仿真的分步骤方式，不替代完整软件安装：
 
 ```bash
-sudo apt-get install git-lfs
-git clone https://github.com/Guanzhen-C/agribot_report.git
+sudo apt-get install git zstd
+git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
 cd agribot_report
-git lfs install --local
-git lfs pull
+python3 tools/fetch_assets.py
 python3 tools/doctor.py
 bash scripts/install_dependencies.sh
 bash scripts/build_ros.sh simulation
@@ -99,7 +101,7 @@ docker/                 ROS 依赖环境
 
 ## 完整资源与私人输入
 
-模型提供者已确认分发权限，完整10车型、57个装配预设、9个内置场景和3份视觉权重已纳入交付。运行 `python3 tools/doctor.py --unity --hashes` 检查实际文件和SHA-256；只下载LFS指针不算完成。Car6包含当前高精度显示模型，车辆、传感器、农具和算法参数与来源工作区保持一致。
+模型提供者已确认分发权限，完整10车型、57个装配预设、9个内置场景和3份视觉权重已纳入交付。先运行`python3 tools/fetch_assets.py`，再用 `python3 tools/doctor.py --unity --hashes` 检查实际文件和SHA-256；只有源码清单、不下载Release附件不算完成安装。Car6包含当前高精度显示模型，车辆、传感器、农具和算法参数与来源工作区保持一致。
 
 用户手工导入的“自动化所园区”不上传；导入、删除、转换缓存和AI场景查询功能保留，新机器从9个内置场景开始。用户可在软件内手动导入自己的LCC2场景。AI服务需要使用者配置自己的Key；源码构建需要安装并激活Unity Editor。运行资源和许可证说明见[资源目录](resources/README.md)。不包含专利/软著申请材料、私人凭据、原始实验bag。第三方代码和模型保持各自许可证。
 

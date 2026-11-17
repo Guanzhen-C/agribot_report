@@ -15,13 +15,13 @@ public partial class LastPanel
     {
         if (algorithmDialog != null || ExportRos_btn == null) return;
         componentOptions.Clear(); sceneButtons.Clear();
-        algorithmDialog = CreateImageObject(transform, "ROS_Algorithm_Selection", new Color(.02f, .03f, .035f, .94f));
+        algorithmDialog = CreateImageObject(transform, "ROS_Algorithm_Selection", GarageVisualStyle.Background);
         StretchRect(algorithmDialog.GetComponent<RectTransform>());
         var panel = GarageVisualStyle.Panel(algorithmDialog.transform, "SimulationSetup", GarageVisualStyle.Background);
-        GarageVisualStyle.Rect(panel.transform, new Vector2(.035f, .045f), new Vector2(.965f, .955f));
+        GarageVisualStyle.Rect(panel.transform, Vector2.zero, Vector2.one);
         GarageVisualStyle.Label(panel.transform, "SetupBrand", "AGRIBOT  /  仿真实验室", 27,
             new Vector2(.025f, .90f), new Vector2(.67f, .99f));
-        var close = SetupButton(panel.transform, "Close", "关闭", .89f, .92f, .975f, .975f);
+        var close = SetupButton(panel.transform, "Close", "返回车辆", .74f, .92f, .86f, .975f);
         close.onClick.AddListener(CloseSetup);
         sceneTab = SetupButton(panel.transform, "SceneTab", "01  作业场景", .025f, .75f, .155f, .83f);
         algorithmTab = SetupButton(panel.transform, "AlgorithmTab", "02  算法配置", .025f, .64f, .155f, .72f);
@@ -67,16 +67,34 @@ public partial class LastPanel
         algorithmControllerValue = CreateDetailRow(details.transform, "Controller", "控制", .19f);
         algorithmRouteValue = CreateDetailRow(details.transform, "Route", "路线", .08f);
 
+        transmissionControls = GarageVisualStyle.Panel(panel.transform, "HilTransmission", GarageVisualStyle.Background);
+        GarageVisualStyle.Rect(transmissionControls.transform, new Vector2(.025f, .25f), new Vector2(.155f, .56f));
+        GarageVisualStyle.Label(transmissionControls.transform, "TransmissionTitle", "HIL 变速箱", 16,
+            new Vector2(0, .75f), new Vector2(1, 1));
+        cvtButton = SetupButton(transmissionControls.transform, "CVT", "CVT", 0, .4f, 1, .68f);
+        powershiftButton = SetupButton(transmissionControls.transform, "PowerShift", "动力换挡", 0, .03f, 1, .31f);
+        cvtButton.onClick.AddListener(() => { hilTransmission = "cvt_auto"; RefreshHilAvailability(); });
+        powershiftButton.onClick.AddListener(() => { hilTransmission = "powershift_auto"; RefreshHilAvailability(); });
+        setupStopButton = SetupButton(panel.transform, "SetupStop", "停止仿真", .025f, .15f, .155f, .22f);
+        setupStopButton.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(Notify));
+        hilStatus = GarageVisualStyle.Label(panel.transform, "HilStatus", "", 14,
+            new Vector2(.185f, .107f), new Vector2(.98f, .137f), GarageVisualStyle.Muted);
+
         var footer = GarageVisualStyle.Panel(panel.transform, "Footer", GarageVisualStyle.Surface);
         GarageVisualStyle.Rect(footer.transform, Vector2.zero, new Vector2(1, .105f));
         currentScene = GarageVisualStyle.Label(footer.transform, "CurrentScene", "", 18,
-            new Vector2(.025f, .1f), new Vector2(.49f, .9f), GarageVisualStyle.Muted);
-        var next = SetupButton(footer.transform, "SetupNext", "选择算法", .52f, .2f, .67f, .8f);
+            new Vector2(.04f, .1f), new Vector2(.30f, .9f), GarageVisualStyle.Muted);
+        currentScene.resizeTextForBestFit = true; currentScene.resizeTextMinSize = 12; currentScene.resizeTextMaxSize = 18;
+        var next = SetupButton(footer.transform, "SetupNext", "选择算法", .31f, .2f, .44f, .8f);
         next.onClick.AddListener(() => ShowSetupTab(true));
-        var cancel = SetupButton(footer.transform, "Cancel", "取消", .69f, .2f, .79f, .8f);
+        var cancel = SetupButton(footer.transform, "Cancel", "取消", .45f, .2f, .53f, .8f);
         cancel.onClick.AddListener(CloseSetup);
-        launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .81f, .2f, .975f, .8f, true);
+        launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .55f, .2f, .705f, .8f, true);
         launchSelectedAlgorithmButton.onClick.AddListener(() => { if (selectedAlgorithm != null) StartSelectedAlgorithm(selectedAlgorithm.Id); });
+        launchHilButton = SetupButton(footer.transform, "LaunchHil", "启动HIL仿真", .725f, .2f, .88f, .8f, true);
+        launchHilButton.onClick.AddListener(StartSelectedHil);
+        HilSimulationUi.Observe();
+        HilSimulationUi.Changed += RefreshHilAvailability;
         ClearAlgorithmSelection();
         algorithmDialog.SetActive(false);
         RefreshScenes(); ShowSetupTab(false);
@@ -93,8 +111,6 @@ public partial class LastPanel
     private void RefreshScenes()
     {
         var fixedScene = FarmScenarioCatalog.Selected;
-        if (fixedScene?.HasFixedRoute == true && selectedAlgorithm == null)
-            SelectAlgorithm(RosSimulationLauncher.FindAlgorithm(fixedScene.fixedAlgorithmId));
         if (currentScene != null) currentScene.text = "作业场景  /  未选择";
         foreach (var entry in sceneButtons)
         {
@@ -133,6 +149,7 @@ public partial class LastPanel
         CancelSceneImport();
         if (sceneDeleteDialog != null && !sceneDeleteBusy) sceneDeleteDialog.SetActive(false);
         algorithmDialog.SetActive(false);
+        externalSetupVisibility?.Invoke(false);
         AssistantConversation.RecordUi("关闭仿真配置页", state => state.page = "vehicle");
     }
 }

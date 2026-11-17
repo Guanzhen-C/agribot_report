@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.7">
   <model name="car4_interrow">
     <allow_auto_disable>false</allow_auto_disable>

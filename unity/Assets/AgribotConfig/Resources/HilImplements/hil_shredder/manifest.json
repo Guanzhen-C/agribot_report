@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "hil_shredder",
+  "meshGroups": 4,
+  "triangles": 149999,
+  "previewSha256": "e7e5281e9ecfb85623885de3459371b9379214d73035dd337195deab4ee51fcf",
+  "sourceSdfSha256": "4a59f733ebfbf3bc7888089058e13662c73bfe23ac11e2b6420beea4a87fcbd2"
+}

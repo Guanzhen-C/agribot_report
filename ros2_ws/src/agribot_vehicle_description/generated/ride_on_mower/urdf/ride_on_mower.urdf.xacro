@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <robot name="ride_on_mower">
   <link name="base_link">
     <inertial>
@@ -69,14 +69,14 @@
     </visual>
   </link>
   <joint name="rtk_master_mount_joint" type="fixed">
-    <origin xyz="0.8 0.325000688434 0.649348748684" rpy="0 0 0" />
+    <origin xyz="0.8 0.32500068843364716 0.2291482501740456" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_link" />
   </joint>
   <link name="rtk_secondary_link">
   </link>
   <joint name="rtk_secondary_mount_joint" type="fixed">
-    <origin xyz="0.8 -0.325000688434 0.649348748684" rpy="0 0 0" />
+    <origin xyz="0.8 -0.32500068843364716 0.2291482501740456" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="rtk_secondary_link" />
   </joint>

@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="hil_hitch_tractor">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.983305886074 0 0.15" rpy="0 0 0" />
+      <mass value="2500" />
+      <inertia ixx="1689.54889862" ixy="0" ixz="0" iyy="3654.81444006" iyz="0" izz="3434.73445856" />
+    </inertial>
+    <collision>
+      <origin xyz="0.792445141963 -0.000142551923975 0.714486632087" rpy="0 0 0" />
+      <geometry>
+        <box size="3.6 1.87795777404 2.14081977576" />
+      </geometry>
+    </collision>
+    <visual name="vehicle_body">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/tractor_body.obj" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/sensor_imu_visual.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="imu_mount_joint" type="fixed">
+    <origin xyz="1.72 0 0.920368656051" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+  </joint>
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/sensor_lidar_visual.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="lidar_mount_joint" type="fixed">
+    <origin xyz="1.95 0 1.35939866405" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+  <link name="right_camera_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/sensor_right_camera_visual.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="right_camera_mount_joint" type="fixed">
+    <origin xyz="1.9753 0 1.47798566405" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_camera_link" />
+  </joint>
+  <link name="right_camera_optical_frame" />
+  <joint name="right_camera_measurement_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679" />
+    <parent link="right_camera_link" />
+    <child link="right_camera_optical_frame" />
+  </joint>
+  <link name="rtk_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/sensor_rtk_master_visual.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="rtk_master_mount_joint" type="fixed">
+    <origin xyz="1.6 0.325 1.44550812546" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="rtk_link" />
+  </joint>
+  <link name="rtk_secondary_link" />
+  <joint name="rtk_secondary_mount_joint" type="fixed">
+    <origin xyz="1.6 -0.325 1.44550812546" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="rtk_secondary_link" />
+  </joint>
+  <link name="front_left_steering_link" />
+  <joint name="front_left_steering_joint" type="revolute">
+    <origin xyz="2.18423784074 0.784406377413 -0.313106738531" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_left_steering_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.751980612199" upper="0.751980612199" effort="200" velocity="1.5" />
+  </joint>
+  <link name="front_left_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/front_left_wheel_visual.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.570796326795 0 0" />
+      <geometry>
+        <cylinder radius="0.402899934555" length="0.151246320345" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="front_left_wheel_joint" type="continuous">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="front_left_steering_link" />
+    <child link="front_left_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="front_right_steering_link" />
+  <joint name="front_right_steering_joint" type="revolute">
+    <origin xyz="2.18601040802 -0.784406109835 -0.3132023306" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_right_steering_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.751980612199" upper="0.751980612199" effort="200" velocity="1.5" />
+  </joint>
+  <link name="front_right_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/front_right_wheel_visual.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.570796326795 0 0" />
+      <geometry>
+        <cylinder radius="0.402804342486" length="0.151246320345" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="front_right_wheel_joint" type="continuous">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="front_right_steering_link" />
+    <child link="front_right_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="rear_left_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/rear_left_wheel_visual.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.570796326795 0 0" />
+      <geometry>
+        <cylinder radius="0.716013964573" length="0.324794959434" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <origin xyz="-0.00100688748051 0.89256602754 7.29148742995e-06" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="rear_left_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="rear_right_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://agribot_vehicle_description/generated/car4_harrow/models/rear_right_wheel_visual.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.570796326795 0 0" />
+      <geometry>
+        <cylinder radius="0.715999381599" length="0.324795227012" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <origin xyz="0.0010068736966 -0.89256555928 -7.29148743006e-06" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="rear_right_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="hitch_tool_frame">
+    <visual name="harrow_frame">
+      <origin xyz="-1.30755485804 0 -0.711006673086" rpy="0 0.035 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/harrow_frame.obj" />
+      </geometry>
+    </visual>
+    <visual name="original_lift_arms">
+      <origin xyz="-0 0 0.13" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/tractor_lift_parts.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_cage_roller">
+    <visual name="original_cage_roller">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/harrow_roller.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_00">
+    <visual name="hitch_disc_00_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_00.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_01">
+    <visual name="hitch_disc_01_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_01.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_02">
+    <visual name="hitch_disc_02_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_02.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_03">
+    <visual name="hitch_disc_03_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_03.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_04">
+    <visual name="hitch_disc_04_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_04.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_05">
+    <visual name="hitch_disc_05_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_05.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_06">
+    <visual name="hitch_disc_06_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_06.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_07">
+    <visual name="hitch_disc_07_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_07.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_08">
+    <visual name="hitch_disc_08_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_08.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_09">
+    <visual name="hitch_disc_09_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_09.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_10">
+    <visual name="hitch_disc_10_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_10.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_11">
+    <visual name="hitch_disc_11_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_11.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_12">
+    <visual name="hitch_disc_12_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_12.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_13">
+    <visual name="hitch_disc_13_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_13.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_14">
+    <visual name="hitch_disc_14_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_14.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hitch_disc_15">
+    <visual name="hitch_disc_15_cad">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="@HIL_ROOT@/shared_assets/cd19f0dbef0c/disc_15.obj" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="hitch_lift_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="hitch_tool_frame" />
+    <origin xyz="0.0 0.0 -0.13" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.035" upper="0.4" effort="6000" velocity="0.16" />
+  </joint>
+  <joint name="hitch_cage_roller_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_cage_roller" />
+    <origin xyz="-3.45847654482 -0.000248968601227 -0.36754742985" rpy="0 0.035 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <joint name="hitch_disc_00_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_00" />
+    <origin xyz="-1.70381007235 0.927886962891 -0.373153154705" rpy="0 0.035 0" />
+    <axis xyz="0.491050055284 0.840387181625 0.22938881439" />
+  </joint>
+  <joint name="hitch_disc_01_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_01" />
+    <origin xyz="-1.69790647915 0.615934982896 -0.362794394116" rpy="0 0.035 0" />
+    <axis xyz="0.477439575401 0.847278410434 0.232746099976" />
+  </joint>
+  <joint name="hitch_disc_02_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_02" />
+    <origin xyz="-1.70667906229 0.318475492299 -0.37547469345100004" rpy="0 0.035 0" />
+    <axis xyz="0.476724822715 0.840170143719 0.258548976039" />
+  </joint>
+  <joint name="hitch_disc_03_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_03" />
+    <origin xyz="-1.72993631224 0.0103740021586 -0.360399623791" rpy="0 0.035 0" />
+    <axis xyz="0.495283258795 0.84468644615 0.202976110042" />
+  </joint>
+  <joint name="hitch_disc_04_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_04" />
+    <origin xyz="-1.70317780542 -0.294222004712 -0.37751445295599995" rpy="0 0.035 0" />
+    <axis xyz="0.466962956423 0.856520224546 0.219815154782" />
+  </joint>
+  <joint name="hitch_disc_05_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_05" />
+    <origin xyz="-1.7197948569 -0.590313494205 -0.35570661645" rpy="0 0.035 0" />
+    <axis xyz="0.479035088494 0.856652978583 0.191496888426" />
+  </joint>
+  <joint name="hitch_disc_06_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_06" />
+    <origin xyz="-1.70287945019 -0.884589523077 -0.369679092392" rpy="0 0.035 0" />
+    <axis xyz="0.486394948868 0.838397830711 0.245985835312" />
+  </joint>
+  <joint name="hitch_disc_07_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_07" />
+    <origin xyz="-1.7287960035 -1.17055797577 -0.371913565449" rpy="0 0.035 0" />
+    <axis xyz="0.526313666739 0.824519598162 0.207753114178" />
+  </joint>
+  <joint name="hitch_disc_08_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_08" />
+    <origin xyz="-2.70044220182 1.17807203531 -0.327522218716" rpy="0 0.035 0" />
+    <axis xyz="-0.490029655613 0.838841917529 -0.237097393526" />
+  </joint>
+  <joint name="hitch_disc_09_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_09" />
+    <origin xyz="-2.73529818749 0.88431802392 -0.338257087078" rpy="0 0.035 0" />
+    <axis xyz="-0.509779404928 0.834309544387 -0.20988697543" />
+  </joint>
+  <joint name="hitch_disc_10_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_10" />
+    <origin xyz="-2.71720690601 0.584272995591 -0.348224253449" rpy="0 0.035 0" />
+    <axis xyz="-0.48945236453 0.844476082125 -0.217477653049" />
+  </joint>
+  <joint name="hitch_disc_11_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_11" />
+    <origin xyz="-2.71542672357 0.29360999912 -0.326589798146" rpy="0 0.035 0" />
+    <axis xyz="-0.485625043983 0.848119993615 -0.21180366637" />
+  </joint>
+  <joint name="hitch_disc_12_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_12" />
+    <origin xyz="-2.71184516393 -0.00573300197721 -0.348183351066" rpy="0 0.035 0" />
+    <axis xyz="-0.488251990237 0.845100663163 -0.217749542254" />
+  </joint>
+  <joint name="hitch_disc_13_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_13" />
+    <origin xyz="-2.7158217543 -0.321038991213 -0.348044113543" rpy="0 0.035 0" />
+    <axis xyz="-0.47219551629 0.843798439257 -0.255020760533" />
+  </joint>
+  <joint name="hitch_disc_14_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_14" />
+    <origin xyz="-2.71484463509 -0.605585500598 -0.345670853032" rpy="0 0.035 0" />
+    <axis xyz="-0.441725450254 0.861859641675 -0.249151730174" />
+  </joint>
+  <joint name="hitch_disc_15_joint" type="continuous">
+    <parent link="hitch_tool_frame" />
+    <child link="hitch_disc_15" />
+    <origin xyz="-2.6989781242 -0.916427522898 -0.333246960611" rpy="0 0.035 0" />
+    <axis xyz="-0.485783995727 0.843674413876 -0.228533132972" />
+  </joint>
+</robot>
