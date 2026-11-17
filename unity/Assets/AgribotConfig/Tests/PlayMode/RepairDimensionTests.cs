@@ -44,6 +44,8 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(inputBounds.Overlaps(unitBounds), Is.False);
             Assert.That(unitBounds.Overlaps(buttonBounds), Is.False);
             Assert.That(Bounds(heading.rectTransform).Overlaps(inputBounds), Is.False);
+            Assert.That(heading.preferredHeight, Is.LessThanOrEqualTo(heading.rectTransform.rect.height),
+                "The CJK heading must fit its line box without being vertically clipped");
             foreach (var element in new[] { inputBounds, unitBounds, buttonBounds, Bounds(heading.rectTransform) })
             {
                 Assert.That(Bounds(window).Contains(element.min), Is.True);

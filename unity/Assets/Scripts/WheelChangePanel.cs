@@ -119,7 +119,7 @@ public class WheelChangePanel : MonoBehaviour
                 label.text = isUnit ? "cm" : title;
                 StyleDimensionText(label, isUnit ? 18 : 20);
                 PlaceDimensionControl((RectTransform)child, isUnit ? width - 152 : 20,
-                    isUnit ? 62 : 16, isUnit ? 44 : width - 40, isUnit ? 48 : 28);
+                    isUnit ? 62 : 16, isUnit ? 44 : width - 40, isUnit ? 48 : 36);
             }
             else if (child != input.transform && child != confirm.transform)
                 child.gameObject.SetActive(false);
