@@ -160,17 +160,17 @@ namespace Agribot.VehicleConfiguration.Tests
                 var selected = selector.GetType().GetField("selectedAlgorithm", flags);
                 var launch = (Button)selector.GetType().GetField("launchSelectedAlgorithmButton", flags).GetValue(selector);
                 Assert.That(selected.GetValue(selector), Is.Null);
-                Assert.That(launch.interactable, Is.False);
+                Assert.That(launch.interactable, Is.True);
                 Assert.That(AssistantConversation.State.algorithm, Is.Empty);
                 Assert.That(AssistantConversation.Entries.Any(e => e.content.StartsWith("选择算法")), Is.False);
                 var profile = RosSimulationLauncher.FindAlgorithm(RosSimulationLauncher.DefaultAlgorithmId);
                 Invoke(selector, "SelectComponent", profile.PerceptionComponent);
-                Assert.That(launch.interactable, Is.False);
+                Assert.That(launch.interactable, Is.True);
                 Assert.That(AssistantConversation.State.algorithm, Is.Empty);
                 Assert.That(AssistantConversation.State.perception, Is.EqualTo(profile.PerceptionComponent.Id));
                 foreach (var component in new[] { profile.VisualPerceptionComponent, profile.LocalizationComponent,
                     profile.PlannerComponent, profile.ControllerComponent }) Invoke(selector, "SelectComponent", component);
-                Assert.That(launch.interactable, Is.False, "A complete algorithm still needs a scene selected in this run");
+                Assert.That(FarmScenarioCatalog.HasSelection, Is.False, "A complete algorithm does not preselect a scene");
                 Invoke(selector, "BeginExportRosConfiguration");
                 GameObject.Find("Scenario_orchard").GetComponent<Button>().onClick.Invoke();
                 Assert.That(launch.interactable, Is.True);

@@ -14,7 +14,6 @@ public partial class LastPanel
 
     private void RefreshHilAvailability()
     {
-        var profile = SelectedHilProfile();
         var status = HilSimulationLauncher.ReadStatus();
         bool stopping = RosSimulationHandoffUi.IsStopPending || HilSimulationUi.IsStopPending;
         if (setupStopButton != null)
@@ -22,10 +21,6 @@ public partial class LastPanel
             setupStopButton.interactable = !stopping;
             setupStopButton.GetComponentInChildren<Text>().text = stopping ? "正在停止..." : "停止仿真";
         }
-        if (launchHilButton != null)
-            launchHilButton.interactable = profile != null && !status.Active && !HilSimulationUi.IsBusy && !RosSimulationHandoffUi.IsBusy &&
-                !sceneImportBusy && !sceneDeleteBusy && SimulationLaunchRequirements.Validate(out _) &&
-                selectedAlgorithm != null && selectedAlgorithm.Id == profile.algorithm;
         if (transmissionControls != null)
             transmissionControls.SetActive(AssistantConversation.State.car == "Car4");
         if (cvtButton != null)
@@ -49,10 +44,16 @@ public partial class LastPanel
 
     private void StartSelectedHil()
     {
+        string issue = LaunchTransitionIssue() ?? LaunchConfigurationIssue();
+        if (issue != null) { Notify(issue); return; }
+        if (HilSimulationLauncher.HasSession) { Notify("请先停止当前HIL仿真，再启动新的工况。"); return; }
         var profile = SelectedHilProfile();
-        if (profile == null) return;
-        if (!SimulationLaunchRequirements.Validate(out string message)) { Notify(message); return; }
-        if (selectedAlgorithm == null || selectedAlgorithm.Id != profile.algorithm)
+        if (profile == null)
+        {
+            Notify("当前车型、机具与场景不支持HIL仿真。可用组合：Car0机械臂／苹果园、Car3风送植保机或碎枝机／苹果园、Car4圆盘耙／宽地头机具运输区。");
+            return;
+        }
+        if (selectedAlgorithm.Id != profile.algorithm)
         {
             Notify("当前HIL使用已验证的默认方案：" + RosSimulationLauncher.FindAlgorithm(profile.algorithm).DisplayName +
                 "。当前算法选择未被修改，请确认方案后再启动。");

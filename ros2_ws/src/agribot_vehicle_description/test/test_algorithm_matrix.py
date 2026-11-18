@@ -78,7 +78,8 @@ def test_unity_simulation_rviz_shows_the_published_rgb_image(vision_mode, tmp_pa
     source = WORKSPACE_SRC / "agribot_autonomy/rviz/robot_map_global_plan_only.rviz"
     original = source.read_bytes()
     config = yaml.safe_load(Path(module._write_simulation_rviz_config(source, vision_mode)).read_text())
-    assert sum(panel["Class"] == "nav2_rviz_plugins/Navigation 2" for panel in config["Panels"]) == 1
+    assert sum(panel["Class"] == "scout_viz/Navigation2" for panel in config["Panels"]) == 1
+    assert not any(panel["Class"] == "nav2_rviz_plugins/Navigation 2" for panel in config["Panels"])
     tools = config["Visualization Manager"]["Tools"]
     assert sum(tool["Class"] == "nav2_rviz_plugins/GoalTool" for tool in tools) == 1
     assert not any(tool["Class"] == "rviz_default_plugins/SetGoal" for tool in tools)
@@ -108,7 +109,7 @@ def test_unity_simulation_rviz_shows_the_published_rgb_image(vision_mode, tmp_pa
     assert waypoint_displays[0]["Class"] == "rviz_default_plugins/MarkerArray"
     assert waypoint_displays[0]["Topic"] == {
         "Value": "/waypoints", "Depth": 10, "Reliability Policy": "Reliable",
-        "Durability Policy": "Transient Local"}
+        "Durability Policy": "Volatile"}
     assert [d for d in displays if d["Name"] not in ("RGB Image", "Ordered Waypoints")] == [
         d for d in previous if d["Name"] != "RGB Image"]
     assert source.read_bytes() == original

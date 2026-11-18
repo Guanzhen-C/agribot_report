@@ -672,7 +672,7 @@ log "增量编译车辆配置工具和描述包..."
 export PATH="/usr/bin:/bin:$PATH"
 hash -r
 log "编译使用 CMake：$(command -v cmake)"
-build_packages=(agribot_vehicle_config_tools agribot_farm_sim agribot_manipulator_sim agribot_visual_perception agribot_vehicle_description agribot_k2_sim)
+build_packages=(agribot_vehicle_config_tools agribot_farm_sim agribot_manipulator_sim agribot_visual_perception scout_viz agribot_vehicle_description agribot_k2_sim)
 [[ -n "$SIMULATION_PROFILE" ]] && build_packages+=(agribot_differential_fastlivo_mppi)
 set +e
 colcon build \

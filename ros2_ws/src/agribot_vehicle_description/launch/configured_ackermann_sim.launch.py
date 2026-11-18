@@ -33,8 +33,11 @@ def _write_simulation_rviz_config(source_file, vision_mode="off", visual_belts=F
     with open(source_file, encoding="utf-8") as stream:
         config = yaml.safe_load(stream)
     panels = config.setdefault("Panels", [])
-    if not any(panel.get("Class") == "nav2_rviz_plugins/Navigation 2" for panel in panels):
-        panels.append({"Class": "nav2_rviz_plugins/Navigation 2", "Name": "Navigation 2"})
+    for panel in panels:
+        if panel.get("Class") == "nav2_rviz_plugins/Navigation 2":
+            panel["Class"] = "scout_viz/Navigation2"
+    if not any(panel.get("Class") == "scout_viz/Navigation2" for panel in panels):
+        panels.append({"Class": "scout_viz/Navigation2", "Name": "Navigation 2"})
     tools = config["Visualization Manager"].setdefault("Tools", [])
     for tool in tools:
         if tool.get("Class") == "rviz_default_plugins/SetGoal":
@@ -58,14 +61,18 @@ def _write_simulation_rviz_config(source_file, vision_mode="off", visual_belts=F
     rgb["Topic"].update({"Value": image_topic, "Depth": 1,
                          "Reliability Policy": "Best Effort"})
     displays = config["Visualization Manager"]["Displays"]
-    if not any(display.get("Class") == "rviz_default_plugins/MarkerArray" and
-               display.get("Topic", {}).get("Value") == "/waypoints" for display in displays):
+    waypoints = next((display for display in displays if display.get("Class") == "rviz_default_plugins/MarkerArray" and
+                      display.get("Topic", {}).get("Value") == "/waypoints"), None)
+    if waypoints is None:
         displays.append({
             "Class": "rviz_default_plugins/MarkerArray", "Name": "Ordered Waypoints",
             "Enabled": True, "Value": True,
             "Topic": {"Value": "/waypoints", "Depth": 10,
-                      "Reliability Policy": "Reliable", "Durability Policy": "Transient Local"},
+                      "Reliability Policy": "Reliable", "Durability Policy": "Volatile"},
         })
+    else:
+        # Don't restore a canceled selection from the Nav2 publisher's retained message.
+        waypoints["Topic"]["Durability Policy"] = "Volatile"
     if visual_belts:
         config["Visualization Manager"]["Displays"].append({
             "Class": "rviz_default_plugins/MarkerArray", "Name": "Track Animation",

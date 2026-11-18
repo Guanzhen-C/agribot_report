@@ -11,6 +11,8 @@
   <depend>pluginlib</depend>
   <depend>rviz_default_plugins</depend>
   <depend>action_msgs</depend>
+  <depend>nav2_lifecycle_manager</depend>
+  <depend>nav2_rviz_plugins</depend>
 
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>

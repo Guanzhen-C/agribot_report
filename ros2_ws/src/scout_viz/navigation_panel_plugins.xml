@@ -1,0 +1,5 @@
+<library path="scout_navigation_panel">
+  <class name="scout_viz/Navigation2" type="scout_viz::NavigationPanel" base_class_type="rviz_common::Panel">
+    <description>Nav2 panel that clears the RViz waypoint display on cancel and on starting a fresh selection.</description>
+  </class>
+</library>

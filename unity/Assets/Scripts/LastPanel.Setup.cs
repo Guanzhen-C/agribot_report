@@ -88,7 +88,7 @@ public partial class LastPanel
             new Vector2(.04f, .1f), new Vector2(.52f, .9f), GarageVisualStyle.Muted);
         currentScene.resizeTextForBestFit = true; currentScene.resizeTextMinSize = 12; currentScene.resizeTextMaxSize = 18;
         launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .55f, .2f, .705f, .8f, true);
-        launchSelectedAlgorithmButton.onClick.AddListener(() => { if (selectedAlgorithm != null) StartSelectedAlgorithm(selectedAlgorithm.Id); });
+        launchSelectedAlgorithmButton.onClick.AddListener(() => StartSelectedAlgorithm(selectedAlgorithm?.Id));
         launchHilButton = SetupButton(footer.transform, "LaunchHil", "启动HIL仿真", .725f, .2f, .88f, .8f, true);
         launchHilButton.onClick.AddListener(StartSelectedHil);
         HilSimulationUi.Observe();

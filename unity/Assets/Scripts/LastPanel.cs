@@ -628,13 +628,35 @@ public partial class LastPanel : WheelChangePanel
 
     private void RefreshLaunchAvailability()
     {
-        bool fixedVehicleMatches = FarmScenarioCatalog.Selected?.HasFixedRoute != true ||
-            AssistantConversation.State.car == "Car3";
-        if (launchSelectedAlgorithmButton != null)
-            launchSelectedAlgorithmButton.interactable = selectedAlgorithm != null && FarmScenarioCatalog.HasSelection && fixedVehicleMatches && !sceneImportBusy && !sceneDeleteBusy &&
-                SimulationLaunchRequirements.Validate(out _) && !HilSimulationLauncher.HasSession && !RosSimulationHandoffUi.IsBusy &&
-                !HilImplementLibrary.Supports(AssistantConversation.State.implement);
         RefreshHilAvailability();
+    }
+
+    private string LaunchConfigurationIssue()
+    {
+        if (sceneImportBusy || sceneDeleteBusy) return "请等待场景导入或删除完成。";
+        var scene = FarmScenarioCatalog.Selected;
+        if (!FarmScenarioCatalog.HasSelection || scene == null) return "请先在作业场景页选择场景。";
+        if (scene.imported && !File.Exists(scene.sceneManifest)) return "导入场景文件已不存在，请重新导入或选择其他场景。";
+        if (!SimulationLaunchRequirements.Validate(out string message)) return message;
+        if (selectedAlgorithm == null)
+        {
+            var missing = new List<string>();
+            if (selectedPerception == null) missing.Add("几何感知");
+            if (selectedVisualPerception == null) missing.Add("视觉感知");
+            if (selectedLocalization == null) missing.Add("定位");
+            if (selectedPlanner == null) missing.Add("规划");
+            if (selectedController == null) missing.Add("控制");
+            return "请先在算法配置页完成算法选择" + (missing.Count > 0 ? "：" + string.Join("、", missing) : "") + "。";
+        }
+        return null;
+    }
+
+    private string LaunchTransitionIssue()
+    {
+        if (RosSimulationHandoffUi.IsBusy || HilSimulationUi.IsBusy ||
+            (ExportRos_btn != null && !ExportRos_btn.interactable))
+            return "仿真正在启动或停止，请稍后再试。";
+        return null;
     }
 
     private bool IsSelectedComponent(RosSimulationComponentOption component)
@@ -790,9 +812,15 @@ public partial class LastPanel : WheelChangePanel
 
     private void StartSelectedAlgorithm(string algorithmId)
     {
+        string issue = LaunchTransitionIssue() ?? LaunchConfigurationIssue();
+        if (issue != null) { Notify(issue); return; }
         if (selectedAlgorithm == null || selectedAlgorithm.Id != algorithmId)
         { Notify("请先选择完整的算法方案。"); return; }
-        if (!SimulationLaunchRequirements.Validate(out string message)) { Notify(message); return; }
+        if (HilSimulationLauncher.HasSession) { Notify("请先停止HIL仿真，再启动普通仿真。"); return; }
+        if (FarmScenarioCatalog.Selected?.HasFixedRoute == true && AssistantConversation.State.car != "Car3")
+        { Notify("伏羲农场固定104点仿真请选择Car3差速履带车。"); return; }
+        if (HilImplementLibrary.Supports(AssistantConversation.State.implement))
+        { Notify("当前机具仅支持硬件在环，请点击启动HIL仿真，或更换机具。"); return; }
         if (algorithmDialog != null) CloseSetup();
         StartCoroutine(ExportRosConfiguration(algorithmId));
     }

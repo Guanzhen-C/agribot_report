@@ -30,6 +30,7 @@
   <exec_depend>lifecycle_msgs</exec_depend>
   <exec_depend>nav2_msgs</exec_depend>
   <exec_depend>nav2_rviz_plugins</exec_depend>
+  <exec_depend>scout_viz</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>rosgraph_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
