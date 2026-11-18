@@ -69,11 +69,12 @@ namespace Agribot.VehicleConfiguration.Editor
                     throw new InvalidOperationException($"配置面板脚本未正确导入：{scriptPath}");
             }
             string[] scenes = EditorBuildSettings.scenes
-                .Where(scene => scene.enabled && scene.path == "Assets/Scenes/scene1.unity")
+                .Where(scene => scene.enabled &&
+                    (scene.path == "Assets/Scenes/Login.unity" || scene.path == "Assets/Scenes/scene1.unity"))
                 .Select(scene => scene.path)
                 .ToArray();
-            if (scenes.Length == 0)
-                throw new InvalidOperationException("Build Settings 中没有启用的场景。");
+            if (scenes.Length != 2 || scenes[0] != "Assets/Scenes/Login.unity")
+                throw new InvalidOperationException("请在 Build Settings 中先启用登录场景，再启用车库场景。");
 
             if (!Application.isBatchMode && !EditorSceneManager.SaveOpenScenes())
                 throw new InvalidOperationException("无法保存当前打开的场景。");

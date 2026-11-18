@@ -891,6 +891,7 @@ public partial class LastPanel : WheelChangePanel
             EquipmentSlotType.Imu
         };
         string[] displayNames = { "雷达", "RTK", "相机", "IMU" };
+        var missing = new List<string>();
         for (int index = 0; index < requiredSlots.Length; index++)
         {
             EquipmentData equipment = equipmentBagController != null
@@ -900,10 +901,12 @@ public partial class LastPanel : WheelChangePanel
                 ? equipment != null && equipmentBagController.IsInstalled(equipment)
                 : equipment != null && equipmentBagControllerCopy.IsInstalled(equipment);
             if (equipment == null || !installed)
-            {
-                message = $"请先安装{displayNames[index]}，再导出 ROS 配置。";
-                return false;
-            }
+                missing.Add(displayNames[index]);
+        }
+        if (missing.Count > 0)
+        {
+            message = "请先安装" + string.Join("、", missing) + "，再导出 ROS 配置。";
+            return false;
         }
 
         message = string.Empty;

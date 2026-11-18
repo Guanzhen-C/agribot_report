@@ -77,12 +77,17 @@ namespace Agribot.VehicleConfiguration.Tests
                 AssertLaunchWarning(normal, "选择场景");
                 AssertLaunchWarning(hil, "选择场景");
                 buttons.Single(button => button.name == "Scenario_orchard").onClick.Invoke();
-                AssertLaunchWarning(normal, "安装雷达");
-                AssertLaunchWarning(hil, "安装雷达");
+                AssertLaunchWarning(normal, "请先安装雷达、RTK、相机、IMU，再启动仿真。");
+                AssertLaunchWarning(hil, "请先安装雷达、RTK、相机、IMU，再启动仿真。");
                 foreach (string slot in new[] { "Radar", "RTK", "Camera", "Imu" })
                 {
                     Assert.That((bool)installation.Invoke(bag, new[] { Equipment(slot), (object)true }), Is.True);
                     yield return new WaitForSeconds(.65f);
+                    if (slot == "RTK")
+                    {
+                        AssertLaunchWarning(normal, "请先安装相机、IMU，再启动仿真。");
+                        AssertLaunchWarning(hil, "请先安装相机、IMU，再启动仿真。");
+                    }
                 }
                 AssertLaunchWarning(normal, "完成算法选择");
                 AssertLaunchWarning(hil, "完成算法选择");

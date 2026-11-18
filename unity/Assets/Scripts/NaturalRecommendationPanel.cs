@@ -35,7 +35,10 @@ public sealed class NaturalRecommendationPanel : MonoBehaviour
     private Text streamingAnswer, streamingTime;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void Bootstrap() => Ensure(null);
+    private static void Bootstrap()
+    {
+        if (SceneManager.GetActiveScene().name != LocalLoginScreen.SceneName) Ensure(null);
+    }
 
     private void Awake() => SceneManager.sceneLoaded += OnSceneLoaded;
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)

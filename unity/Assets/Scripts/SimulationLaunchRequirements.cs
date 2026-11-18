@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AgriculturalMachinery.BagSystem;
 using UnityEngine;
@@ -22,14 +23,17 @@ namespace Agribot.VehicleConfiguration
             var legacy = bag == null ? UnityEngine.Object.FindObjectsByType<EquipmentBagController_copy>(
                 FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault() : null;
             var parts = car.GetComponentsInChildren<Transform>(true);
+            var missing = new List<string>();
             for (int index = 0; index < Slots.Length; index++)
             {
                 bool installed = bag != null ? bag.IsInstalled(bag.GetEquipment(Slots[index])) :
                     legacy != null && legacy.IsInstalled(legacy.GetEquipment(Slots[index]));
                 var visual = parts.FirstOrDefault(part => part.name.Trim() == Objects[index]);
                 if (!installed || visual == null || !visual.gameObject.activeInHierarchy)
-                { message = "请先安装" + Labels[index] + "，再启动仿真。"; return false; }
+                    missing.Add(Labels[index]);
             }
+            if (missing.Count > 0)
+            { message = "请先安装" + string.Join("、", missing) + "，再启动仿真。"; return false; }
             if (bag != null && bag.IsSceneAnimating)
             { message = "请等待传感器安装动画结束。"; return false; }
             message = string.Empty;
