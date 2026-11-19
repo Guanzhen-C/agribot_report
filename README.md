@@ -1,110 +1,88 @@
-# Unity 农机配置与算法仿真软件
+# 农机配置与算法仿真软件
 
-本仓库交付 **Unity 农机配置软件及其配套 ROS 2/Gazebo 仿真**，包含完整车库和运行资源，用于独立构建、运行、阅读源码及编写设计说明和用户手册。
+**从三维车库选装，到仿真田间作业。** 在 Unity 中为农机搭配传感器和机具，选择作业场景、定位与导航算法，再到 Gazebo 和 RViz 中观察车辆怎么走、机具怎么干活。既可在一台电脑上做普通仿真，也可接入控制器台架测试真实的通信与控制闭环。
 
-不包含农机控制台、网页/Android 控车应用、控制台 HTTP 网关或独立上位机，也不包含独立离线建图/真机语义导航服务器。新增的可选硬件在环模块只集成已验证工况使用的6750固件、网口ROS通信及CAN闭环，不向X5真车工作区部署代码。
+[快速上手](#快速上手) · [仿真工作流](#仿真工作流) · [五种硬件在环工况](#硬件在环) · [用户手册](docs/13_user_manual.md)
 
-2026-11-17起，当前版本的完整模型资源和Linux运行包改用本仓库的GitHub Releases附件分发，不再要求Git LFS额度。源码、资源版本与逐文件SHA-256清单仍保存在`main`；安装入口自动下载匹配附件，拒绝损坏文件或不匹配的旧程序。旧提交历史不重写。[发布资源说明](docs/19_release_distribution.md)
+| 车库选装 | 田间作业 |
+| :---: | :---: |
+| ![Unity 装备面板中为红色拖拉机选择圆盘耙](docs/media/readme/tractor-config.webp) | ![Gazebo 中拖拉机挂载圆盘耙作业，身后留下耙过的土壤条带](docs/media/readme/tractor-powershift.webp) |
+| 在 Unity 中为 Car4 选配圆盘耙 | 同车型在 Gazebo 中行走、耙地 |
 
-HIL集成说明和当前验证边界见[硬件在环集成](docs/18_hil_integration.md)。普通仿真不需要连接这些硬件。HIL每次启动都烧录对应固件，不复用“上次已烧录”的判断。
+**10 款车型** · **57 个装配预设** · **9 个内置场景** · **5 种硬件在环工况**
 
-## 完整功能与手册
+## 快速上手
 
-- [2026-11-01更新与笔记本部署](docs/17_update_20261101.md)：本机通信、离线苹果园模型修复及真实导航验收记录。
+支持 **Ubuntu 22.04 x86_64 · ROS 2 Humble · Gazebo Classic 11**。先准备 ROS Humble Desktop 和可用的图形桌面，其他依赖见[安装文档](docs/03_installation.md)。普通仿真不需要连接硬件台架。
 
-- [需规V1.6配套文档](docs/16_srs_v16_documents.md)：新版Word/Markdown用户手册、第三方测试大纲、79项461子项追踪矩阵和12张真实运行截图，附版本边界说明。
-- [详细功能说明](docs/12_detailed_functions.md)：产品边界、19个功能模块、输入输出、状态和限制。
-- [完整用户手册](docs/13_user_manual.md)：从打开软件到选车装配、场景/算法、RViz任务、AI、停止导出的逐步操作。
-- [车型、机具、场景与算法附录](docs/14_catalog_reference.md)：从当前配置自动生成的完整目录与候选适配关系。
+### 体验发布版
 
-网页端大模型撰写设计说明和用户手册时，应先读这三份，再按[阅读指南](docs/00_reading_guide.md)核对源码及验证边界。
-
-独立克隆、程序安装、原生界面、默认23点完整路线和启动/停止/导出的实际结果见[验收记录](docs/10_validation.md)及[截图与测试附件](verification/evidence/20261024_independent/README.md)。支持平台及安装前提见[独立复现说明](docs/15_reproducibility.md)。
-
-## 软件流程
-
-2026-11-01 更新：同步当前桌面软件的伏羲农场104点方案、连续履带接触、扫描场景天空、AI网络代理适配，以及场景选择后允许人工修改算法的功能。
-详见[伏羲农场方案](docs/14_fuxi_farm_104.md)。104点仅绑定相应导入场景，其他场景仍人工选点；个人扫描数据和固定方案输入不上传仓库，需要用户自行导入或安装。
-
-车库选车 -> 安装传感器和农机具 -> 选择场景与算法 -> 启动 Gazebo/RViz 仿真 -> 人工指定目标或经停点 -> 停止仿真 -> 导出配置。
-
-AI 助手贯穿本次应用会话，可问答并生成可点击装配/算法方案；应用方案之后仍需用户单独启动仿真。
-
-## 文档入口
-
-| 文档 | 用途 |
-| --- | --- |
-| [大模型阅读指南](docs/00_reading_guide.md) | 设计说明、用户手册的阅读顺序和范围 |
-| [详细功能说明](docs/12_detailed_functions.md) | 完整功能规格及各模块状态、限制和代码依据 |
-| [完整用户手册](docs/13_user_manual.md) | 逐步操作、示例、文件位置、常见问题 |
-| [配置目录附录](docs/14_catalog_reference.md) | 当前车型/机具/场景/算法与专用规则 |
-| [软件概览](docs/01_overview.md) | 产品功能、部署环境、边界 |
-| [架构与数据流](docs/02_architecture.md) | Unity、配置生成、ROS 仿真、AI 助手 |
-| [安装与构建](docs/03_installation.md) | 克隆、依赖、编译和启动 |
-| [Unity 操作手册](docs/04_unity_manual.md) | 选车、装配、场景、算法、AI、导出 |
-| [仿真操作](docs/05_simulation.md) | RViz 目标/经停点、运行状态和停止 |
-| [算法与参数](docs/06_algorithms.md) | 五组组件和车辆/场景适配 |
-| [接口与配置](docs/07_interfaces.md) | JSON、坐标系、文件、ROS 和进程接口 |
-| [运行与排障](docs/08_operations.md) | 日志、模型、传感器、导航和 AI |
-| [资源与许可证](docs/09_resources_and_licenses.md) | 授权模型和外部依赖 |
-| [验证记录](docs/10_validation.md) | 本次验证结果与未覆盖范围 |
-| [硬件在环集成](docs/18_hil_integration.md) | 可选HIL工况、独立部署、自动烧录、保护和测试状态 |
-| [代码导航](docs/11_code_map.md) | 功能与源码路径对应 |
-
-## 克隆和基础仿真
-
-目标环境：Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11。先安装 ROS Humble Desktop，再运行：
-
-完整软件推荐使用下面的安装入口，会构建ROS并安装与源码匹配的Linux程序，无需在运行电脑安装Unity Editor：
+使用[带五工况测试记录功能的发布版](https://github.com/Guanzhen-C/agribot_report/releases/tag/v0.1.0-20261117-hil-records)。运行电脑无需安装 Unity Editor：
 
 ```bash
 sudo apt-get install git zstd
-git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
+git clone --depth 1 --branch v0.1.0-20261117-hil-records https://github.com/Guanzhen-C/agribot_report.git
 cd agribot_report
 bash scripts/bootstrap.sh
-python3 tools/configure_llm.py
 bash scripts/run_unity.sh
 ```
 
-AI配置使用个人Key，可暂时不配置；手动装配和仿真不受影响。下面是只启动基础仿真的分步骤方式，不替代完整软件安装：
+`bootstrap.sh` 会恢复并校验模型资源、构建配套 ROS 工作区、安装与源码匹配的 Linux 程序。大文件通过 GitHub Releases 分发，**不需要 Git LFS**。下载续传或离线恢复见[发布资源说明](docs/19_release_distribution.md)。
 
-```bash
-sudo apt-get install git zstd
-git clone --depth 1 https://github.com/Guanzhen-C/agribot_report.git
-cd agribot_report
-python3 tools/fetch_assets.py
-python3 tools/doctor.py
-bash scripts/install_dependencies.sh
-bash scripts/build_ros.sh simulation
-source scripts/env.sh
-export ROS_DOMAIN_ID=37 ROS_LOCALHOST_ONLY=1
-ros2 launch agribot_vehicle_description configured_ackermann_sim.launch.py \
-  vehicle_id:=ackermann_current scenario:=orchard \
-  gui:=false rviz:=true run_waypoints:=false
+### 构建当前源码
+
+需要 `main` 上的新改动时，克隆时改用 `--branch main`，安装并激活 Unity **6000.0.26f1**（含 Linux Build Support），然后执行 `bash scripts/bootstrap.sh --build-unity` 和 `bash scripts/run_unity.sh`。预编译包与源码版本不匹配时，安装器会拒绝安装。
+
+AI 助手可通过 `python3 tools/configure_llm.py` 配置个人 API Key，不配置也可完成手动装配和仿真。只想运行 ROS 演示，可按[基础仿真步骤](docs/03_installation.md#基础仿真)操作。
+
+## 仿真工作流
+
+1. **选车与装配**：在三维车库查看阿克曼车、差速履带车或拖拉机等车型，按车型安装雷达、RTK、相机、IMU 和适配的农机具。可用爆炸图检查结构，或在支持的车型上调整几何参数。
+2. **选场景与算法**：选择苹果园、宽地头等内置场景，或导入自己的扫描场景；按需搭配几何感知、视觉感知、定位、规划和控制组件。也可请 AI 助手推荐配置，应用后仍可手动调整，由用户确认启动。
+3. **运行与观察**：在仿真设置页启动，使用 Gazebo 查看运动和作业，使用 RViz 设置目标或经停点并观察地图、路径和传感器数据。
+
+| 配置算法 | 查看导航 |
+| :---: | :---: |
+| ![Unity 仿真设置页展示算法组件和当前运行方案](docs/media/readme/algorithms.webp) | ![RViz 中显示作业场景的地图、代价地图和经停点路线](docs/media/readme/rviz-route.webp) |
+
+例如，导入并配置[伏羲农场 104 点方案](docs/14_fuxi_farm_104.md)后，软件会载入预设经停点，由 Smac 重新规划。该扫描场景及其私人输入不随仓库分发，不影响其他场景的手动选点。
+
+## 硬件在环
+
+台架模式下，**仿真电脑**运行场景、车辆和虚拟传感器，**RDK X5**运行导航与作业任务，**HPM6750**运行对应工况固件。网口传输 ROS 消息，实际 CAN 链路传递命令和反馈。
+
+```mermaid
+flowchart LR
+    P["仿真电脑：Unity / Gazebo / CAN 反馈"] <-->|网口 ROS 2| X["RDK X5：导航与作业任务"]
+    X <-->|CAN| M["HPM6750：工况固件"]
+    M <-->|CAN| P
 ```
 
-这是仿真，不连接真实底盘。车辆默认等待 RViz 目标。Unity 构建、网络下载恢复和详细前提见安装文档。
+| 车型与机具 | 场景 | 作业任务 |
+| --- | --- | --- |
+| Car0 阿克曼车 + Lite6 机械臂 | 苹果园 | 沿默认路线停靠，采摘并将果实放入果盒 |
+| Car3 差速履带车 + 风送植保机 | 苹果园 | 行走与喷水联动，农具使用 ISOBUS |
+| Car3 差速履带车 + 碎枝机 | 苹果园 | 行走与刀轴联动，农具使用 ISOBUS |
+| Car4 拖拉机 + 圆盘耙，动力换挡 | 宽地头 | 换挡行驶、下放耙地、抬升转弯 |
+| Car4 拖拉机 + 圆盘耙，CVT | 宽地头 | 连续变速、下放耙地、抬升转弯 |
 
-## 目录与范围
+| 苹果采摘 | 植保喷水 |
+| :---: | :---: |
+| ![Gazebo 中阿克曼车的 Lite6 机械臂夹取苹果后向果盒搬运](docs/media/readme/orchard-apple.webp) | ![Gazebo 中差速履带车挂载风送植保机在苹果园喷水](docs/media/readme/orchard-sprayer.webp) |
+| **碎枝作业** | **CVT 地头转弯** |
+| ![Gazebo 中差速履带车挂载碎枝机在苹果园行驶](docs/media/readme/orchard-shredder.webp) | ![Gazebo 中 CVT 工况的拖拉机抬起圆盘耙转弯](docs/media/readme/tractor-cvt.webp) |
 
-```text
-unity/                  Unity 工程、界面、车库、装备、AI 和导出
-ros2_ws/src/            配套仿真与所需算法、共享库/驱动依赖
-scripts/                构建、启动和仿真检查
-tools/                  快照、范围、完整性与模型下载工具
-manifests/              交付范围、来源版本、文件哈希
-docs/                   本软件的设计与使用说明
-docker/                 ROS 依赖环境
-```
+以上作业图来自实际台架仿真，不是实车照片。点击 **启动HIL仿真** 后，软件对台架检查并烧录对应固件，按默认路线运行；正常停止后可在 **测试记录** 中查看本轮结果。记录覆盖整机、智能机具、自动驾驶导航三类控制器的 **30 条用例**。工况匹配、接线、自动烧录和复测步骤见[硬件在环集成](docs/18_hil_integration.md)。
 
-部分定位、融合、NavSat、配置导出代码复用原工程的共享包，因此保留了 `agribot_hardware_bringup` 等依赖。**包名中有 hardware 不表示本仓库包含农机控制台，也不表示仿真会连接真车。** 构建入口只选择统一仿真需要的依赖。机器可读范围见 `manifests/delivery_scope.json`。
+> HIL 仅用于隔离台架，不连接真实车辆执行机构，不修改 X5 真车工作区。普通仿真不会烧录固件。软件不包含独立的农机控制台、网页或 Android 控车端。
 
-## 完整资源与私人输入
+## 文档与源码
 
-模型提供者已确认分发权限，完整10车型、57个装配预设、9个内置场景和3份视觉权重已纳入交付。先运行`python3 tools/fetch_assets.py`，再用 `python3 tools/doctor.py --unity --hashes` 检查实际文件和SHA-256；只有源码清单、不下载Release附件不算完成安装。Car6包含当前高精度显示模型，车辆、传感器、农具和算法参数与来源工作区保持一致。
+| 你要做什么 | 从这里开始 |
+| --- | --- |
+| 安装、下载资源或排障 | [安装与构建](docs/03_installation.md) · [资源分发](docs/19_release_distribution.md) · [运行与排障](docs/08_operations.md) |
+| 配车、选场景、运行一次仿真 | [完整用户手册](docs/13_user_manual.md) · [车型、机具与算法目录](docs/14_catalog_reference.md) · [仿真操作](docs/05_simulation.md) |
+| 阅读代码或编写设计说明 | [大模型阅读指南](docs/00_reading_guide.md) · [详细功能说明](docs/12_detailed_functions.md) · [架构与数据流](docs/02_architecture.md) · [代码导航](docs/11_code_map.md) |
+| 核对测试和交付范围 | [独立复现说明](docs/15_reproducibility.md) · [独立安装验证](verification/release_install_20261117.json) · [需规 V1.6 配套文档](docs/16_srs_v16_documents.md) · [HIL 集成](docs/18_hil_integration.md) |
 
-用户手工导入的“自动化所园区”不上传；导入、删除、转换缓存和AI场景查询功能保留，新机器从9个内置场景开始。用户可在软件内手动导入自己的LCC2场景。AI服务需要使用者配置自己的Key；源码构建需要安装并激活Unity Editor。运行资源和许可证说明见[资源目录](resources/README.md)。不包含专利/软著申请材料、私人凭据、原始实验bag。第三方代码和模型保持各自许可证。
-
-独立复现的安装、验收范围和验证依据见[复现说明](docs/15_reproducibility.md)。支持的平台与当前软件一致，为Ubuntu 22.04 x86_64；不宣称可在任意操作系统上原生运行ROS/Gazebo。
-
-本次范围调整采用普通 Git 删除提交，未重写已有仓库历史。
+[`unity/`](unity/) 是桌面工程，[`ros2_ws/src/`](ros2_ws/src/) 是配套仿真和算法包，[`scripts/`](scripts/) 提供构建与运行入口。[交付清单](manifests/delivery_scope.json)定义源码范围；第三方代码及模型沿用各自许可证，见[资源与许可证](docs/09_resources_and_licenses.md)。
