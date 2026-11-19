@@ -51,7 +51,9 @@ AI 助手可通过 `python3 tools/configure_llm.py` 配置个人 API Key，不�
 
 台架模式下，**仿真电脑**运行场景、车辆和虚拟传感器，**RDK X5**运行导航与作业任务，**HPM6750**运行对应工况固件。网口传输 ROS 消息，实际 CAN 链路传递命令和反馈。
 
-![硬件在环台架：仿真电脑和 RDK X5 通过网口交换 ROS 2 消息，两端分别通过 CAN 与 HPM6750 通信](docs/media/readme/hil-topology.svg)
+![三类控制器硬件在环台架：RDK X5 与仿真电脑经网口交换传感器和机械臂消息；两端的 USB-CAN 经 HPM6750 的 CAN1 和 CAN0 形成闭环；仿真电脑独立记录测试证据](docs/media/readme/hil-topology.svg)
+
+蓝线为网口 ROS 2 信号，棕线为 CAN 命令与反馈，虚线为独立记录。两条蓝线共用网口，机械臂链路只在采摘工况使用。
 
 | 车型与机具 | 场景 | 作业任务 |
 | --- | --- | --- |
