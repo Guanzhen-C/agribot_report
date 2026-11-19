@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="288" viewBox="0 0 760 288" role="img" aria-labelledby="title description" xml:lang="zh-CN">
+  <title id="title">硬件在环台架通信关系</title>
+  <desc id="description">仿真电脑和 RDK X5 通过网口交换 ROS 2 消息，两端分别通过 CAN 与 HPM6750 通信。</desc>
+  <defs>
+    <marker id="ros-arrow" markerWidth="8" markerHeight="10" refX="8" refY="5" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0 0L8 5L0 10Z" fill="#236753"/>
+    </marker>
+    <marker id="can-arrow" markerWidth="8" markerHeight="10" refX="8" refY="5" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0 0L8 5L0 10Z" fill="#98541d"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="759" height="287" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+
+  <g fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M262 74H498" stroke="#236753" marker-start="url(#ros-arrow)" marker-end="url(#ros-arrow)"/>
+    <g stroke="#98541d" marker-start="url(#can-arrow)" marker-end="url(#can-arrow)">
+      <path d="M140 118V228H262"/>
+      <path d="M620 118V228H498"/>
+    </g>
+  </g>
+
+  <g fill="#fff" stroke="#aab6c2">
+    <rect x="24" y="28" width="232" height="84" rx="8"/>
+    <rect x="504" y="28" width="232" height="84" rx="8"/>
+    <rect x="268" y="186" width="224" height="84" rx="8"/>
+  </g>
+
+  <g font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif" text-anchor="middle">
+    <g font-size="24" font-weight="700" fill="#1f2933">
+      <text x="140" y="66">仿真电脑</text>
+      <text x="620" y="66">RDK X5</text>
+      <text x="380" y="224">HPM6750</text>
+    </g>
+    <g font-size="17" fill="#3f4d5a">
+      <text x="140" y="93">Unity / Gazebo / CAN 反馈</text>
+      <text x="620" y="93">导航与作业任务</text>
+      <text x="380" y="251">工况固件</text>
+    </g>
+    <g font-size="18" font-weight="700">
+      <text x="380" y="59" fill="#236753">网口 ROS 2</text>
+      <text x="200" y="214" fill="#98541d">CAN</text>
+      <text x="560" y="214" fill="#98541d">CAN</text>
+    </g>
+  </g>
+</svg>
