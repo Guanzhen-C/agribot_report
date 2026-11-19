@@ -13,8 +13,11 @@ namespace Agribot.VehicleConfiguration
         private static readonly string[] Objects = { "RADAR", "RTK", "CarCamera", "Imu_box" };
         private static readonly string[] Labels = { "雷达", "RTK", "相机", "IMU" };
 
-        public static bool Validate(out string message)
+        public static bool Validate(out string message) => Validate(out message, out _);
+
+        internal static bool Validate(out string message, out bool missingEquipment)
         {
+            missingEquipment = false;
             string name = FarmEquipmentUi.CurrentCarName();
             var car = string.IsNullOrEmpty(name) ? null : GameObject.Find(name);
             if (car == null) { message = "请先选择车辆。"; return false; }
@@ -32,7 +35,8 @@ namespace Agribot.VehicleConfiguration
                 if (!installed || visual == null || !visual.gameObject.activeInHierarchy)
                     missing.Add(Labels[index]);
             }
-            if (missing.Count > 0)
+            missingEquipment = missing.Count > 0;
+            if (missingEquipment)
             { message = "请先安装" + string.Join("、", missing) + "，再启动仿真。"; return false; }
             if (bag != null && bag.IsSceneAnimating)
             { message = "请等待传感器安装动画结束。"; return false; }

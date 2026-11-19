@@ -16,7 +16,7 @@ namespace Agribot.VehicleConfiguration.Tests
         private static GameObject Find(string name) => Resources.FindObjectsOfTypeAll<Transform>()
             .First(item => item.gameObject.scene.IsValid() && item.name == name).gameObject;
 
-        [UnityTest] public IEnumerator SelectingFixedFarmAppliesTheAcceptedRecipeAndRestoresOtherScenes()
+        [UnityTest] public IEnumerator SelectingFixedFarmPreservesManualAlgorithmChoiceAndItsFixedRoute()
         {
             string previous = Environment.GetEnvironmentVariable("AGRIBOT_SCANNED_SCENE_ROOT");
             string directory = Path.Combine(Path.GetTempPath(), "agribot_fuxi_ui_" + Guid.NewGuid().ToString("N"));
@@ -38,6 +38,9 @@ namespace Agribot.VehicleConfiguration.Tests
                 var dialog = Find("ROS_Algorithm_Selection"); dialog.SetActive(true);
                 Find("Scenario_" + scene.id).GetComponent<Button>().onClick.Invoke(); yield return null;
                 Assert.That(AssistantConversation.State.car, Is.EqualTo("Car3"));
+                Assert.That(AssistantConversation.State.algorithm, Is.Empty);
+                SimulationLaunchGateTests.AssertLaunchUnavailable(Find("Launch").GetComponent<Button>());
+                SimulationLaunchGateTests.SelectAlgorithm(dialog.GetComponentsInChildren<Button>(true), scene.fixedAlgorithmId);
                 Assert.That(AssistantConversation.State.algorithm, Is.EqualTo(scene.fixedAlgorithmId));
                 Assert.That(Find("Launch").GetComponent<Button>().interactable, Is.True);
                 var panel = Find("AlgorithmDetails");

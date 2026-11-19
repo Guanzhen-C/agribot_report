@@ -82,11 +82,14 @@ namespace Agribot.VehicleConfiguration.Tests
                 var panel = UnityEngine.Object.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                     .First(value => value.GetType().Name == "LastPanel");
                 panel.GetType().GetMethod("ApplyRecommendation").Invoke(panel, new object[] { verified.Result });
+                yield return null;
                 Assert.That(FarmScenarioCatalog.Selected.name, Is.EqualTo(scene.name));
                 Assert.That(Find("Scenario_" + scene.id).transform.Find("SceneTasks").GetComponent<Text>().text,
                     Does.StartWith("用户导入"));
                 Assert.That(Find("Scenario_" + scene.id).activeInHierarchy, Is.False, "Algorithm tab is open after applying the plan");
                 Assert.That(AssistantConversation.State.algorithm, Is.EqualTo(item.algorithm));
+                Assert.That(Find("Launch").GetComponent<Button>().IsInteractable(), Is.True);
+                SimulationLaunchGateTests.AssertLaunchUnavailable(Find("LaunchHil").GetComponent<Button>());
                 Assert.That(RosSimulationLauncher.ReadManagedStatus(), Is.EqualTo(simulation));
                 File.AppendAllText(Path.Combine(directory, "world.sdf"), "changed");
                 var stale = NaturalRecommendationClient.Revalidate(item, CancellationToken.None);

@@ -173,7 +173,7 @@ namespace Agribot.VehicleConfiguration.Tests
             foreach (var component in new[] { profile.PerceptionComponent, profile.VisualPerceptionComponent,
                 profile.LocalizationComponent, profile.PlannerComponent, profile.ControllerComponent })
                 buttons.Single(button => button.name == "Component_" + component.Id).onClick.Invoke();
-            Assert.That(hil.GetComponent<Button>().interactable, Is.False, "An algorithm alone cannot bypass sensor installation");
+            SimulationLaunchGateTests.AssertLaunchWarning(hil.GetComponent<Button>(), "请先安装雷达、RTK、相机、IMU，再启动仿真。");
             foreach (string sensor in new[] { "Radar", "RTK", "Camera", "Imu" })
             {
                 var data = getter.Invoke(bag, new[] { Enum.Parse(getter.GetParameters()[0].ParameterType, sensor) });
@@ -183,13 +183,13 @@ namespace Agribot.VehicleConfiguration.Tests
             Assert.That(hil.GetComponent<Button>().interactable, Is.True);
             var wrong = RosSimulationLauncher.Localizations.First(option => option.Id != profile.LocalizationComponent.Id);
             buttons.Single(button => button.name == "Component_" + wrong.Id).onClick.Invoke();
-            Assert.That(hil.GetComponent<Button>().interactable, Is.False, "Non-HIL algorithm must be rejected");
+            SimulationLaunchGateTests.AssertLaunchUnavailable(hil.GetComponent<Button>());
             buttons.Single(button => button.name == "Component_" + profile.LocalizationComponent.Id).onClick.Invoke();
             Assert.That(hil.GetComponent<Button>().interactable, Is.True);
             var radar = getter.Invoke(bag, new[] { Enum.Parse(getter.GetParameters()[0].ParameterType, "Radar") });
             install.Invoke(bag, new[] { radar, (object)false });
             yield return new WaitForSeconds(.3f);
-            Assert.That(hil.GetComponent<Button>().interactable, Is.False, "Removing one sensor must immediately revoke launch eligibility");
+            SimulationLaunchGateTests.AssertLaunchWarning(hil.GetComponent<Button>(), "请先安装雷达，再启动仿真。");
             Assert.That(FarmScenarioCatalog.SelectedId, Is.EqualTo("orchard"));
         }
 

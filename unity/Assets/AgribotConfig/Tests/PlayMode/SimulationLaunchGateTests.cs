@@ -29,7 +29,7 @@ namespace Agribot.VehicleConfiguration.Tests
         private static GameObject Find(string name) => UnityEngine.Object.FindObjectsByType<Transform>(
             FindObjectsInactive.Include, FindObjectsSortMode.None).First(t => t.name == name).gameObject;
 
-        private static void SelectAlgorithm(Button[] buttons, string id)
+        internal static void SelectAlgorithm(Button[] buttons, string id)
         {
             var profile = RosSimulationLauncher.FindAlgorithm(id);
             foreach (var component in new[] { profile.PerceptionComponent, profile.VisualPerceptionComponent,
@@ -37,13 +37,23 @@ namespace Agribot.VehicleConfiguration.Tests
                 buttons.Single(button => button.name == "Component_"+component.Id).onClick.Invoke();
         }
 
-        private static void AssertLaunchWarning(Button button, string expected)
+        internal static void AssertLaunchWarning(Button button, string expected)
         {
             Assert.That(button.IsInteractable(), Is.True);
+            Assert.That(button.image.color.g, Is.GreaterThan(.7f), "Missing equipment must leave the button highlighted");
             button.onClick.Invoke();
             var notice = Find("GarageNotification");
             Assert.That(notice.activeInHierarchy, Is.True);
             Assert.That(notice.GetComponentInChildren<TMPro.TMP_Text>().text, Does.Contain(expected));
+        }
+
+        internal static void AssertLaunchUnavailable(Button button)
+        {
+            Assert.That(button.IsInteractable(), Is.False, button.name);
+            Assert.That(button.image.color.g, Is.LessThan(.4f), button.name + " must look disabled");
+            GameObject.Find("GarageNotification")?.SetActive(false);
+            button.onClick.Invoke();
+            Assert.That(GameObject.Find("GarageNotification"), Is.Null, "An unavailable launch should not show a warning");
         }
 
         [UnityTest]
@@ -74,23 +84,33 @@ namespace Agribot.VehicleConfiguration.Tests
                 var buttons = dialog.GetComponentsInChildren<Button>(true);
                 var normal = buttons.Single(button => button.name == "Launch");
                 var hil = buttons.Single(button => button.name == "LaunchHil");
-                AssertLaunchWarning(normal, "选择场景");
-                AssertLaunchWarning(hil, "选择场景");
-                buttons.Single(button => button.name == "Scenario_orchard").onClick.Invoke();
+                AssertLaunchUnavailable(normal);
+                AssertLaunchUnavailable(hil);
+                var orchard = buttons.Single(button => button.name == "Scenario_orchard");
+                orchard.onClick.Invoke();
+                AssertLaunchUnavailable(normal);
+                AssertLaunchUnavailable(hil);
+                buttons.Single(button => button.name == "Component_stvl").onClick.Invoke();
+                AssertLaunchUnavailable(normal);
+                AssertLaunchUnavailable(hil);
+                SelectAlgorithm(buttons, "stvl_off_fastlivo_rtk_smac_hybrid_mppi");
+                if (carName == "Car0")
+                {
+                    FarmScenarioCatalog.ResetSelection();
+                    yield return new WaitForSeconds(.3f);
+                    AssertLaunchUnavailable(normal);
+                    AssertLaunchUnavailable(hil);
+                    orchard.onClick.Invoke();
+                }
+                AssertLaunchUnavailable(hil);
                 AssertLaunchWarning(normal, "请先安装雷达、RTK、相机、IMU，再启动仿真。");
-                AssertLaunchWarning(hil, "请先安装雷达、RTK、相机、IMU，再启动仿真。");
                 foreach (string slot in new[] { "Radar", "RTK", "Camera", "Imu" })
                 {
                     Assert.That((bool)installation.Invoke(bag, new[] { Equipment(slot), (object)true }), Is.True);
                     yield return new WaitForSeconds(.65f);
                     if (slot == "RTK")
-                    {
                         AssertLaunchWarning(normal, "请先安装相机、IMU，再启动仿真。");
-                        AssertLaunchWarning(hil, "请先安装相机、IMU，再启动仿真。");
-                    }
                 }
-                AssertLaunchWarning(normal, "完成算法选择");
-                AssertLaunchWarning(hil, "完成算法选择");
                 var rtk = car.GetComponentsInChildren<Transform>(true).Single(part => part.name == "RTK");
                 var rtkMeshes = rtk.GetComponentsInChildren<MeshFilter>().Where(filter =>
                     filter.GetComponent<MeshRenderer>().enabled).ToArray();
@@ -123,22 +143,8 @@ namespace Agribot.VehicleConfiguration.Tests
                     Assert.That(heights.Max()-heights.Min(), Is.EqualTo(.1228f).Within(.0001f),
                         carName+" exported RTK geometry must agree with the visible short stems");
                 }
-                SelectAlgorithm(buttons, "stvl_off_fastlivo_rtk_smac_hybrid_mppi");
-                yield return new WaitForSeconds(.3f);
                 Assert.That(normal.interactable, Is.True, carName+" complete ordinary selection");
-                AssertLaunchWarning(hil, "不支持HIL仿真");
-                if (carName == "Car0" || carName == "Car3" || carName == "Car4")
-                {
-                    string tool = carName == "Car0" ? "Hand" : carName == "Car3" ? "HilSprayer" : "DiscHarrow";
-                    installation.Invoke(bag, new[] { Equipment(tool), (object)true });
-                    yield return new WaitForSeconds(.8f);
-                    string scene = carName == "Car4" ? "wide_headland" : "orchard";
-                    buttons.Single(button => button.name == "Scenario_"+scene).onClick.Invoke();
-                    string implement = carName == "Car0" ? "lite6" : carName == "Car3" ? "hil_sprayer" : "mounted_disc_harrow";
-                    SelectAlgorithm(buttons, HilSimulationLauncher.Match(carName, implement, scene).algorithm);
-                    yield return new WaitForSeconds(.3f);
-                    Assert.That(hil.interactable, Is.True, carName+" reviewed HIL combination");
-                }
+                AssertLaunchUnavailable(hil);
                 if (carName == "Car3")
                 {
                     var config = SceneVehicleConfiguration.Build(car).BuildConfiguration();
@@ -154,13 +160,32 @@ namespace Agribot.VehicleConfiguration.Tests
                     installation.Invoke(bag, new[] { Equipment(entry.Item1), (object)false });
                     yield return new WaitForSeconds(.3f);
                     AssertLaunchWarning(normal, "安装"+entry.Item2);
-                    AssertLaunchWarning(hil, "安装"+entry.Item2);
                     Assert.That(dialog.gameObject.activeInHierarchy, Is.True, "Invalid clicks must leave configuration open");
-                    Assert.That(File.Exists(Path.Combine(temporaryRoot, ".local/hil/state.json")), Is.False,
-                        "Invalid button invocation must never submit a hardware request");
                     installation.Invoke(bag, new[] { Equipment(entry.Item1), (object)true });
                     yield return new WaitForSeconds(.65f);
                 }
+                foreach (var profile in HilSimulationLauncher.Profiles.Where(profile => profile.car == carName))
+                {
+                    installation.Invoke(bag, new[] { Equipment(profile.unityType), (object)true });
+                    if (carName == "Car4")
+                        buttons.Single(button => button.name == (profile.transmission == "cvt_auto" ? "CVT" : "PowerShift"))
+                            .onClick.Invoke();
+                    SelectAlgorithm(buttons, profile.algorithm);
+                    buttons.Single(button => button.name == "Scenario_arable_field").onClick.Invoke();
+                    AssertLaunchUnavailable(hil);
+                    buttons.Single(button => button.name == "Scenario_"+profile.scene).onClick.Invoke();
+                    Assert.That(hil.interactable, Is.True, profile.id);
+                    if (HilImplementLibrary.Supports(profile.implement)) AssertLaunchUnavailable(normal);
+                    foreach (string slot in new[] { "Radar", "Camera" })
+                        installation.Invoke(bag, new[] { Equipment(slot), (object)false });
+                    yield return new WaitForSeconds(.65f);
+                    AssertLaunchWarning(hil, "请先安装雷达、相机，再启动仿真。");
+                    foreach (string slot in new[] { "Radar", "Camera" })
+                        installation.Invoke(bag, new[] { Equipment(slot), (object)true });
+                    yield return new WaitForSeconds(.65f);
+                }
+                Assert.That(File.Exists(Path.Combine(temporaryRoot, ".local/hil/state.json")), Is.False,
+                    "Invalid button invocation must never submit a hardware request");
             }
         }
     }

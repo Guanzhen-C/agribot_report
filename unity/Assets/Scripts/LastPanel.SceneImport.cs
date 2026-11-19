@@ -55,7 +55,9 @@ public partial class LastPanel
         foreach (var scene in FarmScenarioCatalog.Scenarios)
         {
             var card = GarageVisualStyle.Panel(sceneGrid, "Scenario_" + scene.id, GarageVisualStyle.Surface);
-            var button = card.AddComponent<Button>(); GarageVisualStyle.ButtonStyle(button);
+            var button = card.AddComponent<Button>();
+            button.targetGraphic = card.GetComponent<Image>();
+            GarageVisualStyle.ButtonStyle(button);
             byte[] image = null;
             if (scene.imported)
             {

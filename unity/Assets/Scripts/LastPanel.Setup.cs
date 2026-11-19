@@ -75,8 +75,8 @@ public partial class LastPanel
             new Vector2(0, .75f), new Vector2(1, 1));
         cvtButton = SetupButton(transmissionControls.transform, "CVT", "CVT", 0, .4f, 1, .68f);
         powershiftButton = SetupButton(transmissionControls.transform, "PowerShift", "动力换挡", 0, .03f, 1, .31f);
-        cvtButton.onClick.AddListener(() => { hilTransmission = "cvt_auto"; RefreshHilAvailability(); });
-        powershiftButton.onClick.AddListener(() => { hilTransmission = "powershift_auto"; RefreshHilAvailability(); });
+        cvtButton.onClick.AddListener(() => { hilTransmission = "cvt_auto"; RefreshLaunchAvailability(); });
+        powershiftButton.onClick.AddListener(() => { hilTransmission = "powershift_auto"; RefreshLaunchAvailability(); });
         setupStopButton = SetupButton(panel.transform, "SetupStop", "停止仿真", .025f, .15f, .155f, .22f);
         setupStopButton.onClick.AddListener(() => RosSimulationHandoffUi.RequestStop(Notify));
         hilStatus = GarageVisualStyle.Label(panel.transform, "HilStatus", "", 14,
@@ -88,11 +88,11 @@ public partial class LastPanel
             new Vector2(.04f, .1f), new Vector2(.52f, .9f), GarageVisualStyle.Muted);
         currentScene.resizeTextForBestFit = true; currentScene.resizeTextMinSize = 12; currentScene.resizeTextMaxSize = 18;
         launchSelectedAlgorithmButton = SetupButton(footer.transform, "Launch", "启动仿真", .55f, .2f, .705f, .8f, true);
-        launchSelectedAlgorithmButton.onClick.AddListener(() => StartSelectedAlgorithm(selectedAlgorithm?.Id));
+        launchSelectedAlgorithmButton.onClick.AddListener(StartSelectedAlgorithm);
         launchHilButton = SetupButton(footer.transform, "LaunchHil", "启动HIL仿真", .725f, .2f, .88f, .8f, true);
         launchHilButton.onClick.AddListener(StartSelectedHil);
         HilSimulationUi.Observe();
-        HilSimulationUi.Changed += RefreshHilAvailability;
+        HilSimulationUi.Changed += RefreshLaunchAvailability;
         ClearAlgorithmSelection();
         algorithmDialog.SetActive(false);
         RefreshScenes(); ShowSetupTab(false);
@@ -104,7 +104,10 @@ public partial class LastPanel
         GarageVisualStyle.Rect(obj.transform, new Vector2(x, y), new Vector2(right, top));
         var text = GarageVisualStyle.Label(obj.transform, "Label", label, 17, Vector2.zero, Vector2.one);
         text.alignment = TextAnchor.MiddleCenter;
-        var button = obj.AddComponent<Button>(); GarageVisualStyle.ButtonStyle(button, primary); return button;
+        var button = obj.AddComponent<Button>();
+        button.targetGraphic = obj.GetComponent<Image>();
+        GarageVisualStyle.ButtonStyle(button, primary);
+        return button;
     }
     private void RefreshScenes()
     {

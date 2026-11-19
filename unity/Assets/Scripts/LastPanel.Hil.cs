@@ -9,12 +9,20 @@ public partial class LastPanel
     private Text hilStatus;
     private string hilTransmission = "cvt_auto";
 
-    private HilProfile SelectedHilProfile() => HilSimulationLauncher.Match(AssistantConversation.State.car,
-        AssistantConversation.State.implement, FarmScenarioCatalog.SelectedId, hilTransmission);
+    private HilProfile ReadyHilProfile()
+    {
+        var profile = HilSimulationLauncher.Match(AssistantConversation.State.car,
+            AssistantConversation.State.implement, FarmScenarioCatalog.SelectedId, hilTransmission);
+        return profile != null && profile.algorithm == selectedAlgorithm?.Id ? profile : null;
+    }
 
-    private void RefreshHilAvailability()
+    private void RefreshLaunchAvailability()
     {
         var status = HilSimulationLauncher.ReadStatus();
+        var scene = FarmScenarioCatalog.Selected;
+        bool configured = CanLaunchSetup(scene, status);
+        SetLaunchAvailability(launchSelectedAlgorithmButton, configured && CanLaunchOrdinary(scene));
+        SetLaunchAvailability(launchHilButton, configured && ReadyHilProfile() != null);
         bool stopping = RosSimulationHandoffUi.IsStopPending || HilSimulationUi.IsStopPending;
         if (setupStopButton != null)
         {
@@ -42,23 +50,19 @@ public partial class LastPanel
         }
     }
 
+    private static void SetLaunchAvailability(Button button, bool available)
+    {
+        if (button == null) return;
+        button.interactable = available;
+        button.image.color = available ? GarageVisualStyle.Accent : GarageVisualStyle.Raised;
+        button.GetComponentInChildren<Text>(true).color = available ? GarageVisualStyle.Background : GarageVisualStyle.Muted;
+    }
+
     private void StartSelectedHil()
     {
-        string issue = LaunchTransitionIssue() ?? LaunchConfigurationIssue();
-        if (issue != null) { Notify(issue); return; }
-        if (HilSimulationLauncher.HasSession) { Notify("请先停止当前HIL仿真，再启动新的工况。"); return; }
-        var profile = SelectedHilProfile();
-        if (profile == null)
-        {
-            Notify("当前车型、机具与场景不支持HIL仿真。可用组合：Car0机械臂／苹果园、Car3风送植保机或碎枝机／苹果园、Car4圆盘耙／宽地头机具运输区。");
-            return;
-        }
-        if (selectedAlgorithm.Id != profile.algorithm)
-        {
-            Notify("当前HIL使用已验证的默认方案：" + RosSimulationLauncher.FindAlgorithm(profile.algorithm).DisplayName +
-                "。当前算法选择未被修改，请确认方案后再启动。");
-            return;
-        }
+        if (!CanLaunchSetup(FarmScenarioCatalog.Selected, HilSimulationLauncher.ReadStatus())) return;
+        var profile = ReadyHilProfile();
+        if (profile == null || !ValidateLaunchEquipment()) return;
         // HIL uses its versioned, verified recipe. Ordinary simulation continues
         // to use the independently editable algorithm components on this page.
         AssistantConversation.RecordUi("HIL方案：" + profile.name + "；算法：" + profile.algorithm + "；路线：" + profile.route);
