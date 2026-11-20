@@ -136,7 +136,11 @@ namespace Agribot.VehicleConfiguration.Editor
                 "export XDG_CONFIG_HOME=\"$AGRIBOT_REPORT_CONFIG_HOME\"\n" +
                 "cd \"$HERE\"\n" +
                 "export LD_PRELOAD=\"$PWD/libagribot_linux_ime.so${LD_PRELOAD:+:$LD_PRELOAD}\"\n" +
-                $"exec \"$HERE/{ExecutableName}\" -screen-fullscreen 1 \"$@\"\n";
+                "fullscreen=(-screen-fullscreen 1)\n" +
+                "for arg in \"$@\"; do\n" +
+                "  if [[ \"$arg\" == -screen-fullscreen ]]; then fullscreen=(); break; fi\n" +
+                "done\n" +
+                $"exec \"$HERE/{ExecutableName}\" \"${{fullscreen[@]}}\" \"$@\"\n";
             File.WriteAllText(launcherPath, script);
             RunCommand("/bin/chmod", $"+x \"{launcherPath}\"");
         }
@@ -164,7 +168,7 @@ namespace Agribot.VehicleConfiguration.Editor
                 "Type=Application\n" +
                 "Name=农机配置平台\n" +
                 "Comment=配置车辆、传感器和 ROS 仿真算法\n" +
-                $"Exec={launcherPath}\n" +
+                $"Exec=\"{launcherPath}\" -screen-fullscreen 0 -screen-width 1600 -screen-height 900\n" +
                 $"Path={outputDirectory}\n" +
                 "Icon=applications-engineering\n" +
                 "Terminal=false\n" +
