@@ -1078,27 +1078,26 @@ def _launch_vehicle(context):
     map_name = "orchard_v2_map6.yaml"
     waypoint_file = os.path.join(simulation_share, "config", "orchard_waypoints_ackermann_smac.yaml")
     spawn_xy_yaw = [2.0, 36.0, 0.0]
-    georeference_file = os.path.join(simulation_share, "config", "orchard_ackermann_sim_georeference.yaml")
+    georeference_template = os.path.join(simulation_share, "config", "orchard_ackermann_sim_georeference.yaml")
     scenario = LaunchConfiguration("scenario").perform(context)
     external_manifest = LaunchConfiguration("scene_manifest").perform(context)
+    from agribot_farm_sim.scenarios import write_georeference
+
+    reference_scene = scenario
     if external_manifest:
-        from agribot_farm_sim.scenarios import write_georeference
         external = _external_scene_bundle(external_manifest)
         world_file = external["world"]
         map_directory, map_name = os.path.split(external["map"])
         waypoint_file = external["waypoints"]
         spawn_xy_yaw = external["spawn"]
         spawn_z += external["ground"]
-        georeference_file = write_georeference(
-            georeference_file, external["directory"] / "georeference.yaml",
-            [*spawn_xy_yaw[:2], spawn_z, spawn_xy_yaw[2]], base_to_antenna_xyz, "external_scene")
+        reference_scene = "external_scene"
     elif scenario == "orchard":
         from agribot_farm_sim.ground import prepare_orchard_ground
         world_file = prepare_orchard_ground(
             world_file, os.path.expanduser("~/.cache/agribot/scenarios/orchard"))
     else:
-        import json
-        from agribot_farm_sim.scenarios import build, vehicle_spawn, write_georeference, write_vehicle_route
+        from agribot_farm_sim.scenarios import build, vehicle_spawn, write_vehicle_route
         scenario_share = get_package_share_directory("agribot_farm_sim")
         with open(os.path.join(scenario_share, "config", "scenarios.json"), encoding="utf-8") as stream:
             entry = next(item for item in json.load(stream)["scenarios"] if item["id"] == scenario)
@@ -1109,9 +1108,10 @@ def _launch_vehicle(context):
         waypoint_file = str(write_vehicle_route(scenario, vehicle, scene_directory))
         spawn_xy_yaw = vehicle_spawn(vehicle, scenario, entry["spawn"])
         spawn_z += float(entry.get("spawnZOffset", 0.0))
-        georeference_file = write_georeference(
-            georeference_file, scene_directory / "georeference.yaml",
-            [*spawn_xy_yaw[:2], spawn_z, spawn_xy_yaw[2]], base_to_antenna_xyz, scenario)
+    # All scenes must use the same antenna origin as SimNavSatBridge for the selected mount and spawn.
+    georeference_file = write_georeference(
+        georeference_template, Path(tempfile.gettempdir()) / f"configured_{vehicle_id}_{reference_scene}_georeference.yaml",
+        [*spawn_xy_yaw[:2], spawn_z, spawn_xy_yaw[2]], base_to_antenna_xyz, reference_scene)
     if is_jetson:
         world_file = _write_jetson_world(world_file)
 
